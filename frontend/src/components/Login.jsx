@@ -14,7 +14,7 @@ export function Login() {
                <p>tu espacio de aprendizaje diseñado para al excelencia y la tranquilidad</p>
            </div>
            </div>
-           <form className='form-login' >
+           <form className='form-login'>
             <header>
               <h2>iniciar sesion</h2>
               <p>introduce tus credenciales para acceder</p>
@@ -30,14 +30,20 @@ export function Login() {
                 </label>
                 </div>
                 <footer>
-                    <div className='remind-me-forget-password-form'>
-                        <input type="radio" name="remind-me" id="remind-me" />
-                        <label htmlFor="remind-me">Recordarme</label>
-                        <button>¿Olvidaste tu Contraseña</button>
+                    <div className='remind-me-forgot-password-form'>
+                        <div>
+                            <input type="radio" name="remind-me" id="remind-me" />
+                            <label htmlFor="remind-me">Recordarme</label>
+                        </div>
+                        <button className='forgot-password'>
+                            ¿Olvidaste tu Contraseña
+                        </button>
                     </div>
                     <div className='final-part-form'>
-                        <button>ingresar</button>
-                        <button>
+                        <button className='btn-login-form'>
+                                ingresar
+                        </button>
+                            <button className='btn-create-account'>
                             ¿Aun no eres parte? <span>crear una cuenta</span>
                         </button>
                     </div>
