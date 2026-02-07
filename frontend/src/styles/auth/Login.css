@@ -1,9 +1,16 @@
+.container-all-login {
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .container-pricipal-login {
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0px 2px 20px 1px #afb0b1;
     border-radius: 18px;
+    height: 50%;
 }
 
 .container-info-login {
@@ -14,6 +21,7 @@
     justify-content: center;
     align-items: center;
     color: #fff;
+    height: 100%;
 }
 
 .image-login {
@@ -85,7 +93,8 @@
     /*DESPUÉS*/
 }
 
-.remind-me-forgot-password-form .forgot-password {
+.remind-me-forgot-password-form .forgot-password,
+.final-part-form .btn-create-account {
     background-color: transparent;
     border: none;
     outline: none;
