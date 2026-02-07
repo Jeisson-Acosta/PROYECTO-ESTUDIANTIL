@@ -33,7 +33,78 @@
 .form-login {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: #f4f7f6;
+    gap: 26px;
+}
+
+.fields-form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.fields-form-login footer {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.fields-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.fields-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fields-form label input {
+    background-color: #fff;
+    border: 1px solid #87b8d8;
+    outline: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.remind-me-forgot-password-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remind-me-forgot-password-form div {
+    display: flex;
+    gap: 6px;
+}
+
+.remind-me-forgot-password-form div input[type="radio"] {
+    /*DESPUÉS*/
+}
+
+.remind-me-forgot-password-form .forgot-password {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.final-part-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.final-part-form .btn-login-form {
+    background-color: #1a365d;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 14px;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
 }

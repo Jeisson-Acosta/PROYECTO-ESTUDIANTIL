@@ -41,10 +41,10 @@ export function Login() {
                             </button>
                         </div>
                         <div className='final-part-form'>
-                            <button>
+                            <button className='btn-login-form'>
                                 Ingresar
                             </button>
-                            <button>
+                            <button className='btn-create-account'>
                                 ¿Aún no eres parte? <span>Crear una cuenta</span>
                             </button>
                         </div>
