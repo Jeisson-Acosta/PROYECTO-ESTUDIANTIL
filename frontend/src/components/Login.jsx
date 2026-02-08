@@ -1,56 +1,58 @@
-import NutriaPrincipal from '../assets/nutria_principal.png'
-import '../styles/auth/Login.css'
+import nutriaPrincipal from '../../assets/nutria_principal.png'
+import '../../styles/auth/Login.css'
+
 export function Login() {
-    return(
-       <section className="container-principal-Login">
-           <div className="container-info-Login">
-            <div className="image-Login">
-                  <img src ={NutriaPrincipal} width='100px'/>
-            </div>
-          
-           
-           <div className='title-login'>
-               <h3>¡Bienvenido!</h3>
-               <p>tu espacio de aprendizaje diseñado para al excelencia y la tranquilidad</p>
-           </div>
-           </div>
-           <form className='form-login'>
-            <header>
-              <h2>iniciar sesion</h2>
-              <p>introduce tus credenciales para acceder</p>
-               </header>
-              <div className='fields-form-login'>
-                <div className='fields-form'>
-                <label>
-                    CORREO ELECTRONICO
-                    <input type="email" placeholder='usuario@dominio.com' />
-                </label>
-                <label>
-                    <input type="password" placeholder='ingresa tu contraseña' />
-                </label>
+    return (
+        <div className='container-all-login'>        
+            <section className="container-pricipal-login">
+                <div className="container-info-login">
+                    <div className="image-login">
+                        <img src={nutriaPrincipal} width='100px' height='150px' />
+                    </div>
+                    <div className='title-login'>
+                        <h2>¡Bienvenido!</h2>
+                        <p>Tu espacio de aprendizaje diseñado para la excelencia y la tranquilidad.</p>
+                    </div>
                 </div>
-                <footer>
-                    <div className='remind-me-forgot-password-form'>
-                        <div>
-                            <input type="radio" name="remind-me" id="remind-me" />
-                            <label htmlFor="remind-me">Recordarme</label>
+                <form className='form-login'>
+                    <header>
+                        <h2>Iniciar sesión</h2>
+                        <p>Introduce tus credenciales para acceder</p>
+                    </header>
+                    <div className='fields-form-login'>
+                        <div className='fields-form'>
+                            <label>
+                                CORREO ELECTRÓNICO
+                                <input type="email" placeholder='usuario@dominio.com' />
+                            </label>
+
+                            <label>
+                                Contraseña
+                                <input type="password" placeholder='Ingresa tu contraseña' />
+                            </label>
                         </div>
-                        <button className='forgot-password'>
-                            ¿Olvidaste tu Contraseña
-                        </button>
+                        <footer>
+                            <div className='remind-me-forgot-password-form'>
+                                <div>
+                                    <input type="radio" name="remind-me" id='remind-me' />
+                                    <label htmlFor="remind-me">Recordarme</label>
+                                </div>
+                                <button className='forgot-password'>
+                                    ¿Olvidaste tu contraseña?
+                                </button>
+                            </div>
+                            <div className='final-part-form'>
+                                <button className='btn-login-form'>
+                                    Ingresar
+                                </button>
+                                <button className='btn-create-account'>
+                                    ¿Aún no eres parte? <span>Crear una cuenta</span>
+                                </button>
+                            </div>
+                        </footer>
                     </div>
-                    <div className='final-part-form'>
-                        <button className='btn-login-form'>
-                                ingresar
-                        </button>
-                            <button className='btn-create-account'>
-                            ¿Aun no eres parte? <span>crear una cuenta</span>
-                        </button>
-                    </div>
-                </footer>
-              </div>
-           
-           </form>
-       </section>
+                </form>
+            </section>  
+        </div>
     )
 }
