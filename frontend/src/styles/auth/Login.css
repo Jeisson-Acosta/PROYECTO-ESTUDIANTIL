@@ -90,7 +90,8 @@
     /*DESPUÉS*/
 }
 
-.remind-me-forgot-password-form .forgot-password,.final-part-form .btn-create-account {
+.remind-me-forgot-password-form .forgot-password,
+.final-part-form .btn-create-account {
     background-color: transparent;
     border: none;
     outline: none;
