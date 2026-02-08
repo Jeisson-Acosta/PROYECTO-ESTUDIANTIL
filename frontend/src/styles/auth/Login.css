@@ -10,7 +10,7 @@
     align-items: center;
     box-shadow: 0px 2px 20px 1px #afb0b1;
     border-radius: 18px;
-    height: 50%;
+    height: 60%;
 }
 
 .container-info-login {
@@ -22,6 +22,9 @@
     align-items: center;
     color: #fff;
     height: 100%;
+    border-radius: 18px 0px 0px 18px;
+    gap: 16px;
+    padding: 30px;
 }
 
 .image-login {
@@ -35,7 +38,17 @@
 }
 
 .title-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
+    max-width: 360px;
+    gap: 12px;
+}
+
+.title-login h2 {
+    font-family: fontTitlesBold;
+    font-size: 30px;
 }
 
 .form-login {
@@ -43,6 +56,20 @@
     flex-direction: column;
     background-color: #f4f7f6;
     gap: 26px;
+    height: 100%;
+    padding: 30px;
+    border-radius: 0px 18px 18px 0px;
+    width: 90%;
+}
+
+.form-login header {
+    line-height: 30px;
+}
+
+.form-login header h2 {
+    font-family: fontTitlesBold;
+    font-size: 24px;
+    color: #1a365d;
 }
 
 .fields-form-login {
@@ -67,6 +94,8 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    font-family: fontSubtitles;
+    color: #1b375e;
 }
 
 .fields-form label input {
@@ -82,6 +111,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.remind-me-forgot-password-form div label,
+.remind-me-forgot-password-form button {
+    color: #1b375e;
+    font-family: fontSubtitles;
 }
 
 .remind-me-forgot-password-form div {
@@ -113,7 +148,20 @@
     outline: none;
     color: #fff;
     padding: 14px;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 10px;
     cursor: pointer;
+    transition: all .25s ease-in-out;
+    font-weight: bold;
 }
+
+.final-part-form .btn-login-form:hover {
+    background-color: #355d96;
+    scale: 1.1;
+}
+
+.final-part-form .btn-create-account span {
+    color: #1b375e;
+    font-weight: bold;
+}
+
