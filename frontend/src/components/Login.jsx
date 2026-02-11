@@ -1,7 +1,17 @@
 import nutriaPrincipal from '../../assets/nutria_principal.png'
 import '../../styles/auth/Login.css'
+import { useState } from 'react'
 
 export function Login() {
+    const [userinfologin,setUserInfoLogin] =useState({usuemail: '', usupwd: '' })
+    const handleChangeUserInfoLogin =(event) => {
+        setUserInfoLogin({
+            ...userinfologin,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    console.log()
     return (
         <div className='container-all-login'>        
             <section className="container-pricipal-login">
@@ -22,13 +32,23 @@ export function Login() {
                     <div className='fields-form-login'>
                         <div className='fields-form'>
                             <label>
-                                CORREO ELECTRÓNICO
-                                <input type="email" placeholder='usuario@dominio.com' />
+                                Correo electrónico
+                                <input 
+                                type="email" 
+                                placeholder='usuario@dominio.com' 
+                                name ='usuemail' 
+                                onChange={(e) => handleChangeUserInfoLogin(e)}
+                                />
                             </label>
 
                             <label>
                                 Contraseña
-                                <input type="password" placeholder='Ingresa tu contraseña' />
+                                <input 
+                                type="password" 
+                                placeholder='Ingresa tu contraseña' 
+                                name ='usupwd'
+                                 onChange={(e) => handleChangeUserInfoLogin(e)}
+                                />
                             </label>
                         </div>
                         <footer>
