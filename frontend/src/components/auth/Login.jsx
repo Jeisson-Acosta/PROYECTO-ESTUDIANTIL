@@ -1,10 +1,13 @@
+import toast from 'react-hot-toast'
 import nutriaPrincipal from '../../assets/nutria_principal.png'
 import '../../styles/auth/Login.css'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 export function Login() {
 
-    const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: 'json', usupwd: '' })
+    const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: '', usupwd: '' })
+    const navigate = useNavigate()
 
     // handleChange -> Cuando cambia la información en tiempo real.
     // handleClick -> Cuando hacen clic a algo.
@@ -16,7 +19,25 @@ export function Login() {
         })
     }
 
-    console.log(userInfoLogin)
+    const handleSubmitFormLogin = (event) => {
+        event.preventDefault() // Quitar el comportamiento por defecto de un formulario
+
+        // Hacer validacón para que el que envie el fomrulario sea el boton de 'Ingresar'.
+
+        // Validaciones para que los campos no esten vacios.
+        if (userInfoLogin.usuemail === '') return toast.error('El correo electronico no puede estar vacío')
+        if (userInfoLogin.usupwd === '') return toast.error('La contraseña no puede estar vacía')
+
+        // Aqui es donde mandamos la información al backend para que la procese
+
+        if (userInfoLogin.usuemail === 'pepito@gmail.com' && userInfoLogin.usupwd === '1234') {
+            toast.success('¡Bienvenido Pepito!')
+            // Aqui ya debe de ingresar a la pagina
+            navigate('/dashboard')
+        } else {
+            toast.error('Algo salio mal. ¡Intentalo de nuevo!')
+        }
+    }
 
     return (
         <div className='container-all-login'>
@@ -30,7 +51,7 @@ export function Login() {
                         <p>Tu espacio de aprendizaje diseñado para la excelencia y la tranquilidad.</p>
                     </div>
                 </div>
-                <form className='form-login'>
+                <form className='form-login' onSubmit={(e) => handleSubmitFormLogin(e)}>
                     <header>
                         <h2>Iniciar sesión</h2>
                         <p>Introduce tus credenciales para acceder</p>
