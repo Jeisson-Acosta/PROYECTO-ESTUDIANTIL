@@ -10,7 +10,7 @@
     align-items: center;
     box-shadow: 0px 2px 20px 1px #afb0b1;
     border-radius: 18px;
-    height: 60%;
+    min-height: 60%;
 }
 
 .container-info-login {
@@ -22,13 +22,10 @@
     align-items: center;
     color: #fff;
     height: 100%;
+    width: 100%;
     border-radius: 18px 0px 0px 18px;
-<<<<<<< HEAD
-    gap:16px;
-=======
     gap: 16px;
->>>>>>> e655d0c3ef797e68623493dfd48d1995cc0736bd
-    padding: 30px;
+    padding: 100px;
 }
 .image-login {
     background-color: #5a7c9d;
@@ -45,23 +42,14 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-<<<<<<< HEAD
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 360px;
-    gap: 12px;
-}
-.title-login h2{
-=======
     max-width: 360px;
     gap: 12px;
 }
 
 .title-login h2 {
->>>>>>> e655d0c3ef797e68623493dfd48d1995cc0736bd
     font-family: fontTitlesBold;
     font-size: 30px;
+
 }
 .form-login {
     display: flex;
@@ -70,16 +58,10 @@
     gap: 26px;
     height: 100%;
     padding: 30px;
-<<<<<<< HEAD
-        border-radius: 0px 18px 18px 0px;
-    width: 90%;
-}
-=======
     border-radius: 0px 18px 18px 0px;
     width: 90%;
 }
 
->>>>>>> e655d0c3ef797e68623493dfd48d1995cc0736bd
 .form-login header {
     line-height: 30px;
 }
@@ -110,11 +92,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-<<<<<<< HEAD
-    font-family: fontsubtitles;
-=======
     font-family: fontSubtitles;
->>>>>>> e655d0c3ef797e68623493dfd48d1995cc0736bd
     color: #1b375e;
 }
 
@@ -125,6 +103,28 @@
     border-radius: 6px;
     padding: 12px;
     font-size: 14px;
+}
+
+@media (width < 760px){
+    .container-pricipal-login {
+        flex-direction: column;
+        min-height: 60%;
+    }
+    .container-info-login{
+        padding: 12px;
+        border-radius: 18px;
+    }
+    .title-login {
+      font-size: 22px
+       
+    }
+
+    .title-login p {
+        display:none
+    }
+    .form-login{
+     
+    }
 }
 
 .remind-me-forgot-password-form {
@@ -181,16 +181,10 @@
     transition: all .25s ease-in-out;
     font-weight: bold;
 }
-<<<<<<< HEAD
-.final-part-form .btn-login-form:hover{
-     background-color: #355d96;
-     scale: 1.1;
-=======
 
 .final-part-form .btn-login-form:hover {
     background-color: #355d96;
     scale: 1.1;
->>>>>>> e655d0c3ef797e68623493dfd48d1995cc0736bd
 }
 
 .final-part-form .btn-create-account span {

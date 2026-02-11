@@ -37,6 +37,7 @@ export function Login() {
                                 type="email" 
                                 placeholder='usuario@dominio.com' 
                                 name ='usuemail' 
+                                value={userinfologin.usuemail}
                                 onChange={(e) => handleChangeUserInfoLogin(e)}
                                 />
                             </label>
@@ -47,6 +48,7 @@ export function Login() {
                                 type="password" 
                                 placeholder='Ingresa tu contraseña' 
                                 name ='usupwd'
+                                value={userinfologin.usupwd}
                                  onChange={(e) => handleChangeUserInfoLogin(e)}
                                 />
                             </label>
