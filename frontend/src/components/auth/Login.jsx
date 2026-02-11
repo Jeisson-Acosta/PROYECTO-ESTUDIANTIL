@@ -16,6 +16,10 @@ export function Login() {
         })
     }
 
+    const handleSubmitFormLogin = (event) => {
+        alert('hola')
+    }
+
     console.log(userInfoLogin)
 
     return (
@@ -30,7 +34,7 @@ export function Login() {
                         <p>Tu espacio de aprendizaje diseñado para la excelencia y la tranquilidad.</p>
                     </div>
                 </div>
-                <form className='form-login'>
+                <form className='form-login' onSubmit={(e) => handleSubmitFormLogin(e)}> 
                     <header>
                         <h2>Iniciar sesión</h2>
                         <p>Introduce tus credenciales para acceder</p>
