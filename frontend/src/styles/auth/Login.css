@@ -10,7 +10,7 @@
     align-items: center;
     box-shadow: 0px 2px 20px 1px #afb0b1;
     border-radius: 18px;
-    height: 60%;
+    min-height: 60%;
 }
 
 .container-info-login {
@@ -22,9 +22,10 @@
     align-items: center;
     color: #fff;
     height: 100%;
+    width: 100%;
     border-radius: 18px 0px 0px 18px;
     gap: 16px;
-    padding: 30px;
+    padding: 100px;
 }
 
 .image-login {
@@ -59,7 +60,7 @@
     height: 100%;
     padding: 30px;
     border-radius: 0px 18px 18px 0px;
-    width: 90%;
+    width: 100%;
 }
 
 .form-login header {
@@ -105,6 +106,26 @@
     border-radius: 6px;
     padding: 12px;
     font-size: 14px;
+}
+
+/* Media querie para que el fomrulario se comporte de diferente forma en
+dispositivos con pantalla pequeña 
+*/
+@media (width <= 760px) {
+    .container-pricipal-login {
+        flex-direction: column;
+    }
+    .container-info-login {
+        padding: 12px;
+        border-radius: 18px;
+    }
+    .title-login h2 {
+        font-size: 22px;
+    }
+    .title-login p {
+        display: none;
+    }
+
 }
 
 .remind-me-forgot-password-form {

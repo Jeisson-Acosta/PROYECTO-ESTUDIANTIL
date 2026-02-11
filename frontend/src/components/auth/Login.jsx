@@ -4,11 +4,14 @@ import { useState } from 'react'
 
 export function Login() {
 
-    const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: '', usupwd: '' })
+    const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: 'json', usupwd: '' })
 
+    // handleChange -> Cuando cambia la información en tiempo real.
+    // handleClick -> Cuando hacen clic a algo.
+    // handleSubmit -> Cuando envian un formulario
     const handleChangeUserInfoLogin = (event) => {
         setUserInfoLogin({
-            ...userInfoLogin,
+            ...userInfoLogin, // ... -> spread operator = Sacar copia de como esta la información en ese momento
             [event.target.name]: event.target.value
         })
     }
@@ -40,6 +43,7 @@ export function Login() {
                                     type="email" 
                                     placeholder='usuario@dominio.com' 
                                     name='usuemail' 
+                                    value={userInfoLogin.usuemail}
                                     onChange={(e) => handleChangeUserInfoLogin(e)}
                                 />
                             </label>
@@ -50,6 +54,7 @@ export function Login() {
                                     type="password" 
                                     placeholder='Ingresa tu contraseña' 
                                     name='usupwd' 
+                                    value={userInfoLogin.usupwd}
                                     onChange={(e) => handleChangeUserInfoLogin(e)}
                                 />
                             </label>
