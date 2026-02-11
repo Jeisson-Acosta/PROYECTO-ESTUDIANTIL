@@ -1,25 +1,23 @@
 @font-face {
   font-family: fontMain;
-  src: url("./fonts/Mulish/static/Mulish-ExtraLight.ttf") ;
+  src: url("./fonts/Mulish/static/Mulish-ExtraLight.ttf");
 }
-
 
 @font-face {
-font-family: fontTitlesBold;
-src: url("./fonts/Mulish/static/Mulish-ExtraBold.ttf")
+  font-family: fontTitlesBold;
+  src: url("./fonts/Mulish/static/Mulish-ExtraBold.ttf");
 }
+
 @font-face {
   font-family: fontSubtitles;
-  src: url("./fonts/Mulish/static/Mulish-Medium.ttf") ;
+  src: url("./fonts/Mulish/static/Mulish-Medium.ttf");
 }
-
-
-
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: fontMain;
 }
 
 *{

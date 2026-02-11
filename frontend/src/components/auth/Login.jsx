@@ -1,9 +1,22 @@
 import nutriaPrincipal from '../../assets/nutria_principal.png'
 import '../../styles/auth/Login.css'
+import { useState } from 'react'
 
 export function Login() {
+
+    const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: '', usupwd: '' })
+
+    const handleChangeUserInfoLogin = (event) => {
+        setUserInfoLogin({
+            ...userInfoLogin,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    console.log(userInfoLogin)
+
     return (
-        <div className='container-all-login'>        
+        <div className='container-all-login'>
             <section className="container-pricipal-login">
                 <div className="container-info-login">
                     <div className="image-login">
@@ -22,13 +35,23 @@ export function Login() {
                     <div className='fields-form-login'>
                         <div className='fields-form'>
                             <label>
-                                CORREO ELECTRÓNICO
-                                <input type="email" placeholder='usuario@dominio.com' />
+                                Correo electrónico
+                                <input 
+                                    type="email" 
+                                    placeholder='usuario@dominio.com' 
+                                    name='usuemail' 
+                                    onChange={(e) => handleChangeUserInfoLogin(e)}
+                                />
                             </label>
 
                             <label>
                                 Contraseña
-                                <input type="password" placeholder='Ingresa tu contraseña' />
+                                <input 
+                                    type="password" 
+                                    placeholder='Ingresa tu contraseña' 
+                                    name='usupwd' 
+                                    onChange={(e) => handleChangeUserInfoLogin(e)}
+                                />
                             </label>
                         </div>
                         <footer>
