@@ -59,7 +59,7 @@
     height: 100%;
     padding: 30px;
     border-radius: 0px 18px 18px 0px;
-    width: 90%;
+    width: 100%;
 }
 
 .form-login header {
@@ -105,6 +105,7 @@
     font-size: 14px;
 }
 
+<<<<<<< HEAD
 @media (width < 760px){
     .container-pricipal-login {
         flex-direction: column;
@@ -125,6 +126,26 @@
     .form-login{
      
     }
+=======
+/* Media querie para que el fomrulario se comporte de diferente forma en
+dispositivos con pantalla pequeña 
+*/
+@media (width <= 760px) {
+    .container-pricipal-login {
+        flex-direction: column;
+    }
+    .container-info-login {
+        padding: 12px;
+        border-radius: 18px;
+    }
+    .title-login h2 {
+        font-size: 22px;
+    }
+    .title-login p {
+        display: none;
+    }
+
+>>>>>>> a2c376c1ab5514293cfbc2e752d108d357c69df3
 }
 
 .remind-me-forgot-password-form {
