@@ -1,29 +1,34 @@
 import nutriaPrincipal from '../../assets/nutria_principal.png'
-import '../../styles/auth/Login.css'
+import toast from 'react-hot-toast'
+import "../../styles/auth/Login.css"
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export function Login() {
-
-    const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: 'json', usupwd: '' })
-
-    // handleChange -> Cuando cambia la información en tiempo real.
-    // handleClick -> Cuando hacen clic a algo.
-    // handleSubmit -> Cuando envian un formulario
-    const handleChangeUserInfoLogin = (event) => {
+    const [userinfologin,setUserInfoLogin] =useState({usuemail: '', usupwd: '' })
+    const navigate = userinfologin
+    const handleChangeUserInfoLogin =(event) => {
         setUserInfoLogin({
-            ...userInfoLogin, // ... -> spread operator = Sacar copia de como esta la información en ese momento
+            ...userinfologin,
             [event.target.name]: event.target.value
         })
     }
+      const handleSubmitFormLogin = (event) => {
+        event.preventDefault()
 
-    const handleSubmitFormLogin = (event) => {
-        alert('hola')
+       if (userinfologin.usuemail === '') return toast.error('el correo electronico no puede estar vacio')
+      if(userinfologin.usupwd === '') return toast.error('la contraseña no puede estar vacias')
+        if(userinfologin.usuemail === 'pepito@gmail.com' && userinfologin.usupwd === '1234') {
+              toast.success('Bienvenido Pepito')
+              //aqui ya debe de ingresar a la pagina
+              navigate('/dashboard')
+        } else {
+            toast.error('algo salio mal, intentalo de nuevo')
+        }
     }
 
-    console.log(userInfoLogin)
-
     return (
-        <div className='container-all-login'>
+        <div className='container-all-login'>        
             <section className="container-pricipal-login">
                 <div className="container-info-login">
                     <div className="image-login">
@@ -34,7 +39,7 @@ export function Login() {
                         <p>Tu espacio de aprendizaje diseñado para la excelencia y la tranquilidad.</p>
                     </div>
                 </div>
-                <form className='form-login' onSubmit={(e) => handleSubmitFormLogin(e)}> 
+                <form className='form-login' onSubmit={(e) => handleSubmitFormLogin(e)}>
                     <header>
                         <h2>Iniciar sesión</h2>
                         <p>Introduce tus credenciales para acceder</p>
@@ -44,22 +49,22 @@ export function Login() {
                             <label>
                                 Correo electrónico
                                 <input 
-                                    type="email" 
-                                    placeholder='usuario@dominio.com' 
-                                    name='usuemail' 
-                                    value={userInfoLogin.usuemail}
-                                    onChange={(e) => handleChangeUserInfoLogin(e)}
+                                type="email" 
+                                placeholder='usuario@dominio.com' 
+                                name ='usuemail' 
+                                value={userinfologin.usuemail}
+                                onChange={(e) => handleChangeUserInfoLogin(e)}
                                 />
                             </label>
 
                             <label>
                                 Contraseña
                                 <input 
-                                    type="password" 
-                                    placeholder='Ingresa tu contraseña' 
-                                    name='usupwd' 
-                                    value={userInfoLogin.usupwd}
-                                    onChange={(e) => handleChangeUserInfoLogin(e)}
+                                type="password" 
+                                placeholder='Ingresa tu contraseña' 
+                                name ='usupwd'
+                                value={userinfologin.usupwd}
+                                 onChange={(e) => handleChangeUserInfoLogin(e)}
                                 />
                             </label>
                         </div>
