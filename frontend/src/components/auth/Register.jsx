@@ -1,7 +1,9 @@
 import nutriaPrincipal from '../../assets/nutria_principal.png'
 import '../../styles/auth/Register.css'
+import { useNavigate } from 'react-router-dom'
 
 export function Register(){
+      const navigate = useNavigate()
     return (
         <div className='container-all-register'>
             <div className='container-principal-register'>
@@ -45,20 +47,16 @@ export function Register(){
                     name ='usupwd' 
                     />
                    </label>
-                   <label>
-                    <label>
-                    Confirmar Contraseña
-                    <input 
-                    type="password"
-                    name ='usupwd' 
-                    />
-                   </label>
-                    Numero de documento
-                    <input 
-                    type="text" 
-                    name ='usudocu' 
-                    />
-                   </label>
+                  <label>
+  Confirmar Contraseña
+  <input type="password" name="usupwd_confirm" />
+</label>
+
+<label>
+  Numero de documento
+  <input type="text" name="usudocu" />
+</label>
+
                    <label>
                     Numero de celular
                     <input 
@@ -85,8 +83,10 @@ export function Register(){
                     <button className='btn-register-form'>
                         Registrarse
                     </button>
-                    <button className='btn-login-account'>
-                        ¿ya tienes una cuenta? <span>Registrate aqui</span>
+                    <button 
+                    type='button'
+                    className='btn-login-account'>
+                        ¿ya tienes una cuenta? <span onClick={() => navigate('/login')}>Inicia sesion aqui</span>
                     </button>
                 </div>
             </footer>

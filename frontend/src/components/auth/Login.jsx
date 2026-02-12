@@ -13,6 +13,9 @@ export function Login() {
 
     const navigate = useNavigate()
 
+    // handleChange -> Cuando cambia la información en tiempo real.
+    // handleClick -> Cuando hacen clic a algo.
+    // handleSubmit -> Cuando envian un formulario
     const handleChangeUserInfoLogin = (event) => {
         setUserInfoLogin({
             ...userInfoLogin,
@@ -21,19 +24,24 @@ export function Login() {
     }
 
     const handleSubmitFormLogin = (event) => {
-        event.preventDefault()
+        event.preventDefault() // Quitar el comportamiento por defecto de un formulario
 
+        // Hacer validacón para que el que envie el fomrulario sea el boton de 'Ingresar'.
+
+        // Validaciones para que los campos no esten vacios.
         if (userInfoLogin.usuemail === '') 
             return toast.error('El correo electronico no puede estar vacío')
 
         if (userInfoLogin.usupwd === '') 
             return toast.error('La contraseña no puede estar vacía')
 
+        // Aqui es donde mandamos la información al backend para que la procese
         if (
-            userInfoLogin.usuemail === 'pepito@gmail.com' &&
+            userInfoLogin.usuemail === 'pepito@gmail.com' && 
             userInfoLogin.usupwd === '1234'
         ) {
             toast.success('¡Bienvenido Pepito!')
+            // Aqui ya debe de ingresar a la pagina
             navigate('/dashboard')
         } else {
             toast.error('Algo salio mal. ¡Intentalo de nuevo!')
@@ -117,7 +125,7 @@ export function Login() {
                                     type="button" 
                                     className='btn-create-account'
                                 >
-                                    ¿Aún no eres parte? <span>Crear una cuenta</span>
+                                    ¿Aún no eres parte? <span onClick={() => navigate('/register')}>Crear una cuenta</span>
                                 </button>
                             </div>
                         </footer>
