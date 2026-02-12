@@ -3,109 +3,91 @@ import nutriaPrincipal from '../../assets/nutria_principal.png'
 import '../../styles/auth/Login.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 export function Login() {
 
-    const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: '', usupwd: '' })
-    const navigate = useNavigate()
+  const [userInfoLogin, setUserInfoLogin] = useState({
+    usuemail: '',
+    usupwd: ''
+  })
 
-    // handleChange -> Cuando cambia la información en tiempo real.
-    // handleClick -> Cuando hacen clic a algo.
-    // handleSubmit -> Cuando envian un formulario
-    const handleChangeUserInfoLogin = (event) => {
-        setUserInfoLogin({
-            ...userinfologin,
-            [event.target.name]: event.target.value
-        })
+  const navigate = useNavigate()
+
+  const handleChangeUserInfoLogin = (event) => {
+    setUserInfoLogin({
+      ...userInfoLogin,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const handleSubmitFormLogin = (event) => {
+    event.preventDefault()
+
+    if (userInfoLogin.usuemail === '') 
+      return toast.error('El correo electrónico no puede estar vacío')
+
+    if (userInfoLogin.usupwd === '') 
+      return toast.error('La contraseña no puede estar vacía')
+
+    if (
+      userInfoLogin.usuemail === 'pepito@gmail.com' &&
+      userInfoLogin.usupwd === '1234'
+    ) {
+      toast.success('¡Bienvenido Pepito!')
+      navigate('/dashboard')
+    } else {
+      toast.error('Algo salió mal. ¡Inténtalo de nuevo!')
     }
-      const handleSubmitFormLogin = (event) => {
-        event.preventDefault()
+  }
 
-    const handleSubmitFormLogin = (event) => {
-        event.preventDefault() // Quitar el comportamiento por defecto de un formulario
-
-        // Hacer validacón para que el que envie el fomrulario sea el boton de 'Ingresar'.
-
-        // Validaciones para que los campos no esten vacios.
-        if (userInfoLogin.usuemail === '') return toast.error('El correo electronico no puede estar vacío')
-        if (userInfoLogin.usupwd === '') return toast.error('La contraseña no puede estar vacía')
-
-        // Aqui es donde mandamos la información al backend para que la procese
-
-        if (userInfoLogin.usuemail === 'pepito@gmail.com' && userInfoLogin.usupwd === '1234') {
-            toast.success('¡Bienvenido Pepito!')
-            // Aqui ya debe de ingresar a la pagina
-            navigate('/dashboard')
-        } else {
-            toast.error('Algo salio mal. ¡Intentalo de nuevo!')
-        }
-    }
-
-    return (
-        <div className='container-all-login'>        
-            <section className="container-pricipal-login">
-                <div className="container-info-login">
-                    <div className="image-login">
-                        <img src={nutriaPrincipal} width='100px' height='150px' />
-                    </div>
-                    <div className='title-login'>
-                        <h2>¡Bienvenido!</h2>
-                        <p>Tu espacio de aprendizaje diseñado para la excelencia y la tranquilidad.</p>
-                    </div>
-                </div>
-                <form className='form-login' onSubmit={(e) => handleSubmitFormLogin(e)}>
-                    <header>
-                        <h2>Iniciar sesión</h2>
-                        <p>Introduce tus credenciales para acceder</p>
-                    </header>
-                    <div className='fields-form-login'>
-                        <div className='fields-form'>
-                            <label>
-                                Correo electrónico
-                                <input 
-                                type="email" 
-                                placeholder='usuario@dominio.com' 
-                                name ='usuemail' 
-                                value={userinfologin.usuemail}
-                                onChange={(e) => handleChangeUserInfoLogin(e)}
-                                />
-                            </label>
-
-                            <label>
-                                Contraseña
-                                <input 
-                                type="password" 
-                                placeholder='Ingresa tu contraseña' 
-                                name ='usupwd'
-                                value={userinfologin.usupwd}
-                                 onChange={(e) => handleChangeUserInfoLogin(e)}
-                                />
-                            </label>
-                        </div>
-                        <footer>
-                            <div className='remind-me-forgot-password-form'>
-                                <div>
-                                    <input type="radio" name="remind-me" id='remind-me' />
-                                    <label htmlFor="remind-me">Recordarme</label>
-                                </div>
-                                <button className='forgot-password'>
-                                    ¿Olvidaste tu contraseña?
-                                </button>
-                            </div>
-                            <div className='final-part-form'>
-                                <button className='btn-login-form'>
-                                    Ingresar
-                                </button>
-                                <button className='btn-create-account'>
-                                    ¿Aún no eres parte? <span>Crear una cuenta</span>
-                                </button>
-                            </div>
-                        </footer>
-                    </div>
-                </form>
-            </section>  
+  return (
+    <div className='container-all-login'>        
+      <section className="container-pricipal-login">
+        <div className="container-info-login">
+          <div className="image-login">
+            <img src={nutriaPrincipal} width="100" height="150" />
+          </div>
+          <div className='title-login'>
+            <h2>¡Bienvenido!</h2>
+            <p>Tu espacio de aprendizaje diseñado para la excelencia y la tranquilidad.</p>
+          </div>
         </div>
-    )
-}
+
+        <form className='form-login' onSubmit={handleSubmitFormLogin}>
+          <header>
+            <h2>Iniciar sesión</h2>
+            <p>Introduce tus credenciales para acceder</p>
+          </header>
+
+          <label>
+            Correo electrónico
+            <input
+              type="email"
+              name="usuemail"
+              value={userInfoLogin.usuemail}
+              onChange={handleChangeUserInfoLogin}
+            />
+          </label>
+
+          <label>
+            Contraseña
+            <input
+              type="password"
+              name="usupwd"
+              value={userInfoLogin.usupwd}
+              onChange={handleChangeUserInfoLogin}
+            />
+          </label>
+
+          <button className='btn-login-form'>
+            Ingresar
+          </button>
+
+          <button type="button" className='btn-create-account'>
+            ¿Aún no eres parte? <span>Crear una cuenta</span>
+          </button>
+        </form>
+      </section>  
+    </div>
+  )
 }
