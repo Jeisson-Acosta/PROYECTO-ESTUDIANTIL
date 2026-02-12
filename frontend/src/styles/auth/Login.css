@@ -105,7 +105,11 @@
     font-size: 14px;
 }
 
+<<<<<<< HEAD
 /* Media querie para que el fomrulario se comporte de diferente forma en
+=======
+/* Media querie para que el formulario se comporte de diferente forma en
+>>>>>>> 99b566f9818d39a489a3e74c306e149fc4e5609c
 dispositivos con pantalla pequeña 
 */
 @media (width <= 760px) {
@@ -122,7 +126,10 @@ dispositivos con pantalla pequeña
     .title-login p {
         display: none;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 99b566f9818d39a489a3e74c306e149fc4e5609c
 }
 
 .remind-me-forgot-password-form {

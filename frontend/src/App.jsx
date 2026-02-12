@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 import { Login } from './components/auth/Login.jsx'
 import {Register}  from './components/auth/Register.jsx'
 
@@ -13,7 +13,7 @@ function App() {
             <Route path ='/register' element = {<Register/>} />
         </Routes>
       </Router>
-      <Toaster/>
+      <Toaster />
     </>
   )
 }
