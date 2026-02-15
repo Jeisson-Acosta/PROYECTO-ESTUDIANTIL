@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import nutriaPrincipal from '../../assets/nutria_principal.png'
 import '../../styles/auth/Login.css'
@@ -7,6 +8,19 @@ import { useFormLogin } from '../../hooks/auth/useformlogin.js'
 export function Login() {
 
 const  {userInfoLogin,handleChangeUserInfoLogin,handleSubmitFormLogin,handleClickRedirectCreateAccount} =useFormLogin()
+=======
+import nutriaPrincipal from '../../assets/nutria_principal.png'
+import '../../styles/auth/Login.css'
+
+// ================= HOOKS PERSONALIZADOS =====================
+import { useFormLogin } from '../../hooks/auth/useFormLogin.js'
+// ============================================================
+
+export function Login() {
+
+    const { userInfoLogin, handleChangeUserInfoLogin, handleClickRedirectCreateAccount, handleSubmitFormLogin } = useFormLogin()
+
+>>>>>>> 5093a082b308298a4ba9f716f9daa2af63b024ea
     return (
         <div className='container-all-login'>        
             <section className="container-pricipal-login">
@@ -83,7 +97,11 @@ const  {userInfoLogin,handleChangeUserInfoLogin,handleSubmitFormLogin,handleClic
                                 <button 
                                     type="button" 
                                     className='btn-create-account'
+<<<<<<< HEAD
                                      onClick={handleClickRedirectCreateAccount}
+=======
+                                    onClick={handleClickRedirectCreateAccount}
+>>>>>>> 5093a082b308298a4ba9f716f9daa2af63b024ea
                                 >
                                     ¿Aún no eres parte? <span>Crear una cuenta</span>
                                 </button>

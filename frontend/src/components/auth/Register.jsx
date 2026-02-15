@@ -84,18 +84,17 @@ export function Register(){
                         Registrarse
                     </button>
                     <button 
-                    type='button'
-                    className='btn-login-account'>
-                        ¿ya tienes una cuenta? <span onClick={() => navigate('/login')}>Inicia sesion aqui</span>
+                        type='button'
+                        className='btn-login-account'
+                        onClick={() => navigate('/')}
+                    >
+                        ¿ya tienes una cuenta? <span>Inicia sesion aqui</span>
                     </button>
                 </div>
             </footer>
             </div>
-               
             </form>
-
             </div>
-          
         </div>
     )
 }
