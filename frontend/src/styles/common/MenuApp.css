@@ -9,20 +9,6 @@
     min-height: 100dvh;
 }
 
-<<<<<<< HEAD
-.principal-container-menu .header-menu{
-    display:flex;
-    gap: 16px;
-}
-.header-menu .header-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:  #7fb3d5;
-    padding: 4px;
-    border-radius:12px;
-}
-=======
 .principal-container-menu .header-menu {
     display: flex;
     gap: 16px;
@@ -37,26 +23,11 @@
     border-radius: 12px;
 }
 
->>>>>>> 5093a082b308298a4ba9f716f9daa2af63b024ea
 .principal-container-menu .modules-menu ul {
     display: flex;
     flex-direction: column;
     gap: 20px;
     list-style-type: none;
-<<<<<<< HEAD
- }
- .principal-container-menu .modules-menu ul a {
-    color: #fff;
-    text-decoration: none;
- }
- .principal-container-menu .modules-menu ul a li {
-    display: flex;
-    align-items: center;
-    gap: 14px;
- }
- .counter-quantity-tasks {
-    background-color:  #475e7d;
-=======
 }
 
 .principal-container-menu .modules-menu ul a {
@@ -72,13 +43,8 @@
 
 .counter-quantity-tasks {
     background-color: #475e7d;
->>>>>>> 5093a082b308298a4ba9f716f9daa2af63b024ea
     font-size: 14px;
     color: #bbc7d5;
     padding: 1px 6px;
     border-radius: 6px;
-<<<<<<< HEAD
- }
-=======
 }
->>>>>>> 5093a082b308298a4ba9f716f9daa2af63b024ea
