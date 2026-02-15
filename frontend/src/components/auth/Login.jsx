@@ -1,53 +1,12 @@
-import toast from 'react-hot-toast'
+
 import nutriaPrincipal from '../../assets/nutria_principal.png'
 import '../../styles/auth/Login.css'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useFormLogin } from '../../hooks/auth/useformlogin.js'
+//hook personalizado
 
 export function Login() {
 
-    const [userInfoLogin, setUserInfoLogin] = useState({ 
-        usuemail: '', 
-        usupwd: '' 
-    })
-
-    const navigate = useNavigate()
-
-    // handleChange -> Cuando cambia la información en tiempo real.
-    // handleClick -> Cuando hacen clic a algo.
-    // handleSubmit -> Cuando envian un formulario
-    const handleChangeUserInfoLogin = (event) => {
-        setUserInfoLogin({
-            ...userInfoLogin,
-            [event.target.name]: event.target.value
-        })
-    }
-
-    const handleSubmitFormLogin = (event) => {
-        event.preventDefault() // Quitar el comportamiento por defecto de un formulario
-
-        // Hacer validacón para que el que envie el fomrulario sea el boton de 'Ingresar'.
-
-        // Validaciones para que los campos no esten vacios.
-        if (userInfoLogin.usuemail === '') 
-            return toast.error('El correo electronico no puede estar vacío')
-
-        if (userInfoLogin.usupwd === '') 
-            return toast.error('La contraseña no puede estar vacía')
-
-        // Aqui es donde mandamos la información al backend para que la procese
-        if (
-            userInfoLogin.usuemail === 'pepito@gmail.com' && 
-            userInfoLogin.usupwd === '1234'
-        ) {
-            toast.success('¡Bienvenido Pepito!')
-            // Aqui ya debe de ingresar a la pagina
-            navigate('/dashboard')
-        } else {
-            toast.error('Algo salio mal. ¡Intentalo de nuevo!')
-        }
-    }
-
+const  {userInfoLogin,handleChangeUserInfoLogin,handleSubmitFormLogin,handleClickRedirectCreateAccount} =useFormLogin()
     return (
         <div className='container-all-login'>        
             <section className="container-pricipal-login">
@@ -124,8 +83,9 @@ export function Login() {
                                 <button 
                                     type="button" 
                                     className='btn-create-account'
+                                     onClick={handleClickRedirectCreateAccount}
                                 >
-                                    ¿Aún no eres parte? <span onClick={() => navigate('/register')}>Crear una cuenta</span>
+                                    ¿Aún no eres parte? <span>Crear una cuenta</span>
                                 </button>
                             </div>
                         </footer>
