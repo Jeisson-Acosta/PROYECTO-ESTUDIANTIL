@@ -9,10 +9,9 @@ export function Register(){
    const { userInfoRegister,
     userRol,
     passwordStatus,
-    showpassword,
     handleChangeUserInfoRegister,
     handleSelectrol,
-    handleClickRedirectLogin,handleSubmitFormRegister,setPasswordStatus,validatePassword,toggleshowpassword} = useFormRegister();
+    handleClickRedirectLogin,handleSubmitFormRegister,setPasswordStatus,validatePassword} = useFormRegister();
     return (
       
         <div className='container-all-register'>
@@ -131,7 +130,7 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
                    <label>
                     Contraseña
                     <input 
-                    type={showpassword ? "text" : "password"}
+                    type="password"
                     name ="usupwd" 
                     value={userInfoRegister.usupwd}
                     onChange={(e) => {handleChangeUserInfoRegister (e);
@@ -142,7 +141,7 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
                   <label>
        
   Confirmar Contraseña
-  <input type={showpassword ? "text" : "password"}
+  <input type="password"
   name="usupwd_confirm" 
   value={userInfoRegister.usupwd_confirm}
   onChange={(e) => handleChangeUserInfoRegister (e)}/>

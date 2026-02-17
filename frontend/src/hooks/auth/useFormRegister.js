@@ -76,7 +76,7 @@ export function useFormRegister () {
     }
 
     }
-    return {userInfoRegister,userRol,passwordStatus,handleSubmitFormRegister,handleChangeUserInfoRegister,handleClickRedirectLogin,handleSelectrol,setPasswordStatus,validatePassword,showpassword,toggleshowpassword}
+    return {userInfoRegister,userRol,passwordStatus,handleSubmitFormRegister,handleChangeUserInfoRegister,handleClickRedirectLogin,handleSelectrol,setPasswordStatus,validatePassword}
    
 }
 
