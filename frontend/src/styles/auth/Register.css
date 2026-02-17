@@ -199,23 +199,25 @@
 .boton-register {
     display: flex;
     flex-direction: column;
-    align-items: center;
+       align-items: center;
     justify-content: center;
     gap: 10px;
     padding: 14px;
-    border: 1px solid #87b8d8;
+    border: 1px solid #ffffff;
     border-radius: 10px;
-    background-color: #87b8d8;
+    background-color: #ffffff;
     cursor: pointer;
     font-weight: bold;
     color: #1a365d;
     transition: all 0.2s ease;
 }
 
-.boton-register:hover {
-    background-color: #dbeafe;
-    scale: 1.1;
+.boton-register.active {
+    background-color: #8bbbdc;
+    border-color: #5a8ccf;
+    color: #ffffff;
 }
+
 
 .boton-register svg {
     flex-shrink: 0;
@@ -225,4 +227,15 @@
     border-radius: 20px;
     width: 30px;
     height: 30px;
+}
+.password-rules {
+  font-size: 13px;
+}
+
+.password-rules .ok {
+  color: #16a34a; /* verde */
+}
+
+.password-rules .error {
+  color: #dc2626; /* rojo */
 }

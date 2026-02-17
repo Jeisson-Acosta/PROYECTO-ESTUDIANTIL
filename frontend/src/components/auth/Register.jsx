@@ -1,11 +1,18 @@
 import nutriaPrincipal from '../../assets/nutria_principal.png'
 import '../../styles/auth/Register.css'
-import { useNavigate } from 'react-router-dom'
-import { IconTeacher,IconBook } from '../common/IconsLayout'
+import '../../hooks/auth/useFormRegister.js'
+import { IconTeacher,IconBook,IconRector } from '../common/IconsLayout'
+import { useFormRegister } from '../../hooks/auth/useFormRegister.js'
+
 
 export function Register(){
-      const navigate = useNavigate()
+   const { userInfoRegister,
+    userRol,
+    handleChangeUserInfoRegister,
+    handleSelectrol,
+    handleClickRedirectLogin,handleSubmitFormRegister,setPasswordStatus,validatePassword} = useFormRegister();
     return (
+      
         <div className='container-all-register'>
             <div className='container-principal-register'>
                   <div className='container-info-register'>
@@ -17,7 +24,8 @@ export function Register(){
                         <p>Empieza su viaje educativo en un entorno de calma y aprendizaje colaborativo</p>
                     </div>
                   </div>
-            <form className='form-register'>
+            <form className='form-register'
+             onSubmit={(e) => handleSubmitFormRegister(e)}>
                 <header>
                     <h2>Crea una cuenta</h2>
                     <p>Introduce tus datos personales</p>
@@ -30,53 +38,90 @@ export function Register(){
                     type="text" 
                     placeholder='Pepito perez'
                     name ='usunom' 
+                    value={userInfoRegister.usunom}
+                    onChange={(e) => handleChangeUserInfoRegister (e)}
                     />
                 </label>
                 <label>
   Correo electronico
-  <input type="email" />
+  <input type="email"
+  name='usuemail'
+  placeholder='pepito@gmail.com'
+value={userInfoRegister.usuemail}
+onChange={(e) => handleChangeUserInfoRegister (e)} />
+
 </label>
 
 <label>
   Tipo de documento
-  <select>
+  <select name='tidid'
+  value={userInfoRegister.tidid}
+  onChange={(e) => handleChangeUserInfoRegister (e)}>
     <option value="">Seleccione su tipo de documento</option>
   </select>
 </label>
 
                    <label>
   Numero de documento
-  <input type="text" name="usudocu" />
+  <input 
+  type="text" 
+  name="usudocu"
+  value={userInfoRegister.usudocu}
+  onChange={(e) => handleChangeUserInfoRegister (e)} />
 </label>
-  <label className='full'>
+                   <label >
                     Numero de celular
                     <input 
                     type="text" 
-                    name ='usucel' 
+                    name ='usucel'
+                    value={userInfoRegister.usucel} 
+                    onChange={(e) => handleChangeUserInfoRegister (e)}
                     />
+                   </label>
+                   <label >
+                    Fecha de nacimiento
+                    <input 
+                    type="date"
+                    placeholder='30/10/2005'
+                     name="usuborn" 
+                     value={userInfoRegister.usuborn}
+                     onChange={(e)=> handleChangeUserInfoRegister (e)} />
                    </label>
              <div className="roles-block">
     <label className="roles-label">Selecciona tu rol:</label>
 
     <div className="roles-container">
         <button
-            type="button"
-            className="boton-register"
+          type="button"
+  className={`boton-register ${userRol === "estudiante" ? "active" : ""}`}
             name='usurol'
+            onClick={() => handleSelectrol("estudiante")}
         > <div className='image-button'>
            <IconBook/>
            </div>
             <span>Estudiante</span>
         </button>
-
         <button
             type="button"
-            className="boton-register"
+            className={`boton-register ${userRol === "docente" ? "active" : ""}`}
             name='usurol'
+            onClick={() => handleSelectrol("docente")}
         > <div className='image-button'>
           <IconTeacher/>
           </div>
             <span>Docente</span>
+           
+        </button>
+          <button
+            type="button"
+            className={`boton-register ${userRol === "rector" ? "active" : ""}`}
+            name='usurol'
+            onClick={() => handleSelectrol("rector")}
+        > <div className='image-button'>
+          <IconRector/>
+          </div>
+            <span>Rector</span>
+           
         </button>
     </div>
 </div>
@@ -85,16 +130,34 @@ export function Register(){
                     Contraseña
                     <input 
                     type="password" 
-                    placeholder='Minimo 8 letras, una mayuscula y un caracter especial'
                     name ='usupwd' 
+                    value={userInfoRegister.usupwd}
+                    onChange={(e) => {handleChangeUserInfoRegister (e);
+                        validatePassword(e.target.value);}
+                    }
                     />
                    </label>
                   <label>
+       
   Confirmar Contraseña
-  <input type="password" name="usupwd_confirm" />
+  <input type="password" 
+  name="usupwd_confirm" 
+  value={userInfoRegister.usupwd_confirm}
+  onChange={(e) => handleChangeUserInfoRegister (e)}/>
 </label>
+         <div className='password-rules'>
+                    <p  className={setPasswordStatus.length ? "ok" : "error"}>
+                        Minimo 8 caracteres
+                    </p>
+                    <p className={setPasswordStatus.upperCase ? "ok" : "error"}>
+                        Una Mayuscula
+                    </p>
+                     <p className={setPasswordStatus.special ? "ok" : "error"}>
+                        Un caracter especial
+                    </p>
 
-            
+                </div>
+    
                  
                 
                 
@@ -107,7 +170,7 @@ export function Register(){
                     <button 
                         type='button'
                         className='btn-login-account'
-                        onClick={() => navigate('/')}
+                        onClick={handleClickRedirectLogin}
                     >
                         ¿ya tienes una cuenta? <span>Inicia sesion aqui</span>
                     </button>
