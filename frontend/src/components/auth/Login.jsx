@@ -7,7 +7,7 @@ import { useFormLogin } from '../../hooks/auth/useFormLogin.js'
 
 export function Login() {
 
-    const { userInfoLogin, handleChangeUserInfoLogin, handleClickRedirectCreateAccount, handleSubmitFormLogin } = useFormLogin()
+    const { userInfoLogin,  handleChangeUserInfoLogin, handleClickRedirectCreateAccount, handleSubmitFormLogin } = useFormLogin()
 
     return (
         <div className='container-all-login'>        

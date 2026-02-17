@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import toast from 'react-hot-toast';
-import { upperCase } from 'xpress/lib/string';
+
 
 export function useFormRegister () {
       const [userInfoRegister, setUserInfoRegister] = useState({
@@ -24,13 +24,22 @@ export function useFormRegister () {
         upperCase: false,
         special:false
       });
+  
+      const handleChangeUserInfoRegister = (event) => {
+  const { name, value } = event.target;
 
-       const handleChangeUserInfoRegister =(event) =>{
-        setUserInfoRegister({
-            ...userInfoRegister,
-            [event.target.name]: event.target.value
-        })
-       }
+  setUserInfoRegister({
+    ...userInfoRegister,
+    [name]: value
+  });
+
+  if (name === "usupwd") {
+    validatePassword(value);
+  }
+};     
+
+
+  //Validar parametros de la contraseña
        const validatePassword = (usupwd) => {
         setPasswordStatus({
             length: usupwd.length >= 8,
@@ -67,7 +76,7 @@ export function useFormRegister () {
     }
 
     }
-    return {userInfoRegister,userRol,handleSubmitFormRegister,handleChangeUserInfoRegister,handleClickRedirectLogin,handleSelectrol,setPasswordStatus,validatePassword}
+    return {userInfoRegister,userRol,passwordStatus,handleSubmitFormRegister,handleChangeUserInfoRegister,handleClickRedirectLogin,handleSelectrol,setPasswordStatus,validatePassword,showpassword,toggleshowpassword}
    
 }
 

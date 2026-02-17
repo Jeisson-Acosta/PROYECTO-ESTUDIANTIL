@@ -219,23 +219,39 @@
 }
 
 
-.boton-register svg {
-    flex-shrink: 0;
-}
 .image-button{
     background-color: #ffff;
     border-radius: 20px;
     width: 30px;
     height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .password-rules {
   font-size: 13px;
 }
 
+
 .password-rules .ok {
-  color: #16a34a; /* verde */
+  color: #1c8723; /* verde */
+  font-size: bold;
 }
 
 .password-rules .error {
   color: #dc2626; /* rojo */
+}
+
+
+.password-rules ul {
+ border-radius: 5PX;
+ border: 1px solid   #87b8d8;
+ background-color:  #edf8ff ;
+ list-style: none;
+  font-family: fontSubtitles;
+}
+.password-rules li {
+    border: 1px solid   #87b8d8;
+    font-size: 20px;
+    font-weight: bold;
 }

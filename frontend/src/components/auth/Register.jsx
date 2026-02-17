@@ -1,16 +1,18 @@
 import nutriaPrincipal from '../../assets/nutria_principal.png'
 import '../../styles/auth/Register.css'
 import '../../hooks/auth/useFormRegister.js'
-import { IconTeacher,IconBook,IconRector } from '../common/IconsLayout'
+import { IconTeacher,IconBook,IconRector} from '../common/IconsLayout'
 import { useFormRegister } from '../../hooks/auth/useFormRegister.js'
 
 
 export function Register(){
    const { userInfoRegister,
     userRol,
+    passwordStatus,
+    showpassword,
     handleChangeUserInfoRegister,
     handleSelectrol,
-    handleClickRedirectLogin,handleSubmitFormRegister,setPasswordStatus,validatePassword} = useFormRegister();
+    handleClickRedirectLogin,handleSubmitFormRegister,setPasswordStatus,validatePassword,toggleshowpassword} = useFormRegister();
     return (
       
         <div className='container-all-register'>
@@ -129,8 +131,8 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
                    <label>
                     Contraseña
                     <input 
-                    type="password" 
-                    name ='usupwd' 
+                    type={showpassword ? "text" : "password"}
+                    name ="usupwd" 
                     value={userInfoRegister.usupwd}
                     onChange={(e) => {handleChangeUserInfoRegister (e);
                         validatePassword(e.target.value);}
@@ -140,27 +142,19 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
                   <label>
        
   Confirmar Contraseña
-  <input type="password" 
+  <input type={showpassword ? "text" : "password"}
   name="usupwd_confirm" 
   value={userInfoRegister.usupwd_confirm}
   onChange={(e) => handleChangeUserInfoRegister (e)}/>
 </label>
-         <div className='password-rules'>
-                    <p  className={setPasswordStatus.length ? "ok" : "error"}>
-                        Minimo 8 caracteres
-                    </p>
-                    <p className={setPasswordStatus.upperCase ? "ok" : "error"}>
-                        Una Mayuscula
-                    </p>
-                     <p className={setPasswordStatus.special ? "ok" : "error"}>
-                        Un caracter especial
-                    </p>
 
+         <div className='password-rules'>
+            <ul>
+                <li className={passwordStatus.length ? "ok" : "error"}>Minimo 8 Caracters</li>
+                <li className={passwordStatus.upperCase ? "ok" : "error"}>Una Mayuscula</li>
+                <li className={passwordStatus.special ? "ok" : "error"}>Un Caracter especial (!@#$%^&*(),.?":{}|<></>)</li>
+            </ul>
                 </div>
-    
-                 
-                
-                
             </div>
             <footer>
                 <div className='final-part-form'>
