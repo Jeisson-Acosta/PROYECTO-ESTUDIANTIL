@@ -35,7 +35,7 @@ export function useFormLogin() {
         if (userInfoLogin.usuemail === 'pepito@gmail.com' && userInfoLogin.usupwd === '1234') {
             toast.success('¡Bienvenido Pepito!')
             // Aqui ya debe de ingresar a la pagina
-            navigate('/student/dashboard')
+            navigate('/dashboard')
         } else {
             toast.error('Algo salio mal. ¡Intentalo de nuevo!')
         }

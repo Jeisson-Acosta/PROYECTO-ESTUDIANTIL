@@ -4,11 +4,21 @@
     gap: 30px;
     background-color: #1a365d;
     color: #fff;
-    max-width: 280px;
+    /*max-width: 280px;*/
     padding: 16px;
     min-height: 100dvh;
+    width: 80px;
+    transition: width 0.55s cubic-bezier(0.34, 1.56,0.64,1);
 }
-
+.principal-container-menu:hover {
+    width: 280px;
+}
+.principal-container-menu:hover .text-module {
+    display: block;
+}
+.text-module {
+    display: none;
+}
 .principal-container-menu .header-menu {
     display: flex;
     gap: 16px;
@@ -31,10 +41,18 @@
 }
 
 .principal-container-menu .modules-menu ul a {
-    color: #fff;
+    color: #c1ccd9;
     text-decoration: none;
+    padding: 12px;
+    border-radius: 16px;
 }
-
+.principal-container-menu .modules-menu ul a.active {
+    background-color:#475e7d;
+    color: #fff;
+}
+.principal-container-menu .modules-menu ul a.active svg {
+    fill: #7fb3d5;
+}
 .principal-container-menu .modules-menu ul a li {
     display: flex;
     align-items: center;

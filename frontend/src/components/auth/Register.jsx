@@ -11,7 +11,7 @@ export function Register(){
     passwordStatus,
     handleChangeUserInfoRegister,
     handleSelectrol,
-    handleClickRedirectLogin,handleSubmitFormRegister,setPasswordStatus,validatePassword} = useFormRegister();
+    handleClickRedirectLogin,handleSubmitFormRegister,validatePassword} = useFormRegister();
     return (
       
         <div className='container-all-register'>
