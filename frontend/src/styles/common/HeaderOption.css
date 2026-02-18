@@ -1,0 +1,19 @@
+.container-header-option {
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #dfe6f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    width: 100%;
+    padding: 20px 40px; /* 20px-> Arriba y abajo, 40px-> Derecha e izquierda */
+}
+
+.header-info-option h1{
+    font-family: fontTitlesBold;
+    color: #122656;
+}
+
+.header-info-option .name-user {
+    font-family: fontSubtitles;
+}
