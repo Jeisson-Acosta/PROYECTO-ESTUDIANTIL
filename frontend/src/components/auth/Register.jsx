@@ -157,7 +157,9 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
             </div>
             <footer>
                 <div className='final-part-form'>
-                    <button className='btn-register-form'>
+                    <button
+                    //type='submit'
+                     className='btn-register-form'>
                         Registrarse
                     </button>
                     <button 

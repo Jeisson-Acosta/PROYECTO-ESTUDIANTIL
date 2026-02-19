@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import toast from 'react-hot-toast';
+import { registerUser } from '../../components/auth/authService.js';
 
 
 export function useFormRegister () {
@@ -56,8 +57,9 @@ export function useFormRegister () {
         ...userInfoRegister
        })
     }
-    const handleSubmitFormRegister = (event) => {
+    const handleSubmitFormRegister = async (event) => {
        event.preventDefault() 
+       console.log("CLICK EN REGISTRARSE");
        //validacion para campos vacios
        if (userInfoRegister.usunom === '') return toast.error ('este campo no puede estar vacio')
        if (userInfoRegister.usuemail === '') return toast.error ('este campo no puede estar vacio')
@@ -68,13 +70,18 @@ export function useFormRegister () {
        if (userInfoRegister.usupwd === '') return toast.error ('este campo no puede estar vacio')
        if (userInfoRegister.usupwd_confirm === '') return toast.error ('este campo no puede estar vacio')
         //validar si las contraseñas coinciden 
-    if (userInfoRegister.usupwd === userInfoRegister.usupwd_confirm) {
+    /*if (userInfoRegister.usupwd === userInfoRegister.usupwd_confirm) {
         toast.success ('¡Ya puedes iniciar sesion')
 
     }else {
-        toast.error ('las contraseñas no coinciden')
-    }
-
+        return toast.error ('las contraseñas no coinciden')
+    }*/
+    const res =await registerUser({userInfoRegister});
+  if (res.ok) {
+    toast.success(res.message || 'Usuario Registrado completamente');
+  }else {
+    toast.success (res.message) || 'Error al registrar';
+  }
     }
     return {userInfoRegister,userRol,passwordStatus,handleSubmitFormRegister,handleChangeUserInfoRegister,handleClickRedirectLogin,handleSelectrol,setPasswordStatus,validatePassword}
    
