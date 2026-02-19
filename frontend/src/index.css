@@ -20,8 +20,8 @@
   font-family: fontMain;
 }
 
-*{
-  font-family: fontMain;
+body {
+  background-color: #f4f7f6;
 }
 
 /* #root {

@@ -6,13 +6,24 @@
     justify-content: space-between;
     height: 80px;
     width: 100%;
+<<<<<<< HEAD
     padding: 20px 40px;
 
 }
+=======
+    padding: 20px 40px; /* 20px-> Arriba y abajo, 40px-> Derecha e izquierda */
+}
+
+>>>>>>> c0919f9de6975cb7fb8fb12a89bb151da056f0c0
 .header-info-option h1{
     font-family: fontTitlesBold;
     color: #122656;
 }
+<<<<<<< HEAD
 .header-info-option .name-user{
+=======
+
+.header-info-option .name-user {
+>>>>>>> c0919f9de6975cb7fb8fb12a89bb151da056f0c0
     font-family: fontSubtitles;
 }

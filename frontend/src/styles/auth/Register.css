@@ -30,7 +30,6 @@
     color: #fff;
     width: 45%;
     gap: 16px;
-    padding: 50px 40px;
 }
 
 .image-register {
@@ -81,20 +80,19 @@
     color: #1a365d;
 }
 
-
 .fields-form-register {
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
-.fields-form {
+.fields-form-register .fields-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
 }
 
-.fields-form label {
+.fields-form-register .fields-form label {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -102,8 +100,8 @@
     color: #1b375e;
 }
 
-.fields-form label input,
-.fields-form label select {
+.fields-form-register .fields-form label input,
+.fields-form-register .fields-form label select {
     background-color: #fff;
     border: 1px solid #87b8d8;
     outline: none;
@@ -112,18 +110,18 @@
     font-size: 13px;
 }
 
-.fields-form label input:hover,
-.fields-form label select:hover {
+.fields-form-register .fields-form label input:hover,
+.fields-form-register .fields-form label select:hover {
     border-color: #355d96;
 }
 
-.final-part-form {
+.final-part-form-register {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-.final-part-form .btn-register-form {
+.final-part-form-register .btn-register-form {
     background-color: #1a265d;
     border: none;
     color: #fff;
@@ -135,19 +133,19 @@
     transition: background-color .25s ease;
 }
 
-.final-part-form .btn-register-form:hover {
+.final-part-form-register .btn-register-form:hover {
     background-color: #355d96;
     scale: 1.1;
 }
 
-.final-part-form .btn-login-account {
+.final-part-form-register .btn-login-account {
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 14px;
 }
 
-.final-part-form .btn-login-account span {
+.final-part-form-register .btn-login-account span {
     color: #1b375e;
     font-weight: bold;
 }
@@ -168,7 +166,7 @@
         border-radius: 0 0 18px 18px;
     }
 
-    .fields-form {
+    .fields-form-register {
         grid-template-columns: 1fr;
     }
 
@@ -180,8 +178,9 @@
         display: none;
     }
 }
+
 .fields-form .full {
-      grid-column: 1 / -1;
+    grid-column: 1 / -1;
 }
 .roles-block {
     grid-column: 1 / -1;
@@ -199,7 +198,7 @@
 .boton-register {
     display: flex;
     flex-direction: column;
-       align-items: center;
+    align-items: center;
     justify-content: center;
     gap: 10px;
     padding: 14px;
@@ -218,7 +217,6 @@
     color: #ffffff;
 }
 
-
 .image-button{
     background-color: #ffff;
     border-radius: 20px;
@@ -232,7 +230,6 @@
   font-size: 13px;
 }
 
-
 .password-rules .ok {
   color: #1c8723; /* verde */
   font-size: bold;
@@ -242,16 +239,12 @@
   color: #dc2626; /* rojo */
 }
 
-
 .password-rules ul {
- border-radius: 5PX;
- border: 1px solid   #87b8d8;
- background-color:  #edf8ff ;
- list-style: none;
-  font-family: fontSubtitles;
+    border-radius: 5px;
+    background-color:  #edf8ff ;
+    font-family: fontSubtitles;
 }
 .password-rules li {
-    border: 1px solid   #87b8d8;
-    font-size: 20px;
+    font-size: 12px;
     font-weight: bold;
 }
