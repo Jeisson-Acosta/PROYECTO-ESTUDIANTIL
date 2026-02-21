@@ -11,106 +11,6 @@ export function Register() {
     passwordStatus,
     handleChangeUserInfoRegister,
     handleSelectrol,
-<<<<<<< HEAD
-    handleClickRedirectLogin,handleSubmitFormRegister,validatePassword} = useFormRegister();
-    return (
-      
-        <div className='container-all-register'>
-            <div className='container-principal-register'>
-                  <div className='container-info-register'>
-                    <div className='image-register'>
-                    <img src={nutriaPrincipal} width='100px' height='150px' />
-                    </div>
-                    <div className='title-register'>
-                        <h2>Unete a nuestra comunidad</h2>
-                        <p>Empieza su viaje educativo en un entorno de calma y aprendizaje colaborativo</p>
-                    </div>
-                  </div>
-            <form className='form-register'
-             onSubmit={(e) => handleSubmitFormRegister(e)}>
-                <header>
-                    <h2>Crea una cuenta</h2>
-                    <p>Introduce tus datos personales</p>
-                </header>
-            <div className='fields-form-register'>
-            <div className='fields-form'>
-                <label>
-                    Nombre completo
-                    <input 
-                    type="text" 
-                    placeholder='Pepito perez'
-                    name ='usunom' 
-                    value={userInfoRegister.usunom}
-                    onChange={(e) => handleChangeUserInfoRegister (e)}
-                    />
-                </label>
-                <label>
-  Correo electronico
-  <input type="email"
-  name='usuemail'
-  placeholder='pepito@gmail.com'
-value={userInfoRegister.usuemail}
-onChange={(e) => handleChangeUserInfoRegister (e)} />
-
-</label>
-
-<label>
-  Tipo de documento
-  <select name='tidid'
-  value={userInfoRegister.tidid}
-  onChange={(e) => handleChangeUserInfoRegister (e)}>
-    <option value="">Seleccione su tipo de documento</option>
-  </select>
-</label>
-
-                   <label>
-  Numero de documento
-  <input 
-  type="text" 
-  name="usudocu"
-  value={userInfoRegister.usudocu}
-  onChange={(e) => handleChangeUserInfoRegister (e)} />
-</label>
-                   <label >
-                    Numero de celular
-                    <input 
-                    type="text" 
-                    name ='usucel'
-                    value={userInfoRegister.usucel} 
-                    onChange={(e) => handleChangeUserInfoRegister (e)}
-                    />
-                   </label>
-                   <label >
-                    Fecha de nacimiento
-                    <input 
-                    type="date"
-                    placeholder='30/10/2005'
-                     name="usuborn" 
-                     value={userInfoRegister.usuborn}
-                     onChange={(e)=> handleChangeUserInfoRegister (e)} />
-                   </label>
-             <div className="roles-block">
-    <label className="roles-label">Selecciona tu rol:</label>
-
-    <div className="roles-container">
-        <button
-          type="button"
-  className={`boton-register ${userRol === "estudiante" ? "active" : ""}`}
-            name='usurol'
-            onClick={() => handleSelectrol("estudiante")}
-        > <div className='image-button'>
-           <IconBook/>
-           </div>
-            <span>Estudiante</span>
-        </button>
-        <button
-            type="button"
-            className={`boton-register ${userRol === "docente" ? "active" : ""}`}
-            name='usurol'
-            onClick={() => handleSelectrol("docente")}
-        > <div className='image-button'>
-          <IconTeacher/>
-=======
     handleClickRedirectLogin,
     handleSubmitFormRegister,
     setPasswordStatus,
@@ -122,7 +22,6 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
         <div className="container-info-register">
           <div className="image-register">
             <img src={nutriaPrincipal} width="100px" height="150px" />
->>>>>>> c0919f9de6975cb7fb8fb12a89bb151da056f0c0
           </div>
           <div className="title-register">
             <h2>Unete a nuestra comunidad</h2>
@@ -170,7 +69,12 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
                   value={userInfoRegister.tidid}
                   onChange={(e) => handleChangeUserInfoRegister(e)}
                 >
-                  <option value="">Seleccione su tipo de documento</option>
+                  <option value={1}>Seleccione su tipo de documento</option>
+                  <option value={2}>Tarjeta de Identidad</option>
+                  <option value={3}>Cedula de Ciudadania</option>
+                  <option value={4}>Cedula de extranjeria</option>
+                  <option value={5}>Nit</option>
+                  <option value={6}>Pasaporte</option>
                 </select>
               </label>
 
@@ -211,7 +115,7 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
                     className={`boton-register ${
                       userRol === "estudiante" ? "active" : ""
                     }`}
-                    name="usurol"
+                    name="rolid"
                     onClick={() => handleSelectrol("estudiante")}
                   >
                     {" "}
@@ -225,7 +129,7 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
                     className={`boton-register ${
                       userRol === "docente" ? "active" : ""
                     }`}
-                    name="usurol"
+                    name="rolid"
                     onClick={() => handleSelectrol("docente")}
                   >
                     {" "}
@@ -239,7 +143,7 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
                     className={`boton-register ${
                       userRol === "rector" ? "active" : ""
                     }`}
-                    name="usurol"
+                    name="rolid"
                     onClick={() => handleSelectrol("rector")}
                   >
                     {" "}
@@ -288,24 +192,8 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
               </div>
             </div>
             <footer>
-<<<<<<< HEAD
-                <div className='final-part-form'>
-                    <button
-                    //type='submit'
-                     className='btn-register-form'>
-                        Registrarse
-                    </button>
-                    <button 
-                        type='button'
-                        className='btn-login-account'
-                        onClick={handleClickRedirectLogin}
-                    >
-                        ¿ya tienes una cuenta? <span>Inicia sesion aqui</span>
-                    </button>
-                </div>
-=======
               <div className="final-part-form-register">
-                <button className="btn-register-form">Registrarse</button>
+                <button className="btn-register-form" type="submit">Registrarse</button>
                 <button
                   type="button"
                   className="btn-login-account"
@@ -314,7 +202,6 @@ onChange={(e) => handleChangeUserInfoRegister (e)} />
                   ¿Ya tienes una cuenta? <span>Inicia sesion aqui</span>
                 </button>
               </div>
->>>>>>> c0919f9de6975cb7fb8fb12a89bb151da056f0c0
             </footer>
           </div>
         </form>

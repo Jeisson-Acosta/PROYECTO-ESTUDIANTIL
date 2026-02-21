@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import toast from 'react-hot-toast';
-import { registerUser } from '../../components/auth/authService.js';
-=======
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
->>>>>>> c0919f9de6975cb7fb8fb12a89bb151da056f0c0
+//Importa register user de authService para enviar los datos del formulario
+import { registerUser } from "../../components/auth/authService";
 
 export function useFormRegister() {
   const [userInfoRegister, setUserInfoRegister] = useState({
@@ -55,56 +50,27 @@ export function useFormRegister() {
 
   const handleClickRedirectLogin = () => navigate("/");
 
-<<<<<<< HEAD
-    const  handleSelectrol = (userRol) => {
-        setUserRol (userRol);
-       setUserInfoRegister ({
-        ...userInfoRegister
-       })
-    }
-    const handleSubmitFormRegister = async (event) => {
-       event.preventDefault() 
-       console.log("CLICK EN REGISTRARSE");
-       //validacion para campos vacios
-       if (userInfoRegister.usunom === '') return toast.error ('este campo no puede estar vacio')
-       if (userInfoRegister.usuemail === '') return toast.error ('este campo no puede estar vacio')
-       //if (userInfoRegister.tidid === '') return toast.error ('este campo no puede estar vacio')
-       if (userInfoRegister.usudocu === '') return toast.error ('este campo no puede estar vacio')
-       if (userInfoRegister.usucel === '') return toast.error ('este campo no puede estar vacio')
-       if (userInfoRegister.usuborn === '') return toast.error ('este campo no puede estar vacio')
-       if (userInfoRegister.usupwd === '') return toast.error ('este campo no puede estar vacio')
-       if (userInfoRegister.usupwd_confirm === '') return toast.error ('este campo no puede estar vacio')
-        //validar si las contraseñas coinciden 
-    /*if (userInfoRegister.usupwd === userInfoRegister.usupwd_confirm) {
-        toast.success ('¡Ya puedes iniciar sesion')
-
-    }else {
-        return toast.error ('las contraseñas no coinciden')
-    }*/
-    const res =await registerUser({userInfoRegister});
-  if (res.ok) {
-    toast.success(res.message || 'Usuario Registrado completamente');
-  }else {
-    toast.success (res.message) || 'Error al registrar';
-  }
-    }
-    return {userInfoRegister,userRol,passwordStatus,handleSubmitFormRegister,handleChangeUserInfoRegister,handleClickRedirectLogin,handleSelectrol,setPasswordStatus,validatePassword}
-   
-=======
   const handleSelectrol = (userRol) => {
+       const ROLES = {
+  estudiante: 1,
+  docente: 2,
+  rector: 3,
+}
     setUserRol(userRol);
     setUserInfoRegister({
       ...userInfoRegister,
+       usurol: ROLES[userRol],
     });
   };
-  const handleSubmitFormRegister = (event) => {
+  //envia los datos al formulario
+  const handleSubmitFormRegister = async (event) => {
     event.preventDefault();
     //validacion para campos vacios
     if (userInfoRegister.usunom === "")
       return toast.error("este campo no puede estar vacio");
     if (userInfoRegister.usuemail === "")
       return toast.error("este campo no puede estar vacio");
-    //if (userInfoRegister.tidid === '') return toast.error ('este campo no puede estar vacio')
+    if (userInfoRegister.tidid === '') return toast.error ('este campo no puede estar vacio')
     if (userInfoRegister.usudocu === "")
       return toast.error("este campo no puede estar vacio");
     if (userInfoRegister.usucel === "")
@@ -119,8 +85,24 @@ export function useFormRegister() {
     if (userInfoRegister.usupwd === userInfoRegister.usupwd_confirm) {
       toast.success("¡Ya puedes iniciar sesion");
     } else {
-      toast.error("las contraseñas no coinciden");
+      return toast.error("las contraseñas no coinciden");
     }
+
+      //recibe los datos del formulario //
+   const data ={
+      usunom: userInfoRegister.usunom,
+  usuemail: userInfoRegister.usuemail,
+  usupwd: userInfoRegister.usupwd,
+  usudocu: userInfoRegister.usudocu,
+  usucel: userInfoRegister.usucel,
+  rolid: Number(userInfoRegister.usurol),
+  tidid: Number(userInfoRegister.tidid),
+   }
+    //espera que el backend responda
+    const res = await registerUser(data);
+
+
+
   };
   return {
     userInfoRegister,
@@ -133,5 +115,4 @@ export function useFormRegister() {
     setPasswordStatus,
     validatePassword,
   };
->>>>>>> c0919f9de6975cb7fb8fb12a89bb151da056f0c0
 }

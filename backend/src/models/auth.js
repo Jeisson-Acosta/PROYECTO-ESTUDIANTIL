@@ -1,5 +1,6 @@
 import mysql from 'mysql2/promise'
-
+//importar libreria bcrypt para hashear la contraseña
+import bcrypt from 'bcryptjs'
 // La configuración de la DB
 const DEFAULT_CONFIG = {
     host: 'localhost',
@@ -25,11 +26,13 @@ export class AuthModel {
             rolid,
             tidid
         } = input
+        //hashear contraseña
+        const usuhash = await bcrypt.hash(usupwd,10)
         try {
             const [result] = await connection.query(
                 `INSERT INTO tbl_usuario (usunom, usuemail, usupwd, usudocu, usucel, rolid, tidid)
                 VALUES (?, ?, ?, ?, ?, ?, ?);`,
-                [usunom, usuemail, usupwd, usudocu, usucel, rolid, tidid]
+                [usunom, usuemail, usuhash, usudocu, usucel, rolid, tidid]
             )
 
             const [createdUser] = await connection.query(
