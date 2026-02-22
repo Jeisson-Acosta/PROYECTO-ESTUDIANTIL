@@ -3,11 +3,13 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "usunom": "Angie Martinez",
-    "usuemail": "angie@gmail.com",
-    "usupwd": "angie161121@",
+    "usunom": "Pepito Perez",
+    "usuemail": "pepito@gmail.com",
+    "usupwd": "pepito161121@",
     "usudocu": "1137089214",
     "usucel": "4898484894",
+    "usufch_nacimiento": "2004-12-20",
+    "ceeid": 1,
     "rolid": 1,
     "tidid": 2
 }
