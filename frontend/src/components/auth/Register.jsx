@@ -13,9 +13,9 @@ export function Register() {
     handleSelectrol,
     handleClickRedirectLogin,
     handleSubmitFormRegister,
-    setPasswordStatus,
     validatePassword,
   } = useFormRegister();
+
   return (
     <div className="container-all-register">
       <div className="container-principal-register">
@@ -56,7 +56,7 @@ export function Register() {
                 <input
                   type="email"
                   name="usuemail"
-                  placeholder="pepito@gmail.com"
+                  placeholder="ejemplo@dominio.com"
                   value={userInfoRegister.usuemail}
                   onChange={(e) => handleChangeUserInfoRegister(e)}
                 />
@@ -100,9 +100,8 @@ export function Register() {
                 Fecha de nacimiento
                 <input
                   type="date"
-                  placeholder="30/10/2005"
-                  name="usuborn"
-                  value={userInfoRegister.usuborn}
+                  name="usufch_nacimiento"
+                  value={userInfoRegister.usufch_nacimiento}
                   onChange={(e) => handleChangeUserInfoRegister(e)}
                 />
               </label>
@@ -193,7 +192,9 @@ export function Register() {
             </div>
             <footer>
               <div className="final-part-form-register">
-                <button className="btn-register-form" type="submit">Registrarse</button>
+                <button className="btn-register-form" type="submit">
+                  Registrarse
+                </button>
                 <button
                   type="button"
                   className="btn-login-account"
