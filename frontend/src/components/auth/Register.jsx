@@ -105,6 +105,15 @@ export function Register() {
                   onChange={(e) => handleChangeUserInfoRegister(e)}
                 />
               </label>
+                  <label className="full">
+                Centro educativo
+                <input
+                  type="text"
+                  name="ceeid"
+                  value={userInfoRegister.ceeid}
+                  onChange={(e) => handleChangeUserInfoRegister(e)}
+                />
+              </label>
               <div className="roles-block">
                 <label className="roles-label">Selecciona tu rol:</label>
 

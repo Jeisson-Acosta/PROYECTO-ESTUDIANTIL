@@ -166,7 +166,7 @@
         border-radius: 0 0 18px 18px;
     }
 
-    .fields-form-register {
+    .fields-form-register .fields-form{
         grid-template-columns: 1fr;
     }
 
