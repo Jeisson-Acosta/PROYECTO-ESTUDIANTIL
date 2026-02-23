@@ -11,10 +11,12 @@ const DEFAULT_CONFIG = {
 }
 
 // Esta funcion nos permite ejecutar cualquier SP de la base de datos.
-export async function manageDB(nameSP, params) {
+export async function manageDB(nameSP, params, query = '', option = 'SP') {
     /* 
         nameSP -> Nombre del SP que se va a ejecutar.
         params -> Parametros que se van a pasar al SP.
+        query -> Consulta SELECT que se va a ejecutar. EJ: 'SELECT * FROM tbl_name WHERE field = ?'
+        option -> 'SP' o 'SL' -> Determina si se va a ejecutar un SP o una consulta SELECT.
     */
 
     const RESPONSE_DB = {
@@ -27,14 +29,21 @@ export async function manageDB(nameSP, params) {
     const connectionPool = mysql.createPool(connectionString)
 
     try {
-        const [response] = await connectionPool.query(`CALL ${nameSP}(${params.map(() => '?').join(',')})`, params)
-        RESPONSE_DB.ok = true
-        RESPONSE_DB.data = response[0]
-        RESPONSE_DB.message = "Petición exitosa"
+        if (option === 'SP') {
+            const [response] = await connectionPool.query(`CALL ${nameSP}(${params.map(() => '?').join(',')})`, params)
+            RESPONSE_DB.ok = true
+            RESPONSE_DB.data = response[0]
+            RESPONSE_DB.message = "Petición exitosa"
+        } else if (option === 'SL') {
+            const [response] = await connectionPool.query(query, params)
+            RESPONSE_DB.ok = response.length === 0 ? false : true
+            RESPONSE_DB.data = response.length === 0 ? null : response[0]
+            RESPONSE_DB.message = "Petición exitosa"
+        }
     } catch(e) {
+        // Acá este error lo debemos mandar a un recurso para que guarde el log.
         RESPONSE_DB.ok = false
         RESPONSE_DB.message = `Error al ejecutar la petición: ${e.message}`
-
     } finally {
         connectionPool.end()
     }

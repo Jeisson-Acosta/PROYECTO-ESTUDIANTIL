@@ -13,3 +13,12 @@ Content-Type: application/json
     "rolid": 1,
     "tidid": 2
 }
+
+### Iniciar sesión con correo y contraseña
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "usuemail": "pepito@gmail.com",
+    "usupwd": "Json161121@"
+}
