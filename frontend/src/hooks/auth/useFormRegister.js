@@ -13,9 +13,9 @@ export function useFormRegister() {
     usudocu: "",
     usucel: "",
     usufch_nacimiento: "",
-    ceeid: Number(null),
-    tidid: Number(null),
-    rolid: Number(null),
+    ceeid: 1,
+    tidid: null,
+    rolid: null,
     usuborn: "",
     usurol: null,
     usupwd_confirm: "",
@@ -35,7 +35,7 @@ export function useFormRegister() {
 
     setUserInfoRegister({
       ...userInfoRegister,
-      [name]: value,
+      [name]: name.includes("id") ? parseInt(value) : value,
     });
 
     if (name === "usupwd") {
@@ -89,7 +89,6 @@ export function useFormRegister() {
     //validar si las contraseñas coinciden
     if (userInfoRegister.usupwd === userInfoRegister.usupwd_confirm) {
       const responseDB = await requestDB("auth/register", "POST", userInfoRegister)
-      console.log(userInfoRegister)
       if (!responseDB || !responseDB.ok) {
         toast.error("Error al registrar usuario");
       } else {
