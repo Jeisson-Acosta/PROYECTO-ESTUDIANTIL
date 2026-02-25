@@ -75,6 +75,7 @@ export class AuthModel {
         try {
             const result = await manageDB('sp_auth_login_user', [usuemail])
             if (!result.ok) { throw new Error(result.message) }
+            // JWT
 
             return result
         } catch (err) {
