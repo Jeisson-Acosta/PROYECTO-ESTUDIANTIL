@@ -3,6 +3,8 @@ import express from 'express'
 //Importa cors para dar permiso de permitir peticiones
 import cors from 'cors'
 import { authRouter } from './routes/auth.js'
+import cookieParser from 'cookie-parser'
+import { use } from 'react'
 
 
 const app = express()
@@ -18,8 +20,14 @@ app.use(cors({
 
 // Middleware para peticiones POST para poner el contenido en el body
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/auth', authRouter)
+
+app.get('/', authMiddleware, (req, res) => {
+  const { user } = req.session
+  res.json(user)
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on: http://localhost:${PORT}`, {})

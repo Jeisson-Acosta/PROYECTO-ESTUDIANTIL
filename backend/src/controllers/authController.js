@@ -1,6 +1,7 @@
 import { AuthModel } from "../models/auth.js";
 import { validateRegister, validateLogin } from "../schemas/auth.js";
-
+import jwt from "jsonwebtoken";
+import { SECRET_JWT_KEY } from "../config/config.js";
 export class AuthController {
     static async registerUser(req, res) {
         const resultValidate = validateRegister(req.body)
@@ -10,7 +11,19 @@ export class AuthController {
 
         try {
             const result = await AuthModel.registerUser({ input: resultValidate.data })
-            return res.status(201).json(result)
+            const token = jwt.sign({
+                usuid: result.data.usuid, usunom: result.data.usunom
+            },
+                SECRET_JWT_KEY,
+                { expiresIn: '1h' }
+            )
+            return res.cookie('access_token', token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameStrict: 'strict',
+                maxAge: 10000 * 60 * 60 // la cookie expira en 1 hora
+            }).status(200).send({ result, token })
+
         } catch (e) {
             return res.status(500).json({ error: e.message })
         }
@@ -18,7 +31,7 @@ export class AuthController {
 
     static async loginUser(req, res) {
         const resultValidate = validateLogin(req.body)
-        
+
         // Acá este error lo debemos mandar a un recurso para que guarde el log.
         if (!resultValidate.success) { return res.status(400).json({ error: JSON.parse(resultValidate.error.message) }) }
 

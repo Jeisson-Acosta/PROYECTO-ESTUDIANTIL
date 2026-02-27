@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
+import { useRequestDB } from "../utils/useRequest"
+import { response } from "express"
 
 // Hook personalizado para manejar los eventos que se necesitan en el formulario de iniciar sesión.
 export function useFormLogin() {
-    const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: '',  usupwd: '' })
+    const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: '', usupwd: '' })
 
     const navigate = useNavigate()
 
@@ -21,7 +23,7 @@ export function useFormLogin() {
     // Función para llevar al usuario a el formulario de registrarse.
     const handleClickRedirectCreateAccount = () => navigate('/register')
 
-    const handleSubmitFormLogin = (event) => {
+    const handleSubmitFormLogin = async (event) => {
         event.preventDefault() // Quitar el comportamiento por defecto de un formulario
 
         // Hacer validacón para que el que envie el formulario sea el boton de 'Ingresar'.
@@ -29,16 +31,21 @@ export function useFormLogin() {
         // Validaciones para que los campos no esten vacios.
         if (userInfoLogin.usuemail === '') return toast.error('El correo electronico no puede estar vacío')
 
-        if (userInfoLogin.usupwd === '')  return toast.error('La contraseña no puede estar vacía')
+        if (userInfoLogin.usupwd === '') return toast.error('La contraseña no puede estar vacía')
+        const responseDB = await requestDB('auth/login', 'POST', userInfoLogin)
+        console.log(responseDB)
+        if (!responseDB.data.ok) {
+            toast.error('hubo algun error al iniciar sesion')
+        }
 
         // Aqui es donde mandamos la información al backend para que la procese
-        if (userInfoLogin.usuemail === 'pepito@gmail.com' && userInfoLogin.usupwd === '1234') {
-            toast.success('¡Bienvenido Pepito!')
-            // Aqui ya debe de ingresar a la pagina
-            navigate('/student/dashboard')
-        } else {
-            toast.error('Algo salio mal. ¡Intentalo de nuevo!')
-        }
+        /* if (userInfoLogin.usuemail === 'pepito@gmail.com' && userInfoLogin.usupwd === '1234') {
+             toast.success('¡Bienvenido Pepito!')
+             // Aqui ya debe de ingresar a la pagina
+             navigate('/student/dashboard')
+         } else {
+             toast.error('Algo salio mal. ¡Intentalo de nuevo!')
+         } */
     }
 
     return { userInfoLogin, handleChangeUserInfoLogin, handleClickRedirectCreateAccount, handleSubmitFormLogin }
