@@ -13,6 +13,7 @@ export const useRequestDB = () => {
       const responseDb = await fetch(`${URL_BACKEND}${url}`, {
         method: method,
         headers: { "Content-Type": "application/json" },
+        credentials: 'include',
         body: JSON.stringify(body),
       });
 
