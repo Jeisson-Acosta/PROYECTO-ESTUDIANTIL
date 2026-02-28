@@ -25,7 +25,7 @@ export const useRequestDB = () => {
       setResponseDB(data);
       return data;
     } catch (error) {
-        // Aqui este error lo debemos mandar a un recurso para que guarde el log.
+      // Aqui este error lo debemos mandar a un recurso para que guarde el log.
       setError("Error al hacer petición al backend: " + error.message);
     } finally {
       setLoading(false);
