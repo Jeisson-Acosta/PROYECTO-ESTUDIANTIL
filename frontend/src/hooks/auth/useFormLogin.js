@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
-import { useRequestDB } from "../utils/useRequestDB.js"
+import { useRequestDB, responseDB } from "../utils/useRequestDB.js"
 
 // Hook personalizado para manejar los eventos que se necesitan en el formulario de iniciar sesión.
 export function useFormLogin() {
@@ -32,13 +32,13 @@ export function useFormLogin() {
         if (userInfoLogin.usuemail === '') return toast.error('El correo electronico no puede estar vacío')
 
         if (userInfoLogin.usupwd === '') return toast.error('La contraseña no puede estar vacía')
-        const responseDB = await requestDB('auth/login', 'POST', userInfoLogin)
+        responseDB = await requestDB('auth/login', 'POST', userInfoLogin)
         console.log(responseDB)
         if (!responseDB.data.ok) {
             toast.error('hubo algun error al iniciar sesion')
         }
 
-        const responseDB = await requestDB('auth/login', 'POST', userInfoLogin)
+        responseDB = await requestDB('auth/login', 'POST', userInfoLogin)
         if (!responseDB.ok) {
             toast.error(responseDB.message)
             return
