@@ -1,3 +1,4 @@
+import { ROLES } from "../../constants.js"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -52,18 +53,13 @@ export function useFormRegister() {
     });
   };
 
-  const handleClickRedirectLogin = () => navigate("/");
+  const handleClickRedirectLogin = () => navigate("/login");
 
   const handleSelectrol = (userRol) => {
-    const ROLES = {
-      estudiante: 1,
-      docente: 2,
-      rector: 3,
-    };
     setUserRol(userRol);
     setUserInfoRegister({
       ...userInfoRegister,
-      rolid: ROLES[userRol],
+      rolid: Object.keys(ROLES[userRol]),
     });
   };
   //envia los datos al formulario

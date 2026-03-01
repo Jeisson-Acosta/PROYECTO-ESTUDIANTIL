@@ -1,5 +1,4 @@
 import { useResponseDB } from "./useResponseDB.js";
-import { Loader } from "../../components/common/Loader.jsx";
 
 const URL_BACKEND = "http://localhost:3000/";
 
@@ -14,7 +13,7 @@ export const useRequestDB = () => {
         method: method,
         headers: { "Content-Type": "application/json" },
         credentials: 'include',
-        body: JSON.stringify(body),
+        body: method !== 'GET' ? JSON.stringify(body) : undefined,
       });
 
       if (!responseDb.ok) {
@@ -25,7 +24,7 @@ export const useRequestDB = () => {
       setResponseDB(data);
       return data;
     } catch (error) {
-        // Aqui este error lo debemos mandar a un recurso para que guarde el log.
+      // Aqui este error lo debemos mandar a un recurso para que guarde el log.
       setError("Error al hacer petición al backend: " + error.message);
     } finally {
       setLoading(false);

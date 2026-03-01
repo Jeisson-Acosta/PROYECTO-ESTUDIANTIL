@@ -1,16 +1,16 @@
 import '../../styles/common/MenuApp.css'
-
-import { IconHatStudent } from "./IconsLayout.jsx"
-import { IconDashboard, IconNotebook, IconClipboard, IconBars, IconSchedule } from "./IconsLayout.jsx"
-import { NavLink } from "react-router-dom"
 import { Outlet } from "react-router-dom"
 import { MenuApp } from './Menuapp.jsx'
+import { HeaderOption } from './HeaderOption.jsx'
 
 export function Layout() {
     return (
-        <>
+        <section style={{display: 'flex'}}>
             <MenuApp />
-            <Outlet />
-        </>
+            <section style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+                <HeaderOption />
+                <Outlet />
+            </section>
+        </section>
     )
 }
