@@ -7,56 +7,6 @@ export class AuthController {
   static async registerUser(req, res) {
     const resultValidate = validateRegister(req.body);
 
-<<<<<<< HEAD
-        // Acá este error lo debemos mandar a un recurso para que guarde el log.
-        if (!resultValidate.success) { return res.status(400).json({ error: JSON.parse(resultValidate.error.message) }) }
-
-        try {
-            const result = await AuthModel.registerUser({ input: resultValidate.data })
-            const token = jwt.sign({
-                usuid: result.data.usuid, usunom: result.data.usunom
-            },
-                SECRET_JWT_KEY,
-                { expiresIn: '1h' }
-            )
-            return res.cookie('access_token', token, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameStrict: 'strict',
-                maxAge: 10000 * 60 * 60 // la cookie expira en 1 hora
-            }).status(200).send({ result, token })
-
-        } catch (e) {
-            return res.status(500).json({ error: e.message })
-        }
-    }
-
-    static async loginUser(req, res) {
-        const resultValidate = validateLogin(req.body)
-
-        // Acá este error lo debemos mandar a un recurso para que guarde el log.
-        if (!resultValidate.success) { return res.status(400).json({ error: JSON.parse(resultValidate.error.message) }) }
-
-        try {
-            const result = await AuthModel.loginUser({ input: resultValidate.data })
-            if (!result.ok) return res.json(result)
-            const token = jwt.sign(
-                { usuid: result.data.usuid, usunom: result.data.usunom }, // PAYLOAD
-                SECRET_JWT_KEY, // SECRET KEY
-                { expiresIn: '1h' }
-            )
-            // result.data.token = token
-            return res.cookie('access_token', token, {
-                httpOnly: true, // La cookie solo se puede acceder en el servidor.
-                secure: process.env.NODE_ENV === 'production', // La cookie solo se puede acceder desde HTTPS
-                sameStrict: 'strict', // La cookie solo se puede acceder desde el mismo dominio
-                maxAge: 10000 * 60 * 60 // La cookie expira en una hora
-            }).json(result)
-            // return res.status(200).json(result)
-        } catch (e) {
-            return res.status(500).json({ error: e.message })
-        }
-=======
     // Acá este error lo debemos mandar a un recurso para que guarde el log.
     if (!resultValidate.success) {
       return res
@@ -71,7 +21,6 @@ export class AuthController {
       return res.status(201).json(result);
     } catch (e) {
       return res.status(500).json({ error: e.message });
->>>>>>> 9ea35addadf2547d3428575429f8f41356db6c41
     }
   }
 
