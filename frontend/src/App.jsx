@@ -3,18 +3,38 @@ import { Toaster } from 'react-hot-toast'
 import { Login } from './components/auth/Login.jsx'
 import { Register } from './components/auth/Register.jsx'
 import { Layout } from './components/common/Layout.jsx'
-
+import { RoleBasedRoute } from './routes/RoleBasedRoute.jsx'
+import { RoleBasedRedirect } from './components/student/RoleBasedRedirect.jsx'
+function Unauthorized() {
+  return <h1>No esta permitido acceder a esta ruta.</h1>
+}
+function StudentDashboard() {
+  return <h1>Hola Dashboard</h1>
+}
 function App() {
 
   return (
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<Login />} />
+          {/*RUTAS PUBLICAS*/}
+          <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/unauthorized' element={<Unauthorized />} />
           <Route element={<Layout />}>
-            <Route path='student/dashboard' />
+          {/*RUTAS PRIVADAS*/ }
+          <Route
+          path ='/student/'
+          element={<RoleBasedRoute allowedRoles={['EST']} >
+             <Routes>
+              <Route path='dashboard' element={<StudentDashboard />} />
+             </Routes>
+            </RoleBasedRoute>
+            }
+          />  
+          
           </Route>
+           <Route path='student/' element={<RoleBasedRedirect />} />   
         </Routes>
       </Router>
       <Toaster />

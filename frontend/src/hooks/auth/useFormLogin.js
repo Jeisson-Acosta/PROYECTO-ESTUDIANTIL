@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
-import { useRequestDB, responseDB } from "../utils/useRequestDB.js"
+import { useRequestDB } from "../utils/useRequestDB.js"
+import { useContext } from "react"
+import { UserLoginContext } from "../../context/userLogin.jsx"
 
 // Hook personalizado para manejar los eventos que se necesitan en el formulario de iniciar sesión.
 export function useFormLogin() {
     const [userInfoLogin, setUserInfoLogin] = useState({ usuemail: '', usupwd: '' })
+    const { setUserLogin } = useContext(UserLoginContext)
     const { requestDB } = useRequestDB()
 
     const navigate = useNavigate()
@@ -32,28 +35,16 @@ export function useFormLogin() {
         if (userInfoLogin.usuemail === '') return toast.error('El correo electronico no puede estar vacío')
 
         if (userInfoLogin.usupwd === '') return toast.error('La contraseña no puede estar vacía')
-        responseDB = await requestDB('auth/login', 'POST', userInfoLogin)
-        console.log(responseDB)
-        if (!responseDB.data.ok) {
-            toast.error('hubo algun error al iniciar sesion')
-        }
 
-        responseDB = await requestDB('auth/login', 'POST', userInfoLogin)
+        const responseDB = await requestDB('auth/login', 'POST', userInfoLogin)
         if (!responseDB.ok) {
             toast.error(responseDB.message)
             return
         }
-
+        setUserLogin(responseDB.data)
+        navigate('/')
         toast.success('¡Hola!')
 
-        // Aqui es donde mandamos la información al backend para que la procese
-        /* if (userInfoLogin.usuemail === 'pepito@gmail.com' && userInfoLogin.usupwd === '1234') {
-            toast.success('¡Bienvenido Pepito!')
-            // Aqui ya debe de ingresar a la pagina
-            navigate('/student/dashboard')
-        } else {
-            toast.error('Algo salio mal. ¡Intentalo de nuevo!')
-        } */
     }
 
     return { userInfoLogin, handleChangeUserInfoLogin, handleClickRedirectCreateAccount, handleSubmitFormLogin }

@@ -24,10 +24,7 @@ app.use(cookieParser()) // Es un middleware de express, que nos facilita acceder
 
 app.use('/auth', authRouter)
 
-app.get('/', authMiddleware, (req, res) => {
-  const { user } = req.session
-  res.json(user)
-})
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on: http://localhost:${PORT}`)

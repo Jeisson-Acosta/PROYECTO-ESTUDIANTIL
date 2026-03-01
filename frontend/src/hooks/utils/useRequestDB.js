@@ -14,7 +14,7 @@ export const useRequestDB = () => {
         method: method,
         headers: { "Content-Type": "application/json" },
         credentials: 'include',
-        body: JSON.stringify(body),
+        body: method !== 'GET' ? JSON.stringify(body) : undefined,
       });
 
       if (!responseDb.ok) {
