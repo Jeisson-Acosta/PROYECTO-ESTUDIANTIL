@@ -1,5 +1,4 @@
 import { useResponseDB } from "./useResponseDB.js";
-import { Loader } from "../../components/common/Loader.jsx";
 
 const URL_BACKEND = "http://localhost:3000/";
 

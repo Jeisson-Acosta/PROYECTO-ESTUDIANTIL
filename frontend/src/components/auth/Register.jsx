@@ -121,10 +121,10 @@ export function Register() {
                   <button
                     type="button"
                     className={`boton-register ${
-                      userRol === "estudiante" ? "active" : ""
+                      userRol === "EST" ? "active" : ""
                     }`}
                     name="rolid"
-                    onClick={() => handleSelectrol("estudiante")}
+                    onClick={() => handleSelectrol("EST")}
                   >
                     {" "}
                     <div className="image-button">
@@ -135,10 +135,10 @@ export function Register() {
                   <button
                     type="button"
                     className={`boton-register ${
-                      userRol === "docente" ? "active" : ""
+                      userRol === "DOC" ? "active" : ""
                     }`}
                     name="rolid"
-                    onClick={() => handleSelectrol("docente")}
+                    onClick={() => handleSelectrol("DOC")}
                   >
                     {" "}
                     <div className="image-button">
@@ -149,10 +149,10 @@ export function Register() {
                   <button
                     type="button"
                     className={`boton-register ${
-                      userRol === "rector" ? "active" : ""
+                      userRol === "REC" ? "active" : ""
                     }`}
                     name="rolid"
-                    onClick={() => handleSelectrol("rector")}
+                    onClick={() => handleSelectrol("REC")}
                   >
                     {" "}
                     <div className="image-button">

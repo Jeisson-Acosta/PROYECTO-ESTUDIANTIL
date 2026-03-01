@@ -1,17 +1,22 @@
-import { Navigate } from "react-router-dom"
-import { useContext } from "react"
-import { UserLoginContext } from "../context/userLogin.jsx"
+import { Navigate } from "react-router-dom";
+import { UserLoginContext } from "../context/userLogin.jsx";
+import { useContext } from "react";
 
+export function RoleBasedRoute({ children, allowedRoles }) {
+  const { isLoading, isAuthenticated, userLogin } = useContext(UserLoginContext)
 
-export function RoleBasedRoute({ children ,allowedRoles}) {
-    const {firstTime,isAuthenticated,userLogin} = useContext(UserLoginContext)
-    if(!isAuthenticated && !firstTime){
-        return <Navigate to="/login" replace />
-    }
+  // Mientras se verifica la sesión, no renderizamos nada para evitar redirecciones prematuras.
+  if (isLoading) return null
 
-    if(!allowedRoles.includes(userLogin[0]?.role)){
-        return <Navigate to="/unauthorized" />
-    }
+  // Si terminó la carga y no está autenticado, redirige al login.
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
 
-    return children
+  // Si está autenticado pero no tiene el rol permitido, redirige a no autorizado.
+  if (!allowedRoles.includes(userLogin?.rolcod)) {
+    return <Navigate to="/unauthorized" replace />;
+  }
+
+  return children;
 }
