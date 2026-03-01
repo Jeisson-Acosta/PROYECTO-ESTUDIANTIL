@@ -4,8 +4,8 @@ import mysql from 'mysql2/promise'
 const DEFAULT_CONFIG = {
     host: 'localhost',
     user: 'root',
-    port: 3306,
-    password: 'Agil',
+    port: 3307,
+    password: 'Aot2005?',
     database: 'cefcoc_dev',
     connectionLimit: 10, // Maximo de conexiones simultaneas
 }
@@ -40,7 +40,7 @@ export async function manageDB(nameSP, params, query = '', option = 'SP') {
             RESPONSE_DB.data = response.length === 0 ? null : response[0]
             RESPONSE_DB.message = "Petición exitosa"
         }
-    } catch(e) {
+    } catch (e) {
         // Acá este error lo debemos mandar a un recurso para que guarde el log.
         RESPONSE_DB.ok = false
         RESPONSE_DB.message = `Error al ejecutar la petición: ${e.message}`

@@ -15,10 +15,10 @@ export function useFormRegister() {
     usucel: "",
     usufch_nacimiento: "",
     ceeid: 1,
-    tidid: null,
-    rolid: null,
+    tidid: "",
+    rolid: "",
     usuborn: "",
-    usurol: null,
+    usurol: "",
     usupwd_confirm: "",
   })
 
@@ -59,7 +59,7 @@ export function useFormRegister() {
     setUserRol(userRol);
     setUserInfoRegister({
       ...userInfoRegister,
-      rolid: Object.keys(ROLES[userRol]),
+      rolid: ROLES[userRol].id,
     });
   };
   //envia los datos al formulario
