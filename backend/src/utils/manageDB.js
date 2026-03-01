@@ -5,7 +5,7 @@ const DEFAULT_CONFIG = {
     host: 'localhost',
     user: 'root',
     port: 3307,
-    password: '',
+    password: 'Aot2005?',
     database: 'cefcoc_dev',
     connectionLimit: 10, // Maximo de conexiones simultaneas
 }
