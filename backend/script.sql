@@ -29,8 +29,6 @@ CREATE TABLE `tbl_asignatura` (
   `asgnom` varchar(100) DEFAULT NULL COMMENT 'Nombre de la asignatura.',
   `asgcod` char(4) DEFAULT NULL COMMENT 'Código de la asignatura de 4 caracteres.',
   `asgcod_clase` char(6) DEFAULT NULL COMMENT 'Código de la clase, para que los estudiantes puedan ingresar a la clase.',
-  `asgdia` tinyint(1) DEFAULT NULL COMMENT 'Día que se dicta la clase en número. (1)Lunes, (2)Martes, (3)Miercoles, (4)Jueves, (5)Viernes, (6)Sabado, (7)Domingo',
-  `asghora` time DEFAULT NULL COMMENT 'Hora en la que se dicta la clase.',
   `usuid` int DEFAULT NULL COMMENT '[tbl_usuario]: Id del usuario para saber que profesor dirige la clase.',
   `cedid` int DEFAULT NULL COMMENT '[tbl_centro_educativo]: Id del centro educativo para saber la asignatura a que centro educativo pertenece.',
   `cesid` int DEFAULT NULL COMMENT '[tbl_centro_educativo_salon]: Id del salon del centro educativo, para saber en que salón se dicta la materia.',
@@ -44,7 +42,7 @@ CREATE TABLE `tbl_asignatura` (
 
 LOCK TABLES `tbl_asignatura` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura` DISABLE KEYS */;
-INSERT INTO `tbl_asignatura` VALUES (1,'Ciencias','CIEN','XRTY09',1,'09:00:00',2,1,1),(2,'Matematicas','MATE','CRTY78',1,'12:00:00',3,1,2);
+INSERT INTO `tbl_asignatura` VALUES (1,'Ciencias','CIEN','XRTY09',2,1,1),(2,'Matematicas','MATE','CRTY78',3,1,2);
 /*!40000 ALTER TABLE `tbl_asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,6 +126,31 @@ CREATE TABLE `tbl_asignatura_curso` (
 LOCK TABLES `tbl_asignatura_curso` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura_curso` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_asignatura_curso` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_asignatura_horario`
+--
+
+DROP TABLE IF EXISTS `tbl_asignatura_horario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_asignatura_horario` (
+  `ashid` int NOT NULL AUTO_INCREMENT,
+  `ashdia` tinyint(1) DEFAULT NULL COMMENT 'Día que se dicta la clase en número. (1)Lunes, (2)Martes, (3)Miercoles, (4)Jueves, (5)Viernes, (6)Sabado, (7)Domingo',
+  `ashhora` time DEFAULT NULL COMMENT 'Hora en la que se dicta la clase.',
+  `asgid` int DEFAULT NULL COMMENT '[tbl_asignatura]: Id de la asignatura a la que pertenece el horario de la clase.',
+  PRIMARY KEY (`ashid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_asignatura_horario`
+--
+
+LOCK TABLES `tbl_asignatura_horario` WRITE;
+/*!40000 ALTER TABLE `tbl_asignatura_horario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_asignatura_horario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -588,4 +611,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-01  2:26:55
+-- Dump completed on 2026-03-01 16:29:28
