@@ -1,5 +1,5 @@
 export const ROLES = {
-    EST: { id: 1, name: 'Estudiante', path: '/student/dashboard' },
-    DOC: { id: 2, name: 'Docente', path: '/docent/dashboard' },
-    REC: { id: 3, name: 'Rector', path: '/rector/dashboard' }
+    EST: { name: 'Estudiante', path: '/student/dashboard' },
+    DOC: { name: 'Docente', path: '/docent/dashboard' },
+    REC: { name: 'Rector', path: '/rector/dashboard' }
 }
