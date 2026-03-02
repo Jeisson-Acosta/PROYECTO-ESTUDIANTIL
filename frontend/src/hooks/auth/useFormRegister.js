@@ -59,7 +59,7 @@ export function useFormRegister() {
     setUserRol(userRol);
     setUserInfoRegister({
       ...userInfoRegister,
-      rolid: ROLES.object.key([userRol]),
+      rolid: ROLES.Object.keys([userRol]),
     });
   };
   //envia los datos al formulario
