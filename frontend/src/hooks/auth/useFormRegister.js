@@ -15,7 +15,9 @@ export function useFormRegister() {
     usufch_nacimiento: "",
     ceeid: 1,
     tidid: "",
-    rolid: "",
+    rolcod: "",
+    usuborn: "",
+    usurol: "",
     usupwd_confirm: "",
   })
 
@@ -61,20 +63,12 @@ export function useFormRegister() {
 
   const handleClickRedirectLogin = () => navigate("/login");
 
-  const handleSelectrol = (selectedRolKey) => {
-    console.log("Rol seleccionado (código):", selectedRolKey); // Para debug
-    setUserRol(selectedRolKey);
-
-    // IMPORTANTE: Usar el estado anterior para no perder los demás campos
-    setUserInfoRegister(prevState => ({
-      ...prevState,
-      rolid: selectedRolKey,  // Guarda "EST", "DOC" o "REC"
-    }));
-
-    // Verificar que se actualizó
-    setTimeout(() => {
-      console.log("userInfoRegister actualizado:", userInfoRegister);
-    }, 100);
+  const handleSelectrol = (userRol) => {
+    setUserRol(userRol);
+    setUserInfoRegister({
+      ...userInfoRegister,
+      rolid: Object.keys(ROLES[userRol])
+    });
   };
   //envia los datos al formulario
   const handleSubmitFormRegister = async (event) => {

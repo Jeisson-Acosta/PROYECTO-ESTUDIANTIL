@@ -7,56 +7,56 @@ import { ROLES } from "../../constants.js";
 
 // Hook personalizado para manejar los eventos que se necesitan en el formulario de iniciar sesión.
 export function useFormLogin() {
-  const [userInfoLogin, setUserInfoLogin] = useState({
-    usuemail: "",
-    usupwd: "",
-  });
-  const { setUserLogin, setIsAuthenticated } = useContext(UserLoginContext);
-  const { requestDB } = useRequestDB();
-
-  const navigate = useNavigate();
-
-  // handleChange -> Cuando cambia la información en tiempo real.
-  // handleClick -> Cuando hacen clic a algo.
-  // handleSubmit -> Cuando envian un formulario
-  const handleChangeUserInfoLogin = (event) => {
-    setUserInfoLogin({
-      ...userInfoLogin,
-      [event.target.name]: event.target.value,
+    const [userInfoLogin, setUserInfoLogin] = useState({
+        usuemail: "",
+        usupwd: "",
     });
-  };
+    const { setUserLogin, setIsAuthenticated } = useContext(UserLoginContext);
+    const { requestDB } = useRequestDB();
 
-  // Función para llevar al usuario a el formulario de registrarse.
-  const handleClickRedirectCreateAccount = () => navigate("/register");
+    const navigate = useNavigate();
 
-  const handleSubmitFormLogin = async (event) => {
-    event.preventDefault(); // Quitar el comportamiento por defecto de un formulario
+    // handleChange -> Cuando cambia la información en tiempo real.
+    // handleClick -> Cuando hacen clic a algo.
+    // handleSubmit -> Cuando envian un formulario
+    const handleChangeUserInfoLogin = (event) => {
+        setUserInfoLogin({
+            ...userInfoLogin,
+            [event.target.name]: event.target.value,
+        });
+    };
 
-    // Hacer validacón para que el que envie el formulario sea el boton de 'Ingresar'.
+    // Función para llevar al usuario a el formulario de registrarse.
+    const handleClickRedirectCreateAccount = () => navigate("/register");
 
-    // Validaciones para que los campos no esten vacios.
-    if (userInfoLogin.usuemail === "")
-      return toast.error("El correo electronico no puede estar vacío");
-    if (userInfoLogin.usupwd === "")
-      return toast.error("La contraseña no puede estar vacía");
+    const handleSubmitFormLogin = async (event) => {
+        event.preventDefault(); // Quitar el comportamiento por defecto de un formulario
 
-    const responseDB = await requestDB("auth/login", "POST", userInfoLogin);
-    if (!responseDB.ok) {
-      toast.error(responseDB.message);
-      return;
-    }
+        // Hacer validacón para que el que envie el formulario sea el boton de 'Ingresar'.
 
-    const userData = responseDB.data[0];
-    setUserLogin(userData);
-    setIsAuthenticated(true);
-    navigate(ROLES[userData.rolcod]?.path || "/");
-    // toast.success("¡Hola!");
-  };
+        // Validaciones para que los campos no esten vacios.
+        if (userInfoLogin.usuemail === "")
+            return toast.error("El correo electronico no puede estar vacío");
+        if (userInfoLogin.usupwd === "")
+            return toast.error("La contraseña no puede estar vacía");
 
-  return {
-    userInfoLogin,
-    handleChangeUserInfoLogin,
-    handleClickRedirectCreateAccount,
-    handleSubmitFormLogin,
-  };
+        const responseDB = await requestDB("auth/login", "POST", userInfoLogin);
+        if (!responseDB.ok) {
+            toast.error(responseDB.message);
+            return;
+        }
+
+        const userData = responseDB.data[0];
+        setUserLogin(userData);
+        setIsAuthenticated(true);
+        navigate(ROLES[userData.rolcod]?.path || "/");
+        // toast.success("¡Hola!");
+    };
+
+    return {
+        userInfoLogin,
+        handleChangeUserInfoLogin,
+        handleClickRedirectCreateAccount,
+        handleSubmitFormLogin,
+    };
 }
