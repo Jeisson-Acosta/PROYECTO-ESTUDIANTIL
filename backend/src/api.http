@@ -10,7 +10,7 @@ Content-Type: application/json
     "usucel": "4898484894",
     "usufch_nacimiento": "2004-12-20",
     "ceeid": 1,
-    "rolid": 1,
+    "rolcod": 1,
     "tidid": 2
 }
 

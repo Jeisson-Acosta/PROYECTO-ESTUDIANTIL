@@ -1,4 +1,3 @@
-import { ROLES } from "../../constants.js"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -59,10 +58,9 @@ export function useFormRegister() {
     setUserRol(userRol);
     setUserInfoRegister({
       ...userInfoRegister,
-      rolcod: Object.keys(ROLES[userRol])
-    });
+      rolcod: userRol
+    })
   };
-  //envia los datos al formulario
   const handleSubmitFormRegister = async (event) => {
     event.preventDefault();
     //validacion para campos vacios
@@ -84,7 +82,19 @@ export function useFormRegister() {
       return toast.error("este campo no puede estar vacio"); */
     //validar si las contraseñas coinciden
     if (userInfoRegister.usupwd === userInfoRegister.usupwd_confirm) {
-      const responseDB = await requestDB("auth/register", "POST", userInfoRegister)
+      //envia solo los datos necesarios para el registro
+      const dataToSend = {
+        usunom: userInfoRegister.usunom,
+        usuemail: userInfoRegister.usuemail,
+        usupwd: userInfoRegister.usupwd,
+        usudocu: userInfoRegister.usudocu,
+        usucel: userInfoRegister.usucel,
+        usufch_nacimiento: userInfoRegister.usufch_nacimiento,
+        ceeid: userInfoRegister.ceeid,
+        tidid: userInfoRegister.tidid,
+        rolcod: userInfoRegister.rolcod
+      };
+      const responseDB = await requestDB("auth/register", "POST", dataToSend)
       if (!responseDB || !responseDB.ok) {
         toast.error("Error al registrar usuario");
       } else {

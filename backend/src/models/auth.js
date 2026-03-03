@@ -13,7 +13,7 @@ export class AuthModel {
             usufch_nacimiento,
             ceeid,
             tidid,
-            rolid
+            rolcod
         } = input
 
         // hashear contraseña
@@ -31,7 +31,7 @@ export class AuthModel {
                 usufch_nacimiento,
                 ceeid,
                 tidid,
-                rolid
+                rolcod
             ])
 
             if (!result.ok) { throw new Error(result.message) }
