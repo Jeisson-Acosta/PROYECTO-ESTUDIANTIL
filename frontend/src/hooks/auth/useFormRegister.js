@@ -2,6 +2,7 @@ import { ROLES } from "../../constants.js"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
+//Importa register user de authService para enviar los datos del formulario
 import { useRequestDB } from "../utils/useRequestDB.js";
 
 export function useFormRegister() {
@@ -33,25 +34,16 @@ export function useFormRegister() {
   const handleChangeUserInfoRegister = (event) => {
     const { name, value } = event.target;
 
-    // Manejar diferentes tipos de campos
-    let newValue = value;
-
-    // Para campos que deben ser números
-    if (name === "ceeid" || name === "tidid") {
-      newValue = value ? parseInt(value) : "";
-    }
-
-    setUserInfoRegister(prev => ({
-      ...prev,
-      [name]: newValue,
-    }));
-
-    console.log(`Campo ${name}:`, value);
+    setUserInfoRegister({
+      ...userInfoRegister,
+      [name]: name.includes("id") ? parseInt(value) : value,
+    });
 
     if (name === "usupwd") {
       validatePassword(value);
     }
   };
+
   //Validar parametros de la contraseña
   const validatePassword = (usupwd) => {
     setPasswordStatus({
@@ -67,61 +59,43 @@ export function useFormRegister() {
     setUserRol(userRol);
     setUserInfoRegister({
       ...userInfoRegister,
-      rolcod: userRol
+      rolcod: Object.keys(ROLES[userRol])
     });
   };
   //envia los datos al formulario
   const handleSubmitFormRegister = async (event) => {
     event.preventDefault();
-
-    console.log("1. Estado actual antes de enviar:", userInfoRegister);
-    console.log("2. Rol actual:", userInfoRegister.rolcod); // ← Verifica esto
-
-    // Validaciones
-    if (!userInfoRegister.usunom) return toast.error("El nombre no puede estar vacío");
-    if (!userInfoRegister.usuemail) return toast.error("El email no puede estar vacío");
-    if (!userInfoRegister.rolcod) {
-      console.log("¡Rol vacío! Valor:", userInfoRegister.rolcod);
-      return toast.error("Debes seleccionar un rol");
-    }
-    if (!userInfoRegister.usupwd) return toast.error("La contraseña no puede estar vacía");
-    if (!userInfoRegister.usupwd_confirm) return toast.error("Debes confirmar la contraseña");
-
-    if (userInfoRegister.usupwd !== userInfoRegister.usupwd_confirm) {
-      return toast.error("Las contraseñas no coinciden");
-    }
-
-    // Crear copia de los datos para enviar
-    const datosEnvio = {
-      usunom: userInfoRegister.usunom,
-      usuemail: userInfoRegister.usuemail,
-      usupwd: userInfoRegister.usupwd,
-      usudocu: userInfoRegister.usudocu,
-      usucel: userInfoRegister.usucel,
-      usufch_nacimiento: userInfoRegister.usufch_nacimiento,
-      ceeid: parseInt(userInfoRegister.ceeid) || 1,
-      tidid: userInfoRegister.tidid,
-      rolcod: userInfoRegister.rolcod
-    };
-
-    console.log("3. Datos a enviar al backend:", datosEnvio);
-
-    try {
-      const responseDB = await requestDB("auth/register", "POST", datosEnvio);
-      console.log("4. Respuesta del backend:", responseDB);
-
+    //validacion para campos vacios
+    /* if (userInfoRegister.usunom === "")
+      return toast.error("este campo no puede estar vacio");
+    if (userInfoRegister.usuemail === "")
+      return toast.error("este campo no puede estar vacio");
+    if (userInfoRegister.tidid === "")
+      return toast.error("este campo no puede estar vacio");
+    if (userInfoRegister.usudocu === "")
+      return toast.error("este campo no puede estar vacio");
+    if (userInfoRegister.usucel === "")
+      return toast.error("este campo no puede estar vacio");
+    if (userInfoRegister.usuborn === "")
+      return toast.error("este campo no puede estar vacio");
+    if (userInfoRegister.usupwd === "")
+      return toast.error("este campo no puede estar vacio");
+    if (userInfoRegister.usupwd_confirm === "")
+      return toast.error("este campo no puede estar vacio"); */
+    //validar si las contraseñas coinciden
+    if (userInfoRegister.usupwd === userInfoRegister.usupwd_confirm) {
+      const responseDB = await requestDB("auth/register", "POST", userInfoRegister)
       if (!responseDB || !responseDB.ok) {
-        toast.error(responseDB?.message || "Error al registrar usuario");
+        toast.error("Error al registrar usuario");
       } else {
         toast.success("Usuario registrado exitosamente");
         navigate("/");
       }
-    } catch (error) {
-      console.error("Error en la petición:", error);
-      toast.error("Error de conexión con el servidor");
+    } else {
+      return toast.error("las contraseñas no coinciden");
     }
-  };
 
+  };
   return {
     userInfoRegister,
     userRol,
