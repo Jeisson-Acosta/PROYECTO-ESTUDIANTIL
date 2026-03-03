@@ -7,6 +7,22 @@
     padding: 20px;
     border-radius: 14px;
     box-shadow: 0 4px 2px rgba(0, 0, 0, 0.1);
+
+    /* Oculta la línea horizontal del eje X, solo deja los labels */
+    & .MuiChartsAxis-bottom .MuiChartsAxis-line,
+    & .MuiChartsAxis-bottom .MuiChartsAxis-tick {
+        display: none;
+    }
+}
+
+.header-title-select {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    & > h3 {
+        font-family: fontSubtitles;
+        font-size: 18px
+    }
 }
 
 .chart-wrapper {
@@ -39,10 +55,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        & > h3 {
-            font-size: 18px;
-            font-family: fontSubtitles;
-        }
     }
 }
 .header-title-select select {
