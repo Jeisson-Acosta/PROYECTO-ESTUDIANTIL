@@ -1,14 +1,8 @@
 import '../../styles/common/MenuApp.css'
 import { IconHatStudent, IconDashboard, IconNotebook, IconClipboard, IconBars, IconSchedule } from "./IconsLayout.jsx"
 import { NavLink } from "react-router-dom"
-import { useContext } from 'react'
-import { UserLoginContext } from '../../context/userLogin.jsx'
 
 export function MenuApp() {
-    const { userLogin } = useContext(UserLoginContext)
-    if (!userLogin) return null
-    const COMPLEMENTED_URL = userLogin.rolcod === 'EST' ? 'student' : userLogin.rolcod === 'DOC' ? 'docent' : 'rector'
-    
     return (
         <section className="principal-container-menu">
             <header className="header-menu">
@@ -21,19 +15,19 @@ export function MenuApp() {
             </header>
             <nav className="modules-menu">
                 <ul>
-                    <NavLink to={`/${COMPLEMENTED_URL}/dashboard`}>
+                    <NavLink to={'/dashboard'}>
                         <li>
                             <IconDashboard />
                             <span className="text-module">Dashboard</span>
                         </li>
                     </NavLink>
-                    <NavLink to={`/${COMPLEMENTED_URL}/cursos`}>
+                    <NavLink to={'/cursos'}>
                         <li>
                             <IconNotebook />
                             <span className="text-module">Cursos</span>
                         </li>
                     </NavLink>
-                    <NavLink to={`/${COMPLEMENTED_URL}/tareas`}>
+                    <NavLink to={'/tareas'}>
                         <li style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                             <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
                                 <IconClipboard />
@@ -47,13 +41,13 @@ export function MenuApp() {
                             </span>
                         </li>
                     </NavLink>
-                    <NavLink to={`/${COMPLEMENTED_URL}/notas`}>
+                    <NavLink to={'/notas'}>
                         <li>
                             <IconBars />
                             <span className="text-module">Notas</span>
                         </li>
                     </NavLink>
-                    <NavLink to={`/${COMPLEMENTED_URL}/calendario`}>
+                    <NavLink to={'/calendario'}>
                         <li>
                             <IconSchedule />
                             <span className="text-module">Calendario</span>
