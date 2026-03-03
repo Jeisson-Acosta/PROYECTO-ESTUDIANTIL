@@ -16,7 +16,7 @@ export function useFormRegister() {
     usufch_nacimiento: "",
     ceeid: 1,
     tidid: "",
-    rolid: "",
+    rolcod: "",
     usuborn: "",
     usurol: "",
     usupwd_confirm: "",
@@ -59,9 +59,9 @@ export function useFormRegister() {
     setUserRol(userRol);
     setUserInfoRegister({
       ...userInfoRegister,
-      rolid: Object.keys(ROLES[userRol])
+      rolcod: ROLES[userRol]
     });
-  };
+  }
   //envia los datos al formulario
   const handleSubmitFormRegister = async (event) => {
     event.preventDefault();
@@ -84,7 +84,18 @@ export function useFormRegister() {
       return toast.error("este campo no puede estar vacio"); */
     //validar si las contraseñas coinciden
     if (userInfoRegister.usupwd === userInfoRegister.usupwd_confirm) {
-      const responseDB = await requestDB("auth/register", "POST", userInfoRegister)
+      const dataToSend = { //solo envia los campos que estan el la base de datos.
+        usunom: userInfoRegister.usunom,
+        usuemail: userInfoRegister.usuemail,
+        usupwd: userInfoRegister.usupwd,
+        usudocu: userInfoRegister.usudocu,
+        usucel: userInfoRegister.usucel,
+        usufch_nacimiento: userInfoRegister.usufch_nacimiento,
+        ceeid: userInfoRegister.ceeid,
+        tidid: userInfoRegister.tidid,
+        rolcod: userRol //lo envia como un string
+      }
+      const responseDB = await requestDB("auth/register", "POST", dataToSend)
       if (!responseDB || !responseDB.ok) {
         toast.error("Error al registrar usuario");
       } else {

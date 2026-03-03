@@ -13,7 +13,7 @@ export class AuthModel {
             usufch_nacimiento,
             ceeid,
             tidid,
-            rolid
+            rolcod
         } = input
 
         // hashear contraseña
@@ -31,7 +31,7 @@ export class AuthModel {
                 usufch_nacimiento,
                 ceeid,
                 tidid,
-                rolid
+                rolcod
             ])
 
             if (!result.ok) { throw new Error(result.message) }
@@ -55,16 +55,16 @@ export class AuthModel {
         } = input
 
         const existedUser = await manageDB(null, [usuemail], 'SELECT usuemail FROM tbl_usuario WHERE usuemail = ?', 'SL')
-        if (!existedUser.ok) { 
+        if (!existedUser.ok) {
             existedUser.message = "Usuario no encontrado"
             return existedUser
         }
 
         const passwordInDB = await manageDB(null, [usuemail], 'SELECT usupwd FROM tbl_usuario WHERE usuemail = ?', 'SL')
-        if (!passwordInDB.ok) { 
+        if (!passwordInDB.ok) {
             passwordInDB.message = "Contraseña incorrecta"
             return passwordInDB
-         }
+        }
 
         // Comparar la contraseña con la escribio el usuario y la que esta en la DB
         const isPasswordValid = await bcrypt.compare(usupwd, passwordInDB.data.usupwd)
