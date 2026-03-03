@@ -123,7 +123,7 @@ export function Register() {
                     className={`boton-register ${
                       userRol === "EST" ? "active" : ""
                     }`}
-                    name="rolid"
+                    name="rolcod"
                     onClick={() => handleSelectrol("EST")}
                   >
                     {" "}
@@ -137,7 +137,7 @@ export function Register() {
                     className={`boton-register ${
                       userRol === "DOC" ? "active" : ""
                     }`}
-                    name="rolid"
+                    name="rolcod"
                     onClick={() => handleSelectrol("DOC")}
                   >
                     {" "}
@@ -151,7 +151,7 @@ export function Register() {
                     className={`boton-register ${
                       userRol === "REC" ? "active" : ""
                     }`}
-                    name="rolid"
+                    name="rolcod"
                     onClick={() => handleSelectrol("REC")}
                   >
                     {" "}

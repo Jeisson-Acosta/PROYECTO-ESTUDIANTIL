@@ -67,7 +67,7 @@ export function useFormRegister() {
     setUserRol(userRol);
     setUserInfoRegister({
       ...userInfoRegister,
-      rolid: Object.keys(ROLES[userRol])
+      rolcod: userRol
     });
   };
   //envia los datos al formulario
@@ -75,13 +75,13 @@ export function useFormRegister() {
     event.preventDefault();
 
     console.log("1. Estado actual antes de enviar:", userInfoRegister);
-    console.log("2. Rol actual:", userInfoRegister.rolid); // ← Verifica esto
+    console.log("2. Rol actual:", userInfoRegister.rolcod); // ← Verifica esto
 
     // Validaciones
     if (!userInfoRegister.usunom) return toast.error("El nombre no puede estar vacío");
     if (!userInfoRegister.usuemail) return toast.error("El email no puede estar vacío");
-    if (!userInfoRegister.rolid) {
-      console.log("¡Rol vacío! Valor:", userInfoRegister.rolid);
+    if (!userInfoRegister.rolcod) {
+      console.log("¡Rol vacío! Valor:", userInfoRegister.rolcod);
       return toast.error("Debes seleccionar un rol");
     }
     if (!userInfoRegister.usupwd) return toast.error("La contraseña no puede estar vacía");
@@ -93,8 +93,15 @@ export function useFormRegister() {
 
     // Crear copia de los datos para enviar
     const datosEnvio = {
-      ...userInfoRegister,
+      usunom: userInfoRegister.usunom,
+      usuemail: userInfoRegister.usuemail,
+      usupwd: userInfoRegister.usupwd,
+      usudocu: userInfoRegister.usudocu,
+      usucel: userInfoRegister.usucel,
+      usufch_nacimiento: userInfoRegister.usufch_nacimiento,
       ceeid: parseInt(userInfoRegister.ceeid) || 1,
+      tidid: userInfoRegister.tidid,
+      rolcod: userInfoRegister.rolcod
     };
 
     console.log("3. Datos a enviar al backend:", datosEnvio);
