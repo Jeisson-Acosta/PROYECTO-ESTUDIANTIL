@@ -1,5 +1,7 @@
 import "../../styles/student/Classes.css";
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js";
+import { useContext } from "react";
+import { UserLoginContext } from "../../context/userLogin.jsx";
 
 import { PieChart } from "@mui/x-charts/PieChart";
 import { useDrawingArea, useAnimate } from "@mui/x-charts/hooks";
@@ -11,7 +13,6 @@ import { ChartsYAxis } from "@mui/x-charts/ChartsYAxis";
 
 import { ButtonCommon } from "../../components/common/ButtonCommon.jsx";
 
-
 import { styled } from "@mui/material/styles";
 import { interpolateObject } from "@mui/x-charts-vendor/d3-interpolate";
 
@@ -19,7 +20,10 @@ import {
   TargetArrowIcon,
   RocketIcon,
   CirclePlus,
+  UserIcon,
 } from "../../components/common/GeneralIcons.jsx";
+import * as Backgrounds from "../../components/common/BackgroundsClasses.jsx";
+import toast from "react-hot-toast";
 
 // Genera los datos del gráfico y la etiqueta central a partir de una nota de 1 al 5 por el momento.
 function getChartData(nota) {
@@ -40,29 +44,34 @@ function getChartData(nota) {
   };
 }
 
+// Obtiene la URL de las imágenes de la carpeta assets de forma dinámica compatible con Vite
+function getIconUrl(iconName) {
+  return new URL(`../../assets/icons_classes/${iconName}.png`, import.meta.url).href
+}
+
 // Hook personalizado que observa el tamaño del contenedor y devuelve sus dimensiones en tiempo real.
 function useContainerSize() {
-  const ref = useRef(null);
-  const [size, setSize] = useState({ width: 200, height: 200 });
+  const [node, setNode] = useState(null);
+  const [size, setSize] = useState({ width: 200, height: 200 })
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!node) return
     const observer = new ResizeObserver(([entry]) => {
       const { width } = entry.contentRect;
-      const clamped = Math.min(Math.max(width, 100), 200);
-      setSize({ width: clamped, height: clamped });
-    });
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+      const clamped = Math.min(Math.max(width, 100), 200)
+      setSize({ width: clamped, height: clamped })
+    })
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [node])
 
-  return { ref, size };
+  return { ref: setNode, size }
 }
 
 // Componente SVG que renderiza contenido HTML centrado dentro del hueco del gráfico de anillo.
 function PieCentralLabel({ children }) {
-  const { width, height, left, top } = useDrawingArea();
-  const size = Math.min(width, height) * 0.6;
+  const { width, height, left, top } = useDrawingArea()
+  const size = Math.min(width, height) * 0.6
 
   return (
     <foreignObject
@@ -85,7 +94,7 @@ function PieCentralLabel({ children }) {
         {children}
       </div>
     </foreignObject>
-  );
+  )
 }
 
 // Gráfica de barras por materia que muestra solo etiquetas en el eje X, sin eje Y ni cuadrícula.
@@ -114,7 +123,7 @@ function LabelsAboveBars() {
           valueFormatter: (value) => (value === 0 ? "" : value.toString()),
         },
       ]}
-      margin={{ left: 0, right: 10, top: 30, bottom: 10 }} 
+      margin={{ left: 0, right: 10, top: 30, bottom: 10 }}
     >
       <BarPlot slots={{ barLabel: BarLabel }} borderRadius={10} />
       <ChartsXAxis />
@@ -186,12 +195,24 @@ export function Classes({ nota = 4.2 }) {
   const { ref, size } = useContainerSize();
   const innerRadius = size.width * 0.36;
 
+  const { userLogin } = useContext(UserLoginContext)
   const [classesStudent, setClassesStudent] = useState()
-  const { requestDB } = useRequestDB()
+  const { loading, requestDB } = useRequestDB()
 
   useEffect(() => {
-    const responseDB = requestDB()
+    const getClassesStudent = async () => {
+      const responseDB = await requestDB(`student/classes/${userLogin.usuid}`, 'GET')
+      if (!responseDB.ok) {
+        toast.error(responseDB.message)
+        return
+      }
+      setClassesStudent(responseDB.data[0].classes)
+    }
+    getClassesStudent()
   }, [])
+
+
+  console.log(classesStudent)
 
   return (
     <section className="principal-container-classes">
@@ -231,10 +252,39 @@ export function Classes({ nota = 4.2 }) {
       </section>
       <section className="container-classes" style={{ marginTop: "26px" }}>
         <div className="actions-classess">
-            <ButtonCommon icon={<CirclePlus />} text="Nueva clase" />
+          <ButtonCommon icon={<CirclePlus />} text="Nueva clase" />
         </div>
         <ul className="list-classes">
+          {classesStudent?.map((classItem) => {
 
+            const { iconName, backgroundName } = classItem.ascvis_config
+            const BackgroundComponent = Backgrounds['Background' + backgroundName]
+
+            return (
+              <li key={classItem.asgid} className="class-card">
+                <header className="header-class">
+                  <div className="background-wrapper">
+                    {BackgroundComponent && <BackgroundComponent />}
+                  </div>
+                  <div className="classroom">Salón: {classItem.cesnum}</div>
+                  <div className="quantity-students">
+                    <div>
+                      {classItem.quantity_students}
+                      <UserIcon />
+                    </div>
+                  </div>
+                </header>
+                <section className="icon-class">
+                  <img src={getIconUrl(iconName)} alt="Icono de clase" />
+                </section>
+                <section className="content-class">
+                  <h4>{classItem.asgnom}</h4>
+                  <p>Prof. {classItem.usunom}</p>
+                  <button>Ver clase</button>
+                </section>
+              </li>
+            );
+          })}
         </ul>
       </section>
     </section>

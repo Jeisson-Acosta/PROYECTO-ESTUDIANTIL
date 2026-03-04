@@ -11,7 +11,7 @@ export class StudentController {
 
             return res.status(200).json(result)
         } catch (err) {
-            throw new Error('Error geting classes')
+            throw new Error('Error getting classes')
         }
     }
 }
