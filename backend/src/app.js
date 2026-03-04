@@ -1,10 +1,16 @@
 // Este es nuestro punto de entrada principal del backend.
 import express from 'express'
-//Importa cors para dar permiso de permitir peticiones
-import cors from 'cors'
+
+// =================== ROUTES ===================
 import { authRouter } from './routes/auth.js'
+import { studentRouter } from './routes/student.js'
+// ==============================================
+
+// =================== MIDDLEWARES ===================
+import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import { authMiddleware } from './middlewares/authMiddleware.js'
+// ===================================================
 
 
 const app = express()
@@ -23,6 +29,7 @@ app.use(express.json()) // Middleware para peticiones POST para poner el conteni
 app.use(cookieParser()) // Es un middleware de express, que nos facilita acceder a las cookies.
 
 app.use('/auth', authRouter)
+app.use('/student', authMiddleware, studentRouter)
 
 app.listen(PORT, () => {
   console.log(`Server is running on: http://localhost:${PORT}`)

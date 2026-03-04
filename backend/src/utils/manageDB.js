@@ -15,7 +15,7 @@ export async function manageDB(nameSP, params, query = '', option = 'SP') {
     /* 
         nameSP -> Nombre del SP que se va a ejecutar.
         params -> Parametros que se van a pasar al SP.
-        query -> Consulta SELECT que se va a ejecutar. EJ: 'SELECT * FROM tbl_name WHERE field = ?'
+        query -> Consulta SELECT que se va a ejecutar si option es 'SL'. EJ: 'SELECT * FROM tbl_name WHERE field = ?'
         option -> 'SP' o 'SL' -> Determina si se va a ejecutar un SP o una consulta SELECT.
     */
 

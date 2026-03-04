@@ -1,4 +1,6 @@
 import "../../styles/student/Classes.css";
+import { useRequestDB } from "../../hooks/utils/useRequestDB.js";
+
 import { PieChart } from "@mui/x-charts/PieChart";
 import { useDrawingArea, useAnimate } from "@mui/x-charts/hooks";
 import { useRef, useState, useEffect } from "react";
@@ -7,12 +9,16 @@ import { BarPlot } from "@mui/x-charts/BarChart";
 import { ChartsXAxis } from "@mui/x-charts/ChartsXAxis";
 import { ChartsYAxis } from "@mui/x-charts/ChartsYAxis";
 
+import { ButtonCommon } from "../../components/common/ButtonCommon.jsx";
+
+
 import { styled } from "@mui/material/styles";
 import { interpolateObject } from "@mui/x-charts-vendor/d3-interpolate";
 
 import {
   TargetArrowIcon,
   RocketIcon,
+  CirclePlus,
 } from "../../components/common/GeneralIcons.jsx";
 
 // Genera los datos del gráfico y la etiqueta central a partir de una nota de 1 al 5 por el momento.
@@ -180,6 +186,13 @@ export function Classes({ nota = 4.2 }) {
   const { ref, size } = useContainerSize();
   const innerRadius = size.width * 0.36;
 
+  const [classesStudent, setClassesStudent] = useState()
+  const { requestDB } = useRequestDB()
+
+  useEffect(() => {
+    const responseDB = requestDB()
+  }, [])
+
   return (
     <section className="principal-container-classes">
       <section className="container-charts">
@@ -215,6 +228,14 @@ export function Classes({ nota = 4.2 }) {
           </header>
           <LabelsAboveBars />
         </div>
+      </section>
+      <section className="container-classes" style={{ marginTop: "26px" }}>
+        <div className="actions-classess">
+            <ButtonCommon icon={<CirclePlus />} text="Nueva clase" />
+        </div>
+        <ul className="list-classes">
+
+        </ul>
       </section>
     </section>
   );
