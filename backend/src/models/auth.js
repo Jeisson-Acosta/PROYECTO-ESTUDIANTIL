@@ -84,22 +84,17 @@ export class AuthModel {
             console.log('5️⃣ result.data[1]:', result.data[1]);
             console.log('6️⃣ result.data[1][0]:', result.data[1]?.[0]);*/
             if (!result.ok) { throw new Error(result.message) }
-            const userInfo = result.data[0]?.[0]
+            // const userInfo = result.data[0]?.[0]
             //console.log('7️⃣ userInfo:', userInfo);
-            if (!userInfo) {
+            /* if (!userInfo) {
                 return {
                     ok: false,
                     data: null,
                     message: 'Usuario no encontrado'
                 }
-            }
+            } */
 
-
-
-            return {
-                result
-            }
-
+            return { result }
 
         } catch (err) {
             throw new Error('Error logging in user')

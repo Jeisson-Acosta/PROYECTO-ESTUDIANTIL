@@ -4,8 +4,8 @@ import mysql from 'mysql2/promise'
 const DEFAULT_CONFIG = {
     host: 'localhost',
     user: 'root',
-    port: 3307,
-    password: 'Aot2005?',
+    port: 3306,
+    password: 'Agil',
     database: 'cefcoc_dev',
     connectionLimit: 10, // Maximo de conexiones simultaneas
 }
@@ -31,9 +31,9 @@ export async function manageDB(nameSP, params, query = '', option = 'SP') {
     try {
         if (option === 'SP') {
             const [response] = await connectionPool.query(`CALL ${nameSP}(${params.map(() => '?').join(',')})`, params)
-            console.log('🟢 Respuesta CRUDA de MySQL:', response);
+            /* console.log('🟢 Respuesta CRUDA de MySQL:', response);
             console.log('🟢 response[0]:', response[0]);
-            console.log('🟢 response[1]:', response[1]);
+            console.log('🟢 response[1]:', response[1]); */
             RESPONSE_DB.ok = true
             RESPONSE_DB.data = response
             RESPONSE_DB.message = "Petición exitosa"

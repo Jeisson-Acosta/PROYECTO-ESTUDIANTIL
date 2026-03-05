@@ -37,9 +37,8 @@ export class AuthController {
     try {
       const result = await AuthModel.loginUser({ input: resultValidate.data });
       if (!result.ok) return res.json(result);
-      const { usuid, usunom, usuemail, rolcod } = result.data[0];
-      console.log(result);
 
+      const { usuid, usunom, usuemail, rolcod } = result.data[0];
 
       const token = jwt.sign(
         { usuid, usunom, usuemail, rolcod }, // PAYLOAD
@@ -53,8 +52,7 @@ export class AuthController {
          usuemail,
          rolcod,
        };*/
-
-
+       
       return res
         .cookie("access_token", token, {
           httpOnly: true, // La cookie solo se puede acceder en el servidor.
