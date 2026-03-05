@@ -1,0 +1,30 @@
+.principal-content {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.stats-content {
+    background-color: #fff;
+    border: 1px solid #000000;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    width: 20%;
+    padding: 30px;
+
+}
+
+.stats-content p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    font-family: fontTitlesBold;
+}
+
+.stats-content h1 {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: fontSubtitles;
+    color: #1a365d;
+}

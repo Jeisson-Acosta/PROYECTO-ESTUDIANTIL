@@ -6,7 +6,6 @@ import { authRouter } from './routes/auth.js'
 import cookieParser from 'cookie-parser'
 import { authMiddleware } from './middlewares/authMiddleware.js'
 
-
 const app = express()
 
 // Operador nullish Coalleshing -> Si process.env.PORT es diferente de null y undefined, tomara su valor, si no dejara el valor que esta despues de los ??.
