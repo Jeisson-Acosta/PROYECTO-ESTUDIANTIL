@@ -8,11 +8,8 @@ const registerSchema = z.object({
     usucel: z.string({ required_error: 'The cell phone is required' }),
     usufch_nacimiento: z.iso.date({ required_error: 'The birth date is required' }),
     ceeid: z.number({ required_error: 'The ceeid is required' }),
-<<<<<<< HEAD
     rolcod: z.enum(['EST', 'DOC', 'REC'], { required_error: 'The role is required' }),
-=======
     rolcod: z.string({ required_error: 'The role is required' }),
->>>>>>> main
     tidid: z.number({ required_error: 'The type of document is required' })
 })
 

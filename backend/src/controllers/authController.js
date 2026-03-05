@@ -38,6 +38,7 @@ export class AuthController {
       const result = await AuthModel.loginUser({ input: resultValidate.data });
       if (!result.ok) return res.json(result);
       const { usuid, usunom, usuemail, rolcod } = result.data[0];
+      console.log(result);
 
 
       const token = jwt.sign(
@@ -45,13 +46,13 @@ export class AuthController {
         SECRET_JWT_KEY, // SECRET KEY
         { expiresIn: "1h" },
       );
-      const responseData = {
-        ok: true, // ← Ahora es un array con un objeto dentro
-        usuid,
-        usunom,
-        usuemail,
-        rolcod,
-      };
+      /* const responseData = {
+         ok: true, // ← Ahora es un array con un objeto dentro
+         usuid,
+         usunom,
+         usuemail,
+         rolcod,
+       };*/
 
 
       return res
@@ -61,7 +62,7 @@ export class AuthController {
           sameSite: "strict", // La cookie solo se puede acceder desde el mismo dominio
           maxAge: 1000 * 60 * 60, // La cookie expira en una hora
         })
-        .json(responseData);
+        .json(result);
       // return res.status(200).json(result)
     } catch (e) {
       return res.status(500).json({ error: e.message });
