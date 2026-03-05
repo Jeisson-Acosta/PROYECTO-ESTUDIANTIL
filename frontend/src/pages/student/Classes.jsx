@@ -5,13 +5,15 @@ import { UserLoginContext } from "../../context/userLogin.jsx";
 
 import { PieChart } from "@mui/x-charts/PieChart";
 import { useDrawingArea, useAnimate } from "@mui/x-charts/hooks";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ChartContainer } from "@mui/x-charts/ChartContainer";
 import { BarPlot } from "@mui/x-charts/BarChart";
 import { ChartsXAxis } from "@mui/x-charts/ChartsXAxis";
 import { ChartsYAxis } from "@mui/x-charts/ChartsYAxis";
 
 import { ButtonCommon } from "../../components/common/ButtonCommon.jsx";
+import { CardClass } from "../../components/student/CardClass.jsx";
+import { getIconUrl } from "../../utils/getIconUrl.js";
 
 import { styled } from "@mui/material/styles";
 import { interpolateObject } from "@mui/x-charts-vendor/d3-interpolate";
@@ -20,9 +22,10 @@ import {
   TargetArrowIcon,
   RocketIcon,
   CirclePlus,
-  UserIcon,
+  CalendarIcon,
+  AlarmIcon,
+  EllipsisIcon
 } from "../../components/common/GeneralIcons.jsx";
-import * as Backgrounds from "../../components/common/BackgroundsClasses.jsx";
 import toast from "react-hot-toast";
 
 // Genera los datos del gráfico y la etiqueta central a partir de una nota de 1 al 5 por el momento.
@@ -42,11 +45,6 @@ function getChartData(nota) {
       </>
     ),
   };
-}
-
-// Obtiene la URL de las imágenes de la carpeta assets de forma dinámica compatible con Vite
-function getIconUrl(iconName) {
-  return new URL(`../../assets/icons_classes/${iconName}.png`, import.meta.url).href
 }
 
 // Hook personalizado que observa el tamaño del contenedor y devuelve sus dimensiones en tiempo real.
@@ -197,7 +195,8 @@ export function Classes({ nota = 4.2 }) {
 
   const { userLogin } = useContext(UserLoginContext)
   const [classesStudent, setClassesStudent] = useState()
-  const { loading, requestDB } = useRequestDB()
+  const [upcomingDeliveries, setUpcomingDeliveries] = useState()
+  const { requestDB } = useRequestDB()
 
   useEffect(() => {
     const getClassesStudent = async () => {
@@ -207,12 +206,13 @@ export function Classes({ nota = 4.2 }) {
         return
       }
       setClassesStudent(responseDB.data[0].classes)
+      setUpcomingDeliveries(JSON.parse(responseDB.data[0].upcoming_deliveries))
     }
     getClassesStudent()
   }, [])
 
+  console.log(upcomingDeliveries)
 
-  console.log(classesStudent)
 
   return (
     <section className="principal-container-classes">
@@ -254,37 +254,45 @@ export function Classes({ nota = 4.2 }) {
         <div className="actions-classess">
           <ButtonCommon icon={<CirclePlus />} text="Nueva clase" />
         </div>
+        {classesStudent?.length === 0 && (
+            <h2 style={{ textAlign: "center", color: "#6b7280", marginTop: "26px" }}>Aún no estás inscrito en ninguna clase. ¡Unete a una ahora mismo!</h2>
+        )}
         <ul className="list-classes">
-          {classesStudent?.map((classItem) => {
-
-            const { iconName, backgroundName } = classItem.ascvis_config
-            const BackgroundComponent = Backgrounds['Background' + backgroundName]
-
-            return (
-              <li key={classItem.asgid} className="class-card">
-                <header className="header-class">
-                  <div className="background-wrapper">
-                    {BackgroundComponent && <BackgroundComponent />}
-                  </div>
-                  <div className="classroom">Salón: {classItem.cesnum}</div>
-                  <div className="quantity-students">
-                    <div>
-                      {classItem.quantity_students}
-                      <UserIcon />
+          {classesStudent?.map((classItem) => <CardClass key={classItem.asgid} classItem={classItem} />)}
+        </ul>
+      </section>
+      <section className="upcoming-deliveries">
+        <header>
+            <h3>Próximas entregas</h3>
+        </header>
+        <ul className="list-upcoming-deliveries">
+            {upcomingDeliveries?.map(delivery => (
+                <li key={delivery.ateid} className="delivery-card">
+                    <div className="info-delivery">
+                        <div className="icon-class">
+                            <img src={getIconUrl(delivery.ascvis_config.iconName)} alt="Icono de clase" />
+                        </div>
+                        <div className="content-class">
+                            <h3 className="title-class">{delivery.asgnom}</h3>
+                            <h4 className="title-task">{delivery.astnomtrabajo}</h4>
+                            <div className="info-overdue-delivery">
+                                <CalendarIcon />
+                                <span className="date-overdue">{delivery.astfecfin}</span>
+                                <AlarmIcon />
+                                <span>Faltan 2 horas</span>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </header>
-                <section className="icon-class">
-                  <img src={getIconUrl(iconName)} alt="Icono de clase" />
-                </section>
-                <section className="content-class">
-                  <h4>{classItem.asgnom}</h4>
-                  <p>Prof. {classItem.usunom}</p>
-                  <button>Ver clase</button>
-                </section>
-              </li>
-            );
-          })}
+                    <div className="actions-delivery">
+                        <div className="status-delivery">
+                            Pendiente
+                        </div>
+                        <button>
+                            <EllipsisIcon />
+                        </button>
+                    </div>
+                </li>
+            ) )}
         </ul>
       </section>
     </section>
