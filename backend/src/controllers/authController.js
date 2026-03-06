@@ -37,22 +37,13 @@ export class AuthController {
     try {
       const result = await AuthModel.loginUser({ input: resultValidate.data });
       if (!result.ok) return res.json(result);
-
       const { usuid, usunom, usuemail, rolcod } = result.data[0];
-
       const token = jwt.sign(
         { usuid, usunom, usuemail, rolcod }, // PAYLOAD
         SECRET_JWT_KEY, // SECRET KEY
         { expiresIn: "1h" },
       );
-      /* const responseData = {
-         ok: true, // ← Ahora es un array con un objeto dentro
-         usuid,
-         usunom,
-         usuemail,
-         rolcod,
-       };*/
-       
+
       return res
         .cookie("access_token", token, {
           httpOnly: true, // La cookie solo se puede acceder en el servidor.
