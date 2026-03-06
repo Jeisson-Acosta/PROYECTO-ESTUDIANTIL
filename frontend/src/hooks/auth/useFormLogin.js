@@ -41,7 +41,6 @@ export function useFormLogin() {
             return toast.error("La contraseña no puede estar vacía");
 
         const responseDB = await requestDB("auth/login", "POST", userInfoLogin);
-        console.log('useFormLogin', responseDB)
         if (!responseDB.ok) {
             toast.error(responseDB.message);
             return;

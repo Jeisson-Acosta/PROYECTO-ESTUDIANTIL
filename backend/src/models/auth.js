@@ -76,7 +76,7 @@ export class AuthModel {
         }
 
         try {
-            console.log('Llamando a sp_auth_login_user con email:', usuemail);
+            // console.log('Llamando a sp_auth_login_user con email:', usuemail);
             const result = await manageDB('sp_auth_login_user', [usuemail])
             /*console.log('2️⃣ result COMPLETO:', JSON.stringify(result, null, 2));
             console.log('3️⃣ result.data:', result.data);
@@ -94,7 +94,7 @@ export class AuthModel {
                 }
             } */
 
-            return { result }
+            return result 
 
         } catch (err) {
             throw new Error('Error logging in user')

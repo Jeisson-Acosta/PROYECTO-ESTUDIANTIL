@@ -7,7 +7,7 @@ import { Inasistencias } from './Inasistencias.jsx'
 import { UserLoginContext } from '../../context/userLogin.jsx'
 
 export function Stats() {
-    const { userLogin } = useContext(UserLoginContext) || {};
+    /* const { userLogin } = useContext(UserLoginContext) || {};
     
     console.log('📊 Stats - userLogin:', userLogin);
     
@@ -23,5 +23,8 @@ export function Stats() {
             <PromedioEstudiante promedio={promedio} />
             <Inasistencias total_inasistencias={total_inasistencias} />
         </div>
-    )
+    ) */
+   return (
+    <h1>Hola</h1>
+   )
 }
