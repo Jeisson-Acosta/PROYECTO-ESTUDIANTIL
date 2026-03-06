@@ -52,9 +52,12 @@ export class AuthController {
           maxAge: 1000 * 60 * 60, // La cookie expira en una hora
         })
         .json(result);
-      // return res.status(200).json(result)
     } catch (e) {
       return res.status(500).json({ error: e.message });
     }
+  }
+  static async checkSession(req, res) {
+    const { user } = req.session
+    res.json(user)
   }
 }
