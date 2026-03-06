@@ -3,8 +3,7 @@ import { useRequestDB } from "../../hooks/utils/useRequestDB.js";
 import { useContext } from "react";
 import { UserLoginContext } from "../../context/userLogin.jsx";
 
-import { PieChart } from "@mui/x-charts/PieChart";
-import { useDrawingArea, useAnimate } from "@mui/x-charts/hooks";
+import { useAnimate } from "@mui/x-charts/hooks";
 import { useState, useEffect } from "react";
 import { ChartContainer } from "@mui/x-charts/ChartContainer";
 import { BarPlot } from "@mui/x-charts/BarChart";
@@ -13,7 +12,8 @@ import { ChartsYAxis } from "@mui/x-charts/ChartsYAxis";
 
 import { ButtonCommon } from "../../components/common/ButtonCommon.jsx";
 import { CardClass } from "../../components/student/CardClass.jsx";
-import { getIconUrl } from "../../utils/getIconUrl.js";
+import { UpcomingDelivery } from "../../components/student/UpcomingDelivery.jsx";
+import { CircleChart } from "../../components/common/charts/CircleChart.jsx";
 
 import { styled } from "@mui/material/styles";
 import { interpolateObject } from "@mui/x-charts-vendor/d3-interpolate";
@@ -21,79 +21,9 @@ import { interpolateObject } from "@mui/x-charts-vendor/d3-interpolate";
 import {
   TargetArrowIcon,
   RocketIcon,
-  CirclePlus,
-  CalendarIcon,
-  AlarmIcon,
-  EllipsisIcon
+  CirclePlus
 } from "../../components/common/GeneralIcons.jsx";
 import toast from "react-hot-toast";
-
-// Genera los datos del gráfico y la etiqueta central a partir de una nota de 1 al 5 por el momento.
-function getChartData(nota) {
-  return {
-    data: [
-      { value: nota, label: "Nota" },
-      { value: 5 - nota, label: "", color: "#e5e7eb" },
-    ],
-    label: (
-      <>
-        <strong style={{ fontSize: "28px", fontFamily: "fontTitlesBold" }}>
-          {nota}
-        </strong>
-        <br />
-        <span style={{ fontSize: "14px" }}>Promedio total</span>
-      </>
-    ),
-  };
-}
-
-// Hook personalizado que observa el tamaño del contenedor y devuelve sus dimensiones en tiempo real.
-function useContainerSize() {
-  const [node, setNode] = useState(null);
-  const [size, setSize] = useState({ width: 200, height: 200 })
-
-  useEffect(() => {
-    if (!node) return
-    const observer = new ResizeObserver(([entry]) => {
-      const { width } = entry.contentRect;
-      const clamped = Math.min(Math.max(width, 100), 200)
-      setSize({ width: clamped, height: clamped })
-    })
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [node])
-
-  return { ref: setNode, size }
-}
-
-// Componente SVG que renderiza contenido HTML centrado dentro del hueco del gráfico de anillo.
-function PieCentralLabel({ children }) {
-  const { width, height, left, top } = useDrawingArea()
-  const size = Math.min(width, height) * 0.6
-
-  return (
-    <foreignObject
-      x={left + width / 2 - size / 2}
-      y={top + height / 2 - size / 2}
-      width={size}
-      height={size}
-    >
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          lineHeight: 0.8,
-        }}
-      >
-        {children}
-      </div>
-    </foreignObject>
-  )
-}
 
 // Gráfica de barras por materia que muestra solo etiquetas en el eje X, sin eje Y ni cuadrícula.
 function LabelsAboveBars() {
@@ -112,7 +42,7 @@ function LabelsAboveBars() {
         },
       ]}
       series={[{ type: "bar", id: "base", data: [4.5, 3.2, 4.8, 2.2] }]}
-      height={220} // <-- Altura reducida aquí (era 280)
+      height={220}
       yAxis={[
         {
           min: 0,
@@ -187,11 +117,7 @@ function TitleChart({ title, icon }) {
   );
 }
 
-// Página principal de clases. Muestra el promedio del estudiante en una gráfica de anillo responsive.
-export function Classes({ nota = 4.2 }) {
-  const { data, label } = getChartData(nota);
-  const { ref, size } = useContainerSize();
-  const innerRadius = size.width * 0.36;
+export function Classes() {
 
   const { userLogin } = useContext(UserLoginContext)
   const [classesStudent, setClassesStudent] = useState()
@@ -211,9 +137,6 @@ export function Classes({ nota = 4.2 }) {
     getClassesStudent()
   }, [])
 
-  console.log(upcomingDeliveries)
-
-
   return (
     <section className="principal-container-classes">
       <section className="container-charts">
@@ -229,16 +152,8 @@ export function Classes({ nota = 4.2 }) {
               </select>
             </div>
           </header>
-          <div ref={ref} className="chart-wrapper">
-            <PieChart
-              series={[{ data, innerRadius }]}
-              colors={["#fbbf24"]}
-              width={size.width}
-              height={size.height}
-              hideLegend
-            >
-              <PieCentralLabel>{label}</PieCentralLabel>
-            </PieChart>
+          <div className="chart-wrapper">
+            <CircleChart endValue={5} value={4.2} labelCenter='Promedio Total' color={'fbbf24'} />
           </div>
         </div>
 
@@ -266,33 +181,7 @@ export function Classes({ nota = 4.2 }) {
             <h3>Próximas entregas</h3>
         </header>
         <ul className="list-upcoming-deliveries">
-            {upcomingDeliveries?.map(delivery => (
-                <li key={delivery.ateid} className="delivery-card">
-                    <div className="info-delivery">
-                        <div className="icon-class">
-                            <img src={getIconUrl(delivery.ascvis_config.iconName)} alt="Icono de clase" />
-                        </div>
-                        <div className="content-class">
-                            <h3 className="title-class">{delivery.asgnom}</h3>
-                            <h4 className="title-task">{delivery.astnomtrabajo}</h4>
-                            <div className="info-overdue-delivery">
-                                <CalendarIcon />
-                                <span className="date-overdue">{delivery.astfecfin}</span>
-                                <AlarmIcon />
-                                <span>Faltan 2 horas</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="actions-delivery">
-                        <div className="status-delivery">
-                            Pendiente
-                        </div>
-                        <button>
-                            <EllipsisIcon />
-                        </button>
-                    </div>
-                </li>
-            ) )}
+            {upcomingDeliveries?.map(delivery => (<UpcomingDelivery key={delivery.ateid} delivery={delivery} />) )}
         </ul>
       </section>
     </section>

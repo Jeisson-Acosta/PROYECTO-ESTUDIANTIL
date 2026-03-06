@@ -1,0 +1,83 @@
+.delivery-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 12px;
+    position: relative;
+}
+
+.delivery-card .info-delivery {
+    display: flex;
+    gap: 20px;
+    & .icon-class {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        & img {
+            width: 36px;
+            height: 36px;
+        }
+    }
+}
+
+.info-delivery .content-class-delivery {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    & .title-class {
+        font-family: fontTitlesBold;
+        font-size: 18px;
+    }
+    & .title-task {
+        font-family: fontSubtitles;
+        font-size: 16px;
+    }
+    & .info-overdue-delivery {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        margin-top: 6px;
+        & svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
+
+.delivery-card .actions-delivery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    align-items: center;
+    & .status-delivery {
+        background-color: #fef08a;
+        color: #854d0e;
+        font-family: fontSubtitles;
+        padding: 6px 20px;
+        text-align: center;
+        border-radius: 14px;
+        font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+    }
+    & button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 640px) {
+    .actions-delivery button {
+        position: absolute;
+        top: 12px;
+        right: 6px;
+    }
+}
