@@ -26,22 +26,25 @@ import {
 import toast from "react-hot-toast";
 
 // Gráfica de barras por materia que muestra solo etiquetas en el eje X, sin eje Y ni cuadrícula.
-function LabelsAboveBars() {
+function LabelsAboveBars({ data, colors, dataSeries }) {
   return (
     <ChartContainer
       xAxis={[
         {
           scaleType: "band",
-          data: ["Matemáticas", "Ciencias", "Programación", "Física"],
+          // data: ["Matemáticas", "Ciencias", "Programación", "Física"],
+          data: data,
           disableLine: true,
           disableTicks: true,
           colorMap: {
             type: "ordinal",
-            colors: ["#6b7280", "#fbbf24", "#22c55e", "#7bffdeff"],
+            // colors: ["#6b7280", "#fbbf24", "#22c55e", "#7bffdeff"],
+            colors: colors,
           },
         },
       ]}
-      series={[{ type: "bar", id: "base", data: [4.5, 3.2, 4.8, 2.2] }]}
+      // series={[{ type: "bar", id: "base", data: [4.5, 3.2, 4.8, 2.2] }]}
+      series={[{ type: "bar", id: "base", data: dataSeries }]}
       height={220}
       yAxis={[
         {
@@ -122,6 +125,8 @@ export function Classes() {
   const { userLogin } = useContext(UserLoginContext)
   const [classesStudent, setClassesStudent] = useState()
   const [upcomingDeliveries, setUpcomingDeliveries] = useState()
+  const [average, setAverage] = useState()
+  const [bestClasses, setBestClasses] = useState()
   const { requestDB } = useRequestDB()
 
   useEffect(() => {
@@ -131,11 +136,20 @@ export function Classes() {
         toast.error(responseDB.message)
         return
       }
+
       setClassesStudent(responseDB.data[0].classes)
       setUpcomingDeliveries(JSON.parse(responseDB.data[0].upcoming_deliveries))
+      setAverage(responseDB.data[0].average_classes)
+      setBestClasses(JSON.parse(responseDB.data[0].best_classes))
     }
     getClassesStudent()
   }, [])
+
+  if (!classesStudent) return null
+
+  const dataBestClasses = bestClasses?.map(bestClass => (bestClass.asgnom))
+  const colorsBestClasses = bestClasses?.map(bestClass => ('#' + bestClass.color))
+  const dataSeriesBestClasses = bestClasses?.map(bestClass => (parseFloat(bestClass.average_note)))
 
   return (
     <section className="principal-container-classes">
@@ -153,7 +167,12 @@ export function Classes() {
             </div>
           </header>
           <div className="chart-wrapper">
-            <CircleChart endValue={5} value={4.2} labelCenter='Promedio Total' color={'fbbf24'} />
+            {average && (
+              <CircleChart endValue={5} value={average} labelCenter='Promedio Total' color={'fbbf24'} />
+            )}
+            {!average && (
+              <h2 style={{ textAlign: "center", color: "#6b7280", marginTop: "26px" }}>Aún no tienes promedio de clases</h2>
+            )}
           </div>
         </div>
 
@@ -162,14 +181,19 @@ export function Classes() {
             <TitleChart title="Mejores clases" icon={<RocketIcon />} />
             <p>Tu desempeño académico destacado</p>
           </header>
-          <LabelsAboveBars />
+          {bestClasses?.length > 0 && (
+            <LabelsAboveBars data={dataBestClasses} colors={colorsBestClasses} dataSeries={dataSeriesBestClasses}/>
+          )}
+          {bestClasses?.length === 0 || !bestClasses && (
+            <h2 style={{ textAlign: "center", color: "#6b7280", marginTop: "26px" }}>Aún no tienes clases destacadas</h2>
+          )}
         </div>
       </section>
       <section className="container-classes" style={{ marginTop: "26px" }}>
         <div className="actions-classess">
           <ButtonCommon icon={<CirclePlus />} text="Nueva clase" />
         </div>
-        {classesStudent?.length === 0 && (
+        {classesStudent?.length === 0  && (
             <h2 style={{ textAlign: "center", color: "#6b7280", marginTop: "26px" }}>Aún no estás inscrito en ninguna clase. ¡Unete a una ahora mismo!</h2>
         )}
         <ul className="list-classes">
