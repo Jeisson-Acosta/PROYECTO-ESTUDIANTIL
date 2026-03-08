@@ -8,6 +8,8 @@ import { RoleBasedRoute } from './routes/RoleBasedRoute.jsx'
 import { RoleBasedRedirect } from './components/RoleBasedRedirect.jsx'
 import { Classes } from './pages/student/Classes.jsx'
 
+import { CircleChart } from './components/common/charts/CircleChart.jsx'
+
 function Unauthorized() {
   return (
     <h1>No esta permitido acceder a esta ruta.</h1>
@@ -16,7 +18,7 @@ function Unauthorized() {
 
 function StudentDashboard() {
   return (
-    <h1>Hola Dashboard</h1>
+    <CircleChart endValue={5} value={4.5} labelCenter='Promedio Total' color={'fbbf24'} />
   )
 }
 
