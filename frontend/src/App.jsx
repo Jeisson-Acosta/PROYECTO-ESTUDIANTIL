@@ -7,6 +7,7 @@ import { Layout } from './components/common/Layout.jsx'
 import { RoleBasedRoute } from './routes/RoleBasedRoute.jsx'
 import { RoleBasedRedirect } from './components/RoleBasedRedirect.jsx'
 import { StudentDashboard } from './pages/student/StudentDashboard.jsx'
+import { Classes } from './pages/student/Classes.jsx'
 
 function Unauthorized() {
   return (
@@ -35,6 +36,7 @@ function App() {
                 <Routes>
                   <Route path='dashboard' element={<StudentDashboard />} />
                 
+                  <Route path='cursos' element={<Classes />} />
                 </Routes>
               </RoleBasedRoute>
             }

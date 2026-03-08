@@ -1,0 +1,115 @@
+.class-card {
+    background-color: #ffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra suave */
+    position: relative;
+    overflow: hidden; /* Corta el fondo SVG en los bordes curvos */
+    display: flex;
+    flex-direction: column;
+}
+
+.header-class {
+    position: relative;
+    padding: 16px;
+    min-height: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Capa de fondo absoluto para el SVG */
+.background-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Asegura que el SVG cubra todo el espacio sin deformar su área */
+.background-wrapper svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.classroom, .quantity-students {
+    position: relative;
+    z-index: 1; /* Para que quede por encima del SVG */
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    padding: 4px 12px;
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.quantity-students div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.class-card .icon-class {
+    position: absolute;
+    right: 10px;
+    top: 60px; 
+    width: 100px;
+    height: 100px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.icon-class img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+.content-class {
+    padding: 20px;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.content-class h4 {
+    font-family: fontTitlesBold, sans-serif;
+    font-size: 20px;
+    margin: 0;
+    color: #1f2937;
+}
+
+.content-class p {
+    color: #6b7280;
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+.content-class button {
+    margin: auto;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.content-class button:hover {
+    background-color: #dad9d9;
+}

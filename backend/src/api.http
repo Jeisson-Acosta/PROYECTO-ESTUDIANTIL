@@ -22,3 +22,11 @@ Content-Type: application/json
     "usuemail": "pepito@gmail.com",
     "usupwd": "Json161121@"
 }
+
+### Verificar sesión
+GET http://localhost:3000/auth/checkSession
+
+
+### Obtener todas las clases
+GET http://localhost:3000/student/classes/1
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MSwidXN1bm9tIjoiUGVwaXRvIFBlcmV6IiwidXN1ZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwicm9sY29kIjoiRVNUIiwiaWF0IjoxNzcyNTk2NjMyLCJleHAiOjE3NzI2MDAyMzJ9.jal6W7O6jY8Af0tJSY6LeFYu4uqSJLYHj07ARwxIrgw
