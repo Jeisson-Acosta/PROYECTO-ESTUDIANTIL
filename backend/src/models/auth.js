@@ -49,6 +49,7 @@ export class AuthModel {
     }
 
     static async loginUser({ input }) {
+        console.log(input)
         const {
             usuemail,
             usupwd

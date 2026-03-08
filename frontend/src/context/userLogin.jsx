@@ -17,7 +17,6 @@ export function UserLoginProvider({ children }) {
     const checkSession = async () => {
       try {
         const responseDB = await requestDB("auth/checkSession", "GET", null);
-        console.log(responseDB);
         if (!responseDB) {
           setIsAuthenticated(false);
         } else {
