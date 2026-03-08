@@ -31,7 +31,7 @@
     flex-direction: column;
     gap: 2px;
     & .title-class {
-        font-family: fontTitlesBold;
+        /* font-family: fontTitlesBold; */
         font-size: 18px;
     }
     & .title-task {
