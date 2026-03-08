@@ -6,6 +6,7 @@ import { Register } from './components/auth/Register.jsx'
 import { Layout } from './components/common/Layout.jsx'
 import { RoleBasedRoute } from './routes/RoleBasedRoute.jsx'
 import { RoleBasedRedirect } from './components/RoleBasedRedirect.jsx'
+import { StudentDashboard } from './pages/student/StudentDashboard.jsx'
 
 function Unauthorized() {
   return (
@@ -13,11 +14,7 @@ function Unauthorized() {
   )
 }
 
-function StudentDashboard() {
-  return (
-    <h1>Hola Dashboard</h1>
-  )
-}
+
 
 function App() {
 

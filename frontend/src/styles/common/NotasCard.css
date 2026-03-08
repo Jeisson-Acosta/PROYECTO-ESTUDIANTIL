@@ -1,0 +1,15 @@
+.notas-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+.notas-card h1 {
+    font-size: 20px;
+    font-family: fontSubtitles;
+}
+
+.notas-card .calificacion {
+    font-size: 15px;
+    font-family: fontTitlesBold;
+    background-color: #ede9e9;
+}

@@ -1,0 +1,42 @@
+.materias-card {
+    background-color: #eeeef2;
+    border: 1px solid #000000;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 18px 18px 0px;
+    width: 100%;
+    margin: 10px;
+    align-items: center;
+    border-left: 10px solid #000000;
+    order: 3;
+}
+
+.materias-card h1 {
+    font-size: 15px;
+    font-weight: 700;
+    font-family: fontSubtitles;
+    color: #1a365d;
+}
+
+.materias-card p {
+    font-size: 15px;
+    font-weight: 500;
+    font-family: fontMain;
+    color: #666;
+}
+
+.materias-card .hora {
+    font-size: 15px;
+    font-weight: 500;
+    font-family: fontTitlesBold;
+    color: #1a365d;
+}
+
+.materias-card .title-subject {
+    display: flex;
+    justify-content: space-between;
+}
+
+.materias-card .room-subject {
+    border-bottom: 1px solid;
+}

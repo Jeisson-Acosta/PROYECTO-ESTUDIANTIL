@@ -1,0 +1,123 @@
+.principal-content {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    align-items: center;
+}
+
+.principal-content .title {
+    font-family: fontSubtitles;
+    color: #1a365d;
+}
+
+.stats-dashboard {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+
+}
+
+
+
+h2 {
+    font-family: fontTitlesBold;
+    color: #1a365d;
+}
+
+
+.stats-content .stats-resumen {
+    font-size: 20px;
+    font-weight: 500;
+    color: #87b8d8;
+    font-family: fontSubtitles;
+    text-align: center;
+}
+
+.stats-content h1 {
+    font-size: 40px;
+    font-weight: 700;
+    font-family: fontSubtitles;
+    color: #1a365d;
+}
+
+@media (max-width: 768px) {
+    .principal-content {
+        flex-direction: column;
+    }
+
+    .stats-content {
+        width: 100%;
+    }
+
+    .stats-content p {
+        font-size: 25px;
+    }
+
+    .stats-content h1 {
+        font-size: 35px;
+    }
+
+    .stats-content .stats-resumen {
+        font-size: 20px;
+    }
+}
+
+.materias-seccion {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #000000;
+    border-radius: 50px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    padding: 30px;
+    margin: 10px;
+
+}
+
+.title-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-section h3 {
+    font-size: 20px;
+}
+
+.title-more {
+    color: #87b8d8;
+    font-family: fontSubtitles;
+}
+
+.materias-seccion .dia {
+    background-color: #1a365d;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 20%;
+    height: 80%;
+    color: #fff;
+    margin-left: 2px;
+    font-family: fontSubtitles;
+    text-align: center;
+}
+
+.notas-seccion {
+    background-color: #fff;
+    background-color: #fff;
+    gap: 30px;
+    border: 1px solid #000000;
+    border-radius: 50px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.notas-seccion h3 {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
