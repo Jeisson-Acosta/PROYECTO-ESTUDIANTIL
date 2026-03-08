@@ -60,6 +60,9 @@ export class AuthController {
   }
   static async checkSession(req, res) {
     const { user } = req.session
-    res.json(user)
+    const resultInfoUser = await AuthModel.getUserInfoByEmail({ usuemail: user.usuemail })
+    if (!resultInfoUser.ok) return res.json(resultInfoUser)
+
+    res.json(resultInfoUser.data[0])
   }
 }
