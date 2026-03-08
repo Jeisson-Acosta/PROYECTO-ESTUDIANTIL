@@ -1,10 +1,11 @@
 .notas-card {
+    font-size: 15px;
     display: flex;
     justify-content: space-between;
 }
 
 .notas-card h1 {
-    font-size: 20px;
+    font-size: 15px;
     font-family: fontSubtitles;
 }
 

@@ -19,11 +19,6 @@
 
 
 
-h2 {
-    font-family: fontTitlesBold;
-    color: #1a365d;
-}
-
 
 .stats-content .stats-resumen {
     font-size: 20px;
@@ -66,8 +61,8 @@ h2 {
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    border: 1px solid #000000;
-    border-radius: 50px;
+    border: 1px solid #e3e9f1;
+    border-radius: 20px;
     padding: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     width: 20%;
@@ -79,35 +74,44 @@ h2 {
 .title-section {
     display: flex;
     justify-content: space-between;
+    font-size: 10px;
 }
 
 .title-section h3 {
-    font-size: 20px;
+    font-size: 15px;
 }
 
-.title-more {
+.notas-seccion .title-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #87b8d8;
     font-family: fontSubtitles;
+    font-size: 12px;
+    text-align: center;
 }
 
 .materias-seccion .dia {
     background-color: #1a365d;
+    padding: 5px;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 12px;
     width: 20%;
     height: 80%;
     color: #fff;
     margin-left: 2px;
-    font-family: fontSubtitles;
-    text-align: center;
+    font-family: fontMain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .notas-seccion {
     background-color: #fff;
     background-color: #fff;
     gap: 30px;
-    border: 1px solid #000000;
-    border-radius: 50px;
+    border: 1px solid #e3e9f1;
+    border-radius: 20px;
     padding: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     width: 20%;
