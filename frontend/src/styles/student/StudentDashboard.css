@@ -20,7 +20,7 @@
 
 
 
-.stats-content .stats-resumen {
+.stats-content footer {
     font-size: 20px;
     font-weight: 500;
     color: #87b8d8;
@@ -54,7 +54,7 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
-    background-color: #ceffd4;
+
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }

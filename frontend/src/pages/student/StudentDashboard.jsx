@@ -25,7 +25,7 @@ export function StudentDashboard() {
             <div className='stats-dashboard'>
                 <StudentCard titulo="Materias Inscritas" valor={userLogin?.total_materias} adicional="+2 en el ciclo" Icono={IconSubject}/>
                 <StudentCard titulo="Promedio Estudiante" valor={userLogin?.promedio} adicional="top 5 en la clase" Icono={IconStar}/>
-                <StudentCard titulo="Inasistencias" valor={userLogin?.total_inasistencias} adicional="98% de asistencia" Icono= {IconAsistance}/>
+                <StudentCard titulo="Inasistencias" valor={userLogin?.total_inasistencias} adicional={userLogin?.mensaje_asistencia} Icono= {IconAsistance}/>
             </div>
             <div className='stats-dashboard'>
             
@@ -34,9 +34,10 @@ export function StudentDashboard() {
             <div className='title-section'>
                 <h3 className='title'>Progreso Diario</h3>
             </div>
-                <CircleChart endValue={100} value={80} labelCenter="Meta Hoy" color="#2c1470ff" strokeWidth={10}/>
-             <div className='circle-chart-resumen'>
-            <h3>Excelente Desempeño</h3>
+                <CircleChart  endValue={100} value={`${userLogin?.progreso_estudiante}`} labelCenter="Meta Hoy" color={userLogin?.color_resumen_grafico} strokeWidth={10}/>
+             <div className='circle-chart-resumen'
+             style={{backgroundColor: userLogin?.color_resumen}}>
+            <h3 >{userLogin?.progreso_resumen}</h3>
               
             </div>
             </div>
