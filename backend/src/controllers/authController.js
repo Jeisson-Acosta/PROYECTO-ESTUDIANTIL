@@ -63,6 +63,6 @@ export class AuthController {
     const resultInfoUser = await AuthModel.getUserInfoByEmail({ usuemail: user.usuemail })
     if (!resultInfoUser.ok) return res.json(resultInfoUser)
 
-    res.json(resultInfoUser.data[0])
+    res.json(resultInfoUser)
   }
 }
