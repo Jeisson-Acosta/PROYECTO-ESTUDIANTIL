@@ -14,3 +14,15 @@
     font-family: fontTitlesBold;
     background-color: #ede9e9;
 }
+
+@media (max-width: 768px) {
+    .notas-card {
+        display: flex;
+        width: 100%;
+    }
+
+    .notas-card h1 {
+        font-size: 15px;
+        font-family: fontTitlesBold;
+    }
+}

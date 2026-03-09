@@ -35,26 +35,35 @@
     color: #1a365d;
 }
 
-@media (max-width: 768px) {
-    .principal-content {
-        flex-direction: column;
-    }
 
-    .stats-content {
-        width: 100%;
-    }
+.circle-chart-section {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #e3e9f1;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    padding: 30px;
+    margin: 10px;
+}
 
-    .stats-content p {
-        font-size: 25px;
-    }
+.circle-chart-section .circle-chart-resumen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: #ceffd4;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-    .stats-content h1 {
-        font-size: 35px;
-    }
-
-    .stats-content .stats-resumen {
-        font-size: 20px;
-    }
+.circle-chart-section .circle-chart-resumen h3 {
+    height: auto;
+    font-size: 20px;
+    color: #1a365d;
+    font-family: fontSubtitles;
 }
 
 .materias-seccion {
@@ -124,4 +133,22 @@
     font-size: 18px;
     display: flex;
     justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .stats-dashboard {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .circle-chart-section,
+    .materias-seccion,
+    .notas-seccion {
+        width: 90%;
+    }
+
+    .circle-chart-section .circle-chart-resumen h3 {
+        font-size: 15px;
+    }
+
 }
