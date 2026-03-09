@@ -16,6 +16,7 @@ export const useRequestDB = () => {
         credentials: 'include',
         body: method !== 'GET' ? JSON.stringify(body) : undefined,
       });
+      console.log(responseDb)
 
       if (!responseDb.ok) {
         throw new Error(`HTTP error! status: ${responseDb.status}`);

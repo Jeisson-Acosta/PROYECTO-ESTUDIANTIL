@@ -17,10 +17,12 @@ export function UserLoginProvider({ children }) {
     const checkSession = async () => {
       try {
         const responseDB = await requestDB("auth/checkSession", "GET", null);
+        console.log(responseDB)
         if (!responseDB) {
           setIsAuthenticated(false);
         } else {
           const rolePath = ROLES[responseDB.rolcod].path;
+          console.log(rolePath)
           setIsAuthenticated(true);
           setUserLogin(responseDB);
           navigate(rolePath, { replace: true });
