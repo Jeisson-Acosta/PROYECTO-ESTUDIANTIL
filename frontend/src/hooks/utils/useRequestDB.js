@@ -18,6 +18,7 @@ export const useRequestDB = () => {
       });
       console.log(responseDb)
 
+
       if (!responseDb.ok) {
         throw new Error(`HTTP error! status: ${responseDb.status}`);
       }
