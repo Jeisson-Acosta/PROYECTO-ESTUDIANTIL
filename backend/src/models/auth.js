@@ -90,7 +90,7 @@ export class AuthModel {
             const result = await manageDB('sp_auth_login_user', [usuemail])
             if (!result.ok) { throw new Error(result.message) }
             return result
-        } catch(err) {
+        } catch (err) {
             throw new Error('Error getting user info')
         }
     }
