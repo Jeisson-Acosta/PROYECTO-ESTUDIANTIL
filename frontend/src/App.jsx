@@ -7,7 +7,7 @@ import { Layout } from './components/common/Layout.jsx'
 import { RoleBasedRoute } from './routes/RoleBasedRoute.jsx'
 import { RoleBasedRedirect } from './components/RoleBasedRedirect.jsx'
 import { Classes } from './pages/student/Classes.jsx'
-
+import { ClassDetails } from './pages/student/ClassDetails.jsx'
 import { CircleChart } from './components/common/charts/CircleChart.jsx'
 
 function Unauthorized() {
@@ -41,6 +41,7 @@ function App() {
                 <Routes>
                   <Route path='dashboard' element={<StudentDashboard />} />
                   <Route path='cursos' element={<Classes />} />
+                  <Route path='cursos/:asgcod' element={<ClassDetails />} />
                 </Routes>
               </RoleBasedRoute>
             }
