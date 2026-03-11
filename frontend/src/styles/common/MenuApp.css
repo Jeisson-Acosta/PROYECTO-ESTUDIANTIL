@@ -1,6 +1,7 @@
 .principal-container-menu {
     display: flex;
     flex-direction: column;
+    justify-content:space-between;
     gap: 30px;
     background-color: #1a365d;
     color: #fff;
@@ -71,3 +72,82 @@
     padding: 1px 6px;
     border-radius: 6px;
 }
+
+.footer-menu-app{
+    width:100%;
+    border-top:1px solid #314a6d;
+    padding: 16px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+}
+.footer-menu-app button{
+    background-color:transparent;
+
+}
+
+.footer-menu-app .btn-logout{
+    color:
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container-plan-user{
+    padding: 12px;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    border-radius:16px;
+    background-color:#254065;
+    gap:12px
+
+}
+.container-plan-user header{
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+}
+.container-plan-user header .icon-plan {
+    padding:4px;
+    width:40px;
+    height:50px;
+    background-color:#7db0d2;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container-plan-user .info-plan-user{
+    width:100%;
+}
+
+.container-plan-user .info-plan-user p{
+    font-size:12px;
+}
+
+.container-plan-user button{
+    background-color:#7db0d2;
+    width:100%;
+    justify-content:center;    
+}
+
+

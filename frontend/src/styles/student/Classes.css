@@ -1,0 +1,91 @@
+.principal-container-classes {
+    padding: 26px 20px;
+}
+
+.chart-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 2px rgba(0, 0, 0, 0.1);
+
+    /* Oculta la línea horizontal del eje X, solo deja los labels */
+    & .MuiChartsAxis-bottom .MuiChartsAxis-line,
+    & .MuiChartsAxis-bottom .MuiChartsAxis-tick {
+        display: none;
+    }
+}
+
+.header-title-select {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    & > h3 {
+        font-family: fontSubtitles;
+        font-size: 18px
+    }
+}
+
+.chart-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container-charts {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+}
+
+@media (max-width: 640px) {
+    .container-charts {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+.average-classes {
+}
+
+.average-classes header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    & .header-title-select {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+.header-title-select select {
+    padding: 6px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: #f3f4f6;
+}
+
+.list-classes {
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 280px));
+    gap: 20px;
+    list-style-type: none;
+}
+
+.upcoming-deliveries {
+    width: 100%;
+    margin-top: 20px;
+    & header > h3 {
+        font-family: fontSubtitles;
+    }
+}
+
+.list-upcoming-deliveries {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}

@@ -1,8 +1,34 @@
 import '../../styles/common/MenuApp.css'
-import { IconHatStudent, IconDashboard, IconNotebook, IconClipboard, IconBars, IconSchedule } from "./IconsLayout.jsx"
+import { IconHatStudent, IconDashboard, IconNotebook, IconClipboard, IconBars, IconSchedule,IconMedal,IconConfig,IconSesion} from "./IconsLayout.jsx"
 import { NavLink } from "react-router-dom"
+import { useContext } from 'react'
+import { UserLoginContext } from '../../context/userLogin.jsx'
+import {ButtonCommon } from "./ButtonCommon.jsx"
 
+function CardPlanUser(){
+    return(
+        <section className="container-plan-user">
+                <header>
+                    <div className="icon-plan">
+                        <IconMedal/>
+                    </div>
+
+                    <div className="info-plan-user">
+                        <h5>Plan Pro</h5>
+                        <p>Educacion avanzada</p>
+                    </div>
+                </header>
+
+                <ButtonCommon text="Ver planes"/>
+
+        </section>
+    )
+}
 export function MenuApp() {
+    const { userLogin } = useContext(UserLoginContext)
+    if (!userLogin) return null
+    const COMPLEMENTED_URL = userLogin.rolcod === 'EST' ? 'student' : userLogin.rolcod === 'DOC' ? 'docent' : 'rector'
+    
     return (
         <section className="principal-container-menu">
             <header className="header-menu">
@@ -15,19 +41,19 @@ export function MenuApp() {
             </header>
             <nav className="modules-menu">
                 <ul>
-                    <NavLink to={'/dashboard'}>
+                    <NavLink to={`/${COMPLEMENTED_URL}/dashboard`}>
                         <li>
                             <IconDashboard />
                             <span className="text-module">Dashboard</span>
                         </li>
                     </NavLink>
-                    <NavLink to={'/cursos'}>
+                    <NavLink to={`/${COMPLEMENTED_URL}/cursos`}>
                         <li>
                             <IconNotebook />
                             <span className="text-module">Cursos</span>
                         </li>
                     </NavLink>
-                    <NavLink to={'/tareas'}>
+                    <NavLink to={`/${COMPLEMENTED_URL}/tareas`}>
                         <li style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                             <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
                                 <IconClipboard />
@@ -41,20 +67,27 @@ export function MenuApp() {
                             </span>
                         </li>
                     </NavLink>
-                    <NavLink to={'/notas'}>
+                    <NavLink to={`/${COMPLEMENTED_URL}/notas`}>
                         <li>
                             <IconBars />
                             <span className="text-module">Notas</span>
                         </li>
                     </NavLink>
-                    <NavLink to={'/calendario'}>
+                    <NavLink to={`/${COMPLEMENTED_URL}/calendario`}>
                         <li>
                             <IconSchedule />
                             <span className="text-module">Calendario</span>
                         </li>
                     </NavLink>
+
                 </ul>
             </nav>
+        <CardPlanUser/>
+        <footer className="footer-menu-app">
+           <ButtonCommon text="Configuracion" icon={<IconConfig/>}/>
+           <ButtonCommon text="Cerrar Sesión" colorText="c78790" icon={<IconSesion/>}/>
+        </footer>
+
         </section>
     )
 }
