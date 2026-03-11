@@ -64,18 +64,18 @@ export function ClassDetails() {
             <ul className="tasks-class-list">
                 {infoClass.tasks.length === 0 && <h1>Aún no hay trabajos</h1>}
                 {infoClass.tasks.map(task => (
-                    <li key={task.id}>
+                    <li key={task.astid} className={`task-class ${task.asttip === 'TA' ? 'task' : task.asttip === 'MA' ? 'material' : 'statement'}`}>
                         {task.asttip === 'TA' && (
-                            <div className={`status-task ${task.ateestado === 'P' ? 'tasks-pending' : 'task-qualified'}`}>
-                                {task.ateestado_texto}
+                            <div className={`status-task ${task.ateestado === 'P' ? 'task-pending' : 'task-qualified'}`}>
+                                {task.ateestado_text}
                             </div>
                         )}
                         <div className="info-task">
-                            <h2 className='title-task'>{task.asnttnomtrabajo}</h2>
+                            <h3 className='title-task'>{task.asntnomtrabajo}</h3>
                             <p className='description-task'>{task.astdesctrabajo}</p>
-                            <div className="dates-task">
+                            <div className="container-dates-task">
                                 {task.asttip === 'TA' && (
-                                    <div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <div className="dates-task">
                                             <span>
                                                 Pub: {task.astfecini}
@@ -84,10 +84,15 @@ export function ClassDetails() {
                                                 Entrega: {task.astfecfin}
                                             </span>
                                         </div>
-                                        <div className="qualifying-task">
-                                            <h3>Puntaje</h3>
-                                            {task.astcalificacion} / 5 {/* CHANGE THIS FOR REAL INFO */}
-                                        </div>
+                                        {task.ateestado === 'C' && (
+                                            <div className="qualifying-task" style={{ textAlign: 'center' }}>
+                                                <h3 style={{ fontFamily: 'fontSubtitles', fontSize: '18px', color: '#9fa6b2' }}>Puntaje</h3>
+                                                <span style={{ fontFamily: 'fontSubtitles', fontSize: '28px', fontWeight: 'bold' }}>
+                                                    {task.atccalificacion}
+                                                </span> 
+                                                <span style={{ fontFamily: 'fontSubttitles', fontSize: '18px', color: '#9fa6b2' }}> / 5</span> {/* CHANGE THIS FOR REAL INFO */}
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                                 {task.asttip !== 'TA' && (
@@ -98,29 +103,29 @@ export function ClassDetails() {
                                     </div>
                                 )}
                             </div>
-                            <footer className='footer-task'>
-                                <button>
-                                    {task.asttip === 'TA' && (
-                                        <>
-                                            Ver detalle
-                                            <EyeIcon />
-                                        </>
-                                    )}
-                                    {task.asttip === 'MA' && (
-                                        <>
-                                            Descargar
-                                            <DownloadIcon />
-                                        </>
-                                    )}
-                                    {task.asttip === 'EN' && (
-                                        <>
-                                            Ver
-                                            <EyeIcon />
-                                        </>
-                                    )}
-                                </button>
-                            </footer>
                         </div>
+                        <footer className='footer-task'>
+                            <button>
+                                {task.asttip === 'TA' && (
+                                    <>
+                                        Ver detalles
+                                        <EyeIcon />
+                                    </>
+                                )}
+                                {task.asttip === 'MA' && (
+                                    <>
+                                        Descargar
+                                        <DownloadIcon />
+                                    </>
+                                )}
+                                {task.asttip === 'EN' && (
+                                    <>
+                                        Ver
+                                        <EyeIcon />
+                                    </>
+                                )}
+                            </button>
+                        </footer>
                     </li>
                 ))}
             </ul>
