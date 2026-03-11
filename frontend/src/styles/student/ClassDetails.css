@@ -67,6 +67,51 @@
     font-family: fontSubtitles;
 }
 
+.container-class .buttons-to-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    & .button-filter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        background-color: #ffffff;
+        border: none;
+        outline: none;
+        padding: 6px 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: fontSubtitles;
+        color: #757d87;
+        min-width: 120px;
+        transition: background-color 0.35s ease;
+        & svg {
+            width: 18px;
+            height: 18px;
+        }
+        &:hover {
+            background-color: #e4e4e4;
+        }
+        & .num-filter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e14444;
+            padding: 4px;
+            background-color: #fee2e2;
+            border-radius: 50%;
+            font-family: fontSubtitles;
+            font-weight: bold;
+            width: 20px;
+            font-size: 12px;
+            height: 20px;
+        }
+    }
+}
+
 .tasks-class-list {
     width: 100%;
     list-style: none;
@@ -128,10 +173,23 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: 14px;
+        gap: 10px;
         font-size: 14px;
         color: #9b9fa8;
     }
+}
+.dates-task span {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    & svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.delivery-date svg {
+    fill: #6b7280;
 }
 
 .task-class .footer-task {

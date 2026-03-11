@@ -1,7 +1,7 @@
 import '../../styles/student/ClassDetails.css'
 import { useEffect, useState } from "react"
 
-import { UserNotFilledIcon, ClockIcon, EyeIcon, DownloadIcon } from '../../components/common/GeneralIcons.jsx'
+import { UserNotFilledIcon, ClockIcon, EyeIcon, DownloadIcon, CalendarIcon, CircleCheckIcon, BellRingingIcon, BookIcon, SpeakerPhone } from '../../components/common/GeneralIcons.jsx'
 
 import * as Background from '../../components/common/BackgroundsClasses.jsx'
 
@@ -11,6 +11,17 @@ import { hexToRgba } from '../../utils/hexToRgba.js'
 import { useParams } from "react-router-dom"
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
 import toast from "react-hot-toast"
+
+const formatDate = (timestamp) => {
+    return new Date(timestamp).toLocaleString('es-ES', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    })
+}
 
 export function ClassDetails() {
     const [infoClass, setInfoClass] = useState({ info: null, tasks: null })
@@ -31,9 +42,14 @@ export function ClassDetails() {
     
     if (infoClass.info === null || infoClass.tasks === null) return null
 
-    console.log(infoClass)
-
     const BackgroundComponent = Background['Background' + infoClass.info[0].ascvis_config.backgroundName]
+    const buttonsToFilter = {
+        C: { title: 'Calificados', icon: <CircleCheckIcon /> },
+        P: { title: 'Pendientes', icon: <BellRingingIcon />, num: 1 },
+        MA: { title: 'Material', icon: <BookIcon /> },
+        EN: { title: 'Enunciados', icon: <SpeakerPhone /> }
+
+    }
 
     return (
         <section className="container-class">
@@ -61,6 +77,15 @@ export function ClassDetails() {
                     </div>
                 </div>
             </header>
+            <section className="buttons-to-filter">
+                {Object.entries(buttonsToFilter).map(([key, value]) => (
+                    <button key={key} className="button-filter">
+                        {value.icon}
+                        {value.title}
+                        {value.num && <span className="num-filter">{value.num}</span>}
+                    </button>
+                ))}
+            </section>
             <ul className="tasks-class-list">
                 {infoClass.tasks.length === 0 && <h1>Aún no hay trabajos</h1>}
                 {infoClass.tasks.map(task => (
@@ -78,10 +103,10 @@ export function ClassDetails() {
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <div className="dates-task">
                                             <span>
-                                                Pub: {task.astfecini}
+                                               <CalendarIcon /> Pub: {formatDate(task.astfecini)}
                                             </span>
-                                            <span>
-                                                Entrega: {task.astfecfin}
+                                            <span className='delivery-date'>
+                                               <ClockIcon /> Entrega: {formatDate(task.astfecfin)}
                                             </span>
                                         </div>
                                         {task.ateestado === 'C' && (
