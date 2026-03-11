@@ -12,7 +12,7 @@ export function StudentDashboard() {
     if (!userLogin) {
         return null;
     }
-    
+    console.log(userLogin);
 
    // const total_materias = userLogin.total_materias;
     //const promedio = userLogin.promedio;
@@ -23,8 +23,8 @@ export function StudentDashboard() {
         <div className="principal-content">
 
             <div className='stats-dashboard'>
-                <StudentCard titulo="Materias Inscritas" valor={userLogin?.total_materias} adicional="+2 en el ciclo" Icono={IconSubject}/>
-                <StudentCard titulo="Promedio Estudiante" valor={userLogin?.promedio} adicional="top 5 en la clase" Icono={IconStar}/>
+                <StudentCard titulo="Materias Inscritas" valor={userLogin?.total_materias} adicional={userLogin?.mensaje_materias} Icono={IconSubject}/>
+                <StudentCard titulo="Promedio Estudiante" valor={userLogin?.promedio} adicional={userLogin?.mensaje_rank} Icono={IconStar}/>
                 <StudentCard titulo="Inasistencias" valor={userLogin?.total_inasistencias} adicional={userLogin?.mensaje_asistencia} Icono= {IconAsistance}/>
             </div>
             <div className='stats-dashboard'>
@@ -55,9 +55,9 @@ export function StudentDashboard() {
             <h3 className='title'>Ultimas Notas</h3>
             <h3 className='title-more'>Ver Todas</h3>
         </div>
-            <NotasCard titulo="Ciencias" tarea ="Dibujar la mitocondria" calificacion="4.8"/>
-            <NotasCard titulo="Matematicas" tarea ="Resolver Sumas" calificacion="4.0"/>
-            <NotasCard titulo="Español" tarea ="¿Que es una Oda" calificacion="3.7"/>
+            <NotasCard titulo={userLogin?.nombre_materia} tarea = {userLogin?.titulo_tarea} calificacion={userLogin?.calificacion_tarea}/>
+            <NotasCard titulo={userLogin?.nombre_materia2} tarea = {userLogin?.titulo_tarea} calificacion={userLogin?.calificacion_tarea}/>
+            <NotasCard titulo={userLogin?.nombre_materia3} tarea = {userLogin?.titulo_tarea} calificacion={userLogin?.calificacion_tarea}/>
         </div>
         </div>
         <div className='stats-dashboard'>
