@@ -9,7 +9,7 @@ import { studentRouter } from './routes/student.js'
 // =================== MIDDLEWARES ===================
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import { authMiddleware } from './middlewares/authMiddleware.js'
+import { tokenMiddleware } from './middlewares/tokenMiddleware.js'
 // ===================================================
 
 
@@ -29,7 +29,7 @@ app.use(express.json()) // Middleware para peticiones POST para poner el conteni
 app.use(cookieParser()) // Es un middleware de express, que nos facilita acceder a las cookies.
 
 app.use('/auth', authRouter)
-app.use('/student', authMiddleware, studentRouter)
+app.use('/student', tokenMiddleware, studentRouter)
 
 app.listen(PORT, () => {
   console.log(`Server is running on: http://localhost:${PORT}`)
