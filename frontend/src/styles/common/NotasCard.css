@@ -5,14 +5,26 @@
 }
 
 .notas-card h1 {
-    font-size: 15px;
+    font-size: 12px;
     font-family: fontSubtitles;
 }
 
+.notas-card p {
+    font-size: 10px;
+    font-family: fontSubtitles;
+    color: #7e8da1;
+}
+
 .notas-card .calificacion {
-    font-size: 15px;
-    font-family: fontTitlesBold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: fontSubtitles;
     background-color: #ede9e9;
+    padding: 2px;
+    width: 40px;
 }
 
 @media (max-width: 768px) {

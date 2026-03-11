@@ -49,6 +49,7 @@ export class AuthModel {
     }
 
     static async loginUser({ input }) {
+        console.log(input)
         const {
             usuemail,
             usupwd
@@ -84,14 +85,15 @@ export class AuthModel {
             throw new Error('Error logging in user')
         }
     }
+    // backend/src/models/auth.js
 
-    static async getUserInfoByEmail({ usuemail }) {
+    static async getUserById(id) {
         try {
-            const result = await manageDB('sp_auth_login_user', [usuemail])
-            if (!result.ok) { throw new Error(result.message) }
-            return result
-        } catch (err) {
-            throw new Error('Error getting user info')
+            const result = await manageDB();
+            return result.data;
+        } catch (error) {
+            console.error('Error en getUserById:', error);
+            throw error;
         }
     }
 }
