@@ -9,7 +9,7 @@
     font-family: fontSubtitles;
 }
 
-.notas-card p {
+.notas-card .tarea {
     font-size: 10px;
     font-family: fontSubtitles;
     color: #7e8da1;
@@ -22,7 +22,6 @@
     border-radius: 5px;
     font-size: 12px;
     font-family: fontSubtitles;
-    background-color: #ede9e9;
     padding: 2px;
     width: 40px;
 }

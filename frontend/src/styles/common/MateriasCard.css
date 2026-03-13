@@ -38,3 +38,8 @@
 .materias-card .room-subject {
     border-bottom: 1px solid;
 }
+
+.materias-card .teacher-subject {
+    display: flex;
+    align-items: center;
+}
