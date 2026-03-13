@@ -9,6 +9,7 @@ import { RoleBasedRedirect } from './components/RoleBasedRedirect.jsx'
 import { Classes } from './pages/student/Classes.jsx'
 import { ClassDetails } from './pages/student/ClassDetails.jsx'
 import { CircleChart } from './components/common/charts/CircleChart.jsx'
+import { ClassesDocent } from './pages/docent/ClassesDocent.jsx'
 
 function Unauthorized() {
   return (
@@ -19,6 +20,12 @@ function Unauthorized() {
 function StudentDashboard() {
   return (
     <CircleChart endValue={5} value={4.5} labelCenter='Promedio Total' color={'fbbf24'} />
+  )
+}
+
+function TeacherDashboard() {
+  return (
+    <h1>Teacher Dashboard</h1>
   )
 }
 
@@ -42,6 +49,21 @@ function App() {
                   <Route path='dashboard' element={<StudentDashboard />} />
                   <Route path='cursos' element={<Classes />} />
                   <Route path='cursos/:asgcod' element={<ClassDetails />} />
+                </Routes>
+              </RoleBasedRoute>
+            }
+          />
+
+          {/* RUTAS DE PROFESOR */}
+          <Route 
+            path='/docent/*' 
+            element={
+              <RoleBasedRoute allowedRoles={['DOC']}>
+                <Routes>
+                  <Route path='dashboard' element={<TeacherDashboard />} />
+                  <Route path='cursos' element={<ClassesDocent />} />
+                  {/* <Route path='cursos' element={<TeacherClasses />} />
+                  <Route path='cursos/:asgcod' element={<TeacherClassDetails />} /> */}
                 </Routes>
               </RoleBasedRoute>
             }

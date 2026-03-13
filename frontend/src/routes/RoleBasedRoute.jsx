@@ -4,7 +4,6 @@ import { useContext } from "react";
 
 export function RoleBasedRoute({ children, allowedRoles }) {
   const { isLoading, isAuthenticated, userLogin } = useContext(UserLoginContext)
-  console.log(userLogin)
 
   // Mientras se verifica la sesión, no renderizamos nada para evitar redirecciones prematuras.
   if (isLoading) return null
