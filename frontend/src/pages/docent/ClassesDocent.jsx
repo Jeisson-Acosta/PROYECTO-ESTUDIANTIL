@@ -1,10 +1,30 @@
-import { useContext } from "react"
-import { UserLoginContext } from "../../context/userLogin"
 import '../../styles/docent/ClassesDocent.css'
+import { useContext, useEffect, useState } from "react"
+import { UserLoginContext } from "../../context/userLogin"
+
+import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
+import { getIconUrl } from "../../utils/getIconUrl.js"
+
+import * as Backgrounds from '../../components/common/BackgroundsClasses.jsx'
+import { ArrowRightIcon, BookIcon, UserIcon, PlusIcon } from "../../components/common/GeneralIcons.jsx"
+
+import toast from "react-hot-toast"
+import { CardClassDocent } from '../../components/docent/CardClassDocent.jsx'
 
 export function ClassesDocent() {
+    const [classesDocent, setClassesDocent] = useState(null)
     const { userLogin } = useContext(UserLoginContext)
-    console.log(userLogin)
+    const { requestDB } = useRequestDB()
+
+    useEffect(() => {
+        const getClassesDocent = async () => {
+            const response = await requestDB(`docent/classes/${userLogin.usuid}`)
+            if (!response.ok) return toast.error(response.message)
+            setClassesDocent(response.data[0].info_classes_docent)
+        }
+        getClassesDocent()
+    }, [])
+
     return (
         <section className="container-classes-docent">
             <header className="header-classes-docent">
@@ -22,8 +42,15 @@ export function ClassesDocent() {
                     </p>
                 </div>
             </header>
-            <ul className="list-classes-docent">
-                
+            <ul className="list-classes">
+                {classesDocent === null && (<h2>No tienes clases asignadas</h2>)}
+
+                {classesDocent?.map(classDocent => (<CardClassDocent key={classDocent.asgid} classDocent={classDocent} />))}
+
+                <button className="assign-new-class">
+                    <PlusIcon />
+                    Asignar nueva clase
+                </button>
             </ul>
         </section>
     )
