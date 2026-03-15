@@ -15,56 +15,76 @@ export function StudentDashboard() {
         return null;
     }
     
-    const obtenerNotas = () => {
-        let notasArray = [];
-        
-        if (userLogin?.ultimas_notas && typeof userLogin.ultimas_notas === 'string') {
-            try {
-                notasArray = JSON.parse(userLogin.ultimas_notas);
-            } catch (e) {
-                notasArray = [];
-            }
-        }
-        else if (Array.isArray(userLogin?.ultimas_notas)) {
-            notasArray = userLogin.ultimas_notas;
-        }
-        else {
+   const obtenerNotas = () => {
+    let notasArray = [];
+    
+    // Parsear las notas desde userLogin
+    if (userLogin?.ultimas_notas && typeof userLogin.ultimas_notas === 'string') {
+        try {
+            notasArray = JSON.parse(userLogin.ultimas_notas);
+        } catch (e) {
+            console.error('Error parsing notas:', e);
             notasArray = [];
         }
-        
-        const notasProcesadas = notasArray.map(nota => {
-            let colorValue = nota.color;
-            if (nota.color && typeof nota.color === 'object' && nota.color.color) {
-                colorValue = nota.color.color;
+    } else if (Array.isArray(userLogin?.ultimas_notas)) {
+        notasArray = userLogin.ultimas_notas;
+    }
+    
+    // Procesar las notas para asegurar que tengan color_nota
+    const notasProcesadas = notasArray.map(nota => ({
+        ...nota,
+        // Aseguramos que color_nota tenga un valor (ahora viene directamente del SP)
+        color_nota: nota.color_nota || this.obtenerColorPorNota(nota.calificacion_tarea) || '#cccccc'
+    }));
+    
+    // Si no hay notas, retornar array con valores por defecto
+    if (notasProcesadas.length === 0) {
+        return [
+            { 
+                nombre_materia: 'No hay materias', 
+                titulo_tarea: 'Sin tareas', 
+                calificacion_tarea: 0, 
+                color_nota: '#cccccc' 
+            },
+            { 
+                nombre_materia: 'No hay materias', 
+                titulo_tarea: 'Sin tareas', 
+                calificacion_tarea: 0, 
+                color_nota: '#cccccc' 
+            },
+            { 
+                nombre_materia: 'No hay materias', 
+                titulo_tarea: 'Sin tareas', 
+                calificacion_tarea: 0, 
+                color_nota: '#cccccc' 
             }
-            
-            return {
-                ...nota,
-                color: colorValue || '#cccccc'
-            };
+        ];
+    }
+
+    // Asegurar que siempre haya 3 elementos
+    const notas = [...notasProcesadas];
+    while (notas.length < 3) {
+        notas.push({
+            nombre_materia: 'No hay materias',
+            titulo_tarea: 'Sin tareas',
+            calificacion_tarea: 0,
+            fecha: null,
+            color_nota: '#cccccc'
         });
-        
-        if (notasProcesadas.length === 0) {
-            return [
-                { nombre_materia: 'No hay materias', titulo_tarea: 'Sin tareas', calificacion_tarea: 0, color: '#cccccc' },
-                { nombre_materia: 'No hay materias', titulo_tarea: 'Sin tareas', calificacion_tarea: 0, color: '#cccccc' },
-                { nombre_materia: 'No hay materias', titulo_tarea: 'Sin tareas', calificacion_tarea: 0, color: '#cccccc' }
-            ];
-        }
+    }
 
-        const notas = [...notasProcesadas];
-        while (notas.length < 3) {
-            notas.push({
-                nombre_materia: 'No hay materias',
-                titulo_tarea: 'Sin tareas',
-                calificacion_tarea: 0,
-                fecha: null,
-                color: '#cccccc'
-            });
-        }
+    return notas.slice(0, 3);
+};
 
-        return notas.slice(0, 3);
-    };
+// Función de respaldo por si no viene el color (por si acaso)
+function obtenerColorPorNota(calificacion) {
+    if (!calificacion && calificacion !== 0) return '#cccccc';
+    
+    if (calificacion >= 4 && calificacion <= 5) return '#a9ffae';
+    if (calificacion >= 3 && calificacion < 4) return '#f8f289';
+    if (calificacion <= 2.9) return '#fb9b9b';
+    return '#cccccc';
+}
 const obtenerProximasClases = () => {
     let clasesArray = [];
     
@@ -234,7 +254,7 @@ const obtenerProximasClases = () => {
                             titulo={nota.nombre_materia}
                             tarea={nota.titulo_tarea}
                             calificacion={nota.calificacion_tarea}
-                            color={nota.color}
+                            color_nota={nota.color_nota}
                         />
                     ))}
                 </div>

@@ -51,6 +51,7 @@
     width: 20%;
     padding: 30px;
     margin: 10px;
+    gap: 10px;
 }
 
 .circle-chart-section .circle-chart-resumen {

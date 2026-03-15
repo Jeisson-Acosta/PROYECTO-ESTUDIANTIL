@@ -1,39 +1,91 @@
 .notas-card {
     font-size: 15px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    /* Alinea verticalmente todos los elementos */
+    gap: 12px;
+    /* Espacio entre elementos */
+    padding: 8px 0;
+    /* Espaciado vertical */
+    width: 100%;
 }
 
-.notas-card h1 {
-    font-size: 12px;
-    font-family: fontSubtitles;
-}
-
-.notas-card .tarea {
-    font-size: 10px;
-    font-family: fontSubtitles;
-    color: #7e8da1;
-}
-
-.notas-card .calificacion {
+.materia-imagen {
+    width: 40px;
+    /* Un poco más grande para que se vea mejor */
+    height: 40px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    color: white;
+    /* Color del texto de las iniciales */
+    font-size: 16px;
+    font-family: fontTitlesBold;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    /* Evita que el círculo se encoja */
+}
+
+.info-materia {
+    flex: 1;
+    /* Toma el espacio disponible */
+    min-width: 0;
+    /* Permite que el texto se encoja */
+}
+
+.info-materia h1 {
+    font-size: 14px;
+    /* Ajustado */
+    font-family: fontSubtitles;
+    /* Espacio debajo del título */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Si el título es muy largo, muestra ... */
+}
+
+.info-materia .tarea {
     font-size: 12px;
     font-family: fontSubtitles;
-    padding: 2px;
+    color: #7e8da1;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.grade-note {
     width: 40px;
+    height: 40px;
+    /* Misma altura que el círculo */
+    border-radius: 8px;
+    /* Bordes ligeramente redondeados */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    /* Evita que se encoja */
+}
+
+.grade-note .calificacion {
+    margin: 0;
+    font-size: 16px;
+    /* Un poco más grande */
+    font-family: fontTitlesBold;
+    color: inherit;
+    /* Hereda el color del contenedor padre */
 }
 
 @media (max-width: 768px) {
     .notas-card {
-        display: flex;
         width: 100%;
     }
 
-    .notas-card h1 {
-        font-size: 15px;
-        font-family: fontTitlesBold;
+    .info-materia h1 {
+        font-size: 16px;
+    }
+
+    .info-materia .tarea {
+        font-size: 14px;
     }
 }
