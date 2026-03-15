@@ -1,13 +1,10 @@
 import '../../styles/student/ClassDetails.css'
 import { useEffect, useState } from "react"
 
-import { UserNotFilledIcon, ClockIcon, CircleCheckIcon, BellRingingIcon, BookIcon, SpeakerPhone } from '../../components/common/GeneralIcons.jsx'
+import { CircleCheckIcon, BellRingingIcon, BookIcon, SpeakerPhone } from '../../components/common/GeneralIcons.jsx'
 
-import * as Background from '../../components/common/BackgroundsClasses.jsx'
 import { CardTaskClass } from '../../components/student/CardTaskClass.jsx'
-
-import { getIconUrl } from "../../utils/getIconUrl.js"
-import { hexToRgba } from '../../utils/hexToRgba.js'
+import { HeaderClass } from '../../components/common/classes/HeaderClass.jsx'
 
 import { useParams } from "react-router-dom"
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
@@ -33,7 +30,6 @@ export function ClassDetails() {
     
     if (infoClass.info === null || infoClass.tasks === null) return null
 
-    const BackgroundComponent = Background['Background' + infoClass.info[0].ascvis_config.backgroundName]
     const buttonsToFilter = {
         C: { title: 'Calificados', icon: <CircleCheckIcon /> },
         P: { title: 'Pendientes', icon: <BellRingingIcon />, num: infoClass.tasksPending },
@@ -48,30 +44,7 @@ export function ClassDetails() {
 
     return (
         <section className="container-class">
-            <header className="header-class">
-                <div className="background-wrapper">
-                    {BackgroundComponent && <BackgroundComponent />}
-                </div>
-                <div className="icon-class-header">
-                    <img src={getIconUrl(infoClass.info[0].ascvis_config.iconName)} alt="Icono de clase" width="220px" height="160px" />
-                </div>
-                <div className="code-class" style={{backgroundColor: hexToRgba(infoClass.info[0].ascvis_config.color) }}>
-                    Código: {infoClass.info[0].asgcod_clase}
-                </div>
-                <div className="info-class">
-                    <h1 className='title-class'>{infoClass.info[0].asgnom}</h1>
-                    <div className="info-complement-class">
-                        <p className='teacher-class'>
-                            <UserNotFilledIcon />
-                            Prof. {infoClass.info[0].usunom}
-                        </p>
-                        <p className='classroom-class'>
-                            <ClockIcon />
-                            Lun, Mie 10:00 - 11:30 AM
-                        </p>
-                    </div>
-                </div>
-            </header>
+            <HeaderClass infoClass={infoClass.info[0]} />
             <section className="buttons-to-filter">
                 {Object.entries(buttonsToFilter).map(([key, value]) => (
                     <button key={key} className="button-filter" onClick={() => handleClickFilter(key)}>

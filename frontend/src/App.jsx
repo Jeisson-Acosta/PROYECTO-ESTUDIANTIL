@@ -10,6 +10,7 @@ import { Classes } from './pages/student/Classes.jsx'
 import { ClassDetails } from './pages/student/ClassDetails.jsx'
 import { CircleChart } from './components/common/charts/CircleChart.jsx'
 import { ClassesDocent } from './pages/docent/ClassesDocent.jsx'
+import { ClassDetailsDocent } from './pages/docent/ClassDetailsDocent.jsx'
 
 function Unauthorized() {
   return (
@@ -62,6 +63,7 @@ function App() {
                 <Routes>
                   <Route path='dashboard' element={<TeacherDashboard />} />
                   <Route path='cursos' element={<ClassesDocent />} />
+                  <Route path='cursos/:asgcod' element={<ClassDetailsDocent />} />
                   {/* <Route path='cursos' element={<TeacherClasses />} />
                   <Route path='cursos/:asgcod' element={<TeacherClassDetails />} /> */}
                 </Routes>

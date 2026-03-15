@@ -15,7 +15,7 @@ export function CardClass({ classItem }) {
 
     return (
         <li key={classItem.asgid} className="class-card">
-        <header className="header-class">
+        <header className="header-class-card">
             <div className="background-wrapper">
             {BackgroundComponent && <BackgroundComponent />}
             </div>

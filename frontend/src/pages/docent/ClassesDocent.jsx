@@ -3,10 +3,8 @@ import { useContext, useEffect, useState } from "react"
 import { UserLoginContext } from "../../context/userLogin"
 
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
-import { getIconUrl } from "../../utils/getIconUrl.js"
 
-import * as Backgrounds from '../../components/common/BackgroundsClasses.jsx'
-import { ArrowRightIcon, BookIcon, UserIcon, PlusIcon } from "../../components/common/GeneralIcons.jsx"
+import { PlusIcon } from "../../components/common/GeneralIcons.jsx"
 
 import toast from "react-hot-toast"
 import { CardClassDocent } from '../../components/docent/CardClassDocent.jsx'

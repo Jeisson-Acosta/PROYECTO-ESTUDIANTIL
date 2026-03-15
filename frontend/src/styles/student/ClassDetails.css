@@ -1,71 +1,9 @@
-.icon-class-header, .info-class, .code-class {
-    z-index: 1;
-}
 
 .container-class {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    & .header-class {
-        display: flex;
-        width: 100%;
-        height: 200px;
-        border-radius: 20px;
-        padding-left: 22px;
-        position: relative;
-        & .background-wrapper svg {
-            border-radius: 20px;
-        }
-        & .icon-class-header {
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            opacity: 0.7;
-        }
-    }
-}
-
-.icon-class-header img {
-    width: 160px;
-    height: 160px;
-}
-
-.header-class .info-class {
-    width: 100%;
-    align-self: flex-end;
-    color: #ffffff;
-    & .title-class {
-        font-family: fontTitlesBold;
-    }
-    & .info-complement-class {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin-top: 6px;
-        & p {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: fontSubtitles;
-            font-size: 14px;
-            & svg {
-                width: 20px;
-                height: 20px;
-            }
-        }
-    }
-}
-
-.code-class {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    padding: 12px;
-    border-radius: 14px;
-    color: #ffffff;
-    font-family: fontSubtitles;
-    font-size: 12px;
 }
 
 .container-class .buttons-to-filter {
