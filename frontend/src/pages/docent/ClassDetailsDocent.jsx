@@ -1,32 +1,22 @@
 import '../../styles/docent/ClassDetailsDocent.css'
-import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
-import { useRequestDB } from "../../hooks/utils/useRequestDB"
-import toast from "react-hot-toast"
+import { useState } from 'react'
 import { HeaderClass } from "../../components/common/classes/HeaderClass"
 import { ButtonCommon } from '../../components/common/ButtonCommon'
-import { BellIcon, ClipboardCheckIcon, EyeIcon, PlusIcon, SpeakerPhone, UserCheckIcon, UsersIcon } from '../../components/common/GeneralIcons'
+import { BookIcon, ClipboardCheckIcon, PlusIcon, SpeakerPhone, UserCheckIcon, UsersIcon } from '../../components/common/GeneralIcons'
 import { CircleChart } from '../../components/common/charts/CircleChart'
+import { CardTaskDetailsDocent } from '../../components/docent/CardTaskDetailsDocent'
+import { MenuCreateResource } from '../../components/docent/MenuCreateResource.jsx'
+// ======================================== HOOKS =========================================
+import { useClassDetailsDocent } from '../../hooks/docent/useClassDetailsDocent.js'
+// ========================================================================================
 
 export function ClassDetailsDocent() {
-    const [infoClass, setInfoClass] = useState({ infoClass: null, listTasks: null, progress: null })
-    const { requestDB } = useRequestDB()
-    const { asgcod } = useParams()
-
-    useEffect(() => {
-        const getInfoClass = async () => {
-            const response = await requestDB(`docent/classes/details/${asgcod}`)
-            if (!response.ok) return toast.error(response.message)
-            setInfoClass({
-                infoClass: JSON.parse(response.data[0].info_asignatura),
-                listTasks: JSON.parse(response.data[0].lista_trabajos),
-                progress: response.data[0].progreso_asignatura
-            })
-        }
-        getInfoClass()
-    }, [])
+    const [showMenuCreate, setShowMenuCreate] = useState(false)
+    const { infoClass, filter, filterListTasks, handleClickButtonFilter } = useClassDetailsDocent()
 
     if (infoClass.infoClass === null) return <h2>No tienes clases asignadas</h2>
+
+    const handleClickButtonCreate = () => { setShowMenuCreate(!showMenuCreate) }
 
     return (
         <section className="container-class-details-docent">
@@ -37,73 +27,53 @@ export function ClassDetailsDocent() {
                     <HeaderClass infoClass={infoClass.infoClass[0]} />
                     <section className='content-class-details-docent'>
                         <div className="content-left-class-details-docent">
-                            <div style={{ display: 'flex', gap: '10px' }}>
-                                <h3 style={{ fontFamily: 'fontSubtitles' }}>Contenido</h3>
-                                <span className='quantity-items-list'>{infoClass.listTasks.length} items</span>
-                            </div>
-                            <div className="buttons-actions">
-                                <ButtonCommon icon={<PlusIcon />} text={'Crear'} colorText='ffffff' />
-                                <div className="buttons-filters">
-                                    <button className="active">Todo</button>
-                                    <button>Tareas</button>
-                                    <button>Material</button>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                                <div style={{ display: 'flex', gap: '10px' }}>
+                                    <h3 style={{ fontFamily: 'fontSubtitles' }}>Contenido</h3>
+                                    <span className='quantity-items-list'>{infoClass.listTasks.length} items</span>
+                                </div>
+                                <div className="buttons-actions" style={{display: 'flex', flexWrap: 'wrap'}}>
+                                    <div style={{position: 'relative'}}>
+                                        <ButtonCommon icon={<PlusIcon />} text={'Crear'} colorText='ffffff' onClick={handleClickButtonCreate} />
+                                        {showMenuCreate && <MenuCreateResource onClose={() => setShowMenuCreate(false)} />}
+                                    </div>
+                                    <div className="buttons-filters">
+                                        <button onClick={() => handleClickButtonFilter('all')} className={filter === 'all' ? 'active' : ''}>Todo</button>
+                                        <button onClick={() => handleClickButtonFilter('TA')} className={filter === 'TA' ? 'active' : ''}>Tareas</button>
+                                        <button onClick={() => handleClickButtonFilter('MA')} className={filter === 'MA' ? 'active' : ''}>Material</button>
+                                        <button onClick={() => handleClickButtonFilter('EN')} className={filter === 'EN' ? 'active' : ''}>Enunciado</button>
+                                    </div>
                                 </div>
                             </div>
                             <ul className="list-tasks-class-docent">
-                                {infoClass.listTasks.map(task => (
-                                    <li key={task.astid} className='card-task-details-docent'>
-                                        <div className="content-left-card-task">
-                                            <div className={`icon-task ${task.asttip === 'TA' ? 'task' : task.asttip === 'MA' ? 'material' : 'announcement'}`}>
-                                                {task.asttip === 'TA'
-                                                    ? <ClipboardCheckIcon />
-                                                    : task.asttip === 'MA'
-                                                        ? <BookIcon />
-                                                        : <SpeakerPhone />
-                                                }
-                                            </div>
-                                            <header className="info-task">
-                                                <div>
-                                                    <h4 className={`title-type-task ${task.asttip === 'TA' ? 'task' : task.asttip === 'MA' ? 'material' : 'announcement'}`}>
-                                                        {task.asttip === 'TA' ? 'TAREA' : task.asttip === 'MA' ? 'MATERIAL' : 'ENUNCIADO'}
-                                                    </h4>
-                                                    <span>Entrega: {task.astfecfin}</span>
-                                                </div>
-                                                <h2 className='title-task'>{task.astnomtrabajo}</h2>
-                                                <span>Publicado: {task.astfecini}</span>
-                                            </header>
-                                        </div>
-                                        <div className="content-right-card-task">
-                                            <span className='circle-green'></span>
-                                            <span>{task.total_entregas}</span>
-                                            <BellIcon />
-                                            <button>
-                                                Ver
-                                                <EyeIcon />
-                                            </button>
-                                        </div>
-                                    </li>
-                                ))}
+                                {filterListTasks.length > 0 
+                                    ? filterListTasks.map(task => (<CardTaskDetailsDocent key={task.astid} task={task} />))
+                                    : infoClass.listTasks.map(task => (<CardTaskDetailsDocent key={task.astid} task={task} />))
+                                }
                             </ul>
                         </div>
                         <div className="content-right-class-details-docent">
                             <section className="buttons-asist-students">
-                                <button>
+                                <button className='button-asist'>
                                     <UserCheckIcon />
                                     Asistencia
                                 </button>
-                                <button>
+                                <button className='button-students'>
                                     <UsersIcon />
                                     Estudiantes
                                 </button>
                             </section>
                             <section className="chart-progress-class">
-                                <h3>Progreso del curso</h3>
+                                <h4>Progreso de la asignatura</h4>
                                 <CircleChart 
                                     endValue={100} 
                                     value={infoClass.progress} 
                                     color={"0ea5e9"}
                                     additionalText='%'
                                 />
+                                <p style={{color: '#8c919c', fontSize: '14px', textAlign: 'center'}}>
+                                    No olvides recordarle a tus estudiantes entregar su tarea
+                                </p>
                             </section>
                         </div>
                     </section>

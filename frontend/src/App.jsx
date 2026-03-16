@@ -11,6 +11,7 @@ import { ClassDetails } from './pages/student/ClassDetails.jsx'
 import { CircleChart } from './components/common/charts/CircleChart.jsx'
 import { ClassesDocent } from './pages/docent/ClassesDocent.jsx'
 import { ClassDetailsDocent } from './pages/docent/ClassDetailsDocent.jsx'
+import { CreateTask } from './pages/docent/CreateTask.jsx'
 
 function Unauthorized() {
   return (
@@ -64,8 +65,9 @@ function App() {
                   <Route path='dashboard' element={<TeacherDashboard />} />
                   <Route path='cursos' element={<ClassesDocent />} />
                   <Route path='cursos/:asgcod' element={<ClassDetailsDocent />} />
-                  {/* <Route path='cursos' element={<TeacherClasses />} />
-                  <Route path='cursos/:asgcod' element={<TeacherClassDetails />} /> */}
+                  <Route path='cursos/:asgcod/create-task' element={<CreateTask />} />
+                  {/* <Route path='cursos/:asgcod/create-material' element={<CreateMaterial />} />
+                  <Route path='cursos/:asgcod/create-announcement' element={<CreateAnnouncement />} /> */}
                 </Routes>
               </RoleBasedRoute>
             }

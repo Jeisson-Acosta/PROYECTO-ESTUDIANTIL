@@ -8,7 +8,10 @@
 
 .content-class-details-docent {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: 
+        "content-left content-right"
+    ;
     gap: 20px;
     width: 100%;
     margin-top: 20px;
@@ -16,7 +19,9 @@
 
 .content-left-class-details-docent {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    grid-area: content-left;
+    gap: 16px;
     & .quantity-items-list {
         width: fit-content;
         background-color: #e5e7eb;
@@ -67,5 +72,81 @@
                 fill: #ffffff;
             }
         }
+    }
+}
+
+.content-left-class-details-docent .list-tasks-class-docent {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.content-right-class-details-docent {
+    grid-area: content-right;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    & .buttons-asist-students {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        align-items: center;
+        & button {
+            flex: 1;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 22px;
+            background-color: #ffffff;
+            border: none;
+            outline: none;
+            gap: 6px;
+            border-radius: 12px;
+            font-family: fontSubtitles;
+            transition: all 0.3s ease;
+            &:hover {
+                background-color: #e4e4e4;
+            }
+            & svg {
+                width: 28px;
+                height: 28px;
+                padding: 4px;
+                border-radius: 50%;
+            }
+        }
+        & .button-asist svg {
+            background-color: #ffedd5;
+        }
+        & .button-students svg {
+            background-color: #e6f6fd;
+        }
+    }
+}
+
+.content-right-class-details-docent .chart-progress-class {
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 18px;
+    & h4 {
+        font-family: fontSubtitles;
+    }
+    & svg {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-class-details-docent {
+        grid-template-areas: 
+        "content-right"
+        "content-left";
     }
 }
