@@ -1,9 +1,5 @@
 // ==================== STYLES ====================
-import "../../styles/docent/CreateTask.css"
-// ================================================
-
-// ==================== HOOKS ====================
-import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
+// import "../../styles/docent/CreateTask.css"
 // ================================================
 
 // ==================== COMPONENTS ====================
@@ -11,22 +7,23 @@ import { HeaderFormCreateResource } from "../../components/docent/HeaderFormCrea
 import { FormFieldsCreateResource } from "../../components/docent/FormFieldsCreateResource.jsx"
 // ====================================================
 
-// ==================== UTILS ====================
+// ==================== HOOKS ====================
+import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
 // ================================================
 
-export function CreateTask() {
+export function CreateAnnouncement() {
 
     const { currentClass } = useCurrentClass()
 
     return (
         <section className="general-container-form-create-resource">
             <HeaderFormCreateResource 
-                titleHeader={'Crear Nueva Tarea'}
-                typeResource={'TA'}
+                titleHeader={'Crear Nuevo Anuncio'}
+                typeResource={'EN'}
                 nameClass={currentClass.asgnom}
              />
             <FormFieldsCreateResource
-                typeResource={'TA'}
+                typeResource={'EN'}
              />
         </section>
     )

@@ -1,17 +1,26 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+// ==================== PAGES ====================
+import { ClassesDocent } from './pages/docent/ClassesDocent.jsx'
+import { ClassDetailsDocent } from './pages/docent/ClassDetailsDocent.jsx'
+import { CreateTask } from './pages/docent/CreateTask.jsx'
+import { CreateMaterial } from './pages/docent/CreateMaterial.jsx'
+import { CreateAnnouncement } from './pages/docent/CreateAnnouncement.jsx'
+import { Classes } from './pages/student/Classes.jsx'
+import { ClassDetails } from './pages/student/ClassDetails.jsx'
+// ================================================
+
+// ==================== COMPONENTS ====================
 import { Toaster } from 'react-hot-toast'
 import { Login } from './components/auth/Login.jsx'
 import { Register } from './components/auth/Register.jsx'
 import { Layout } from './components/common/Layout.jsx'
 import { RoleBasedRoute } from './routes/RoleBasedRoute.jsx'
 import { RoleBasedRedirect } from './components/RoleBasedRedirect.jsx'
-import { Classes } from './pages/student/Classes.jsx'
-import { ClassDetails } from './pages/student/ClassDetails.jsx'
 import { CircleChart } from './components/common/charts/CircleChart.jsx'
-import { ClassesDocent } from './pages/docent/ClassesDocent.jsx'
-import { ClassDetailsDocent } from './pages/docent/ClassDetailsDocent.jsx'
-import { CreateTask } from './pages/docent/CreateTask.jsx'
+// ====================================================
+
 
 function Unauthorized() {
   return (
@@ -66,8 +75,8 @@ function App() {
                   <Route path='cursos' element={<ClassesDocent />} />
                   <Route path='cursos/:asgcod' element={<ClassDetailsDocent />} />
                   <Route path='cursos/:asgcod/create-task' element={<CreateTask />} />
-                  {/* <Route path='cursos/:asgcod/create-material' element={<CreateMaterial />} />
-                  <Route path='cursos/:asgcod/create-announcement' element={<CreateAnnouncement />} /> */}
+                  <Route path='cursos/:asgcod/create-material' element={<CreateMaterial />} />
+                  <Route path='cursos/:asgcod/create-announcement' element={<CreateAnnouncement />} />
                 </Routes>
               </RoleBasedRoute>
             }
