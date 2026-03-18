@@ -87,12 +87,13 @@ export class AuthModel {
     }
     // backend/src/models/auth.js
 
-    static async getUserById(id) {
+    static async getUserInfoByEmail(email) {
         try {
-            const result = await manageDB();
-            return result.data;
+            const result = await manageDB('sp_auth_login_user', [email]);
+            if (!result.ok) { throw new Error(result.message) }
+            return result;
         } catch (error) {
-            console.error('Error en getUserById:', error);
+            console.error('Error en getUserInfoByEmail:', error);
             throw error;
         }
     }

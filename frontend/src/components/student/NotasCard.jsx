@@ -36,15 +36,17 @@ export function NotasCard({ titulo, tarea, calificacion, color, color_nota }) {
     }
     
     const gradeStyle = {
-        backgroundColor: colorFinal,
-        color: '#ffffff',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: '5px',
-        fontSize: '12px',
-        fontFamily: 'fontTitlesBold',
-        padding: '2px',
+     backgroundColor: colorFinal,
+    color: '#1a365d',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '5px',
+    fontSize: '14px', // Reducido de 16px a 14px
+    padding: '2px 4px',
+    fontFamily: 'fontTitlesBold', // Agregar la fuente aquí
+    width: '40px',
+    height: '20px',
     };
     
     const circleStyle = {
@@ -53,13 +55,13 @@ export function NotasCard({ titulo, tarea, calificacion, color, color_nota }) {
         height: '30px',
         borderRadius: '50%',
         display: 'flex',
-        justifyContent: 'center',  // Cambiado a 'center'
-        alignItems: 'center',      // Cambiado a 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
     };
     
     return (
         <div className="notas-card">
-            <div className="materia-imagen" style={circleStyle}>  {/* Cambiado classname a className */}
+            <div className="materia-imagen" style={circleStyle}>
                 {/* Aquí puedes poner contenido si quieres, como iniciales de la materia */}
             </div>
             <div className="info-materia">  {/* Cambiado de "info-" a "info-materia" */}
@@ -67,7 +69,7 @@ export function NotasCard({ titulo, tarea, calificacion, color, color_nota }) {
                 <p className="tarea">{tarea}</p>
             </div>
             <div className="grade-note" style={gradeStyle}>
-                <p className="calificacion" style={{ margin: 0 }}>{calificacion}</p>
+                <p className="calificacion" style={{ margin: 0 }}> {typeof calificacion === 'number' ? calificacion.toFixed(1) : calificacion}</p>
             </div>
         </div>
     );

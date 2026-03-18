@@ -1,0 +1,226 @@
+.contenido-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    padding: 20px;
+}
+
+.tarea-parametros {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    gap: 200px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tarea-parametros h3 {
+    font-size: 16px;
+    font-family: fontMain;
+    color: #afafaf;
+}
+
+.tarea-parametros p {
+    font-size: 16px;
+    font-family: fontSubtitles;
+    color: #000000;
+}
+
+.tarea-parametros .parametro-entrega {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+}
+
+.parametro-entrega .parametro-entrega-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+}
+
+.tarea-parametros .parametro-puntaje {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+}
+
+.parametro-puntaje .parametro-puntaje-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+}
+
+.tarea-parametros .parametro-modulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+}
+
+.parametro-modulo .parametro-modulo-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+
+}
+
+.iconos-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+}
+
+.icono-info-enunciado {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 20%;
+    height: 100%;
+    padding: 10px;
+    background-color: #dfdfdf;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icono-info-materia {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 20%;
+    height: 100%;
+    padding: 10px;
+    background-color: #dfdfdf;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 70%;
+    height: 100%;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card-info-titulo h3 {
+    font-size: 30px;
+    font-family: fontTitlesBold;
+    color: #000000;
+}
+
+.card-info-descripcion p {
+    font-size: 16px;
+    font-family: fontSubtitles;
+    color: #000000;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-enunciado-comentarios {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.comentario-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.comentario-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    gap: 5px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comentario-info-text-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+}
+
+.comentario-info-text-header h3 {
+    font-size: 16px;
+    font-family: fontMain;
+    color: #000000;
+}
+
+.comentario-info-text-header p {
+    font-size: 16px;
+    font-family: fontSubtitles;
+    color: #000000;
+}
