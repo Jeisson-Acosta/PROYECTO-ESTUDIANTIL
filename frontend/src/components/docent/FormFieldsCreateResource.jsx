@@ -1,3 +1,7 @@
+// ==================== HOOKS ====================
+import { useEffect, useState } from "react"
+// ================================================
+
 // ==================== STYLES ====================
 import "../../styles/docent/FormFieldsCreateResource.css"
 // ================================================
@@ -7,6 +11,35 @@ import { FileUploadIcon, SendIcon } from "../common/GeneralIcons.jsx"
 // ====================================================
 
 export function FormFieldsCreateResource({ typeResource }) {
+    const [infoResource, setInfoResource] = useState({
+        title: '',
+        category: null,
+        description: '',
+        file: null,
+        date: null,
+        hour: null,
+        points: null,
+        publishImmediately: false,
+        lateDeliveries: false
+    })
+
+    // ESTO ES PARA CAMBIAR EL COLOR DEL BORDE DEL INPUT SEGÚN EL TIPO DE RECURSO
+    useEffect(() => {
+        document.querySelectorAll('.field-action').forEach(field => {
+            const colorBorderForType = {
+                'TA': '#34d399',
+                'MA': '#60a5fa',
+                'EN': '#94a3b8'
+            }
+            field.addEventListener('focus', () => {
+                field.style.border = `2px solid ${colorBorderForType[typeResource]}`
+            })
+            field.addEventListener('blur', () => {
+                field.style.border = '2px solid #f1f5f9'
+            })
+        })
+    }, [typeResource])
+
     return (
         <section className="fields-form-create-resource">
             <section style={{display: 'flex', justifyContent: 'space-between', gap: '1rem'}}>
@@ -22,8 +55,10 @@ export function FormFieldsCreateResource({ typeResource }) {
                     <input 
                         type="text" 
                         id="title-resource" 
-                        name=""
+                        name="title"
                         placeholder="EJ: Investigación sobre..."
+                        className="field-action"
+                        value={infoResource.title}
                     />
                 </div>
                 {typeResource === 'MA' && (
@@ -31,8 +66,11 @@ export function FormFieldsCreateResource({ typeResource }) {
                         <label htmlFor="category">
                             CATEGORÍA
                         </label>
-                        <select name="" id="category">
-                            <option value="">Seleccionar</option>
+                        <select name="category" id="category" className="field-action" value={infoResource.category}>
+                            <option value={null} disabled selected>Seleccionar</option>
+                            <option value="A">Archivo</option>
+                            <option value="L">Link</option>
+                            <option value="AM">Ambos</option>
                         </select>
                     </div>
                 )}
@@ -47,7 +85,6 @@ export function FormFieldsCreateResource({ typeResource }) {
                     }
                 </label>
                 <textarea 
-                    name="" 
                     id="instructions-resource"
                     placeholder={typeResource === 'TA'
                         ? "Describe los requisitos de la tarea..."
@@ -55,6 +92,9 @@ export function FormFieldsCreateResource({ typeResource }) {
                             ? "Añade instrucciones o una breve descripción para tus estudiantes..."
                             : "Escribe tu mensaje aqui..."
                     }
+                    className="field-action"
+                    name="description"
+                    value={infoResource.description}
                 ></textarea>
             </div>
             {typeResource === 'TA' && (
@@ -63,19 +103,37 @@ export function FormFieldsCreateResource({ typeResource }) {
                         <label htmlFor="limit-date">
                             FECHA LIMITE
                         </label>
-                        <input type="date" name="" id="limit-date" />
+                        <input 
+                            type="date" 
+                            name="date" 
+                            id="limit-date" 
+                            className="field-action"
+                            value={infoResource.date}
+                        />
                     </div>
                     <div className="field">
                         <label htmlFor="hour-limit">
                             HORA
                         </label>
-                        <input type="time" name="" id="hour-limit" />
+                        <input 
+                            type="time" 
+                            name="hour" 
+                            id="hour-limit" 
+                            className="field-action"
+                            value={infoResource.hour}
+                        />
                     </div>
                     <div className="field">
                         <label htmlFor="points">
                             PUNTAJE
                         </label>
-                        <input type="number" name="" id="points" />
+                        <input 
+                            type="number" 
+                            name="points" 
+                            id="points" 
+                            className="field-action"
+                            value={infoResource.points}
+                        />
                     </div>
                 </div>
             )}
@@ -85,18 +143,27 @@ export function FormFieldsCreateResource({ typeResource }) {
                 </label>
                 <input 
                     type="file" 
-                    name="" 
+                    name="file" 
                     id="attachments" 
                     style={{display: 'none'}}
+                    className="field-action"
+                    value={infoResource.file}
                 />
                 <section className="container-to-upload-file">
-                    <div className="container-icon-upload">
-                        <FileUploadIcon />
+                    <div className="container-file-selected">                        
+                        <div className="container-icon-upload">
+                            <FileUploadIcon />
+                        </div>
+                        <div className="container-text-upload">
+                            <h2>Subir archivos complementarios</h2>
+                            <p>Arrastra y suelta archivos aquí o haz clic para seleccionarlos.</p>
+                        </div>
                     </div>
-                    <div className="container-text-upload">
-                        <h2>Subir archivos complementarios</h2>
-                        <p>Arrastra y suelta archivos aquí o haz clic para seleccionarlos.</p>
-                    </div>
+                    {(typeResource === 'MA' || typeResource === 'TA') && infoResource.category === 'L' && (
+                        <div className="container anchors-web">
+                            <h3>ENLACES WEB</h3>
+                        </div>
+                    )}
                 </section>
             </div>
             {typeResource === 'TA' && (
@@ -107,7 +174,11 @@ export function FormFieldsCreateResource({ typeResource }) {
                             <p>Visible para todos los estudiantes</p>
                         </div>
                         <label className="container-switch">
-                            <input type="checkbox" name="" id="" />
+                            <input 
+                                type="checkbox" 
+                                name="publishImmediately" 
+                                id="publishImmediately"
+                            />
                             <span className="slider-switch"></span>
                         </label>
                     </div>
@@ -117,7 +188,11 @@ export function FormFieldsCreateResource({ typeResource }) {
                             <p>Permitir envios después del plazo</p>
                         </div>
                         <label className="container-switch">
-                            <input type="checkbox" name="" id="" />
+                            <input 
+                                type="checkbox" 
+                                name="lateDeliveries" 
+                                id="lateDeliveries"
+                            />
                             <span className="slider-switch"></span>
                         </label>
                     </div>

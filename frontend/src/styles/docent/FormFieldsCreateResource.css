@@ -26,9 +26,9 @@
             font-size: 14px;
             background-color: #f8fafc;
             outline: none;
-            &:focus {
+            /* &:focus {
                 border-color: #34d399;
-            }
+            } */
         }
         & textarea {
             resize: none;
@@ -47,14 +47,23 @@
     }
 
     & .container-to-upload-file {
-        background-color: #f8fafc;
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
-        padding: 4rem;
-        border-radius: 12px;
-        border: 2px dashed #f1f5f9;
+        /* flex-direction: column; */
+        /* padding: 4rem; */
+        /* border-radius: 12px; */
+        & .container-file-selected {
+            flex: 1;
+            border: 2px dashed #f1f5f9;
+            background-color: #f8fafc;
+            padding: 4rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
         & .container-icon-upload {
             display: flex;
             justify-content: center;
