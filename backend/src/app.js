@@ -11,7 +11,10 @@ import { docentRouter } from "./routes/docent.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { tokenMiddleware } from "./middlewares/tokenMiddleware.js";
+import dotenv from "dotenv";
 // ===================================================
+
+dotenv.config();
 
 const app = express();
 
@@ -33,6 +36,6 @@ app.use("/auth", authRouter);
 app.use("/student", tokenMiddleware, studentRouter);
 app.use("/docent", tokenMiddleware, docentRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on: http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on: http://localhost:${process.env.PORT}`);
 });
