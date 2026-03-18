@@ -1,0 +1,212 @@
+// ==================== HOOKS ====================
+import { useEffect, useState } from "react"
+// ================================================
+
+// ==================== STYLES ====================
+import "../../styles/docent/FormFieldsCreateResource.css"
+// ================================================
+
+// ==================== COMPONENTS ====================
+import { FileUploadIcon, SendIcon } from "../common/GeneralIcons.jsx"
+// ====================================================
+
+export function FormFieldsCreateResource({ typeResource }) {
+    const [infoResource, setInfoResource] = useState({
+        title: '',
+        category: null,
+        description: '',
+        file: null,
+        date: null,
+        hour: null,
+        points: null,
+        publishImmediately: false,
+        lateDeliveries: false
+    })
+
+    // ESTO ES PARA CAMBIAR EL COLOR DEL BORDE DEL INPUT SEGÚN EL TIPO DE RECURSO
+    useEffect(() => {
+        document.querySelectorAll('.field-action').forEach(field => {
+            const colorBorderForType = {
+                'TA': '#34d399',
+                'MA': '#60a5fa',
+                'EN': '#94a3b8'
+            }
+            field.addEventListener('focus', () => {
+                field.style.border = `2px solid ${colorBorderForType[typeResource]}`
+            })
+            field.addEventListener('blur', () => {
+                field.style.border = '2px solid #f1f5f9'
+            })
+        })
+    }, [typeResource])
+
+    return (
+        <section className="fields-form-create-resource">
+            <section style={{display: 'flex', justifyContent: 'space-between', gap: '1rem'}}>
+                <div className="field">
+                    <label htmlFor="title-resource">
+                        TÍTULO {typeResource === 'TA' 
+                        ? 'DE LA TAREA'
+                        : typeResource === 'MA'
+                            ? 'DEL MATERIAL'
+                            : 'DEL ANUNCIO'
+                    }
+                    </label>
+                    <input 
+                        type="text" 
+                        id="title-resource" 
+                        name="title"
+                        placeholder="EJ: Investigación sobre..."
+                        className="field-action"
+                        value={infoResource.title}
+                    />
+                </div>
+                {typeResource === 'MA' && (
+                    <div className="field">
+                        <label htmlFor="category">
+                            CATEGORÍA
+                        </label>
+                        <select name="category" id="category" className="field-action" value={infoResource.category}>
+                            <option value={null} disabled selected>Seleccionar</option>
+                            <option value="A">Archivo</option>
+                            <option value="L">Link</option>
+                            <option value="AM">Ambos</option>
+                        </select>
+                    </div>
+                )}
+            </section>
+            <div className="field">
+                <label htmlFor="instructions-resource">
+                    {typeResource === 'TA'
+                        ? "INSTRUCCIONES"
+                        : typeResource === 'MA'
+                            ? "DESCRIPCIÓN DEL RECURSO"
+                            : "MENSAJE"
+                    }
+                </label>
+                <textarea 
+                    id="instructions-resource"
+                    placeholder={typeResource === 'TA'
+                        ? "Describe los requisitos de la tarea..."
+                        : typeResource === 'MA'
+                            ? "Añade instrucciones o una breve descripción para tus estudiantes..."
+                            : "Escribe tu mensaje aqui..."
+                    }
+                    className="field-action"
+                    name="description"
+                    value={infoResource.description}
+                ></textarea>
+            </div>
+            {typeResource === 'TA' && (
+                <div className="fields-dates">
+                    <div className="field">
+                        <label htmlFor="limit-date">
+                            FECHA LIMITE
+                        </label>
+                        <input 
+                            type="date" 
+                            name="date" 
+                            id="limit-date" 
+                            className="field-action"
+                            value={infoResource.date}
+                        />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="hour-limit">
+                            HORA
+                        </label>
+                        <input 
+                            type="time" 
+                            name="hour" 
+                            id="hour-limit" 
+                            className="field-action"
+                            value={infoResource.hour}
+                        />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="points">
+                            PUNTAJE
+                        </label>
+                        <input 
+                            type="number" 
+                            name="points" 
+                            id="points" 
+                            className="field-action"
+                            value={infoResource.points}
+                        />
+                    </div>
+                </div>
+            )}
+            <div className="field">
+                <label htmlFor="attachments">
+                    RECURSOS ADJUNTOS
+                </label>
+                <input 
+                    type="file" 
+                    name="file" 
+                    id="attachments" 
+                    style={{display: 'none'}}
+                    className="field-action"
+                    value={infoResource.file}
+                />
+                <section className="container-to-upload-file">
+                    <div className="container-file-selected">                        
+                        <div className="container-icon-upload">
+                            <FileUploadIcon />
+                        </div>
+                        <div className="container-text-upload">
+                            <h2>Subir archivos complementarios</h2>
+                            <p>Arrastra y suelta archivos aquí o haz clic para seleccionarlos.</p>
+                        </div>
+                    </div>
+                    {(typeResource === 'MA' || typeResource === 'TA') && infoResource.category === 'L' && (
+                        <div className="container anchors-web">
+                            <h3>ENLACES WEB</h3>
+                        </div>
+                    )}
+                </section>
+            </div>
+            {typeResource === 'TA' && (
+                <section className="container-switches-options">
+                    <div className="switch">
+                        <div>
+                            <h3>Publicar inmediatamente</h3>
+                            <p>Visible para todos los estudiantes</p>
+                        </div>
+                        <label className="container-switch">
+                            <input 
+                                type="checkbox" 
+                                name="publishImmediately" 
+                                id="publishImmediately"
+                            />
+                            <span className="slider-switch"></span>
+                        </label>
+                    </div>
+                    <div className="switch">
+                        <div>
+                            <h3>Entregas tardías</h3>
+                            <p>Permitir envios después del plazo</p>
+                        </div>
+                        <label className="container-switch">
+                            <input 
+                                type="checkbox" 
+                                name="lateDeliveries" 
+                                id="lateDeliveries"
+                            />
+                            <span className="slider-switch"></span>
+                        </label>
+                    </div>
+                </section>
+            )}
+            <section className="container-buttons-actions">
+                <button className="btn-discart">
+                    Descartar
+                </button>
+                <button className="btn-create">
+                    Crear {typeResource === 'TA' ? 'Tarea' : typeResource === 'MA' ? 'Material' : 'Anuncio'}
+                    <SendIcon />
+                </button>
+            </section>
+        </section>
+    )
+}

@@ -4,12 +4,15 @@ import './index.css'
 import App from './App'
 import { ResponseDBProvider } from './context/reponseDB.jsx'
 import { UserLoginProvider } from './context/userLogin.jsx'
+import { CurrentClassProvider } from './context/docent/currentClass.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <ResponseDBProvider>
       <UserLoginProvider>
-        <App />
+        <CurrentClassProvider>
+          <App />
+        </CurrentClassProvider>
       </UserLoginProvider>
     </ResponseDBProvider>
   </BrowserRouter>

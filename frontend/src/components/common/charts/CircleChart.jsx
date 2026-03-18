@@ -3,11 +3,12 @@ import { useDrawingArea } from "@mui/x-charts/hooks";
 import { PieChart } from "@mui/x-charts/PieChart";
 
 // Componente para generar dinamicamente un <PieChart>.
-export function CircleChart({ endValue, value, labelCenter, color, colorBlank = 'e5e7eb' }) {
+export function CircleChart({ endValue, value, labelCenter, color, additionalText = '', colorBlank = 'e5e7eb' }) {
     /* 
         endValue: Valor final en el que llega la grafica. EJ: Si se califica de 1 a 5 entonces sería 5.
         value: Valor que se va a poner en medio del grafico y que sirve para restar para saber cuanto falta.
         labelCenter: Titulo corto que va dentro del grafico.
+        additionalText: Texto adicional que se muestra al lado del valor central.
         color: Color de relleno del grafico.
         colorBlank: Color que se usa para lo que aún no esta completado del relleno. Por defecto es un grisoso.
     */
@@ -27,6 +28,7 @@ export function CircleChart({ endValue, value, labelCenter, color, colorBlank = 
                 <>
                     <strong style={{ fontSize: "28px", fontFamily: "fontTitlesBold" }}>
                         {nota}
+                        {additionalText}
                     </strong>
                     <br />
                     <span style={{ fontSize: "14px" }}>{labelCenter}</span>

@@ -1,17 +1,21 @@
 import '../../styles/student/CardClass.css'
 import * as Backgrounds from '../../components/common/BackgroundsClasses.jsx'
-import { UserIcon } from '../common/GeneralIcons';
+import { ArrowRightIcon, UserIcon } from '../common/GeneralIcons';
 import { getIconUrl } from '../../utils/getIconUrl.js';
-
-
+import { useNavigate } from 'react-router-dom';
 
 export function CardClass({ classItem }) {
     const { iconName, backgroundName } = classItem.ascvis_config
     const BackgroundComponent = Backgrounds['Background' + backgroundName]
+    const navigate = useNavigate()
+
+    const handleClickNavigateClass = (asgcod) => {
+        navigate(`/student/cursos/${asgcod}`, { replace: true })
+    }
 
     return (
         <li key={classItem.asgid} className="class-card">
-        <header className="header-class">
+        <header className="header-class-card">
             <div className="background-wrapper">
             {BackgroundComponent && <BackgroundComponent />}
             </div>
@@ -29,7 +33,10 @@ export function CardClass({ classItem }) {
         <section className="content-class">
             <h4>{classItem.asgnom}</h4>
             <p>Prof. {classItem.usunom}</p>
-            <button>Ver clase</button>
+            <button onClick={() => handleClickNavigateClass(classItem.asgcod)}>
+                Ver clase
+                <ArrowRightIcon />
+            </button>
         </section>
         </li>
     );

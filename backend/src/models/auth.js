@@ -64,7 +64,7 @@ export class AuthModel {
         if (!passwordInDB.ok) { 
             passwordInDB.message = "Contraseña incorrecta"
             return passwordInDB
-         }
+        }
 
         // Comparar la contraseña con la escribio el usuario y la que esta en la DB
         const isPasswordValid = await bcrypt.compare(usupwd, passwordInDB.data.usupwd)

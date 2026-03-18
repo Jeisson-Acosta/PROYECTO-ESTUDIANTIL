@@ -16,9 +16,9 @@ export function UpcomingDelivery({ delivery }) {
                     <h4 className="title-task">{delivery.astnomtrabajo}</h4>
                     <div className="info-overdue-delivery">
                         <CalendarIcon />
-                        <span className="date-overdue">{delivery.astfecfin}</span>
+                        <span className="date-overdue">{delivery.astfecfin_concat}</span>
                         <AlarmIcon />
-                        <span>Faltan 2 horas</span>
+                        <span>{delivery.astfecfin_time_delivery}</span>
                     </div>
                 </div>
             </div>
