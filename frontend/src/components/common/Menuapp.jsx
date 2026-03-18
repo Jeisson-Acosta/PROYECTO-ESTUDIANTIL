@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom"
 import { useContext } from 'react'
 import { UserLoginContext } from '../../context/userLogin.jsx'
 import {ButtonCommon } from "./ButtonCommon.jsx"
+import { UserIcon } from './GeneralIcons.jsx'
 
 function CardPlanUser(){
     return(
@@ -14,8 +15,8 @@ function CardPlanUser(){
                     </div>
 
                     <div className="info-plan-user">
-                        <h5>Plan Pro</h5>
-                        <p>Educacion avanzada</p>
+                        <h5 className="text-module">Plan Pro</h5>
+                        <p className="text-module">Educacion avanzada</p>
                     </div>
                 </header>
 
@@ -27,8 +28,8 @@ function CardPlanUser(){
 export function MenuApp() {
     const { userLogin } = useContext(UserLoginContext)
     if (!userLogin) return null
+    console.log(userLogin)
     const COMPLEMENTED_URL = userLogin.rolcod === 'EST' ? 'student' : userLogin.rolcod === 'DOC' ? 'docent' : 'rector'
-    
     return (
         <section className="principal-container-menu">
             <header className="header-menu">
@@ -59,8 +60,8 @@ export function MenuApp() {
                                 <IconClipboard />
                                 <span className="text-module">Tareas</span>
                             </div>
-                            <span 
-                                className="counter-quantity-tasks" 
+                            <span
+                                className="counter-quantity-tasks"
                                 style={{display: 'none'}}
                             >
                                 5
@@ -84,6 +85,17 @@ export function MenuApp() {
             </nav>
         <CardPlanUser/>
         <footer className="footer-menu-app">
+
+            <section className='container-user-profile'>
+                <div className='photo-user'>
+                   <UserIcon/>
+                </div>
+
+                <div className='info-user'>
+                    <h4 className="text-module">{userLogin.usunom}</h4>
+                    <p className="text-module">{userLogin.rolnom}</p>
+                </div>
+            </section>
            <ButtonCommon text="Configuracion" icon={<IconConfig/>}/>
            <ButtonCommon text="Cerrar Sesión" colorText="c78790" icon={<IconSesion/>}/>
         </footer>

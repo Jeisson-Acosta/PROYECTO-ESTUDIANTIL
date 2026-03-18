@@ -90,25 +90,6 @@
 .footer-menu-app .btn-logout{
     color:
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .container-plan-user{
     padding: 12px;
     display: flex;
@@ -147,7 +128,29 @@
 .container-plan-user button{
     background-color:#7db0d2;
     width:100%;
-    justify-content:center;    
+    justify-content:center;
 }
+.container-user-profile{
+    display: flex;
+    gap:12px;
 
-
+}
+.container-user-profile .photo-user{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #4183f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-user-profile .photo-user svg{
+    stroke: #000000;
+    width: 30px;
+    height: 30px;
+}
+.container-user-profile .info-user p{
+    opacity: 0.7; /*para opacar el texto*/
+    font-size: 13px;
+}
