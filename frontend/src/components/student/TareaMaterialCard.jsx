@@ -9,7 +9,6 @@ export function ContenidoCard({ tipo }) {
   return (
     <div className="contenido-card">
           <div className='card-info-container'>
-      {/* SECCIÓN 1: PARÁMETROS (tarea y material) */}
       {(tipo === 'tarea' || tipo === 'material') && (
         <>
           <h1>Ecuaciones Cuadraticas</h1>
@@ -46,12 +45,7 @@ export function ContenidoCard({ tipo }) {
           </div>
         </>
       )}
-      
-      {/* SECCIÓN 2: PESTAÑAS (solo enunciado) */}
-     
-      
-      {/* SECCIÓN 3: TÍTULO Y DESCRIPCIÓN (TODOS los tipos) */}
-
+      <div className='card-info-principal'>
       <div className='card-info'>
        {tipo === 'enunciado' && (
         <div className='iconos-info'>
@@ -63,15 +57,67 @@ export function ContenidoCard({ tipo }) {
           </div>
         </div>
       )}
+      
       <div className='card-info-titulo'>
         <h3>Título</h3>
+        {tipo === 'enunciado' && (
+        <div className='card-info-profesor'>
+         <div className='card-info-profesor-icon'></div>
+         <div className='card-info-profesor-nombre'>
+           <h4>Nombre</h4>
+         </div>
+        </div>
+      )}
       </div>
       <div className='card-info-descripcion'>
         <p>Descripción</p>
       </div>
       </div>
-      
-      {/* SECCIÓN 4: COMENTARIOS (solo enunciado) */}
+    
+        {(tipo === 'tarea' || tipo === 'material') && (
+  <div className='card-contenido-extra'>
+    <div className='contenido-extra-recursos'>
+      <div className='recurso-item-titulo'>
+        <h3>Archivos Adjuntos</h3>
+      </div>
+      <div className='recursos-lista'>
+        <div className='recurso-item'>
+          <div className='recurso-item-icon'></div>
+          <div className='recurso-item-text'>
+            <h3>Nombre del archivo</h3>
+            <p>Tamaño del archivo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {tipo === 'tarea' && (
+   <div className='entrega-seccion-completa'>
+  {/* Título fuera del contenedor pero en el mismo padre */}
+  <div className='entrega-info-titulo'>
+    <h3>Tu entrega</h3>
+    <p>entrega tu trabajo antes de la fecha indicada</p>
+  </div>
+  
+  {/* Contenedor con el contenido */}
+  <div className='contenido-extra-entrega'>
+    <div className='entrega-info-subir-archivo'>
+      <button className='entrega-info-subir-archivo-btn'>
+        <div className='entrega-info-subir-archivo-icon'></div>
+        <div className='entrega-info-subir-archivo-text'>
+          <h3>haz click para subir</h3>
+          <p>o arrastra y suelta el archivo</p>
+          <p>max 100mb</p>
+        </div>
+      </button>
+    </div>
+    <button className='entrega-tarea'>Entregar tarea</button>
+  </div>
+</div>
+    )}
+    
+  </div>
+)}
+</div>
       {tipo === 'enunciado' && (
         <div className='card-enunciado-comentarios'>
           <h3>Comentarios</h3>
@@ -88,47 +134,12 @@ export function ContenidoCard({ tipo }) {
           </div>
         </div>
       )}
+    
       </div>
       
-      {/* SECCIÓN 5: RECURSOS (tarea y material) */}
-      {(tipo === 'tarea' || tipo === 'material') && (
-        <div className='card-contenido-extra'>
-          <div className='contenido-extra-recursos'>
-            <h3>Archivos Adjuntos</h3>
-            <div className='recursos-lista'>
-              <div className='recurso-item'>
-                <div className='recurso-item-icon'></div>
-                <div className='recurso-item-text'>
-                  <h3>Nombre del archivo</h3>
-                  <p>Tamaño del archivo</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+
       
-      {/* SECCIÓN 6: ENTREGA (solo tarea) */}
-      {tipo === 'tarea' && (
-        <div className='card-contenido-extra'>
-          <div className='contenido-extra-entrega'>
-            <div className='entrega-info-titulo'>
-              <h3>Tu entrega</h3>
-              <p>entrega tu trabajo antes de la fecha indicada</p>
-            </div>
-            <div className='entrega-info-subir-archivo'>
-              <button>
-                <div className='entrega-info-subir-archivo-icon'></div>
-                <div className='entrega-info-subir-archivo-text'>
-                  <h3>Nombre del archivo</h3>
-                  <p>Tamaño del archivo</p>
-                </div>
-              </button>
-            </div>
-            <button className='entrega-tarea'>Entregar tarea</button>
-          </div>
-        </div>
-      )}
+     
       
       
     </div>
