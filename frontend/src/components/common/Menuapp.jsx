@@ -28,8 +28,9 @@ function CardPlanUser(){
 export function MenuApp() {
     const { userLogin } = useContext(UserLoginContext)
     if (!userLogin) return null
-    console.log(userLogin)
+
     const COMPLEMENTED_URL = userLogin.rolcod === 'EST' ? 'student' : userLogin.rolcod === 'DOC' ? 'docent' : 'rector'
+    
     return (
         <section className="principal-container-menu">
             <header className="header-menu">

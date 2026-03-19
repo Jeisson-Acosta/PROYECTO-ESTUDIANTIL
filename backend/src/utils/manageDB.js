@@ -1,4 +1,8 @@
 import mysql from 'mysql2/promise'
+import dotenv from "dotenv";
+
+dotenv.config({ path: '../.env' });
+
 
 // La configuración de la DB
 /* const DEFAULT_CONFIG = {
@@ -18,7 +22,7 @@ const DEFAULT_CONFIG = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     connectionLimit: 10, // Maximo de conexiones simultaneas
-}
+}   
 
 // Esta funcion nos permite ejecutar cualquier SP de la base de datos.
 export async function manageDB(nameSP, params, query = '', option = 'SP') {

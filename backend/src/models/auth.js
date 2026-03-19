@@ -55,6 +55,7 @@ export class AuthModel {
         } = input
 
         const existedUser = await manageDB(null, [usuemail], 'SELECT usuemail FROM tbl_usuario WHERE usuemail = ?', 'SL')
+        console.log(existedUser)
         if (!existedUser.ok) { 
             existedUser.message = "Usuario no encontrado"
             return existedUser

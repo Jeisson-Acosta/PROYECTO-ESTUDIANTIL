@@ -14,7 +14,7 @@ import { tokenMiddleware } from "./middlewares/tokenMiddleware.js";
 import dotenv from "dotenv";
 // ===================================================
 
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
 const app = express();
 
@@ -22,12 +22,29 @@ const app = express();
 const PORT = process.env.PORT ?? 3000;
 
 // Permite peticiones desde este puerto
-app.use(
+/* app.use(
   cors({
     origin: "http://localhost:5173",
+    
     credentials: true,
   }),
-);
+); */
+
+app.use(cors({
+  origin: (origin, callback) => {
+    const ACCEPTED_ORIGINS = [
+      "http://localhost:5173",
+      "http://45.55.176.40"
+    ]
+
+    if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+      return callback(null, true)
+    }
+
+    return callback(new Error("Not allowed by CORS"))
+  },
+  credentials: true,
+}))
 
 app.use(express.json()); // Middleware para peticiones POST para poner el contenido en el body
 app.use(cookieParser()); // Es un middleware de express, que nos facilita acceder a las cookies.
@@ -36,6 +53,6 @@ app.use("/auth", authRouter);
 app.use("/student", tokenMiddleware, studentRouter);
 app.use("/docent", tokenMiddleware, docentRouter);
 
-app.listen(process.env.PORT, '0.0.0.0', () => {
-  console.log(`Server is running on: http://localhost:${process.env.PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on: http://localhost:${PORT}`);
 });
