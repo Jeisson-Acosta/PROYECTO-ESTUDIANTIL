@@ -7,7 +7,7 @@ import "../../styles/docent/FormFieldsCreateResource.css"
 // ================================================
 
 // ==================== COMPONENTS ====================
-import { FileUploadIcon, SendIcon } from "../common/GeneralIcons.jsx"
+import { FileUploadIcon, SendIcon, LinkIcon } from "../common/GeneralIcons.jsx"
 // ====================================================
 
 export function FormFieldsCreateResource({ typeResource }) {
@@ -40,9 +40,17 @@ export function FormFieldsCreateResource({ typeResource }) {
         })
     }, [typeResource])
 
+    const handleChangeInfoResource = (e) => {
+        const { name, value } = e.target
+        setInfoResource(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
     return (
         <section className="fields-form-create-resource">
-            <section style={{display: 'flex', justifyContent: 'space-between', gap: '1rem'}}>
+            <section style={{display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap'}}>
                 <div className="field">
                     <label htmlFor="title-resource">
                         TÍTULO {typeResource === 'TA' 
@@ -59,6 +67,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                         placeholder="EJ: Investigación sobre..."
                         className="field-action"
                         value={infoResource.title}
+                        onChange={handleChangeInfoResource}
                     />
                 </div>
                 {typeResource === 'MA' && (
@@ -66,7 +75,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                         <label htmlFor="category">
                             CATEGORÍA
                         </label>
-                        <select name="category" id="category" className="field-action" value={infoResource.category}>
+                        <select name="category" id="category" className="field-action" value={infoResource.category} onChange={handleChangeInfoResource}>
                             <option value={null} disabled selected>Seleccionar</option>
                             <option value="A">Archivo</option>
                             <option value="L">Link</option>
@@ -95,6 +104,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                     className="field-action"
                     name="description"
                     value={infoResource.description}
+                    onChange={handleChangeInfoResource}
                 ></textarea>
             </div>
             {typeResource === 'TA' && (
@@ -109,6 +119,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                             id="limit-date" 
                             className="field-action"
                             value={infoResource.date}
+                            onChange={handleChangeInfoResource}
                         />
                     </div>
                     <div className="field">
@@ -121,6 +132,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                             id="hour-limit" 
                             className="field-action"
                             value={infoResource.hour}
+                            onChange={handleChangeInfoResource}
                         />
                     </div>
                     <div className="field">
@@ -133,6 +145,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                             id="points" 
                             className="field-action"
                             value={infoResource.points}
+                            onChange={handleChangeInfoResource}
                         />
                     </div>
                 </div>
@@ -148,20 +161,34 @@ export function FormFieldsCreateResource({ typeResource }) {
                     style={{display: 'none'}}
                     className="field-action"
                     value={infoResource.file}
+                    onChange={handleChangeInfoResource}
                 />
                 <section className="container-to-upload-file">
-                    <div className="container-file-selected">                        
-                        <div className="container-icon-upload">
-                            <FileUploadIcon />
+                    {((typeResource === 'MA' && (infoResource.category === 'A' || infoResource.category === 'AM')) || typeResource === 'TA') && (
+                        <div className="container-file-selected">                        
+                            <div className="container-icon-upload">
+                                <FileUploadIcon />
+                            </div>
+                            <div className="container-text-upload">
+                                <h2>Subir archivos complementarios</h2>
+                                <p>Arrastra y suelta archivos aquí o haz clic para seleccionarlos.</p>
+                            </div>
                         </div>
-                        <div className="container-text-upload">
-                            <h2>Subir archivos complementarios</h2>
-                            <p>Arrastra y suelta archivos aquí o haz clic para seleccionarlos.</p>
-                        </div>
-                    </div>
-                    {(typeResource === 'MA' || typeResource === 'TA') && infoResource.category === 'L' && (
-                        <div className="container anchors-web">
-                            <h3>ENLACES WEB</h3>
+                    )}
+                    {((typeResource === 'MA' && (infoResource.category === 'L' || infoResource.category === 'AM')) || typeResource === 'TA') && (
+                        <div className="container-anchors-web">
+                            <div className="container-anchor-created">
+                                <h5>ENLACE WEB</h5>
+                                <div className="container-anchor-inside">
+                                    <div className="icon-anchor">
+                                        <LinkIcon />
+                                    </div>
+                                    <div className="container-input-anchor">
+                                        <input type="text" placeholder="Enlace web" />
+                                    </div>
+                                </div>
+                                <button className="btn-create-anchor">Nuevo enlace</button>
+                            </div>
                         </div>
                     )}
                 </section>
