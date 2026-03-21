@@ -1,5 +1,5 @@
 // ==================== HOOKS ====================
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 // ================================================
 
 // ==================== STYLES ====================
@@ -15,13 +15,15 @@ export function FormFieldsCreateResource({ typeResource }) {
         title: '',
         category: null,
         description: '',
-        file: null,
+        files: [],
         date: null,
         hour: null,
         points: null,
         publishImmediately: false,
         lateDeliveries: false
     })
+
+    const inputFileRef = useRef(null)
 
     // ESTO ES PARA CAMBIAR EL COLOR DEL BORDE DEL INPUT SEGÚN EL TIPO DE RECURSO
     useEffect(() => {
@@ -41,12 +43,22 @@ export function FormFieldsCreateResource({ typeResource }) {
     }, [typeResource])
 
     const handleChangeInfoResource = (e) => {
-        const { name, value } = e.target
+        const { name, value, type, checked } = e.target
         setInfoResource(prev => ({
             ...prev,
-            [name]: value
+            [name]: type === 'checkbox' ? checked : value
         }))
     }
+
+    const handleChangeUploadFile = (e) => {
+        const files = e.target.files
+        setInfoResource(prev => ({
+            ...prev,
+            files: [...files]
+        }))
+    }
+
+    console.log(infoResource)
 
     return (
         <section className="fields-form-create-resource">
@@ -75,7 +87,14 @@ export function FormFieldsCreateResource({ typeResource }) {
                         <label htmlFor="category">
                             CATEGORÍA
                         </label>
-                        <select name="category" id="category" className="field-action" value={infoResource.category} onChange={handleChangeInfoResource}>
+                        <select 
+                            name="category" 
+                            id="category" 
+                            className="field-action" 
+                            value={infoResource.category} 
+                            onChange={handleChangeInfoResource}
+                            defaultValue={null}
+                        >
                             <option value={null} disabled selected>Seleccionar</option>
                             <option value="A">Archivo</option>
                             <option value="L">Link</option>
@@ -156,16 +175,17 @@ export function FormFieldsCreateResource({ typeResource }) {
                 </label>
                 <input 
                     type="file" 
-                    name="file" 
+                    name="files" 
                     id="attachments" 
                     style={{display: 'none'}}
                     className="field-action"
-                    value={infoResource.file}
-                    onChange={handleChangeInfoResource}
+                    onChange={handleChangeUploadFile}
+                    ref={inputFileRef}
+                    multiple
                 />
                 <section className="container-to-upload-file">
                     {((typeResource === 'MA' && (infoResource.category === 'A' || infoResource.category === 'AM')) || typeResource === 'TA') && (
-                        <div className="container-file-selected">                        
+                        <div className="container-file-selected" onClick={() => inputFileRef.current.click()}>                        
                             <div className="container-icon-upload">
                                 <FileUploadIcon />
                             </div>
@@ -205,6 +225,9 @@ export function FormFieldsCreateResource({ typeResource }) {
                                 type="checkbox" 
                                 name="publishImmediately" 
                                 id="publishImmediately"
+                                onChange={handleChangeInfoResource}
+                                checked={infoResource.publishImmediately}
+
                             />
                             <span className="slider-switch"></span>
                         </label>
@@ -219,6 +242,8 @@ export function FormFieldsCreateResource({ typeResource }) {
                                 type="checkbox" 
                                 name="lateDeliveries" 
                                 id="lateDeliveries"
+                                onChange={handleChangeInfoResource}
+                                checked={infoResource.lateDeliveries}
                             />
                             <span className="slider-switch"></span>
                         </label>
