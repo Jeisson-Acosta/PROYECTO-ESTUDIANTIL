@@ -1,5 +1,7 @@
 // ==================== HOOKS ====================
 import { useEffect, useRef, useState } from "react"
+import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
+import toast from "react-hot-toast"
 // ================================================
 
 // ==================== STYLES ====================
@@ -12,6 +14,7 @@ import { FileUploadIcon, SendIcon, LinkIcon } from "../common/GeneralIcons.jsx"
 
 export function FormFieldsCreateResource({ typeResource }) {
     const [infoResource, setInfoResource] = useState({
+        typeResource,
         title: '',
         category: null,
         description: '',
@@ -22,6 +25,8 @@ export function FormFieldsCreateResource({ typeResource }) {
         publishImmediately: false,
         lateDeliveries: false
     })
+
+    const { requestDB } = useRequestDB()
 
     const inputFileRef = useRef(null)
 
@@ -56,6 +61,43 @@ export function FormFieldsCreateResource({ typeResource }) {
             ...prev,
             files: [...files]
         }))
+    }
+
+    const handleClickCreateResource = async () => {
+        const formData = new FormData()
+
+        // Campos de texto e información del recurso
+        formData.append('typeResource', infoResource.typeResource)
+        formData.append('title', infoResource.title)
+        formData.append('description', infoResource.description)
+        formData.append('date', infoResource.date ?? '')
+        formData.append('hour', infoResource.hour ?? '')
+        formData.append('points', infoResource.points ?? '')
+        // Los booleanos se envían como strings "true"/"false" (FormData no soporta boolean)
+        formData.append('publishImmediately', String(infoResource.publishImmediately))
+        formData.append('lateDeliveries', String(infoResource.lateDeliveries))
+
+        // Archivos adjuntos
+        infoResource.files.forEach(file => {
+            formData.append('files', file)
+        })
+
+        const responseDB = await requestDB('docent/create-resource', 'POST', formData)
+        if (!responseDB.ok) return toast.error(responseDB.message)
+        toast.success('¡Recurso creado exitosamente!')
+        setInfoResource({
+            typeResource,
+            title: '',
+            category: null,
+            description: '',
+            files: [],
+            date: null,
+            hour: null,
+            points: null,
+            publishImmediately: false,
+            lateDeliveries: false
+        })
+        if (inputFileRef.current) inputFileRef.current.value = ''
     }
 
     console.log(infoResource)
@@ -254,7 +296,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                 <button className="btn-discart">
                     Descartar
                 </button>
-                <button className="btn-create">
+                <button className="btn-create" onClick={handleClickCreateResource}>
                     Crear {typeResource === 'TA' ? 'Tarea' : typeResource === 'MA' ? 'Material' : 'Anuncio'}
                     <SendIcon />
                 </button>
