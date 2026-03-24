@@ -26,7 +26,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/unauthorized' element={<Unauthorized />} />
-        <Route path='contenido' element={<ContenidoClase />} />
+        
 
         <Route element={<Layout />}>
           {/* RUTAS DE ESTUDIANTE */}
@@ -36,8 +36,9 @@ function App() {
               <RoleBasedRoute allowedRoles={['EST']}>
                 <Routes>
                   <Route path='dashboard' element={<StudentDashboard />} />
-                
+                  
                   <Route path='cursos' element={<Classes />} />
+                  <Route path='contenido' element={<ContenidoClase />} />
                 </Routes>
               </RoleBasedRoute>
             }

@@ -35,12 +35,12 @@
     color: #000000;
 }
 
-.tarea-parametros .parametro-entrega {
+.tarea-parametros-entrega {
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: start;
-    width: 100%;
+    width: 20%;
     height: 100%;
 }
 
@@ -53,13 +53,29 @@
     height: 100%;
 }
 
-.tarea-parametros .parametro-puntaje {
+.tarea-parametros-puntaje {
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: start;
+    width: 20%;
+}
+
+.tarea-parametros-puntaje-icon {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 30%;
+    background-color: #f4ceff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.tarea-parametros-puntaje-icon svg {
     width: 100%;
     height: 100%;
+    color: #cc00ff;
 }
 
 .parametro-puntaje .parametro-puntaje-info {
@@ -71,13 +87,31 @@
     height: 100%;
 }
 
-.tarea-parametros .parametro-modulo {
+.tarea-parametros-modulo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: start;
     align-items: start;
+    width: 20%;
+    height: 100%;
+}
+
+
+.tarea-parametros-modulo-icon {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 30%;
+    background-color: #caffd4;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.tarea-parametros-modulo-icon svg {
     width: 100%;
     height: 100%;
+    color: #00ff00;
 }
 
 .parametro-modulo .parametro-modulo-info {
@@ -85,9 +119,34 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    width: 100%;
+    width: 30%;
     height: 100%;
 
+
+}
+
+.tarea-parametros-estado {
+    min-width: 15%;
+    background-color: #faef88;
+    border-radius: 20px;
+    display: flex;
+    /* Cambiado de inline-block a flex */
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    overflow: hidden;
+    /* Opcional: si quieres que ocupe el espacio disponible */
+    /* flex: 1; */
+}
+
+.tarea-parametros-estado h3 {
+    font-size: 15px;
+    font-family: fontSubtitles;
+    color: #5c4e00;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    /* Evita que el texto se rompa */
 }
 
 .iconos-info {
@@ -96,7 +155,6 @@
     justify-content: start;
     align-items: start;
     width: 100%;
-    height: 100%;
     gap: 20px;
 }
 
@@ -105,21 +163,37 @@
     display: flex;
     flex-direction: row;
     justify-content: start;
-    align-items: start;
-    width: 10%;
-    padding: 10px;
+    align-items: center;
+    gap: 5px;
+    width: 100px;
+    padding: 5px;
     background-color: #dfdfdf;
     border-radius: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.info-materia-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
 
+.info-materia-icon svg {
+    width: 90%;
+    height: 90%;
+}
 
 .icono-info-enunciado h3,
 .icono-info-materia h3 {
-    font-size: 12px;
+    font-size: 16px;
     font-family: fontSubtitles;
     color: #000000;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
 }
 
 .card-info-container {
@@ -130,7 +204,6 @@
     width: 100%;
     height: 100%;
     gap: 20px;
-    padding: 20px;
 }
 
 .card-info-titulo {
@@ -160,6 +233,8 @@
     height: 100%;
     gap: 20px;
 }
+
+
 
 .card-info {
     display: flex;
@@ -209,7 +284,7 @@
     width: 100%;
     height: 100%;
     gap: 5px;
-    padding: 20px;
+    padding: 10px;
     background-color: #f1f1f1;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -220,7 +295,7 @@
     flex-direction: row;
     justify-content: start;
     align-items: start;
-    width: 100%;
+    width: 70%;
     height: 100%;
     gap: 20px;
 }
@@ -254,13 +329,17 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    min-width: 100%;
+    width: 100%;
     height: 100%;
     gap: 20px;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contenido-extra-entrega {
+    border-radius: 0 0 30px 30px;
 }
 
 .contenido-extra-recursos h3 {
@@ -275,45 +354,48 @@
     padding: 10px;
 }
 
-.recurso-item-text {
+.recurso-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 150%;
+    height: 100%;
+    gap: 20px;
+}
+
+.recurso-item-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+    background-color: rgb(254, 135, 135);
+    padding: 10px;
+    border-radius: 10px;
+    color: #ff0000;
+}
+
+.recurso-item-text h4 {
+    font-size: 16px;
+    font-family: fontSubtitles;
+    color: #000000;
+}
+
+.recurso-item-text p {
+    font-size: 12px;
+    font-family: fontSubtitles;
+    color: #000000;
+}
+
+.entrega-seccion-completa {
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
     width: 100%;
     height: 100%;
-    gap: 5px;
-    padding: 20px;
-    background-color: #f1f1f1;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #000000;
-}
 
-.recurso-item-text-titulo h3 {
-    font-size: 16px;
-    font-family: fontMain;
-    color: #000000;
-}
-
-.recurso-item-text-size p {
-    font-size: 16px;
-    font-family: fontSubtitles;
-    color: #000000;
-}
-
-.contenido-extra-entrega {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    gap: 20px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 0 0 30px 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .entrega-info-titulo {
@@ -336,18 +418,47 @@
     color: #000000;
 }
 
-.entrega-info-subir-archivo-btn {
+.entrega-info-subir-archivo {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 360px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    padding: 20px;
+}
+
+.entrega-info-subir-archivo-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
     min-height: 250px;
     background-color: #ffffff;
     border: 1px dashed #000000;
     border-radius: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.entrega-info-subir-archivo-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fad2a7;
+    border-radius: 150px;
+    padding: 10px;
+}
+
+.entrega-info-subir-archivo-icon svg {
+    width: 100%;
+    height: 100%;
+    color: #ff8d13;
 }
 
 .entrega-tarea {
@@ -367,5 +478,144 @@
     padding: 10px;
     font-size: 20px;
     border: none;
+
+}
+
+.entrega-calificacion {
+    border-top: 1px solid #000000;
+    width: 100%;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .tarea-parametros {
+        flex-direction: column;
+        /* Cambiado de row a column para móvil */
+        gap: 20px;
+        /* Reducido el gap */
+        padding: 10px;
+    }
+
+    .tarea-parametros-entrega,
+    .tarea-parametros-puntaje,
+    .tarea-parametros-modulo,
+    .tarea-parametros-estado {
+        width: 100%;
+        /* Todos los elementos ocupan el 100% */
+    }
+
+    .tarea-parametros-puntaje,
+    .tarea-parametros-modulo {
+        display: none;
+    }
+
+    .tarea-parametros-estado {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 8px 16px;
+    }
+
+    .contenido-card {
+        width: 100%;
+        min-height: 100%;
+        padding: 10px;
+        /* Reducido el padding */
+    }
+
+    .card-info-principal {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        /* Reducido el gap */
+    }
+
+    .card-info {
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        /* Ajustado el padding */
+    }
+
+    .card-contenido-extra {
+        min-width: 100%;
+        padding: 0;
+        /* Eliminado el padding para móvil */
+    }
+
+    .card-info-titulo h3 {
+        font-size: 28px;
+        /* Reducido tamaño de fuente */
+    }
+
+    .card-info-descripcion p {
+        font-size: 16px;
+        /* Reducido tamaño de fuente */
+    }
+
+    .iconos-info {
+        flex-direction: row;
+        /* Iconos en columna en móvil */
+        gap: 10px;
+    }
+
+    .icono-info-enunciado,
+    .icono-info-materia {
+        width: 100px;
+    }
+
+    .entrega-info-subir-archivo-btn {
+        width: 100%;
+        max-width: 100%;
+        /* En móvil ocupa todo el ancho */
+        min-height: 200px;
+        /* Altura reducida para móvil */
+    }
+
+    .entrega-tarea {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .recurso-item {
+        width: 100%;
+        /* Ancho completo en móvil */
+        flex-direction: column;
+        /* Cambiado a columna si es necesario */
+        align-items: center;
+        text-align: center;
+    }
+
+    .recurso-item-icon {
+        width: auto;
+        /* Ajusta el ancho del icono */
+    }
+
+    .card-enunciado-comentarios {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        width: 100%;
+        height: 100%;
+        gap: 20px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .comentario-info-text-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: start;
+        width: 70%;
+        height: 100%;
+        gap: 5px;
+    }
 
 }

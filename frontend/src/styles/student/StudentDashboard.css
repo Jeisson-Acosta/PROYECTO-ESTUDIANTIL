@@ -3,6 +3,7 @@
     flex-direction: column;
     margin: 10px;
     align-items: center;
+    width: 100%;
 }
 
 .principal-content .title {
@@ -142,6 +143,10 @@
 }
 
 @media (max-width: 768px) {
+    .principal-content {
+        width: 80%;
+    }
+
     .stats-dashboard {
         display: flex;
         flex-direction: column;
@@ -151,6 +156,9 @@
     .materias-seccion,
     .notas-seccion {
         width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .circle-chart-section .circle-chart-resumen h3 {

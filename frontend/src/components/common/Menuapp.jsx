@@ -47,6 +47,12 @@ export function MenuApp() {
                             </span>
                         </li>
                     </NavLink>
+                    <NavLink to={`/${COMPLEMENTED_URL}/contenido`}>
+                        <li>
+                            <IconClipboard />
+                            <span className="text-module">Contenido</span>
+                        </li>
+                    </NavLink>
                     <NavLink to={`/${COMPLEMENTED_URL}/notas`}>
                         <li>
                             <IconBars />
