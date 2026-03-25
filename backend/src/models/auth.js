@@ -13,7 +13,7 @@ export class AuthModel {
             usufch_nacimiento,
             ceeid,
             tidid,
-            rolid
+            rolcod
         } = input
 
         // hashear contraseña
@@ -31,7 +31,7 @@ export class AuthModel {
                 usufch_nacimiento,
                 ceeid,
                 tidid,
-                rolid
+                rolcod
             ])
 
             if (!result.ok) { throw new Error(result.message) }
@@ -55,14 +55,13 @@ export class AuthModel {
         } = input
 
         const existedUser = await manageDB(null, [usuemail], 'SELECT usuemail FROM tbl_usuario WHERE usuemail = ?', 'SL')
-        console.log(existedUser)
         if (!existedUser.ok) { 
             existedUser.message = "Usuario no encontrado"
             return existedUser
         }
 
         const passwordInDB = await manageDB(null, [usuemail], 'SELECT usupwd FROM tbl_usuario WHERE usuemail = ?', 'SL')
-        if (!passwordInDB.ok) { 
+        if (!passwordInDB.ok) {
             passwordInDB.message = "Contraseña incorrecta"
             return passwordInDB
         }
@@ -79,10 +78,20 @@ export class AuthModel {
         try {
             const result = await manageDB('sp_auth_login_user', [usuemail])
             if (!result.ok) { throw new Error(result.message) }
-
             return result
+
         } catch (err) {
             throw new Error('Error logging in user')
+        }
+    }
+
+    static async getUserInfoByEmail({ usuemail }) {
+        try {
+            const result = await manageDB('sp_auth_login_user', [usuemail])
+            if (!result.ok) { throw new Error(result.message) }
+            return result
+        } catch(err) {
+            throw new Error('Error getting user info')
         }
     }
 }

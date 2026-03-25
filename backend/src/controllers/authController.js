@@ -38,6 +38,7 @@ export class AuthController {
       const result = await AuthModel.loginUser({ input: resultValidate.data });
       if (!result.ok) return res.json(result);
       const { usuid, usunom, usuemail, rolcod } = result.data[0];
+
       const token = jwt.sign(
         { usuid, usunom, usuemail, rolcod }, // PAYLOAD
         SECRET_JWT_KEY, // SECRET KEY
@@ -52,9 +53,16 @@ export class AuthController {
           maxAge: 1000 * 60 * 60, // La cookie expira en una hora
         })
         .json(result);
-      // return res.status(200).json(result)
+
     } catch (e) {
       return res.status(500).json({ error: e.message });
     }
+  }
+  static async checkSession(req, res) {
+    const { user } = req.session
+    const resultInfoUser = await AuthModel.getUserInfoByEmail({ usuemail: user.usuemail })
+    if (!resultInfoUser.ok) return res.json(resultInfoUser)
+
+    res.json(resultInfoUser)
   }
 }
