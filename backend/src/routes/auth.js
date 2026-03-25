@@ -6,4 +6,4 @@ export const authRouter = Router()
 
 authRouter.post('/login', AuthController.loginUser)
 authRouter.post('/register', AuthController.registerUser)
-authRouter.get('/checkSession', authMiddleware, AuthController.checkSession)
+authRouter.get('/checkSession', tokenMiddleware, AuthController.checkSession)
