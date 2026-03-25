@@ -20,6 +20,8 @@ export const useRequestDB = () => {
         credentials: 'include',
         body: method !== 'GET' ? (isFormData ? body : JSON.stringify(body)) : undefined,
       });
+      console.log(responseDb)
+
 
       if (!responseDb.ok) {
         throw new Error(`HTTP error! status: ${responseDb.status}`);

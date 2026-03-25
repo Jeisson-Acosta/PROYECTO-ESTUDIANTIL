@@ -10,6 +10,8 @@ dotenv.config({ path: '../.env' });
     user: 'root',
     port: '3306',
     password: 'Agil',
+    port: 3307,
+    password: 'Aot2005?',
     database: 'cefcoc_dev',
     connectionLimit: 10, // Maximo de conexiones simultaneas
 } */
