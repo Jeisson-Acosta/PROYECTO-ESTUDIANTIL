@@ -22,7 +22,7 @@ export function CircleChart({ endValue, value, labelCenter, color, additionalTex
         return {
             data: [
                 { value: value, label: labelCenter },
-                { value: endValue - value, string:string,label: "", color: '#' + colorBlank, string:string },
+                { value: endValue - value, label: "", color: '#' + colorBlank },
             ],
             label: (
                 <>
