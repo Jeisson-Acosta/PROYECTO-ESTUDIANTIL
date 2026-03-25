@@ -1,9 +1,29 @@
 import '../../styles/common/MenuApp.css'
-import { IconHatStudent, IconDashboard, IconNotebook, IconClipboard, IconBars, IconSchedule } from "./IconsLayout.jsx"
+import { IconHatStudent, IconDashboard, IconNotebook, IconClipboard, IconBars, IconSchedule,IconMedal,IconConfig,IconSesion} from "./IconsLayout.jsx"
 import { NavLink } from "react-router-dom"
 import { useContext } from 'react'
 import { UserLoginContext } from '../../context/userLogin.jsx'
+import {ButtonCommon } from "./ButtonCommon.jsx"
 
+function CardPlanUser(){
+    return(
+        <section className="container-plan-user">
+                <header>
+                    <div className="icon-plan">
+                        <IconMedal/>
+                    </div>
+
+                    <div className="info-plan-user">
+                        <h5>Plan Pro</h5>
+                        <p>Educacion avanzada</p>
+                    </div>
+                </header>
+
+                <ButtonCommon text="Ver planes"/>
+
+        </section>
+    )
+}
 export function MenuApp() {
     const { userLogin } = useContext(UserLoginContext)
     if (!userLogin) return null
@@ -65,8 +85,15 @@ export function MenuApp() {
                             <span className="text-module">Calendario</span>
                         </li>
                     </NavLink>
+
                 </ul>
             </nav>
+        <CardPlanUser/>
+        <footer className="footer-menu-app">
+           <ButtonCommon text="Configuracion" icon={<IconConfig/>}/>
+           <ButtonCommon text="Cerrar Sesión" colorText="c78790" icon={<IconSesion/>}/>
+        </footer>
+
         </section>
     )
 }
