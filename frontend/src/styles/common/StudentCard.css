@@ -1,0 +1,44 @@
+.stats-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #e3e9f1;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    width: 20%;
+    margin: 10px;
+}
+
+.stats-content .title-stat {
+    font-size: 20px;
+    font-family: fontSubtitles;
+    color: #7e8da1
+}
+
+.stats-content .summary-stat {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stats-content .icon-stat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: #87b8d8;
+    width: 15%;
+    border-radius: 10px;
+}
+
+.summary-stat .value-stat {
+    font-size: 28px;
+    font-family: fontTitlesBold;
+    color: #15335c
+}
+
+
+.stats-content footer p {
+    text-align: left;
+
+}

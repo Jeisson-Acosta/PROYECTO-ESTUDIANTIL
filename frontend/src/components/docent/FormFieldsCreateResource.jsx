@@ -1,5 +1,7 @@
 // ==================== HOOKS ====================
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
+import toast from "react-hot-toast"
 // ================================================
 
 // ==================== STYLES ====================
@@ -7,21 +9,26 @@ import "../../styles/docent/FormFieldsCreateResource.css"
 // ================================================
 
 // ==================== COMPONENTS ====================
-import { FileUploadIcon, SendIcon } from "../common/GeneralIcons.jsx"
+import { FileUploadIcon, SendIcon, LinkIcon } from "../common/GeneralIcons.jsx"
 // ====================================================
 
 export function FormFieldsCreateResource({ typeResource }) {
     const [infoResource, setInfoResource] = useState({
+        typeResource,
         title: '',
         category: null,
         description: '',
-        file: null,
+        files: [],
         date: null,
         hour: null,
         points: null,
         publishImmediately: false,
         lateDeliveries: false
     })
+
+    const { requestDB } = useRequestDB()
+
+    const inputFileRef = useRef(null)
 
     // ESTO ES PARA CAMBIAR EL COLOR DEL BORDE DEL INPUT SEGÚN EL TIPO DE RECURSO
     useEffect(() => {
@@ -40,9 +47,64 @@ export function FormFieldsCreateResource({ typeResource }) {
         })
     }, [typeResource])
 
+    const handleChangeInfoResource = (e) => {
+        const { name, value, type, checked } = e.target
+        setInfoResource(prev => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : value
+        }))
+    }
+
+    const handleChangeUploadFile = (e) => {
+        const files = e.target.files
+        setInfoResource(prev => ({
+            ...prev,
+            files: [...files]
+        }))
+    }
+
+    const handleClickCreateResource = async () => {
+        const formData = new FormData()
+
+        // Campos de texto e información del recurso
+        formData.append('typeResource', infoResource.typeResource)
+        formData.append('title', infoResource.title)
+        formData.append('description', infoResource.description)
+        formData.append('date', infoResource.date ?? '')
+        formData.append('hour', infoResource.hour ?? '')
+        formData.append('points', infoResource.points ?? '')
+        // Los booleanos se envían como strings "true"/"false" (FormData no soporta boolean)
+        formData.append('publishImmediately', String(infoResource.publishImmediately))
+        formData.append('lateDeliveries', String(infoResource.lateDeliveries))
+
+        // Archivos adjuntos
+        infoResource.files.forEach(file => {
+            formData.append('files', file)
+        })
+
+        const responseDB = await requestDB('docent/create-resource', 'POST', formData)
+        if (!responseDB.ok) return toast.error(responseDB.message)
+        toast.success('¡Recurso creado exitosamente!')
+        setInfoResource({
+            typeResource,
+            title: '',
+            category: null,
+            description: '',
+            files: [],
+            date: null,
+            hour: null,
+            points: null,
+            publishImmediately: false,
+            lateDeliveries: false
+        })
+        if (inputFileRef.current) inputFileRef.current.value = ''
+    }
+
+    console.log(infoResource)
+
     return (
         <section className="fields-form-create-resource">
-            <section style={{display: 'flex', justifyContent: 'space-between', gap: '1rem'}}>
+            <section style={{display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap'}}>
                 <div className="field">
                     <label htmlFor="title-resource">
                         TÍTULO {typeResource === 'TA' 
@@ -59,6 +121,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                         placeholder="EJ: Investigación sobre..."
                         className="field-action"
                         value={infoResource.title}
+                        onChange={handleChangeInfoResource}
                     />
                 </div>
                 {typeResource === 'MA' && (
@@ -66,7 +129,14 @@ export function FormFieldsCreateResource({ typeResource }) {
                         <label htmlFor="category">
                             CATEGORÍA
                         </label>
-                        <select name="category" id="category" className="field-action" value={infoResource.category}>
+                        <select 
+                            name="category" 
+                            id="category" 
+                            className="field-action" 
+                            value={infoResource.category} 
+                            onChange={handleChangeInfoResource}
+                            defaultValue={null}
+                        >
                             <option value={null} disabled selected>Seleccionar</option>
                             <option value="A">Archivo</option>
                             <option value="L">Link</option>
@@ -95,6 +165,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                     className="field-action"
                     name="description"
                     value={infoResource.description}
+                    onChange={handleChangeInfoResource}
                 ></textarea>
             </div>
             {typeResource === 'TA' && (
@@ -109,6 +180,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                             id="limit-date" 
                             className="field-action"
                             value={infoResource.date}
+                            onChange={handleChangeInfoResource}
                         />
                     </div>
                     <div className="field">
@@ -121,6 +193,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                             id="hour-limit" 
                             className="field-action"
                             value={infoResource.hour}
+                            onChange={handleChangeInfoResource}
                         />
                     </div>
                     <div className="field">
@@ -133,6 +206,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                             id="points" 
                             className="field-action"
                             value={infoResource.points}
+                            onChange={handleChangeInfoResource}
                         />
                     </div>
                 </div>
@@ -143,25 +217,40 @@ export function FormFieldsCreateResource({ typeResource }) {
                 </label>
                 <input 
                     type="file" 
-                    name="file" 
+                    name="files" 
                     id="attachments" 
                     style={{display: 'none'}}
                     className="field-action"
-                    value={infoResource.file}
+                    onChange={handleChangeUploadFile}
+                    ref={inputFileRef}
+                    multiple
                 />
                 <section className="container-to-upload-file">
-                    <div className="container-file-selected">                        
-                        <div className="container-icon-upload">
-                            <FileUploadIcon />
+                    {((typeResource === 'MA' && (infoResource.category === 'A' || infoResource.category === 'AM')) || typeResource === 'TA') && (
+                        <div className="container-file-selected" onClick={() => inputFileRef.current.click()}>                        
+                            <div className="container-icon-upload">
+                                <FileUploadIcon />
+                            </div>
+                            <div className="container-text-upload">
+                                <h2>Subir archivos complementarios</h2>
+                                <p>Arrastra y suelta archivos aquí o haz clic para seleccionarlos.</p>
+                            </div>
                         </div>
-                        <div className="container-text-upload">
-                            <h2>Subir archivos complementarios</h2>
-                            <p>Arrastra y suelta archivos aquí o haz clic para seleccionarlos.</p>
-                        </div>
-                    </div>
-                    {(typeResource === 'MA' || typeResource === 'TA') && infoResource.category === 'L' && (
-                        <div className="container anchors-web">
-                            <h3>ENLACES WEB</h3>
+                    )}
+                    {((typeResource === 'MA' && (infoResource.category === 'L' || infoResource.category === 'AM')) || typeResource === 'TA') && (
+                        <div className="container-anchors-web">
+                            <div className="container-anchor-created">
+                                <h5>ENLACE WEB</h5>
+                                <div className="container-anchor-inside">
+                                    <div className="icon-anchor">
+                                        <LinkIcon />
+                                    </div>
+                                    <div className="container-input-anchor">
+                                        <input type="text" placeholder="Enlace web" />
+                                    </div>
+                                </div>
+                                <button className="btn-create-anchor">Nuevo enlace</button>
+                            </div>
                         </div>
                     )}
                 </section>
@@ -178,6 +267,9 @@ export function FormFieldsCreateResource({ typeResource }) {
                                 type="checkbox" 
                                 name="publishImmediately" 
                                 id="publishImmediately"
+                                onChange={handleChangeInfoResource}
+                                checked={infoResource.publishImmediately}
+
                             />
                             <span className="slider-switch"></span>
                         </label>
@@ -192,6 +284,8 @@ export function FormFieldsCreateResource({ typeResource }) {
                                 type="checkbox" 
                                 name="lateDeliveries" 
                                 id="lateDeliveries"
+                                onChange={handleChangeInfoResource}
+                                checked={infoResource.lateDeliveries}
                             />
                             <span className="slider-switch"></span>
                         </label>
@@ -202,7 +296,7 @@ export function FormFieldsCreateResource({ typeResource }) {
                 <button className="btn-discart">
                     Descartar
                 </button>
-                <button className="btn-create">
+                <button className="btn-create" onClick={handleClickCreateResource}>
                     Crear {typeResource === 'TA' ? 'Tarea' : typeResource === 'MA' ? 'Material' : 'Anuncio'}
                     <SendIcon />
                 </button>

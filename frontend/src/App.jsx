@@ -18,9 +18,7 @@ import { Register } from './components/auth/Register.jsx'
 import { Layout } from './components/common/Layout.jsx'
 import { RoleBasedRoute } from './routes/RoleBasedRoute.jsx'
 import { RoleBasedRedirect } from './components/RoleBasedRedirect.jsx'
-import { CircleChart } from './components/common/charts/CircleChart.jsx'
-// ====================================================
-
+import { StudentDashboard } from './pages/student/StudentDashboard.jsx'
 
 function Unauthorized() {
   return (
@@ -28,17 +26,6 @@ function Unauthorized() {
   )
 }
 
-function StudentDashboard() {
-  return (
-    <CircleChart endValue={5} value={4.5} labelCenter='Promedio Total' color={'fbbf24'} />
-  )
-}
-
-function TeacherDashboard() {
-  return (
-    <h1>Teacher Dashboard</h1>
-  )
-}
 
 function App() {
 
@@ -58,6 +45,7 @@ function App() {
               <RoleBasedRoute allowedRoles={['EST']}>
                 <Routes>
                   <Route path='dashboard' element={<StudentDashboard />} />
+                
                   <Route path='cursos' element={<Classes />} />
                   <Route path='cursos/:asgcod' element={<ClassDetails />} />
                 </Routes>
