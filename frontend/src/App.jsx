@@ -27,6 +27,11 @@ function Unauthorized() {
   )
 }
 
+function TeacherDashboard() {
+  return (
+    <h1>Dashboard del profesor</h1>
+  )
+}
 
 function App() {
 
