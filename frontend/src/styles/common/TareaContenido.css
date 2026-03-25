@@ -165,7 +165,7 @@
     justify-content: start;
     align-items: center;
     gap: 5px;
-    width: 100px;
+    width: 150px;
     padding: 5px;
     background-color: #dfdfdf;
     border-radius: 30px;
@@ -242,6 +242,7 @@
     justify-content: start;
     align-items: start;
     min-width: 70%;
+    max-width: 70%;
     min-height: 600px;
     gap: 20px;
     padding: 10px;
@@ -458,7 +459,7 @@
 .entrega-info-subir-archivo-icon svg {
     width: 100%;
     height: 100%;
-    color: #ff8d13;
+    color: #ffffff;
 }
 
 .entrega-tarea {
