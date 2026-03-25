@@ -1,0 +1,10 @@
+.general-container-form-create-resource {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    position: relative;
+    padding: 20px;
+}

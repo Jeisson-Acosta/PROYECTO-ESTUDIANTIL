@@ -6,5 +6,6 @@ export function ButtonCommon({ icon, text, onClick, colorText = 'ffffff' }) {
             {icon && icon}
             <span style={{ color: '#' + colorText }}>{text}</span>
         </button>
+
     )
 }

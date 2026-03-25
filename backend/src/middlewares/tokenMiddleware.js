@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { SECRET_JWT_KEY } from '../config/config.js'
 
-export function authMiddleware(req, res, next) {
+export function tokenMiddleware(req, res, next) {
     const token = req.cookies.access_token
 
     if (!token) {

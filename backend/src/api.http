@@ -19,7 +19,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "usuemail": "pepito@gmail.com",
+    // "usuemail": "pepito@gmail.com",
+    "usuemail": "jeisson@gmail.com",
     "usupwd": "Json161121@"
 }
 
@@ -27,6 +28,18 @@ Content-Type: application/json
 GET http://localhost:3000/auth/checkSession
 
 
-### Obtener todas las clases
+### Obtener todas las clases del estudiante
 GET http://localhost:3000/student/classes/1
 Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MSwidXN1bm9tIjoiUGVwaXRvIFBlcmV6IiwidXN1ZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwicm9sY29kIjoiRVNUIiwiaWF0IjoxNzcyNTk2NjMyLCJleHAiOjE3NzI2MDAyMzJ9.jal6W7O6jY8Af0tJSY6LeFYu4uqSJLYHj07ARwxIrgw
+
+### Obtener información de una clase a la que el estudiante seleccione
+GET http://localhost:3000/student/class/CIEN
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MSwidXN1bm9tIjoiUGVwaXRvIFBlcmV6IiwidXN1ZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwicm9sY29kIjoiRVNUIiwiaWF0IjoxNzczMTgxMTM0LCJleHAiOjE3NzMxODQ3MzR9.xlLtpTUOGlqR8wa0cuM_H8Oa3pOA3hSi43uhrPtz3U
+
+### Obtener todas las clases de un docente
+GET http://localhost:3000/docent/classes/2
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6ImplaXNzb25AZ21haWwuY29tIiwicm9sY29kIjoiRE9DIiwiaWF0IjoxNzczNDI4NDYzLCJleHAiOjE3NzM0MzIwNjN9.45FbwCgTFi6dJ9LhWid9F0v6t3ceVbCg0360pearFuc
+
+### Obtener información de una clase a la que el docente seleccione
+GET http://localhost:3000/docent/classes/details/CIEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6ImplaXNzb25AZ21haWwuY29tIiwicm9sY29kIjoiRE9DIiwiaWF0IjoxNzczNTUwMjg0LCJleHAiOjE3NzM1NTM4ODR9.4p9Bl6sL-t3rtfo3jZRGHJMCVB1E2Bdl9wUl4PbkFTA

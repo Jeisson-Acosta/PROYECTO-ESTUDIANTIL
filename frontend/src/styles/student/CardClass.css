@@ -8,7 +8,7 @@
     flex-direction: column;
 }
 
-.header-class {
+.header-class-card {
     position: relative;
     padding: 16px;
     min-height: 110px;
@@ -108,6 +108,10 @@
     color: #374151;
     cursor: pointer;
     transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .content-class button:hover {

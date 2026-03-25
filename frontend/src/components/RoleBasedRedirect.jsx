@@ -11,5 +11,5 @@ export function RoleBasedRedirect() {
   if (!userLogin) return <Navigate to="/login" replace />;
 
   // || -> OR
-  return <Navigate to={ROLES[userLogin[0]?.rolcod].path || "/login"} replace />;
+  return <Navigate to={ROLES[userLogin?.rolcod].path || "/login"} replace />;
 }

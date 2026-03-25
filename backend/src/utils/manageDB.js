@@ -1,14 +1,30 @@
 import mysql from 'mysql2/promise'
+import dotenv from "dotenv";
+
+dotenv.config({ path: '../.env' });
+
 
 // La configuración de la DB
-const DEFAULT_CONFIG = {
+/* const DEFAULT_CONFIG = {
     host: 'localhost',
     user: 'root',
+    port: '3306',
+    password: 'Agil',
     port: 3307,
     password: 'Aot2005?',
     database: 'cefcoc_dev',
     connectionLimit: 10, // Maximo de conexiones simultaneas
-}
+} */
+
+const DEFAULT_CONFIG = {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    // port: process.env.DB_PORT,
+    port: 3306,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    connectionLimit: 10, // Maximo de conexiones simultaneas
+}   
 
 // Esta funcion nos permite ejecutar cualquier SP de la base de datos.
 export async function manageDB(nameSP, params, query = '', option = 'SP') {
