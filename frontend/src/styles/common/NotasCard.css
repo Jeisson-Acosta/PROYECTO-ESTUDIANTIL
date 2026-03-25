@@ -1,0 +1,83 @@
+.notas-card {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    /* Alinea verticalmente todos los elementos */
+    gap: 2px;
+    /* Espacio entre elementos */
+    padding: 8px 0;
+    /* Espaciado vertical */
+    width: 100%;
+}
+
+.materia-imagen {
+    width: 40px;
+    /* Un poco más grande para que se vea mejor */
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* Color del texto de las iniciales */
+    font-size: 16px;
+    font-family: fontTitlesBold;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    /* Evita que el círculo se encoja */
+}
+
+.info-materia {
+    flex: 1;
+    /* Toma el espacio disponible */
+    min-width: 0;
+    /* Permite que el texto se encoja */
+}
+
+.info-materia h1 {
+    font-size: 14px;
+    /* Ajustado */
+    font-family: fontSubtitles;
+    /* Espacio debajo del título */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Si el título es muy largo, muestra ... */
+}
+
+.info-materia .tarea {
+    font-size: 12px;
+    font-family: fontSubtitles;
+    color: #7e8da1;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.grade-note {
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.grade-note p {
+    color: #1a365d;
+    font-size: 14px;
+    font-family: fontTitlesBold;
+}
+
+@media (max-width: 768px) {
+    .notas-card {
+        width: 100%;
+    }
+
+    .info-materia h1 {
+        font-size: 16px;
+    }
+
+    .info-materia .tarea {
+        font-size: 14px;
+    }
+}

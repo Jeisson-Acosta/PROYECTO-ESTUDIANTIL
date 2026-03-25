@@ -69,12 +69,12 @@ export function Register() {
                   value={userInfoRegister.tidid}
                   onChange={(e) => handleChangeUserInfoRegister(e)}
                 >
-                  <option value={1}>Seleccione su tipo de documento</option>
+                  <option value=''>Seleccione su tipo de documento</option>
                   <option value={2}>Tarjeta de Identidad</option>
-                  <option value={3}>Cedula de Ciudadania</option>
-                  <option value={4}>Cedula de extranjeria</option>
-                  <option value={5}>Nit</option>
-                  <option value={6}>Pasaporte</option>
+                  <option value={1}>Cedula de Ciudadania</option>
+                  <option value={3}>Cedula de extranjeria</option>
+                  <option value={4}>Nit</option>
+                  <option value={5}>Pasaporte</option>
                 </select>
               </label>
 
@@ -123,7 +123,7 @@ export function Register() {
                     className={`boton-register ${
                       userRol === "EST" ? "active" : ""
                     }`}
-                    name="rolid"
+                    name="rolcod"
                     onClick={() => handleSelectrol("EST")}
                   >
                     {" "}
@@ -137,7 +137,7 @@ export function Register() {
                     className={`boton-register ${
                       userRol === "DOC" ? "active" : ""
                     }`}
-                    name="rolid"
+                    name="rolcod"
                     onClick={() => handleSelectrol("DOC")}
                   >
                     {" "}
@@ -151,7 +151,7 @@ export function Register() {
                     className={`boton-register ${
                       userRol === "REC" ? "active" : ""
                     }`}
-                    name="rolid"
+                    name="rolcod"
                     onClick={() => handleSelectrol("REC")}
                   >
                     {" "}

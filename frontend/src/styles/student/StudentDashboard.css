@@ -1,0 +1,168 @@
+.principal-content {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.principal-content .title {
+    font-family: fontSubtitles;
+    color: #1a365d;
+}
+
+.stats-dashboard {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+    justify-content: center;
+
+}
+
+
+
+
+.stats-content footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: #87b8d8;
+    font-family: fontSubtitles;
+    text-align: center;
+}
+
+.stats-content h1 {
+    font-size: 40px;
+    font-weight: 700;
+    font-family: fontSubtitles;
+    color: #1a365d;
+}
+
+
+.circle-chart-section {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #e3e9f1;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    padding: 30px;
+    margin: 10px;
+    gap: 10px;
+}
+
+.circle-chart-section .circle-chart-resumen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.circle-chart-section .circle-chart-resumen h3 {
+    height: auto;
+    font-size: 15px;
+    color: #1a365d;
+    font-family: fontSubtitles;
+    gap: 100px;
+}
+
+.materias-seccion {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #e3e9f1;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    padding: 30px;
+    margin: 10px;
+
+}
+
+.title-section {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+}
+
+.title-section h3 {
+    font-size: 15px;
+}
+
+.notas-seccion .title-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #87b8d8;
+    font-family: fontSubtitles;
+    font-size: 12px;
+    text-align: center;
+}
+
+.materias-seccion .dia {
+    background-color: #1a365d;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 20%;
+    height: 80%;
+    color: #fff;
+    margin-left: 2px;
+    font-family: fontMain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notas-seccion {
+    background-color: #fff;
+    background-color: #fff;
+    gap: 30px;
+    border: 1px solid #e3e9f1;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.notas-seccion h3 {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .principal-content {
+        width: 80%;
+    }
+
+    .stats-dashboard {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .circle-chart-section,
+    .materias-seccion,
+    .notas-seccion {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .circle-chart-section .circle-chart-resumen h3 {
+        font-size: 15px;
+    }
+
+}

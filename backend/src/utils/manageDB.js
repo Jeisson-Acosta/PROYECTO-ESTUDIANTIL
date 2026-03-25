@@ -10,6 +10,8 @@ dotenv.config({ path: '../.env' });
     user: 'root',
     port: '3306',
     password: 'Agil',
+    port: 3307,
+    password: 'Aot2005?',
     database: 'cefcoc_dev',
     connectionLimit: 10, // Maximo de conexiones simultaneas
 } */
@@ -45,6 +47,9 @@ export async function manageDB(nameSP, params, query = '', option = 'SP') {
     try {
         if (option === 'SP') {
             const [response] = await connectionPool.query(`CALL ${nameSP}(${params.map(() => '?').join(',')})`, params)
+            /* console.log('🟢 Respuesta CRUDA de MySQL:', response);
+            console.log('🟢 response[0]:', response[0]);
+            console.log('🟢 response[1]:', response[1]); */
             RESPONSE_DB.ok = true
             RESPONSE_DB.data = response[0]
             RESPONSE_DB.message = "Petición exitosa"
