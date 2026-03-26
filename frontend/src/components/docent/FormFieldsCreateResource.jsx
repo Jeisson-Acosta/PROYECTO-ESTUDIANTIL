@@ -19,8 +19,9 @@ export function FormFieldsCreateResource({ typeResource }) {
         category: null,
         description: '',
         files: [],
-        date: null,
-        hour: null,
+        // dateInitial: null,
+        dateFinal: null,
+        // hour: null,
         points: null,
         publishImmediately: false,
         lateDeliveries: false
@@ -63,6 +64,12 @@ export function FormFieldsCreateResource({ typeResource }) {
         }))
     }
 
+    const formatDatetime = (date = new Date()) => {
+    const pad = (n) => String(n).padStart(2, '0')
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+}
+
+
     const handleClickCreateResource = async () => {
         const formData = new FormData()
 
@@ -70,12 +77,17 @@ export function FormFieldsCreateResource({ typeResource }) {
         formData.append('typeResource', infoResource.typeResource)
         formData.append('title', infoResource.title)
         formData.append('description', infoResource.description)
-        formData.append('date', infoResource.date ?? '')
-        formData.append('hour', infoResource.hour ?? '')
+
+        formData.append('dateInitial', formatDatetime())
+        formData.append('dateFinal', infoResource.dateFinal ? formatDatetime(new Date(infoResource.dateFinal)) : '')
+        // formData.append('hour', infoResource.hour ?? '')
         formData.append('points', infoResource.points ?? '')
         // Los booleanos se envían como strings "true"/"false" (FormData no soporta boolean)
         formData.append('publishImmediately', String(infoResource.publishImmediately))
         formData.append('lateDeliveries', String(infoResource.lateDeliveries))
+
+        // Centro educativo ANTES de los archivos (multer lo necesita en destination callback)
+        formData.append('cednom', 'Manuelita Saenz')
 
         // Archivos adjuntos
         infoResource.files.forEach(file => {
@@ -91,8 +103,9 @@ export function FormFieldsCreateResource({ typeResource }) {
             category: null,
             description: '',
             files: [],
-            date: null,
-            hour: null,
+            // dateInitial: null,
+            dateFinal: null,
+            // hour: null,
             points: null,
             publishImmediately: false,
             lateDeliveries: false
@@ -175,24 +188,11 @@ export function FormFieldsCreateResource({ typeResource }) {
                             FECHA LIMITE
                         </label>
                         <input 
-                            type="date" 
-                            name="date" 
+                            type="datetime-local" 
+                            name="dateFinal" 
                             id="limit-date" 
                             className="field-action"
-                            value={infoResource.date}
-                            onChange={handleChangeInfoResource}
-                        />
-                    </div>
-                    <div className="field">
-                        <label htmlFor="hour-limit">
-                            HORA
-                        </label>
-                        <input 
-                            type="time" 
-                            name="hour" 
-                            id="hour-limit" 
-                            className="field-action"
-                            value={infoResource.hour}
+                            value={infoResource.dateFinal}
                             onChange={handleChangeInfoResource}
                         />
                     </div>
