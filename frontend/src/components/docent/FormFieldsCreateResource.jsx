@@ -1,7 +1,9 @@
 // ==================== HOOKS ====================
 import { useEffect, useRef, useState } from "react"
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
+import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
 import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 // ================================================
 
 // ==================== STYLES ====================
@@ -20,14 +22,16 @@ export function FormFieldsCreateResource({ typeResource }) {
         description: '',
         files: [],
         // dateInitial: null,
-        dateFinal: null,
+        dateFinal: '',
         // hour: null,
-        points: null,
+        points: '',
         publishImmediately: false,
         lateDeliveries: false
     })
 
     const { requestDB } = useRequestDB()
+    const navigate = useNavigate()
+    const { currentClass } = useCurrentClass()
 
     const inputFileRef = useRef(null)
 
@@ -65,10 +69,9 @@ export function FormFieldsCreateResource({ typeResource }) {
     }
 
     const formatDatetime = (date = new Date()) => {
-    const pad = (n) => String(n).padStart(2, '0')
-    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
-}
-
+        const pad = (n) => String(n).padStart(2, '0')
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+    }
 
     const handleClickCreateResource = async () => {
         const formData = new FormData()
@@ -90,13 +93,19 @@ export function FormFieldsCreateResource({ typeResource }) {
         formData.append('cednom', 'Manuelita Saenz')
 
         // Archivos adjuntos
-        infoResource.files.forEach(file => {
-            formData.append('files', file)
-        })
+        infoResource.files.forEach(file => { formData.append('files', file) })
 
         const responseDB = await requestDB('docent/create-resource', 'POST', formData)
         if (!responseDB.ok) return toast.error(responseDB.message)
-        toast.success('¡Recurso creado exitosamente!')
+
+        if (typeResource === 'TA') {
+            toast.success('¡Tarea creada exitosamente!')
+        } else if (typeResource === 'MA') {
+            toast.success('¡Material creado exitosamente!')
+        } else if (typeResource === 'EN') {
+            toast.success('¡Anuncio creado exitosamente!')
+        }
+
         setInfoResource({
             typeResource,
             title: '',
@@ -104,16 +113,21 @@ export function FormFieldsCreateResource({ typeResource }) {
             description: '',
             files: [],
             // dateInitial: null,
-            dateFinal: null,
+            dateFinal: '',
             // hour: null,
-            points: null,
+            points: '',
             publishImmediately: false,
             lateDeliveries: false
         })
-        if (inputFileRef.current) inputFileRef.current.value = ''
-    }
 
-    console.log(infoResource)
+        if (inputFileRef.current) inputFileRef.current.value = ''
+
+        if (currentClass?.asgcod) {
+            navigate(`/docent/cursos/${currentClass.asgcod}`)
+        } else {
+            navigate('/docent/cursos')
+        }
+    }
 
     return (
         <section className="fields-form-create-resource">
