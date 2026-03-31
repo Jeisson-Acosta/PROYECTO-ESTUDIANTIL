@@ -39,8 +39,6 @@ export class DocentController {
             const resultValidate = validateCreateResource(req.body)
             if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
 
-            console.log(req)
-
             const result = await DocentModel.createResource({
                 data: resultValidate.data,
                 files: req.files ?? []

@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import { UserLoginContext } from "../../context/userLogin"
 
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
+import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
 
 import { PlusIcon } from "../../components/common/GeneralIcons.jsx"
 
@@ -13,6 +14,7 @@ export function ClassesDocent() {
     const [classesDocent, setClassesDocent] = useState(null)
     const { userLogin } = useContext(UserLoginContext)
     const { requestDB } = useRequestDB()
+    const { currentClass } = useCurrentClass()
 
     useEffect(() => {
         const getClassesDocent = async () => {
@@ -21,7 +23,7 @@ export function ClassesDocent() {
             setClassesDocent(response.data[0].info_classes_docent)
         }
         getClassesDocent()
-    }, [])
+    }, [currentClass])
 
     return (
         <section className="container-classes-docent">

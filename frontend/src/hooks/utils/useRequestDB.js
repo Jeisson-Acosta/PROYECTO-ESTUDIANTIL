@@ -2,7 +2,6 @@ import { useResponseDB } from "./useResponseDB.js";
 import { useCallback } from "react";
 
 const URL_BACKEND = "http://localhost:3000/";
-// const URL_BACKEND = "http://45.55.176.40/3000/";
 
 export const useRequestDB = () => {
   const { setResponseDB, loading, setLoading, setError } = useResponseDB();
@@ -20,8 +19,6 @@ export const useRequestDB = () => {
         credentials: 'include',
         body: method !== 'GET' ? (isFormData ? body : JSON.stringify(body)) : undefined,
       });
-      console.log(responseDb)
-
 
       if (!responseDb.ok) {
         throw new Error(`HTTP error! status: ${responseDb.status}`);

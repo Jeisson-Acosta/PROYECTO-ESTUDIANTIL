@@ -1,4 +1,6 @@
+import path from "node:path"
 import { manageDB } from "../utils/manageDB.js"
+import { normalizeNameResource } from "../utils/normalizeNameResource.js"
 
 export class DocentModel {
 
@@ -26,20 +28,30 @@ export class DocentModel {
 
     static async createResource({ data, files }) {
         try {
-            // Rutas de los archivos guardados por multer (ej: "uploads/resources/1234-abc.pdf")
-            const filePaths = files.map(f => f.path)
+            // f.filename = nombre real guardado por multer con sufijo: "tarea1-1234567890-987654321.pdf"
+            // f.originalname = nombre original del navegador: "tarea1.pdf"
+            const fileInfo = files.map(f => ({
+                name: path.basename(f.filename, path.extname(f.filename)),  // "tarea1-1234567890-987654321"
+                // path: f.path
+            }))
 
             const result = await manageDB('sp_docent_create_resource', [
-                data.typeResource,
+                1, // cedid
+                1, // cecid
+                data.usuid,
+                1, // asgid
                 data.title,
                 data.description,
-                data.date ?? null,
-                data.hour ?? null,
+                data.dateInitial ?? null,
+                data.dateFinal ?? null,
                 data.points ?? null,
-                data.publishImmediately ?? false,
+                data.typeResource,
                 data.lateDeliveries ?? false,
-                JSON.stringify(filePaths)   // los paths de archivos como JSON string
+                // data.hour ?? null,
+                // data.publishImmediately ?? false,
+                JSON.stringify(fileInfo)   // [{ name: "tarea1", path: "uploads/..." }, ...]
             ])
+            
             if (!result.ok) throw new Error(result.message)
 
             return result
