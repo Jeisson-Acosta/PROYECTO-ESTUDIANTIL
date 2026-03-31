@@ -1,7 +1,7 @@
 .principal-container-menu {
     display: flex;
     flex-direction: column;
-    justify-content:space-between;
+    justify-content: space-between;
     gap: 30px;
     background-color: #1a365d;
     color: #fff;
@@ -23,6 +23,7 @@
 .text-module {
     display: none;
 }
+
 .principal-container-menu .header-menu {
     display: flex;
     gap: 16px;
@@ -59,6 +60,7 @@
 .principal-container-menu .modules-menu ul a.active svg {
     fill: #7fb3d5;
 }
+
 .principal-container-menu .modules-menu ul a li {
     display: flex;
     align-items: center;
@@ -73,69 +75,74 @@
     border-radius: 6px;
 }
 
-.footer-menu-app{
-    width:100%;
-    border-top:1px solid #314a6d;
+.footer-menu-app {
+    width: 100%;
+    border-top: 1px solid #314a6d;
     padding: 16px 20px;
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-
-}
-.footer-menu-app button{
-    background-color:transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 
 }
 
-.footer-menu-app .btn-logout{
+.footer-menu-app button {
+    background-color: transparent;
+
+}
+
+.footer-menu-app .btn-logout {
     color:
 }
-.container-plan-user{
+
+.container-plan-user {
     padding: 12px;
     display: flex;
-    flex-direction:column;
-    align-items:center;
-    border-radius:16px;
-    background-color:#254065;
-    gap:12px
-
-}
-.container-plan-user header{
-    display:flex;
-    align-items:center;
-    gap:16px;
-
-}
-.container-plan-user header .icon-plan {
-    padding:4px;
-    width:40px;
-    height:50px;
-    background-color:#7db0d2;
-    border-radius:10px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    background-color: #254065;
+    gap: 12px
 }
 
-.container-plan-user .info-plan-user{
-    width:100%;
-}
-
-.container-plan-user .info-plan-user p{
-    font-size:12px;
-}
-
-.container-plan-user button{
-    background-color:#7db0d2;
-    width:100%;
-    justify-content:center;
-}
-.container-user-profile{
+.container-plan-user header {
     display: flex;
-    gap:12px;
+    align-items: center;
+    gap: 16px;
 
 }
-.container-user-profile .photo-user{
+
+.container-plan-user header .icon-plan {
+    padding: 4px;
+    width: 40px;
+    height: 50px;
+    background-color: #7db0d2;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-plan-user .info-plan-user {
+    width: 100%;
+}
+
+.container-plan-user .info-plan-user p {
+    font-size: 12px;
+}
+
+.container-plan-user button {
+    background-color: #7db0d2;
+    width: 100%;
+    justify-content: center;
+}
+
+.container-user-profile {
+    display: flex;
+    gap: 12px;
+
+}
+
+.container-user-profile .photo-user {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -145,12 +152,15 @@
     justify-content: center;
     align-items: center;
 }
-.container-user-profile .photo-user svg{
+
+.container-user-profile .photo-user svg {
     stroke: #000000;
     width: 20px;
     height: 20px;
 }
-.container-user-profile .info-user p{
-    opacity: 0.7; /*para opacar el texto*/
+
+.container-user-profile .info-user p {
+    opacity: 0.7;
+    /*para opacar el texto*/
     font-size: 13px;
 }
