@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 export const UserLoginContext = createContext();
 
 export function UserLoginProvider({ children }) {
-<<<<<<< HEAD
-=======
   // const [userLogin, setUserLogin] = useState(null);
 >>>>>>> c5518f4c41651c58a3a6685369b8f69a9d9e5dea
   const [userLogin, setUserLogin] = useState({ userInfo: null, educativeCenterInfo: null, currentCycleInfo: null });
