@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const UserLoginContext = createContext();
 
 export function UserLoginProvider({ children }) {
-  const [userLogin, setUserLogin] = useState(null);
+  const [userLogin, setUserLogin] = useState({ userInfo: null, educativeCenterInfo: null, currentCycleInfo: null });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // true mientras se verifica la sesión en el backend
   const { requestDB } = useRequestDB();
