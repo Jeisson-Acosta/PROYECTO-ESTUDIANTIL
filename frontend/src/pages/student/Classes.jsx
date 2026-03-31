@@ -131,7 +131,7 @@ export function Classes() {
 
   useEffect(() => {
     const getClassesStudent = async () => {
-      const responseDB = await requestDB(`student/classes/${userLogin.usuid}`, 'GET')
+      const responseDB = await requestDB(`student/classes/${userLogin.userInfo.usuid}`, 'GET')
       if (!responseDB.ok) {
         toast.error(responseDB.message)
         return

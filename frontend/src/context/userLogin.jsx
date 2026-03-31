@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 export const UserLoginContext = createContext();
 
 export function UserLoginProvider({ children }) {
-  const [userLogin, setUserLogin] = useState(null);
+  // const [userLogin, setUserLogin] = useState(null);
+  const [userLogin, setUserLogin] = useState({ userInfo: null, educativeCenterInfo: null, currentCycleInfo: null });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // true mientras se verifica la sesión en el backend
   const { requestDB } = useRequestDB();
@@ -20,9 +21,14 @@ export function UserLoginProvider({ children }) {
         if (!responseDB.ok) {
           setIsAuthenticated(false);
         } else {
-          const rolePath = ROLES[responseDB.data[0].rolcod].path;
+          const rolePath = ROLES[JSON.parse(responseDB.data[0].info_user).rolcod].path;
           setIsAuthenticated(true);
-          setUserLogin(responseDB.data[0]);
+          setUserLogin({
+            userInfo: JSON.parse(responseDB.data[0].info_user),
+            educativeCenterInfo: responseDB.data[0].info_centro,
+            currentCycleInfo: responseDB.data[0].info_ciclo,
+            ...responseDB.data[0]
+          })
           navigate(rolePath, { replace: true });
         }
       } finally {

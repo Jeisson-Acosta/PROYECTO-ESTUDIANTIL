@@ -79,7 +79,7 @@ export function FormFieldsCreateResource({ typeResource }) {
         const formData = new FormData()
 
         // Campos de texto e información del recurso
-        formData.append('usuid', userLogin.usuid)
+        formData.append('usuid', userLogin.userInfo.usuid)
         formData.append('typeResource', infoResource.typeResource)
         formData.append('title', infoResource.title)
         formData.append('description', infoResource.description)

@@ -27,9 +27,9 @@ function CardPlanUser(){
 }
 export function MenuApp() {
     const { userLogin } = useContext(UserLoginContext)
-    if (!userLogin) return null
+    if (!userLogin.userInfo) return null
 
-    const COMPLEMENTED_URL = userLogin.rolcod === 'EST' ? 'student' : userLogin.rolcod === 'DOC' ? 'docent' : 'rector'
+    const COMPLEMENTED_URL = userLogin.userInfo.rolcod === 'EST' ? 'student' : userLogin.userInfo.rolcod === 'DOC' ? 'docent' : 'rector'
     
     return (
         <section className="principal-container-menu">

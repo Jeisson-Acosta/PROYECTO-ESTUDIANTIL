@@ -8,6 +8,7 @@
     border-radius: 20px;
     width: 20%;
     margin: 10px;
+    gap: 4px;
 }
 
 @media (max-width: 768px) {
@@ -17,7 +18,7 @@
 }
 
 .stats-content .title-stat {
-    font-size: 20px;
+    font-size: 14px;
     font-family: fontSubtitles;
     color: #7e8da1
 }
@@ -34,8 +35,12 @@
     color: #fff;
     background-color: #87b8d8;
     width: 15%;
-    border-radius: 10px;
-    padding: 5px;
+    border-radius: 14px;
+    padding: 8px;
+    & svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 .summary-stat .value-stat {
@@ -45,13 +50,13 @@
 }
 
 
-.stats-content footer p {
+.stats-content footer {
     display: flex;
-    justify-content: left;
-    align-items: left;
-    text-align: left;
-    font-size: 20px;
-    color: #c4dceb;
-    font-family: fontTitlesBold;
-
+    justify-content: flex-start;
+    align-items: flex-start;
+    & p {
+        font-size: 13px;
+        color: #c4dceb;
+        font-family: fontTitlesBold;
+    }
 }

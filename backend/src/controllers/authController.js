@@ -37,7 +37,7 @@ export class AuthController {
     try {
       const result = await AuthModel.loginUser({ input: resultValidate.data });
       if (!result.ok) return res.json(result);
-      const { usuid, usunom, usuemail, rolcod } = result.data[0];
+      const { usuid, usunom, usuemail, rolcod } = JSON.parse(result.data[0].info_user);
 
       const token = jwt.sign(
         { usuid, usunom, usuemail, rolcod }, // PAYLOAD

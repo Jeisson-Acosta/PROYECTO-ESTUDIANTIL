@@ -11,9 +11,7 @@ import { CircleChart } from '../../components/common/charts/CircleChart.jsx';
 export function StudentDashboard() {
     const { userLogin } = useContext(UserLoginContext) || {};
     
-    if (!userLogin) {
-        return null;
-    }
+    if (!userLogin.userInfo) return null;
     
    const obtenerNotas = () => {
     let notasArray = [];
@@ -182,7 +180,6 @@ const obtenerProximasClases = () => {
 
     const notasAMostrar = obtenerNotas();
     const clasesAMostrar = obtenerProximasClases();
-    
 
     return (
         <div className="principal-content">
@@ -218,6 +215,7 @@ const obtenerProximasClases = () => {
                         labelCenter="Meta Hoy" 
                         color={userLogin?.color_resumen_grafico} 
                         strokeWidth={10}
+                        additionalText='%'
                     />
                     <div className='circle-chart-resumen'
                          style={{backgroundColor: userLogin?.color_resumen}}>

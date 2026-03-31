@@ -14,7 +14,7 @@ export function RoleBasedRoute({ children, allowedRoles }) {
   }
 
   // Si está autenticado pero no tiene el rol permitido, redirige a no autorizado.
-  if (!allowedRoles.includes(userLogin?.rolcod)) {
+  if (!allowedRoles.includes(userLogin?.userInfo?.rolcod)) {
     return <Navigate to="/unauthorized" replace />;
   }
 
