@@ -15,10 +15,10 @@ const classDetailsSchema = z.object({
 })
 
 const createResourceSchema = z.object({
-    usuid: z.number({
+    usuid: z.string({
         required_error: 'The user id is required',
         invalid_type_error: 'The user id must be a number'
-    }),
+    }).transform(val => Number(val)),
     typeResource: z.enum(['TA', 'MA', 'EN'], {
         required_error: 'The type resource is required',
         invalid_type_error: 'The type resource must be TA, MA or EN'
