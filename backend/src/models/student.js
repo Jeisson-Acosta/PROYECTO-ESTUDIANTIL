@@ -15,6 +15,7 @@ export class StudentModel {
     static async getClass({ asgcod }) {
         try {
             const resultClass = await manageDB('sp_student_get_info_class', [1, 1, 1, asgcod])
+            console.log(resultClass)
             if (!resultClass.ok) throw new Error(resultClass.message)
                 
             return resultClass

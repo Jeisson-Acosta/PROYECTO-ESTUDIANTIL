@@ -1,8 +1,10 @@
+CREATE DATABASE  IF NOT EXISTS `cefcoc_dev` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `cefcoc_dev`;
 -- MySQL dump 10.13  Distrib 8.0.44, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: cefcoc_dev
+-- Host: 45.55.176.40    Database: cefcoc_dev
 -- ------------------------------------------------------
--- Server version	8.0.35
+-- Server version	8.0.45-0ubuntu0.24.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -217,13 +219,14 @@ CREATE TABLE `tbl_asignatura_trabajo` (
   `astfecini` datetime DEFAULT NULL COMMENT 'Fecha inicial cuando inicia vigencia el trabajo.',
   `astfecfin` datetime DEFAULT NULL COMMENT 'Fecha final cuando se cierra el trabajo cuando es tipo ''TA''.',
   `astcomentario` varchar(200) DEFAULT NULL COMMENT 'Comentaro',
+  `astpunt_max` int DEFAULT NULL COMMENT 'Puntaje maximo para calificar el trabajo.',
   `asttip` enum('TA','MA','EN') DEFAULT NULL COMMENT 'Tipo de trabajo: (TA)rea, (MA)terial, (EN)unciado',
+  `astentardias` tinyint DEFAULT '1' COMMENT 'Permitir entregas despues de la fecha: (1) SI, (0) NO',
   `cecid` int DEFAULT NULL COMMENT '[tbl_centro_educativo_ciclo]: Id del ciclo al que pertenece el trabajo.',
-  `ascid` int DEFAULT NULL COMMENT '[tbl_asignatura_curso]: Id del curso a la que pertenece el trabajo.',
   `usuid` int DEFAULT NULL COMMENT '[tbl_usuario]: Id del usuario quien creo el trabajo. (Acá sería el id del profesor)',
   `asgid` int DEFAULT NULL COMMENT '[tbl_asignatura]: Id de la asignatura a la cual pertenece el trabajo.',
   PRIMARY KEY (`astid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -232,7 +235,7 @@ CREATE TABLE `tbl_asignatura_trabajo` (
 
 LOCK TABLES `tbl_asignatura_trabajo` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo` DISABLE KEYS */;
-INSERT INTO `tbl_asignatura_trabajo` VALUES (1,'Resolver multiplicaciones','Resolver las multiplicaciones que se jaron en clase.','2026-02-20 00:00:00','2026-03-08 13:40:00',NULL,'TA',1,1,2,1),(2,'Test trabajo','Test de trabajo','2026-02-20 00:00:00','2026-03-10 23:59:00',NULL,'TA',1,1,2,1),(3,'Trabajo 1 Matematicas','Trabajo 1 de prueba','2026-02-20 00:00:00','2026-03-10 22:48:00',NULL,'TA',1,1,2,2),(4,'Trabajo 1 Física','Trabajo 1 de prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,'TA',1,1,2,3),(5,'Trabajo 1 Educación Física','Trabajo 1 Educación Física prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,'TA',1,1,2,4),(6,'Trabajo 1 Tecnologia','Trabajo 1 Tecnologia prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,'TA',1,1,2,5),(7,'Trabajo 2 Física','Trabajo 2 Física Prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,'TA',1,1,2,3),(8,'Trabajo 3 física','Trabajo 3 física','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,'TA',1,1,2,3),(9,'Trabajo 2 matematicas','Trabajo 2 matematicas Prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,'TA',1,1,2,3);
+INSERT INTO `tbl_asignatura_trabajo` VALUES (1,'Resolver multiplicaciones','Resolver las multiplicaciones que se jaron en clase.','2026-02-20 00:00:00','2026-03-08 13:40:00',NULL,NULL,'TA',1,1,2,1),(2,'Test trabajo','Test de trabajo','2026-02-20 00:00:00','2026-03-10 23:59:00',NULL,NULL,'TA',1,1,2,1),(3,'Trabajo 1 Matematicas','Trabajo 1 de prueba','2026-02-20 00:00:00','2026-03-10 22:48:00',NULL,NULL,'TA',1,1,2,2),(4,'Trabajo 1 Física','Trabajo 1 de prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(5,'Trabajo 1 Educación Física','Trabajo 1 Educación Física prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,4),(6,'Trabajo 1 Tecnologia','Trabajo 1 Tecnologia prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,5),(7,'Trabajo 2 Física','Trabajo 2 Física Prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(8,'Trabajo 3 física','Trabajo 3 física','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(9,'Trabajo 2 matematicas','Trabajo 2 matematicas Prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(11,'Prueba Material Ciencias','Prueba Material Ciencias','2026-03-15 17:20:00',NULL,NULL,NULL,'MA',1,1,2,1),(12,'Prueba enunciado Ciencias','Prueba enunciado Ciencias','2026-03-15 17:20:00',NULL,NULL,NULL,'EN',1,1,2,1),(13,'Titulo de prueba desed el front','Una descripción','2026-03-26 14:28:00','2026-03-26 14:27:00',NULL,100,'TA',1,1,2,1),(14,'Traea 1 de prueba','Hacer la tarea propuesta','2026-03-28 19:55:00','2026-03-28 23:55:00',NULL,100,'TA',1,1,2,1),(15,'Traea 1 de prueba','Hacer la tarea propuesta','2026-03-28 19:55:00','2026-03-28 23:55:00',NULL,100,'TA',1,1,2,1),(16,'Dibujos plantas','Hacer los dicbujos de cada planata hablado en clase','2026-03-28 15:37:22','2026-03-31 21:43:00',NULL,99,'TA',1,1,2,1),(17,'Ejemplode manetrial creado desde el front','Prueba de material desde el front','2026-03-28 15:43:52',NULL,NULL,NULL,'MA',0,1,2,1),(18,'NO HAY CLASE','NO HAY CLASE','2026-03-28 15:44:35',NULL,NULL,NULL,'EN',0,1,2,1),(19,'Ultima prueba nav','ajdnajnd','2026-03-28 15:48:45','2026-03-12 15:50:00',NULL,100,'TA',1,1,2,1),(20,'ajndan','njandajndj','2026-03-28 15:51:02','2026-03-28 15:50:00',NULL,100,'TA',1,1,2,1),(21,'Prueba finalllllllllll','lmakmakam','2026-03-28 15:55:53','2026-03-31 20:00:00',NULL,100,'TA',1,1,2,1),(22,'klm,kmkm','kmkmkmkm','2026-03-28 15:57:49','2026-03-01 16:58:00',NULL,100,'TA',0,1,2,1),(23,'jandajkdnkajdn','klandkajldn','2026-03-28 16:02:27','2026-03-31 21:08:00',NULL,100,'TA',1,1,2,1);
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,7 +281,7 @@ CREATE TABLE `tbl_asignatura_trabajo_entrega` (
   `usuid` int DEFAULT NULL COMMENT '[tbl_usuario]: Id del usuario, osea el estudiante al que pertenece la tarea.',
   `astid` int DEFAULT NULL COMMENT '[tbl_asignatura_trabajo]: Id del trabajo de la asignatura para saber a que asignatura pertenece el trabajo.',
   PRIMARY KEY (`ateid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,7 +290,7 @@ CREATE TABLE `tbl_asignatura_trabajo_entrega` (
 
 LOCK TABLES `tbl_asignatura_trabajo_entrega` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo_entrega` DISABLE KEYS */;
-INSERT INTO `tbl_asignatura_trabajo_entrega` VALUES (1,NULL,NULL,'P',1,1),(2,'2026-03-13 00:00:00',NULL,'P',1,2),(3,'2026-03-06 00:00:00',NULL,'C',1,3),(4,'2026-03-06 00:00:00',NULL,'P',1,4),(5,'2026-03-06 00:00:00',NULL,'P',1,5),(6,'2026-03-06 00:00:00',NULL,'C',1,6),(7,'2026-03-06 00:00:00',NULL,'C',1,7),(8,'2026-03-06 00:00:00',NULL,'C',1,8),(9,'2026-03-06 00:00:00',NULL,'C',1,9);
+INSERT INTO `tbl_asignatura_trabajo_entrega` VALUES (1,NULL,NULL,'P',1,1),(2,'2026-03-13 00:00:00',NULL,'P',1,2),(3,'2026-03-06 00:00:00',NULL,'C',1,3),(4,'2026-03-06 00:00:00',NULL,'P',1,4),(5,'2026-03-06 00:00:00',NULL,'P',1,5),(6,'2026-03-06 00:00:00',NULL,'C',1,6),(7,'2026-03-06 00:00:00',NULL,'C',1,7),(8,'2026-03-06 00:00:00',NULL,'C',1,8),(9,'2026-03-06 00:00:00',NULL,'C',1,9),(10,NULL,NULL,'P',1,14),(11,NULL,NULL,'P',1,15),(12,NULL,NULL,'P',1,16),(13,NULL,NULL,'P',1,17),(14,NULL,NULL,'P',1,18),(15,NULL,NULL,'P',1,19),(16,NULL,NULL,'P',1,20),(17,NULL,NULL,'P',1,21),(18,NULL,NULL,'P',1,22),(19,NULL,NULL,'P',1,23);
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo_entrega` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,7 +309,7 @@ CREATE TABLE `tbl_asignatura_trabajo_recurso` (
   `astid` int DEFAULT NULL COMMENT '[tbl_asignatura_trabajo]: Id del trabajo perteneciente a la signatura para saber el recurso a que trabajo y asignatura pertenece. (SI <> NULL, el recurso lo creo el profesor).',
   `ateid` int DEFAULT NULL COMMENT '[tbl_asignatura_trabajo_entrega]: Id de la entrega del trabajo.(SI es <> null es recurso que subio el estudiante).',
   PRIMARY KEY (`atrid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -315,6 +318,7 @@ CREATE TABLE `tbl_asignatura_trabajo_recurso` (
 
 LOCK TABLES `tbl_asignatura_trabajo_recurso` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo_recurso` DISABLE KEYS */;
+INSERT INTO `tbl_asignatura_trabajo_recurso` VALUES (1,'\"nómina_de_personal_1014477770_04_02_2026-1774727875790-381475411\"',NULL,'A',14,NULL),(2,'\"nómina_de_personal_1014477770_03_03_2026-1774727875792-494016\"',NULL,'A',14,NULL),(3,'nómina_de_personal_1014477770_04_02_2026-1774727875790-381475411',NULL,'A',15,NULL),(4,'nómina_de_personal_1014477770_03_03_2026-1774727875792-494016',NULL,'A',15,NULL),(5,'profile-1774730242490-566012614',NULL,'A',16,NULL);
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo_recurso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -683,6 +687,134 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_docent_create_resource` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_docent_create_resource`(
+IN i_cedid INT,
+IN i_cecid INT,
+IN i_usuid INT,
+IN i_asgid INT,
+IN i_astnomtrabajo varchar(150),
+IN i_astdesctrabajo text,
+IN i_astfecini DATETIME,
+IN i_astfecfin DATETIME,
+IN i_astpunt_max INT,
+IN i_asttip enum('TA','MA','EN'),
+IN i_astentardias tinyint(2),
+IN i_info_files JSON
+)
+BEGIN
+
+	DECLARE i INT DEFAULT 0;
+    
+    START TRANSACTION;
+
+		-- Esta variable almacena todos los id´s de los estudiante al cual va dirigido el recurso.
+		SET @_ids_all_students = (
+			SELECT
+				GROUP_CONCAT('[',ase.usuid,']')
+			FROM tbl_asignatura_estudiante ase
+            INNER JOIN tbl_asignatura asg ON ase.asgid = asg.asgid
+            WHERE ase.asgid = i_asgid
+            AND asg.cedid = i_cedid
+            );
+        
+        -- SELECT @_ids_all_students; -- DEBUG
+    
+		INSERT INTO tbl_asignatura_trabajo(
+			astnomtrabajo, 
+            astdesctrabajo, 
+            astfecini, 
+            astfecfin, 
+            astpunt_max, 
+            asttip, 
+            astentardias, 
+            cecid, 
+            usuid, 
+            asgid
+		) VALUES (
+			i_astnomtrabajo, 
+            i_astdesctrabajo, 
+            i_astfecini, 
+            i_astfecfin, 
+            i_astpunt_max, 
+            i_asttip, 
+            i_astentardias, 
+            i_cecid, 
+            i_usuid, 
+            i_asgid
+		);
+        
+        SET @_astid_inserted = LAST_INSERT_ID();
+        
+        SET i = 0;
+        IF JSON_LENGTH(@_ids_all_students) > 0 THEN
+			
+            REPEAT
+            
+				SET @_usuid_student_current = JSON_EXTRACT(@_ids_all_students, CONCAT('$[', i , ']'));
+                -- SELECT @_usuid_student_current; -- DEBUG
+            
+				INSERT INTO tbl_asignatura_trabajo_entrega(
+					ateestado,
+					usuid,
+					astid
+				) VALUES(
+					'P',
+                    @_usuid_student_current,
+                    @_astid_inserted
+				);
+                
+                SET i = i + 1;
+                UNTIL i >= JSON_LENGTH(@_ids_all_students)
+                
+            END REPEAT;
+            
+        END IF;
+        
+        SET i = 0;
+        IF JSON_LENGTH(i_info_files) > 0 THEN
+        
+			REPEAT
+            
+				SET @_name_file_current = JSON_UNQUOTE(JSON_EXTRACT(i_info_files, CONCAT('$[', i ,'].name')));
+                -- SELECT @_name_file_current; -- DEBUG
+
+				INSERT INTO tbl_asignatura_trabajo_recurso(
+					atrnomarc,
+                    atrtiprec,
+                    astid
+                ) VALUES(
+					@_name_file_current,
+                    'A',
+                    @_astid_inserted
+                );
+                
+				SET i = i + 1;
+				UNTIL i >= JSON_LENGTH(i_info_files)
+                
+			END REPEAT;
+			
+        END IF;
+        
+    COMMIT;
+
+SELECT 1 AS ok;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_docent_get_all_classes` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -887,7 +1019,7 @@ SET @_average_classes = (
 	WHERE FIND_IN_SET(ast.asgid, @_classes_ids)
     AND ate.usuid = i_usuid
 	AND ast.cecid = i_cecid
-	AND ast.ascid = @_curso_id
+	-- AND ast.ascid = @_curso_id
 );
 
 -- SELECT @_average_classes; -- DEBUG
@@ -906,7 +1038,7 @@ CREATE TEMPORARY TABLE tbltmp_sum_classes_notes AS (
     WHERE FIND_IN_SET(ast.asgid, @_classes_ids)
     AND ate.usuid = i_usuid
     AND ast.cecid = i_cecid
-    AND ast.ascid = @_curso_id
+    -- AND ast.ascid = @_curso_id
     GROUP BY ast.asgid
     ORDER BY average_note DESC
     LIMIT 4
@@ -979,7 +1111,7 @@ SET @_pending_tasks_student = (
     WHERE ate.usuid = i_usuid
     AND ate.ateestado = 'P'
     AND ast.asttip = 'TA'
-    AND ast.ascid = @_curso_id
+    -- AND ast.ascid = @_curso_id
 );
 
 -- SELECT @_pending_tasks_student; -- DEBUG
@@ -1275,4 +1407,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-15  1:54:12
+-- Dump completed on 2026-03-28 16:15:57

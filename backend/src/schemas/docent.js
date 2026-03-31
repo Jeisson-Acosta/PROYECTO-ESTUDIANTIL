@@ -15,6 +15,10 @@ const classDetailsSchema = z.object({
 })
 
 const createResourceSchema = z.object({
+    usuid: z.number({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }),
     typeResource: z.enum(['TA', 'MA', 'EN'], {
         required_error: 'The type resource is required',
         invalid_type_error: 'The type resource must be TA, MA or EN'
@@ -27,7 +31,8 @@ const createResourceSchema = z.object({
         required_error: 'The description is required',
         invalid_type_error: 'The description must be a string'
     }),
-    date: z.string().nullable(),
+    dateInitial: z.string().nullable(),
+    dateFinal: z.string().nullable().transform(val => val === '' ? null : val),
     hour: z.string().nullable(),
     points: z.string().transform(val => val === '' || val === null ? null : Number(val)).nullable(),
     publishImmediately: z.string().transform(val => val === 'true').optional(),

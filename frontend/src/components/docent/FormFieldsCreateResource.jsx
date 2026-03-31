@@ -1,6 +1,7 @@
 // ==================== HOOKS ====================
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useContext } from "react"
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
+import { UserLoginContext } from "../../context/userLogin.jsx"
 import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
@@ -32,6 +33,7 @@ export function FormFieldsCreateResource({ typeResource }) {
     const { requestDB } = useRequestDB()
     const navigate = useNavigate()
     const { currentClass } = useCurrentClass()
+    const { userLogin } = useContext(UserLoginContext)
 
     const inputFileRef = useRef(null)
 
@@ -77,6 +79,7 @@ export function FormFieldsCreateResource({ typeResource }) {
         const formData = new FormData()
 
         // Campos de texto e información del recurso
+        formData.append('usuid', userLogin.usuid)
         formData.append('typeResource', infoResource.typeResource)
         formData.append('title', infoResource.title)
         formData.append('description', infoResource.description)
