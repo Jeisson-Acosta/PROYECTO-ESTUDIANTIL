@@ -96,4 +96,14 @@ export class AuthModel {
             throw error;
         }
     }
+
+    static async getEducativeCenters() {
+        try {
+            const result = await manageDB(null, [], 'SELECT * FROM tbl_centro_educativo', 'SL')
+            if (!result.ok) { throw new Error(result.message) }
+            return result
+        } catch (error) {
+            throw error
+        }
+    }
 }

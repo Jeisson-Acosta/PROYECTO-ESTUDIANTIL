@@ -41,7 +41,6 @@ export function useFormLogin() {
             return toast.error("La contraseña no puede estar vacía");
 
         const responseDB = await requestDB("auth/login", "POST", userInfoLogin);
-        console.log(responseDB)
         if (!responseDB.ok) {
             toast.error(responseDB.message);
             return;
@@ -50,17 +49,15 @@ export function useFormLogin() {
         const userData = responseDB.data[0];
         // setUserLogin(userData);
         setUserLogin({
-            userInfo: JSON.parse(userData.info_user), // Change this part
-            educativeCenterInfo: userData.centro_educativo[0],
-            currentCycleInfo: userData.ciclo_actual,
+            userInfo: JSON.parse(userData.info_user), 
+            educativeCenterInfo: JSON.parse(userData.centro_educativo)[0],
+            currentCycleInfo: JSON.parse(userData.ciclo_actual),
             ...userData
         })
         setIsAuthenticated(true);
         navigate(ROLES[userData.rolcod]?.path || "/");
         // toast.success("¡Hola!");
     };
-
-    console.log(userLogin);
 
     return {
         userInfoLogin,

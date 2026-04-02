@@ -1,3 +1,6 @@
+### Obtener todos los centros educativos
+GET http://localhost:3000/auth/educative-centers
+
 ### Crear usuario en la base de datos
 POST http://localhost:3000/auth/register
 Content-Type: application/json
@@ -19,8 +22,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    // "usuemail": "pepito@gmail.com",
-    "usuemail": "jeisson@gmail.com",
+    "usuemail": "pepito@gmail.com",
+    // "usuemail": "jeisson@gmail.com",
     "usupwd": "Json161121@"
 }
 
@@ -42,4 +45,4 @@ Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm
 
 ### Obtener información de una clase a la que el docente seleccione
 GET http://localhost:3000/docent/classes/details/CIEN
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6ImplaXNzb25AZ21haWwuY29tIiwicm9sY29kIjoiRE9DIiwiaWF0IjoxNzczNTUwMjg0LCJleHAiOjE3NzM1NTM4ODR9.4p9Bl6sL-t3rtfo3jZRGHJMCVB1E2Bdl9wUl4PbkFTA
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6ImplaXNzb25AZ21haWwuY29tIiwicm9sY29kIjoiRE9DIiwiaWF0IjoxNzc1MTA4MjI1LCJleHAiOjE3NzUxMTE4MjV9.YfYdaXY3d3Gwmju2-FxrSfIA5GJdjXUtZTYPppKfD0U

@@ -13,7 +13,8 @@ export function useFormRegister() {
     usudocu: "",
     usucel: "",
     usufch_nacimiento: "",
-    ceeid: 1,
+    // ceeid: 1,
+    cedid: null,
     tidid: "",
     rolcod: "",
     usuborn: "",
@@ -90,7 +91,8 @@ export function useFormRegister() {
         usudocu: userInfoRegister.usudocu,
         usucel: userInfoRegister.usucel,
         usufch_nacimiento: userInfoRegister.usufch_nacimiento,
-        ceeid: userInfoRegister.ceeid,
+        // ceeid: userInfoRegister.ceeid,
+        cedid: userInfoRegister.cedid,
         tidid: userInfoRegister.tidid,
         rolcod: userInfoRegister.rolcod
       };

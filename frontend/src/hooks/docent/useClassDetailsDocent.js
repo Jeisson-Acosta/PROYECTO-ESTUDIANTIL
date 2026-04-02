@@ -20,6 +20,7 @@ export function useClassDetailsDocent() {
   useEffect(() => {
     const getInfoClass = async () => {
       const response = await requestDB(`docent/classes/details/${asgcod}`);
+      console.log(response);
       if (!response.ok) return toast.error(response.message);
       setInfoClass({
         infoClass: JSON.parse(response.data[0].info_asignatura),

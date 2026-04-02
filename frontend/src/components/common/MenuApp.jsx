@@ -14,13 +14,17 @@ function CardPlanUser(){
                         <IconMedal/>
                     </div>
 
-                    <div className="info-plan-user">
-                        <h5 className="text-module">Plan Pro</h5>
-                        <p className="text-module">Educacion avanzada</p>
+                    <div className="info-plan-user show-content-block">
+                        <h5>Plan Pro</h5>
+                        <p>Educacion avanzada</p>
                     </div>
                 </header>
 
-                <ButtonCommon text="Ver planes"/>
+                <button className='show-content-flex'>
+                    Ver planes
+                </button>
+
+                {/* <ButtonCommon text="Ver planes"/> */}
 
         </section>
     )
@@ -86,19 +90,26 @@ export function MenuApp() {
             </nav>
         <CardPlanUser/>
         <footer className="footer-menu-app">
-
             <section className='container-user-profile'>
                 <div className='photo-user'>
                    <UserIcon/>
                 </div>
 
-                <div className='info-user'>
-                    <h4 className="text-module">{userLogin.usunom}</h4>
-                    <p className="text-module">{userLogin.rolnom}</p>
+                <div className='info-user show-content-block'>
+                    <h4>{userLogin.userInfo.usunom}</h4>
+                    <p>{userLogin.userInfo.rolnom}</p>
                 </div>
             </section>
-           <ButtonCommon text="Configuracion" icon={<IconConfig/>}/>
-           <ButtonCommon text="Cerrar Sesión" colorText="c78790" icon={<IconSesion/>}/>
+            <button>
+                <IconConfig/>
+                <span className='show-content-block'>Configuracion</span>
+            </button>
+           {/* <ButtonCommon text="Configuracion" icon={<IconConfig/>}/> */}
+           <button>
+                <IconSesion/>
+                <span className='show-content-block' style={{color: '#c78790'}}>Cerrar Sesión</span>
+            </button>
+           {/* <ButtonCommon text="Cerrar Sesión" colorText="c78790" icon={<IconSesion/>}/> */}
         </footer>
 
         </section>
