@@ -3,7 +3,7 @@ import { IconHatStudent, IconDashboard, IconNotebook, IconClipboard, IconBars, I
 import { NavLink } from "react-router-dom"
 import { useContext } from 'react'
 import { UserLoginContext } from '../../context/userLogin.jsx'
-import {ButtonCommon } from "./ButtonCommon.jsx"
+import { useNavigate } from 'react-router-dom'
 import { UserIcon } from './GeneralIcons.jsx'
 
 function CardPlanUser(){
@@ -31,6 +31,7 @@ function CardPlanUser(){
 }
 export function MenuApp() {
     const { userLogin } = useContext(UserLoginContext)
+    const navigate = useNavigate()
     if (!userLogin.userInfo) return null
 
     const COMPLEMENTED_URL = userLogin.userInfo.rolcod === 'EST' ? 'student' : userLogin.userInfo.rolcod === 'DOC' ? 'docent' : 'rector'
@@ -100,7 +101,7 @@ export function MenuApp() {
                     <p>{userLogin.userInfo.rolnom}</p>
                 </div>
             </section>
-            <button>
+            <button onClick={() => navigate('/configuracion')}>
                 <IconConfig/>
                 <span className='show-content-block'>Configuracion</span>
             </button>

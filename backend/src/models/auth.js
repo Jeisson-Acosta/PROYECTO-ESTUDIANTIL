@@ -67,7 +67,7 @@ export class AuthModel {
         }
 
         // Comparar la contraseña con la escribio el usuario y la que esta en la DB
-        const isPasswordValid = await bcrypt.compare(usupwd, passwordInDB.data.usupwd)
+        const isPasswordValid = await bcrypt.compare(usupwd, passwordInDB.data[0].usupwd)
         if (!isPasswordValid) {
             passwordInDB.ok = false
             passwordInDB.data = null
@@ -103,7 +103,7 @@ export class AuthModel {
             if (!result.ok) { throw new Error(result.message) }
             return result
         } catch (error) {
-            throw error
+            throw new Error('Error getting educative centers')
         }
     }
 }
