@@ -1,10 +1,32 @@
 import '../../styles/common/ConfigurationAccount.css'
 import { UserIcon } from "./GeneralIcons"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { ButtonCommon } from "./ButtonCommon.jsx"
+import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
+import toast from 'react-hot-toast'
 
 export function ConfigurationAccount() {
     const [selectedOption, setSelectedOption] = useState('perfil')
+    const refUploadPhoto = useRef(null)
+    const { requestDB } = useRequestDB()
+
+    const handleUploadPhoto = async (e) => {
+        const file = e.target.files[0]
+        if (!file) return
+
+        const formData = new FormData()
+        formData.append('usudocu', '1014477770')
+        formData.append('fotoPerfil', file)
+        
+        const result = await requestDB('config-account/upload-photo', 'POST', formData)
+        if (result.ok) {
+            refUploadPhoto.current.value = ''
+            toast.success(result.message)
+        } else {
+            toast.error(result.message)
+        }
+    }
+
     return (
         <section className="container-configuration-account">
             <header className="header-configuration-account">
@@ -47,7 +69,17 @@ export function ConfigurationAccount() {
                                     <h4>Foto de perfil</h4>
                                     <p>Sube una imagen de al menos 300x300 px.</p>
                                     <div className="buttons-actions-photo">
-                                        <button>
+                                        <input 
+                                            ref={refUploadPhoto} 
+                                            type="file" 
+                                            accept="image/*" 
+                                            onChange={handleUploadPhoto}
+                                            style={{display: 'none'}}
+                                        />
+                                        <button 
+                                            type="button" 
+                                            onClick={() => {refUploadPhoto.current.click()}}
+                                        >
                                             Subir
                                         </button>
                                         <button style={{color: '#f14444'}}>
