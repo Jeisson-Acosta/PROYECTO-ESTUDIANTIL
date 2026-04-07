@@ -42,13 +42,7 @@ function App() {
         {/* RUTAS PUBLICAS */}
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-<<<<<<< HEAD
-        <Route path='/unauthorized' element={<Unauthorized />} />
-        
-        
-=======
         <Route path='/unauthorized' element={<Unauthorized />} />        
->>>>>>> a39b4fd2bda3d011ab64603f56c2da8bf0b9b2da
 
         <Route element={<Layout />}>
           <Route path='/configuracion' element={<ConfigurationAccount />} />
