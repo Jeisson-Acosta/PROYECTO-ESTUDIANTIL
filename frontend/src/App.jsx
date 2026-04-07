@@ -20,6 +20,7 @@ import { RoleBasedRoute } from './routes/RoleBasedRoute.jsx'
 import { RoleBasedRedirect } from './components/RoleBasedRedirect.jsx'
 import { StudentDashboard } from './pages/student/StudentDashboard.jsx'
 import { ContenidoClase } from './pages/student/ContenidoClase.jsx'
+import { ConfigurationAccount } from './components/common/ConfigurationAccount.jsx'
 
 function Unauthorized() {
   return (
@@ -41,11 +42,17 @@ function App() {
         {/* RUTAS PUBLICAS */}
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+<<<<<<< HEAD
         <Route path='/unauthorized' element={<Unauthorized />} />
         
         
+=======
+        <Route path='/unauthorized' element={<Unauthorized />} />        
+>>>>>>> a39b4fd2bda3d011ab64603f56c2da8bf0b9b2da
 
         <Route element={<Layout />}>
+          <Route path='/configuracion' element={<ConfigurationAccount />} />
+
           {/* RUTAS DE ESTUDIANTE */}
           <Route 
             path='/student/*'

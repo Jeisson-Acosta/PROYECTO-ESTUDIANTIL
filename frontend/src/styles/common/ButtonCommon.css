@@ -2,15 +2,18 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 6px;
+    padding: 8px;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px;
     border: none;
     outline: none;
     background-color: #fbbf24;
     color: #ffffff;
     cursor: pointer;
     transition: all 0.3s ease;
+    & span {
+        font-family: fontSubtitles;
+    }
 }
 
 .button-common:hover {

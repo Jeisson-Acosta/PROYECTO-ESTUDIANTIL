@@ -37,6 +37,7 @@ export class AuthController {
     try {
       const result = await AuthModel.loginUser({ input: resultValidate.data });
       if (!result.ok) return res.json(result);
+
       const { usuid, usunom, usuemail, rolcod } = JSON.parse(result.data[0].info_user);
 
       const token = jwt.sign(
@@ -58,11 +59,22 @@ export class AuthController {
       return res.status(500).json({ error: e.message });
     }
   }
+
   static async checkSession(req, res) {
     const { user } = req.session
     const resultInfoUser = await AuthModel.getUserInfoByEmail({ usuemail: user.usuemail })
     if (!resultInfoUser.ok) return res.json(resultInfoUser)
 
     res.json(resultInfoUser)
+  }
+
+  static async getEducativeCenters(req, res) {
+    try {
+      const result = await AuthModel.getEducativeCenters()
+      if (!result.ok) return res.json(result)
+      res.json(result)
+    } catch (error) {
+      return res.status(500).json({ error: error.message })
+    }
   }
 }

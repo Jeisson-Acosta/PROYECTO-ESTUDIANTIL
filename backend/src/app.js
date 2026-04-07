@@ -5,6 +5,7 @@ import express from "express";
 import { authRouter } from "./routes/auth.js";
 import { studentRouter } from "./routes/student.js";
 import { docentRouter } from "./routes/docent.js";
+import { configAccountRouter } from "./routes/configAccount.js";
 // ==============================================
 
 // =================== MIDDLEWARES ===================
@@ -52,6 +53,7 @@ app.use(cookieParser()); // Es un middleware de express, que nos facilita accede
 app.use("/auth", authRouter);
 app.use("/student", tokenMiddleware, studentRouter);
 app.use("/docent", tokenMiddleware, docentRouter);
+app.use("/config-account", tokenMiddleware, configAccountRouter);
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on: http://localhost:${PORT}`);
