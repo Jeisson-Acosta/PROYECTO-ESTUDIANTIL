@@ -30,7 +30,6 @@ export function MenuApp() {
     if (!userLogin) return null
 
     const COMPLEMENTED_URL = userLogin.rolcod === 'EST' ? 'student' : userLogin.rolcod === 'DOC' ? 'docent' : 'rector'
-    
     return (
         <section className="principal-container-menu">
             <header className="header-menu">
