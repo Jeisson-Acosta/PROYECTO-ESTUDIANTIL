@@ -43,6 +43,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/unauthorized' element={<Unauthorized />} />
         
+        
 
         <Route element={<Layout />}>
           {/* RUTAS DE ESTUDIANTE */}
@@ -55,6 +56,7 @@ function App() {
                   
                   <Route path='cursos' element={<Classes />} />
                   <Route path='cursos/:asgcod' element={<ClassDetails />} />
+                  <Route path='contenido' element={<ContenidoClase />} />
                 </Routes>
               </RoleBasedRoute>
             }

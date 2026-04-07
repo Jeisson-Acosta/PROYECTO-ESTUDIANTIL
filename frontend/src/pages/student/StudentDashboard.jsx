@@ -203,7 +203,11 @@ const obtenerProximasClases = () => {
                     Icono={IconAsistance}
                 />
             </div>
-            
+            <div className='graphics-dashboard'>
+            <div className='average-graphic'>
+        
+            </div>
+            </div>
             <div className='stats-dashboard'>
                 <div className='circle-chart-section'>
                     <div className='title-section'>
