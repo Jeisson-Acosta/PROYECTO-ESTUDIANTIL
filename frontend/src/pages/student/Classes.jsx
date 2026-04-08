@@ -147,8 +147,6 @@ export function Classes() {
 
   // if (!classesStudent) return null
 
-  console.log(classesStudent)
-
   const dataBestClasses = bestClasses?.map(bestClass => (bestClass.asgnom))
   const colorsBestClasses = bestClasses?.map(bestClass => ('#' + bestClass.color))
   const dataSeriesBestClasses = bestClasses?.map(bestClass => (parseFloat(bestClass.average_note)))

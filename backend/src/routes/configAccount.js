@@ -4,6 +4,7 @@ import path from 'node:path'
 import fs from 'node:fs'
 
 import { normalizeNameResource } from "../utils/normalizeNameResource.js";
+import { ConfigAccountController } from "../controllers/configAccountController.js";
 
 export const configAccountRouter = Router()
 
@@ -37,3 +38,5 @@ configAccountRouter.post('/upload-photo', upload.single('fotoPerfil'), (req, res
         file: req.file 
     })
 })
+
+configAccountRouter.get('/info-user', ConfigAccountController.getInfoConfigUser)
