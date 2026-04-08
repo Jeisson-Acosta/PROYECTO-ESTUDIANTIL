@@ -32,17 +32,19 @@ function CardPlanUser(){
     )
 }
 export function MenuApp() {
-    const { userLogin } = useContext(UserLoginContext)
+    const { userLogin, setUserLogin } = useContext(UserLoginContext)
+    console.log(userLogin)
     const {requestDB}= useRequestDB()
     const navigate = useNavigate()
     if (!userLogin.userInfo) return null
 
     const COMPLEMENTED_URL = userLogin.userInfo.rolcod === 'EST' ? 'student' : userLogin.userInfo.rolcod === 'DOC' ? 'docent' : 'rector'
     const handleClickLogoutUser = async ()=>{
-        const response = await requestDB("auth/logout","POST",userLogin)
+        const response = await requestDB("auth/logout", "POST", {})
         if (!response.ok) return toast.error(response.message)
+        setUserLogin({ userInfo: null, educativeCenterInfo: null, currentCycleInfo: null })
         navigate("/login")
-        toast.success("cierres de sesion exitoso")
+        toast.success("¡Sesión cerrada exitosamente!")
     }
 
     return (
@@ -102,7 +104,11 @@ export function MenuApp() {
         <footer className="footer-menu-app">
             <section className='container-user-profile'>
                 <div className='photo-user'>
-                   <UserIcon/>
+                    {userLogin.userInfo.usufoto_perfil ? (
+                        <img src={userLogin.userInfo.usufoto_perfil} alt="Foto de perfil" />
+                    ) : (
+                        <UserIcon/>
+                    )}
                 </div>
 
                 <div className='info-user show-content-block'>

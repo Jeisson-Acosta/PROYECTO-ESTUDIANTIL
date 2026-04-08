@@ -20,8 +20,8 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const usudocu = req.body.usudocu
         // Nombre original sin extensión + sufijo único para evitar colisiones
-        const nameWithoutExt = path.basename(file.originalname, path.extname(file.originalname))
-        cb(null, `${normalizeNameResource(nameWithoutExt)}-${usudocu}${path.extname(file.originalname)}`)
+        // const nameWithoutExt = path.basename(file.originalname, path.extname(file.originalname))
+        cb(null, `${usudocu}${path.extname(file.originalname)}`)
     }
 })
 

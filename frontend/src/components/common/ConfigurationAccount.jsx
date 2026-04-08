@@ -1,15 +1,41 @@
 import '../../styles/common/ConfigurationAccount.css'
 import { UserIcon } from "./GeneralIcons"
-import { useState, useRef } from "react"
+import { useState, useRef, useContext, useEffect } from "react"
 import { ButtonCommon } from "./ButtonCommon.jsx"
 import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
 import toast from 'react-hot-toast'
+import { UserLoginContext } from '../../context/userLogin.jsx'
 
 export function ConfigurationAccount() {
+    const [infoUser, setInfoUser] = useState({
+        usunom: '',
+        usuemail: '',
+        usudocu: '',
+        usufch_nacimiento: '',
+        usucel: '',
+        usufoto_perfil: null
+    })
     const [selectedOption, setSelectedOption] = useState('perfil')
     const [previewPhoto, setPreviewPhoto] = useState(null)
     const refUploadPhoto = useRef(null)
     const { requestDB } = useRequestDB()
+    const { userLogin } = useContext(UserLoginContext)
+
+    useEffect(() => {
+        const getInfoUser = async () => {
+            const result = await requestDB('config-account/info-user', 'GET', null)
+            console.log(result)
+            if (!result.ok) {
+                toast.error(result.message)
+                return
+            }
+            setInfoUser(result.data[0])
+            if (result.data[0].usufoto_perfil) {
+                setPreviewPhoto(result.data[0].usufoto_perfil)
+            }
+        }
+        getInfoUser()
+    }, [])
 
     const handleUploadPhoto = async (e) => {
         const file = e.target.files[0]
@@ -96,20 +122,44 @@ export function ConfigurationAccount() {
                         <section className="container-form-info-perfil">
                             <div className="container-input-form">
                                 <label htmlFor="usunom">Nombre completo</label>
-                                <input type="text" id="usunom" />
+                                <input 
+                                    type="text" 
+                                    id="usunom" 
+                                    value={infoUser.usunom}
+                                />
                             </div>
                             <div className="container-input-form">
                                 <label htmlFor="usuemail">Correo electronico</label>
-                                <input type="email" id="usuemail" />
+                                <input 
+                                    type="email" 
+                                    id="usuemail" 
+                                    value={infoUser.usuemail}
+                                />
                             </div>
                             <div className="container-input-form">
                                 <label htmlFor="usudocu">Número de Identificación</label>
-                                <input type="text" id="usudocu" />
+                                <input 
+                                    type="text" 
+                                    id="usudocu" 
+                                    value={infoUser.usudocu}
+                                />
                             </div>
                             <div className="container-input-form">
-                                <label htmlFor="edcnom">Curso</label>
-                                <input type="text" id="edcnom" />
+                                <label htmlFor="usufch_nacimiento">Fecha de Nacimiento</label>
+                                <input 
+                                    type="date" 
+                                    id="usufch_nacimiento" 
+                                    value={infoUser.usufch_nacimiento}
+                                />
                             </div>
+                            {/*<div className="container-input-form">
+                                <label htmlFor="edcnom">Curso</label>
+                                <input 
+                                    type="text" 
+                                    id="edcnom" 
+                                    value={infoUser.edcnom}
+                                />
+                            </div>*/}
                         </section>
                     </>
                 )}
