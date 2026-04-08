@@ -60,6 +60,10 @@ export class AuthController {
     }
   }
 
+  static async logoutUser(req, res){
+    res.clearCookie("access_token").json({ok: true, message: "Logout successful"})
+  }
+
   static async checkSession(req, res) {
     const { user } = req.session
     const resultInfoUser = await AuthModel.getUserInfoByEmail({ usuemail: user.usuemail })
