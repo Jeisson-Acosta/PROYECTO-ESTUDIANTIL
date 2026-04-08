@@ -3,8 +3,10 @@ import { IconHatStudent, IconDashboard, IconNotebook, IconClipboard, IconBars, I
 import { NavLink } from "react-router-dom"
 import { useContext } from 'react'
 import { UserLoginContext } from '../../context/userLogin.jsx'
-import {ButtonCommon } from "./ButtonCommon.jsx"
+import { useNavigate } from 'react-router-dom'
 import { UserIcon } from './GeneralIcons.jsx'
+import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
+import toast from "react-hot-toast"
 
 function CardPlanUser(){
     return(
@@ -14,22 +16,35 @@ function CardPlanUser(){
                         <IconMedal/>
                     </div>
 
-                    <div className="info-plan-user">
-                        <h5 className="text-module">Plan Pro</h5>
-                        <p className="text-module">Educacion avanzada</p>
+                    <div className="info-plan-user show-content-block">
+                        <h5>Plan Pro</h5>
+                        <p>Educacion avanzada</p>
                     </div>
                 </header>
 
-                <ButtonCommon text="Ver planes"/>
+                <button className='show-content-flex'>
+                    Ver planes
+                </button>
+
+                {/* <ButtonCommon text="Ver planes"/> */}
 
         </section>
     )
 }
 export function MenuApp() {
     const { userLogin } = useContext(UserLoginContext)
-    if (!userLogin) return null
+    const {requestDB}= useRequestDB()
+    const navigate = useNavigate()
+    if (!userLogin.userInfo) return null
 
-    const COMPLEMENTED_URL = userLogin.rolcod === 'EST' ? 'student' : userLogin.rolcod === 'DOC' ? 'docent' : 'rector'
+    const COMPLEMENTED_URL = userLogin.userInfo.rolcod === 'EST' ? 'student' : userLogin.userInfo.rolcod === 'DOC' ? 'docent' : 'rector'
+    const handleClickLogoutUser = async ()=>{
+        const response = await requestDB("auth/logout","POST",userLogin)
+        if (!response.ok) return toast.error(response.message)
+        navigate("/login")
+        toast.success("cierres de sesion exitoso")
+    }
+
     return (
         <section className="principal-container-menu">
             <header className="header-menu">
@@ -85,19 +100,26 @@ export function MenuApp() {
             </nav>
         <CardPlanUser/>
         <footer className="footer-menu-app">
-
             <section className='container-user-profile'>
                 <div className='photo-user'>
                    <UserIcon/>
                 </div>
 
-                <div className='info-user'>
-                    <h4 className="text-module">{userLogin.usunom}</h4>
-                    <p className="text-module">{userLogin.rolnom}</p>
+                <div className='info-user show-content-block'>
+                    <h4>{userLogin.userInfo.usunom}</h4>
+                    <p>{userLogin.userInfo.rolnom}</p>
                 </div>
             </section>
-           <ButtonCommon text="Configuracion" icon={<IconConfig/>}/>
-           <ButtonCommon text="Cerrar Sesión" colorText="c78790" icon={<IconSesion/>}/>
+            <button onClick={() => navigate('/configuracion')}>
+                <IconConfig/>
+                <span className='show-content-block'>Configuracion</span>
+            </button>
+           {/* <ButtonCommon text="Configuracion" icon={<IconConfig/>}/> */}
+           <button onClick={()=>handleClickLogoutUser()}>
+                <IconSesion/>
+                <span className='show-content-block' style={{color: '#c78790'}}>Cerrar Sesión</span>
+            </button>
+           {/* <ButtonCommon text="Cerrar Sesión" colorText="c78790" icon={<IconSesion/>}/> */}
         </footer>
 
         </section>

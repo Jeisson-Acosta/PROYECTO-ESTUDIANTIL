@@ -8,8 +8,8 @@ import { ROLES } from "../constants.js";
 export function RoleBasedRedirect() {
   const { userLogin } = useContext(UserLoginContext);
 
-  if (!userLogin) return <Navigate to="/login" replace />;
+  if (!userLogin.userInfo) return <Navigate to="/login" replace />;
 
   // || -> OR
-  return <Navigate to={ROLES[userLogin?.rolcod].path || "/login"} replace />;
+  return <Navigate to={ROLES[userLogin?.userInfo?.rolcod].path || "/login"} replace />;
 }

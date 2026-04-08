@@ -3,8 +3,13 @@ import "../../styles/auth/Register.css";
 import "../../hooks/auth/useFormRegister.js";
 import { IconTeacher, IconBook, IconRector } from "../common/IconsLayout";
 import { useFormRegister } from "../../hooks/auth/useFormRegister.js";
+import { useRequestDB } from "../../hooks/utils/useRequestDB.js";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export function Register() {
+  const [educativeCenters, setEducativeCenters] = useState(null)
+  const { requestDB } = useRequestDB()
   const {
     userInfoRegister,
     userRol,
@@ -15,6 +20,17 @@ export function Register() {
     handleSubmitFormRegister,
     validatePassword,
   } = useFormRegister();
+
+  useEffect(() => {
+    const getEducativeCenters = async () => {
+      const responseDB = await requestDB("auth/educative-centers", "GET")
+      if (!responseDB.ok) {
+        toast.error("Error al obtener los centros educativos, " + responseDB.message);
+      }
+      setEducativeCenters(responseDB.data)
+    }
+    getEducativeCenters()
+  }, [])
 
   return (
     <div className="container-all-register">
@@ -105,15 +121,31 @@ export function Register() {
                   onChange={(e) => handleChangeUserInfoRegister(e)}
                 />
               </label>
-                  <label className="full">
+              <label>
+                Centro educativo
+                <select
+                  name="cedid"
+                  value={userInfoRegister.cedid}
+                  onChange={(e) => handleChangeUserInfoRegister(e)}
+                >
+                  <option value=''>Seleccione su centro educativo</option>
+                  {educativeCenters?.map((center) => (
+                    <option key={center.cedid} value={center.cedid}>
+                      {center.cednom}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              {/* 
+              <label className="full">
                 Centro educativo
                 <input
                   type="text"
-                  name="ceeid"
-                  value={userInfoRegister.ceeid}
+                  name="cedid"
+                  value={userInfoRegister.cedid}
                   onChange={(e) => handleChangeUserInfoRegister(e)}
                 />
-              </label>
+              </label> */}
               <div className="roles-block">
                 <label className="roles-label">Selecciona tu rol:</label>
 

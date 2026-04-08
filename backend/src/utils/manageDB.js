@@ -24,7 +24,7 @@ const DEFAULT_CONFIG = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     connectionLimit: 10, // Maximo de conexiones simultaneas
-}   
+}
 
 // Esta funcion nos permite ejecutar cualquier SP de la base de datos.
 export async function manageDB(nameSP, params, query = '', option = 'SP') {
@@ -56,7 +56,7 @@ export async function manageDB(nameSP, params, query = '', option = 'SP') {
         } else if (option === 'SL') {
             const [response] = await connectionPool.query(query, params)
             RESPONSE_DB.ok = response.length === 0 ? false : true
-            RESPONSE_DB.data = response.length === 0 ? null : response[0]
+            RESPONSE_DB.data = response.length === 0 ? null : response
             RESPONSE_DB.message = "Petición exitosa"
         }
     } catch (e) {

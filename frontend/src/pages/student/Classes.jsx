@@ -131,7 +131,7 @@ export function Classes() {
 
   useEffect(() => {
     const getClassesStudent = async () => {
-      const responseDB = await requestDB(`student/classes/${userLogin.usuid}`, 'GET')
+      const responseDB = await requestDB(`student/classes/${userLogin.userInfo.usuid}`, 'GET')
       if (!responseDB.ok) {
         toast.error(responseDB.message)
         return
@@ -145,7 +145,9 @@ export function Classes() {
     getClassesStudent()
   }, [])
 
-  if (!classesStudent) return null
+  // if (!classesStudent) return null
+
+  console.log(classesStudent)
 
   const dataBestClasses = bestClasses?.map(bestClass => (bestClass.asgnom))
   const colorsBestClasses = bestClasses?.map(bestClass => ('#' + bestClass.color))
@@ -193,7 +195,7 @@ export function Classes() {
         <div className="actions-classess">
           <ButtonCommon icon={<CirclePlus />} text="Nueva clase" />
         </div>
-        {classesStudent?.length === 0  && (
+        {classesStudent === null  && (
             <h2 style={{ textAlign: "center", color: "#6b7280", marginTop: "26px" }}>Aún no estás inscrito en ninguna clase. ¡Unete a una ahora mismo!</h2>
         )}
         <ul className="list-classes">

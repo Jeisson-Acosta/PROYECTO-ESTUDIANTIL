@@ -11,7 +11,7 @@ export function useFormLogin() {
         usuemail: "",
         usupwd: "",
     });
-    const { setUserLogin, setIsAuthenticated } = useContext(UserLoginContext);
+    const { userLogin, setUserLogin, setIsAuthenticated } = useContext(UserLoginContext);
     const { requestDB } = useRequestDB();
 
     const navigate = useNavigate();
@@ -47,7 +47,14 @@ export function useFormLogin() {
         }
 
         const userData = responseDB.data[0];
-        setUserLogin(userData);
+        // setUserLogin(userData);
+        setUserLogin({
+            userInfo: JSON.parse(userData.info_user), 
+            educativeCenterInfo: userData.centro_educativo[0],
+            // currentCycleInfo: JSON.parse(userData.ciclo_actual),
+            currentCycleInfo: userData.ciclo_actual,
+            ...userData
+        })
         setIsAuthenticated(true);
         navigate(ROLES[userData.rolcod]?.path || "/");
         // toast.success("¡Hola!");

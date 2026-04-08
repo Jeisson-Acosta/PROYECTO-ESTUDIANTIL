@@ -49,7 +49,6 @@ export class AuthModel {
     }
 
     static async loginUser({ input }) {
-        console.log(input)
         const {
             usuemail,
             usupwd
@@ -68,7 +67,7 @@ export class AuthModel {
         }
 
         // Comparar la contraseña con la escribio el usuario y la que esta en la DB
-        const isPasswordValid = await bcrypt.compare(usupwd, passwordInDB.data.usupwd)
+        const isPasswordValid = await bcrypt.compare(usupwd, passwordInDB.data[0].usupwd)
         if (!isPasswordValid) {
             passwordInDB.ok = false
             passwordInDB.data = null
@@ -90,12 +89,21 @@ export class AuthModel {
     static async getUserInfoByEmail({ usuemail }) {
         try {
             const result = await manageDB('sp_auth_login_user', [usuemail]);
-            console.log(result)
             if (!result.ok) { throw new Error(result.message) }
             return result;
         } catch (error) {
-            console.error('Error en getUserInfoByEmail:', error);
+            // console.error('Error en getUserInfoByEmail:', error);
             throw error;
+        }
+    }
+
+    static async getEducativeCenters() {
+        try {
+            const result = await manageDB(null, [], 'SELECT * FROM tbl_centro_educativo', 'SL')
+            if (!result.ok) { throw new Error(result.message) }
+            return result
+        } catch (error) {
+            throw new Error('Error getting educative centers')
         }
     }
 }
