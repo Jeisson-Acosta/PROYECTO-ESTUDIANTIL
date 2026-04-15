@@ -10,4 +10,15 @@ export class ConfigAccountModel {
             throw new Error('Error getting info config user')
         }
     }
+
+    static async updateInfoUser({ input }) {
+        try {
+            const result = await manageDB('sp_config_update_info_user', [JSON.stringify(input)])
+            if (!result.ok) throw new Error(result.message)
+            return result
+        } catch(err) {
+            console.log(err)
+            throw new Error('Error updating info user')
+        }
+    }
 }

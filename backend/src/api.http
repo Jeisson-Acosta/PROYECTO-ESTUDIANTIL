@@ -50,3 +50,17 @@ Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm
 ### Obtener información de un usuario para el modulo de configuración
 GET http://localhost:3000/config-account/info-user
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6ImplaXNzb25AZ21haWwuY29tIiwicm9sY29kIjoiRE9DIiwiaWF0IjoxNzc1NjE0NDYzLCJleHAiOjE3NzU2MTgwNjN9.xrDyH5sVVoFUfWkOccO06ZMhRzel5yFzzHwPIVl6YN4
+
+### Actualizar información de un usuario para el modulo de configuración
+PUT http://localhost:3000/config-account/update-info-user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6ImplaXNzb25AZ21haWwuY29tIiwicm9sY29kIjoiRE9DIiwiaWF0IjoxNzc1Njc2MDI3LCJleHAiOjE3NzU2Nzk2Mjd9.uvYjgMscZjThaBpb1U6-lBG_qOoUCnvYD_pO8uy4mfU
+
+{
+    "usuid": 2,
+    "usunom": "Jeisson Acosta",
+    "usuemail": "prueba@gmail.com",
+    "usudocu": "1137089214",
+    "usucel": "4898484894",
+    "usufch_nacimiento": "2004-12-20"
+}

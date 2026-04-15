@@ -21,10 +21,30 @@ export function ConfigurationAccount() {
     const { requestDB } = useRequestDB()
     const { userLogin } = useContext(UserLoginContext)
 
+    const handleChangeInfoUser = (e) => {
+        const { name, value } = e.target
+        setInfoUser(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+    
+    const handleClickSaveChanges = async () => {
+        if (!infoUser.usunom || !infoUser.usuemail || !infoUser.usudocu || !infoUser.usufch_nacimiento || !infoUser.usucel) {
+            toast.error('Todos los campos son obligatorios')
+            return
+        }
+        /* const result = await requestDB('config-account/update-info-user', 'PUT', infoUser)
+        if (!result.ok) {
+            toast.error(result.message)
+            return
+        }
+        toast.success(result.message) */
+    }
+
     useEffect(() => {
         const getInfoUser = async () => {
             const result = await requestDB('config-account/info-user', 'GET', null)
-            console.log(result)
             if (!result.ok) {
                 toast.error(result.message)
                 return
@@ -85,7 +105,7 @@ export function ConfigurationAccount() {
                                 <h3>Información Personal</h3>
                                 <p>Actualiza tu foto y detalles personales.</p>
                             </div>
-                            <ButtonCommon text="Guardar Cambios"/>
+                            <ButtonCommon text="Guardar Cambios" onClick={handleClickSaveChanges} />
                         </header>
 
                         <div className="container-info-perfil">
@@ -125,7 +145,9 @@ export function ConfigurationAccount() {
                                 <input 
                                     type="text" 
                                     id="usunom" 
+                                    name="usunom"
                                     value={infoUser.usunom}
+                                    onChange={handleChangeInfoUser}
                                 />
                             </div>
                             <div className="container-input-form">
@@ -133,7 +155,9 @@ export function ConfigurationAccount() {
                                 <input 
                                     type="email" 
                                     id="usuemail" 
+                                    name="usuemail"
                                     value={infoUser.usuemail}
+                                    onChange={handleChangeInfoUser}
                                 />
                             </div>
                             <div className="container-input-form">
@@ -141,17 +165,31 @@ export function ConfigurationAccount() {
                                 <input 
                                     type="text" 
                                     id="usudocu" 
+                                    name="usudocu"
                                     value={infoUser.usudocu}
+                                    onChange={handleChangeInfoUser}
                                 />
                             </div>
                             <div className="container-input-form">
+                                <label htmlFor="usucel">Número de Celular</label>
+                                <input 
+                                    type="text" 
+                                    id="usucel" 
+                                    name="usucel"
+                                    value={infoUser.usucel}
+                                    onChange={handleChangeInfoUser}
+                                />
+                            </div>
+                            {/*<div className="container-input-form">
                                 <label htmlFor="usufch_nacimiento">Fecha de Nacimiento</label>
                                 <input 
                                     type="date" 
                                     id="usufch_nacimiento" 
-                                    value={infoUser.usufch_nacimiento}
+                                    name="usufch_nacimiento"
+                                    value={new Date(infoUser.usufch_nacimiento).toString("yyyy-MM-dd")}
+                                    onChange={handleChangeInfoUser} 
                                 />
-                            </div>
+                            </div>*/}
                             {/*<div className="container-input-form">
                                 <label htmlFor="edcnom">Curso</label>
                                 <input 

@@ -1,5 +1,5 @@
 // ==================== HOOKS ====================
-import { useEffect, useRef, useState, useContext } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
 import { UserLoginContext } from "../../context/userLogin.jsx"
 import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
@@ -12,8 +12,10 @@ import "../../styles/docent/FormFieldsCreateResource.css"
 // ================================================
 
 // ==================== COMPONENTS ====================
-import { FileUploadIcon, SendIcon, LinkIcon } from "../common/GeneralIcons.jsx"
+import { SendIcon, LinkIcon } from "../common/GeneralIcons.jsx"
+import { UploadFile } from "../common/UploadFile.jsx"
 // ====================================================
+
 
 export function FormFieldsCreateResource({ typeResource }) {
     const [infoResource, setInfoResource] = useState({
@@ -34,8 +36,6 @@ export function FormFieldsCreateResource({ typeResource }) {
     const navigate = useNavigate()
     const { currentClass } = useCurrentClass()
     const { userLogin } = useContext(UserLoginContext)
-
-    const inputFileRef = useRef(null)
 
     // ESTO ES PARA CAMBIAR EL COLOR DEL BORDE DEL INPUT SEGÚN EL TIPO DE RECURSO
     useEffect(() => {
@@ -59,14 +59,6 @@ export function FormFieldsCreateResource({ typeResource }) {
         setInfoResource(prev => ({
             ...prev,
             [name]: type === 'checkbox' ? checked : value
-        }))
-    }
-
-    const handleChangeUploadFile = (e) => {
-        const files = e.target.files
-        setInfoResource(prev => ({
-            ...prev,
-            files: [...files]
         }))
     }
 
@@ -229,30 +221,9 @@ export function FormFieldsCreateResource({ typeResource }) {
                 </div>
             )}
             <div className="field">
-                <label htmlFor="attachments">
-                    RECURSOS ADJUNTOS
-                </label>
-                <input 
-                    type="file" 
-                    name="files" 
-                    id="attachments" 
-                    style={{display: 'none'}}
-                    className="field-action"
-                    onChange={handleChangeUploadFile}
-                    ref={inputFileRef}
-                    multiple
-                />
                 <section className="container-to-upload-file">
                     {((typeResource === 'MA' && (infoResource.category === 'A' || infoResource.category === 'AM')) || typeResource === 'TA') && (
-                        <div className="container-file-selected" onClick={() => inputFileRef.current.click()}>                        
-                            <div className="container-icon-upload">
-                                <FileUploadIcon />
-                            </div>
-                            <div className="container-text-upload">
-                                <h2>Subir archivos complementarios</h2>
-                                <p>Arrastra y suelta archivos aquí o haz clic para seleccionarlos.</p>
-                            </div>
-                        </div>
+                        <UploadFile />
                     )}
                     {((typeResource === 'MA' && (infoResource.category === 'L' || infoResource.category === 'AM')) || typeResource === 'TA') && (
                         <div className="container-anchors-web">

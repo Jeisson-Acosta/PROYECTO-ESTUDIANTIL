@@ -40,3 +40,4 @@ configAccountRouter.post('/upload-photo', upload.single('fotoPerfil'), (req, res
 })
 
 configAccountRouter.get('/info-user', ConfigAccountController.getInfoConfigUser)
+configAccountRouter.put('/update-info-user', ConfigAccountController.updateInfoUser)
