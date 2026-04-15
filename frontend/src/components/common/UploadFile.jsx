@@ -1,16 +1,15 @@
 import '../../styles/common/UploadFile.css'
-import { useState, useRef } from "react"
-import { FileUploadIcon } from "./GeneralIcons.jsx"
+import { FileUploadIcon, PdfIcon, DocxIcon, PhotoIcon, TrashIcon } from "./GeneralIcons.jsx"
+import { useUploadFile } from '../../hooks/common/useUploadFile.js'
 
 export function UploadFile() {
+    const { uploadedFiles, setUploadedFiles, counterFiles, setCounterFiles, inputFileRef, handleChangeUploadFile } = useUploadFile()
 
-    const [uploadedFiles, setUploadedFiles] = useState([])
-    const [counterFiles, setCounterFiles] = useState(0)
-    const inputFileRef = useRef(null)
-
-    const handleChangeUploadFile = (e) => { 
-        setUploadedFiles(e.target.files)
-        setCounterFiles(e.target.files.length)
+    const deleteFile = (index) => {
+        const newUploadedFiles = Array.from(uploadedFiles)
+        newUploadedFiles.splice(index, 1)
+        setUploadedFiles(newUploadedFiles)
+        setCounterFiles(counterFiles - 1)
     }
 
     return (
@@ -43,11 +42,28 @@ export function UploadFile() {
             <ul className="list-files-uploaded">
                 {uploadedFiles.length > 0 && Array.from(uploadedFiles).map((file, index) => (
                     <li key={index} className="file-item">
-                        <div>
+                        <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                            <div 
+                                className={`icon-resource ${file.type.includes('application/pdf') 
+                                    ? 'pdf' 
+                                    : file.type.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document') 
+                                        ? 'docx' 
+                                        : (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes('image/jpg'))
+                                            ? 'photo' 
+                                            : ''}`
+                                }
+                            >
+                                {file.type.includes('application/pdf') && <PdfIcon />}
+                                {file.type.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document') && <DocxIcon />}
+                                {(file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes('image/jpg')) && <PhotoIcon />}
+                            </div>
                             <span className='name-file'>{file.name}</span>
                         </div>
-                        <div>
-                            <span className='size-file'>{file.size}</span>
+                        <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                            <span className='size-file'>{(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                            <button className='btn-delete-file' onClick={() => deleteFile(index)}>
+                                <TrashIcon />
+                            </button>
                         </div>
                     </li>
                 ))}

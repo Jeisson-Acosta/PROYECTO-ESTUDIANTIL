@@ -1,5 +1,6 @@
 // ==================== HOOKS ====================
 import { useEffect, useState, useContext } from "react"
+import { useUploadFile } from "../../hooks/common/useUploadFile.js"
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
 import { UserLoginContext } from "../../context/userLogin.jsx"
 import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
@@ -36,6 +37,7 @@ export function FormFieldsCreateResource({ typeResource }) {
     const navigate = useNavigate()
     const { currentClass } = useCurrentClass()
     const { userLogin } = useContext(UserLoginContext)
+    const { uploadedFiles, inputFileRef } = useUploadFile()
 
     // ESTO ES PARA CAMBIAR EL COLOR DEL BORDE DEL INPUT SEGÚN EL TIPO DE RECURSO
     useEffect(() => {
@@ -88,7 +90,7 @@ export function FormFieldsCreateResource({ typeResource }) {
         formData.append('cednom', 'Manuelita Saenz')
 
         // Archivos adjuntos
-        infoResource.files.forEach(file => { formData.append('files', file) })
+        uploadedFiles.forEach(file => { formData.append('files', file) })
 
         const responseDB = await requestDB('docent/create-resource', 'POST', formData)
         if (!responseDB.ok) return toast.error(responseDB.message)
@@ -106,7 +108,7 @@ export function FormFieldsCreateResource({ typeResource }) {
             title: '',
             category: null,
             description: '',
-            files: [],
+            // files: [],
             // dateInitial: null,
             dateFinal: '',
             // hour: null,
