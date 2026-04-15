@@ -65,8 +65,8 @@
     display: flex;
     justify-content: center;
     align-items: start;
-    width: 30%;
-    background-color: #f4ceff;
+    width: 40px;
+    background-color: #e1c6ff;
     border-radius: 10px;
     padding: 10px;
     margin-right: 10px;
@@ -75,7 +75,7 @@
 .tarea-parametros-puntaje-icon svg {
     width: 100%;
     height: 100%;
-    color: #cc00ff;
+    color: #7400f8;
 }
 
 .parametro-puntaje .parametro-puntaje-info {
@@ -101,8 +101,8 @@
     display: flex;
     justify-content: center;
     align-items: start;
-    width: 30%;
-    background-color: #caffd4;
+    width: 40px;
+    background-color: #ccfdd4;
     border-radius: 10px;
     padding: 10px;
     margin-right: 10px;
@@ -111,7 +111,7 @@
 .tarea-parametros-modulo-icon svg {
     width: 100%;
     height: 100%;
-    color: #00ff00;
+    color: #46a05b;
 }
 
 .parametro-modulo .parametro-modulo-info {
@@ -213,7 +213,7 @@
 }
 
 .card-info-titulo h3 {
-    font-size: 50px;
+    font-size: 40px;
     font-family: fontSubtitles;
     color: #000000;
 }

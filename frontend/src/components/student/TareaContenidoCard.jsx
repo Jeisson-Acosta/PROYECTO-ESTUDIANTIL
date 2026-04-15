@@ -5,7 +5,6 @@ import { IconScore, IconSubject, IconModule, IconPDFRecourse, IconDOCXRecourse, 
 import { UserLoginContext } from '../../context/userLogin.jsx';
 export function ContenidoCard({ tipo_trabajo, nombre_materia, nombre_trabajo,descripcion_trabajo, fecha_inicio, fecha_fin,tarea_estado,tarea_calificacion,color_clase,color_estado }) {
   
-  // Campos que COMPARTEN todos los tipos
   const materia = "Matemáticas";
   const modulo = "Módulo 1";
  
@@ -39,9 +38,7 @@ export function ContenidoCard({ tipo_trabajo, nombre_materia, nombre_trabajo,des
               </div>
               <div className='tarea-parametros-entrega-text'>
                 <h3>Fecha de entrega</h3>
-                <p>{userLogin.fecha_inicio && userLogin.fecha_fin 
-    ? `${userLogin.fecha_inicio} - ${userLogin.fecha_fin}` 
-    : 'Sin límite'}</p>
+                <p>{userLogin.fecha_fin}</p>
               </div>
             </div>
             
@@ -66,7 +63,7 @@ export function ContenidoCard({ tipo_trabajo, nombre_materia, nombre_trabajo,des
             </div>
              {userLogin.tipo_trabajo === 'TA' && (
             <div style={{backgroundColor: userLogin.color_estado}} className='tarea-parametros-estado'>
-              <h3>{userLogin.tarea_Estado}</h3>
+              <h3>{userLogin.tarea_estado}</h3>
             </div>
             )}
           </div>

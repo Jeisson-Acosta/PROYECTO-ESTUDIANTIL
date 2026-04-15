@@ -7,7 +7,7 @@ import { MateriasCard } from '../../components/student/MateriasCard.jsx';
 import { IconStar, IconAsistance, IconSubject } from '../../components/common/IconsLayout.jsx';
 import { NotasCard } from '../../components/student/NotasCard.jsx';
 import { CircleChart } from '../../components/common/charts/CircleChart.jsx';
-
+import DesempeñoMaterias from '../../components/student/GraphicPerformance.jsx';
 export function StudentDashboard() {
     const { userLogin } = useContext(UserLoginContext) || {};
     
@@ -16,7 +16,6 @@ export function StudentDashboard() {
    const obtenerNotas = () => {
     let notasArray = [];
     
-    // Parsear las notas desde userLogin
     if (userLogin?.ultimas_notas && typeof userLogin.ultimas_notas === 'string') {
         try {
             notasArray = JSON.parse(userLogin.ultimas_notas);
@@ -28,14 +27,11 @@ export function StudentDashboard() {
         notasArray = userLogin.ultimas_notas;
     }
     
-    // Procesar las notas para asegurar que tengan color_nota
     const notasProcesadas = notasArray.map(nota => ({
         ...nota,
-        // Aseguramos que color_nota tenga un valor (ahora viene directamente del SP)
         color_nota: nota.color_nota || this.obtenerColorPorNota(nota.calificacion_tarea) || '#cccccc'
     }));
     
-    // Si no hay notas, retornar array con valores por defecto
     if (notasProcesadas.length === 0) {
         return [
             { 
@@ -59,7 +55,6 @@ export function StudentDashboard() {
         ];
     }
 
-    // Asegurar que siempre haya 3 elementos
     const notas = [...notasProcesadas];
     while (notas.length < 3) {
         notas.push({
@@ -74,7 +69,6 @@ export function StudentDashboard() {
     return notas.slice(0, 3);
 };
 
-// Función de respaldo por si no viene el color (por si acaso)
 function obtenerColorPorNota(calificacion) {
     if (!calificacion && calificacion !== 0) return '#cccccc';
     
@@ -205,7 +199,7 @@ const obtenerProximasClases = () => {
             </div>
             <div className='graphics-dashboard'>
             <div className='average-graphic'>
-        
+             <DesempeñoMaterias/>
             </div>
             </div>
             <div className='stats-dashboard'>

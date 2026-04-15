@@ -1,0 +1,84 @@
+.desempeño-materias {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    width: 900px;
+    max-width: 1000px;
+    font-family: fontMain;
+}
+
+.desempeño-materias-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.desempeño-materias-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: '#1A365D'
+}
+
+.desempeño-materias-header a {
+    font-size: 14px;
+    color: '#107c8d';
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.lista-materias {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.lista-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background-color: #8884d820;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #8884d8;
+    margin-right: 12px;
+}
+
+.lista-nombre-nota {
+    flex: 1;
+}
+
+.lista-nombre {
+    font-size: 15px;
+    font-weight: 500;
+    color: #4A5568;
+}
+
+.lista-nota {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1A365D;
+}
+
+.lista-nombre-nota-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #EDF2F7;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}

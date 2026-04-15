@@ -7,12 +7,15 @@ import toast from 'react-hot-toast'
 
 export function ConfigurationAccount() {
     const [selectedOption, setSelectedOption] = useState('perfil')
+    const [previewPhoto, setPreviewPhoto] = useState(null)
     const refUploadPhoto = useRef(null)
     const { requestDB } = useRequestDB()
 
     const handleUploadPhoto = async (e) => {
         const file = e.target.files[0]
         if (!file) return
+
+        setPreviewPhoto(URL.createObjectURL(file))
 
         const formData = new FormData()
         formData.append('usudocu', '1014477770')
@@ -62,7 +65,7 @@ export function ConfigurationAccount() {
                         <div className="container-info-perfil">
                             <div className="container-photo-perfil">
                                 <img 
-                                    src="https://tse1.explicit.bing.net/th/id/OIP.DnQq__W5pibltm9H65jDLQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" 
+                                    src={previewPhoto}
                                     alt="imagen de perfil" 
                                 />
                                 <div className="container-actions-photo">
