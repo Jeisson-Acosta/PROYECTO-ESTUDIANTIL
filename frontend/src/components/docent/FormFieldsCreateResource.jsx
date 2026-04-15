@@ -1,5 +1,6 @@
 // ==================== HOOKS ====================
-import { useEffect, useRef, useState, useContext } from "react"
+import { useEffect, useState, useContext } from "react"
+import { useUploadFile } from "../../hooks/common/useUploadFile.js"
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
 import { UserLoginContext } from "../../context/userLogin.jsx"
 import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
@@ -12,8 +13,10 @@ import "../../styles/docent/FormFieldsCreateResource.css"
 // ================================================
 
 // ==================== COMPONENTS ====================
-import { FileUploadIcon, SendIcon, LinkIcon } from "../common/GeneralIcons.jsx"
+import { SendIcon, LinkIcon } from "../common/GeneralIcons.jsx"
+import { UploadFile } from "../common/UploadFile.jsx"
 // ====================================================
+
 
 export function FormFieldsCreateResource({ typeResource }) {
     const [infoResource, setInfoResource] = useState({
@@ -34,8 +37,7 @@ export function FormFieldsCreateResource({ typeResource }) {
     const navigate = useNavigate()
     const { currentClass } = useCurrentClass()
     const { userLogin } = useContext(UserLoginContext)
-
-    const inputFileRef = useRef(null)
+    const { uploadedFiles, inputFileRef } = useUploadFile()
 
     // ESTO ES PARA CAMBIAR EL COLOR DEL BORDE DEL INPUT SEGÚN EL TIPO DE RECURSO
     useEffect(() => {
@@ -59,14 +61,6 @@ export function FormFieldsCreateResource({ typeResource }) {
         setInfoResource(prev => ({
             ...prev,
             [name]: type === 'checkbox' ? checked : value
-        }))
-    }
-
-    const handleChangeUploadFile = (e) => {
-        const files = e.target.files
-        setInfoResource(prev => ({
-            ...prev,
-            files: [...files]
         }))
     }
 
@@ -96,7 +90,7 @@ export function FormFieldsCreateResource({ typeResource }) {
         formData.append('cednom', 'Manuelita Saenz')
 
         // Archivos adjuntos
-        infoResource.files.forEach(file => { formData.append('files', file) })
+        uploadedFiles.forEach(file => { formData.append('files', file) })
 
         const responseDB = await requestDB('docent/create-resource', 'POST', formData)
         if (!responseDB.ok) return toast.error(responseDB.message)
@@ -114,7 +108,7 @@ export function FormFieldsCreateResource({ typeResource }) {
             title: '',
             category: null,
             description: '',
-            files: [],
+            // files: [],
             // dateInitial: null,
             dateFinal: '',
             // hour: null,
@@ -229,30 +223,9 @@ export function FormFieldsCreateResource({ typeResource }) {
                 </div>
             )}
             <div className="field">
-                <label htmlFor="attachments">
-                    RECURSOS ADJUNTOS
-                </label>
-                <input 
-                    type="file" 
-                    name="files" 
-                    id="attachments" 
-                    style={{display: 'none'}}
-                    className="field-action"
-                    onChange={handleChangeUploadFile}
-                    ref={inputFileRef}
-                    multiple
-                />
                 <section className="container-to-upload-file">
                     {((typeResource === 'MA' && (infoResource.category === 'A' || infoResource.category === 'AM')) || typeResource === 'TA') && (
-                        <div className="container-file-selected" onClick={() => inputFileRef.current.click()}>                        
-                            <div className="container-icon-upload">
-                                <FileUploadIcon />
-                            </div>
-                            <div className="container-text-upload">
-                                <h2>Subir archivos complementarios</h2>
-                                <p>Arrastra y suelta archivos aquí o haz clic para seleccionarlos.</p>
-                            </div>
-                        </div>
+                        <UploadFile />
                     )}
                     {((typeResource === 'MA' && (infoResource.category === 'L' || infoResource.category === 'AM')) || typeResource === 'TA') && (
                         <div className="container-anchors-web">

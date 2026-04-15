@@ -8,11 +8,14 @@ import { CardTaskDetailsDocent } from '../../components/docent/CardTaskDetailsDo
 import { MenuCreateResource } from '../../components/docent/MenuCreateResource.jsx'
 // ======================================== HOOKS =========================================
 import { useClassDetailsDocent } from '../../hooks/docent/useClassDetailsDocent.js'
+import { useNavigate } from 'react-router-dom'
 // ========================================================================================
 
 export function ClassDetailsDocent() {
     const [showMenuCreate, setShowMenuCreate] = useState(false)
     const { infoClass, filter, filterListTasks, handleClickButtonFilter } = useClassDetailsDocent()
+    const navigate = useNavigate()
+    const currentPath = location.pathname
 
     if (infoClass.infoClass === null) return <h2>No tienes clases asignadas</h2>
 
@@ -58,7 +61,7 @@ export function ClassDetailsDocent() {
                                     <UserCheckIcon />
                                     Asistencia
                                 </button>
-                                <button className='button-students'>
+                                <button className='button-students' onClick={() => navigate(`${currentPath}/students`)}>
                                     <UsersIcon />
                                     Estudiantes
                                 </button>

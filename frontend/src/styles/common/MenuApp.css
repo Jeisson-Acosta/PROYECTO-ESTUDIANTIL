@@ -195,38 +195,8 @@
 
 }
 
-.container-plan-user header .icon-plan {
-    padding: 4px;
-    width: 40px;
-    height: 50px;
-    background-color: #7db0d2;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container-plan-user .info-plan-user {
-    width: 100%;
-}
-
-.container-plan-user .info-plan-user p {
-    font-size: 12px;
-}
-
-.container-plan-user button {
-    background-color: #7db0d2;
-    width: 100%;
-    justify-content: center;
-}
-
-.container-user-profile {
-    display: flex;
-    gap: 12px;
-
-}
-
-.container-user-profile .photo-user {
+.container-user-profile .photo-user,
+.container-user-profile img {
     width: 40px;
     height: 40px;
     border-radius: 50%;

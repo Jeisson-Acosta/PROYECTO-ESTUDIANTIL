@@ -1,0 +1,111 @@
+.principal-container-to-upload-file {
+    flex: 1;
+    & .counter-uploaded-files {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6px;
+        border-radius: 12px;
+        font-family: fontSubtitles;
+        color: #55a0ec;
+        background-color: #e8f2fc;
+    }
+}
+.container-file-selected {
+    cursor: pointer;
+    flex: 1;
+    border: 2px dashed #f1f5f9;
+    background-color: #f8fafc;
+    padding: 2rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    & .container-icon-upload {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 1rem;
+        border-radius: 20px;
+        border: 1px solid #f2f5f9;
+        animation: up-down 2s ease-in-out infinite;
+        & svg {
+            width: 46px;
+            height: 46px;
+        }
+    }
+    & .container-text-upload {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 16px;
+        max-width: 300px;
+        & h2 {
+            font-family: fontTitlesBold;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        & p {
+            font-family: fontSubtitles;
+            font-size: 12px;
+            color: #738196;
+            text-align: center;
+        }
+    }
+}
+
+.list-files-uploaded {
+    list-style-type: none;
+    margin-top: 18px;
+    & .file-item {
+        display: flex;
+        justify-content: space-between;
+        border: 2px solid #f0f1f3;
+        padding: 12px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        & .name-file {
+            font-family: fontTitlesBold;
+            font-size: 14px;
+        }
+        & .size-file {
+            font-family: fontSubtitles;
+            font-size: 12px;
+            color: #738196;
+        }
+    }
+}
+
+.icon-resource {
+    padding: 6px;
+    border-radius: 6px;
+    & svg {
+        width: 20px;
+        height: 20px;
+    }
+    &.pdf {
+        background-color: #fef2f2;
+    }
+    &.docx {
+        background-color: #eff6ff;
+    }
+    &.photo {
+        background-color: #fffbeb;
+    }
+}
+
+.btn-delete-file {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    & svg {
+        width: 20px;
+        height: 20px;
+    }
+}

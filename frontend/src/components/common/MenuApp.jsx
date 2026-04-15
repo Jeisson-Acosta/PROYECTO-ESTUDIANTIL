@@ -5,6 +5,8 @@ import { useContext } from 'react'
 import { UserLoginContext } from '../../context/userLogin.jsx'
 import { useNavigate } from 'react-router-dom'
 import { UserIcon } from './GeneralIcons.jsx'
+import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
+import toast from "react-hot-toast"
 
 function CardPlanUser(){
     return(
@@ -30,12 +32,21 @@ function CardPlanUser(){
     )
 }
 export function MenuApp() {
-    const { userLogin } = useContext(UserLoginContext)
+    const { userLogin, setUserLogin } = useContext(UserLoginContext)
+    console.log(userLogin)
+    const {requestDB}= useRequestDB()
     const navigate = useNavigate()
     if (!userLogin.userInfo) return null
 
     const COMPLEMENTED_URL = userLogin.userInfo.rolcod === 'EST' ? 'student' : userLogin.userInfo.rolcod === 'DOC' ? 'docent' : 'rector'
-    
+    const handleClickLogoutUser = async ()=>{
+        const response = await requestDB("auth/logout", "POST", {})
+        if (!response.ok) return toast.error(response.message)
+        setUserLogin({ userInfo: null, educativeCenterInfo: null, currentCycleInfo: null })
+        navigate("/login")
+        toast.success("¡Sesión cerrada exitosamente!")
+    }
+
     return (
         <section className="principal-container-menu">
             <header className="header-menu">
@@ -99,7 +110,11 @@ export function MenuApp() {
         <footer className="footer-menu-app">
             <section className='container-user-profile'>
                 <div className='photo-user'>
-                   <UserIcon/>
+                    {userLogin.userInfo.usufoto_perfil ? (
+                        <img src={userLogin.userInfo.usufoto_perfil} alt="Foto de perfil" />
+                    ) : (
+                        <UserIcon/>
+                    )}
                 </div>
 
                 <div className='info-user show-content-block'>
@@ -112,7 +127,7 @@ export function MenuApp() {
                 <span className='show-content-block'>Configuracion</span>
             </button>
            {/* <ButtonCommon text="Configuracion" icon={<IconConfig/>}/> */}
-           <button>
+           <button onClick={()=>handleClickLogoutUser()}>
                 <IconSesion/>
                 <span className='show-content-block' style={{color: '#c78790'}}>Cerrar Sesión</span>
             </button>

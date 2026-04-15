@@ -9,6 +9,7 @@ import { CreateMaterial } from './pages/docent/CreateMaterial.jsx'
 import { CreateAnnouncement } from './pages/docent/CreateAnnouncement.jsx'
 import { Classes } from './pages/student/Classes.jsx'
 import { ClassDetails } from './pages/student/ClassDetails.jsx'
+import { StudentsList } from './pages/docent/StudentsList.jsx'
 // ================================================
 
 // ==================== COMPONENTS ====================
@@ -75,6 +76,7 @@ function App() {
                   <Route path='cursos/:asgcod/create-task' element={<CreateTask />} />
                   <Route path='cursos/:asgcod/create-material' element={<CreateMaterial />} />
                   <Route path='cursos/:asgcod/create-announcement' element={<CreateAnnouncement />} />
+                  <Route path='cursos/:asgcod/students' element={<StudentsList />} />
                   <Route path='contenido' element={<ContenidoClase />} />
                 </Routes>
               </RoleBasedRoute>

@@ -2,6 +2,7 @@ import { AuthModel } from "../models/auth.js";
 import { validateRegister, validateLogin } from "../schemas/auth.js";
 import jwt from "jsonwebtoken";
 import { SECRET_JWT_KEY } from "../config/config.js";
+import { getProfilePhoto } from "../utils/getProfilePhoto.js";
 
 export class AuthController {
   static async registerUser(req, res) {
@@ -38,7 +39,10 @@ export class AuthController {
       const result = await AuthModel.loginUser({ input: resultValidate.data });
       if (!result.ok) return res.json(result);
 
-      const { usuid, usunom, usuemail, rolcod } = JSON.parse(result.data[0].info_user);
+      const infoUser = JSON.parse(result.data[0].info_user)
+      const { usuid, usunom, usuemail, rolcod } = infoUser
+      infoUser.usufoto_perfil = getProfilePhoto({ usudocu: infoUser.usudocu })
+      result.data[0].info_user = JSON.stringify(infoUser)
 
       const token = jwt.sign(
         { usuid, usunom, usuemail, rolcod }, // PAYLOAD
@@ -60,10 +64,15 @@ export class AuthController {
     }
   }
 
+  static async logoutUser(req, res){
+    res.clearCookie("access_token").json({ok: true, message: "Logout successful"})
+  }
+
   static async checkSession(req, res) {
     const { user } = req.session
     const resultInfoUser = await AuthModel.getUserInfoByEmail({ usuemail: user.usuemail })
     if (!resultInfoUser.ok) return res.json(resultInfoUser)
+    JSON.parse(resultInfoUser.data[0].info_user).usufoto_perfil = getProfilePhoto({ usudocu: JSON.parse(resultInfoUser.data[0].info_user).usudocu })
 
     res.json(resultInfoUser)
   }
