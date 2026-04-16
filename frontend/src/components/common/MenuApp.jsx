@@ -33,7 +33,6 @@ function CardPlanUser(){
 }
 export function MenuApp() {
     const { userLogin, setUserLogin } = useContext(UserLoginContext)
-    console.log(userLogin)
     const {requestDB}= useRequestDB()
     const navigate = useNavigate()
     if (!userLogin.userInfo) return null
