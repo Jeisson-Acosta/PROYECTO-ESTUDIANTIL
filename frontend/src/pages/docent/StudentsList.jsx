@@ -1,58 +1,20 @@
+import "../../styles/docent/StudentList.css"
 import { HeaderClass } from "../../components/common/classes/HeaderClass.jsx"
+import { StudentCard } from "../../components/docent/StudentCard.jsx"
+
 import { useClassDetailsDocent } from "../../hooks/docent/useClassDetailsDocent.js"
 
 
 import { useReactTable, getCoreRowModel, getPaginationRowModel, flexRender } from "@tanstack/react-table"
+import { useEffect, useContext, useState } from "react";
+import { useRequestDB } from "../../hooks/utils/useRequestDB.js";
 
-
-const students = [
-  {
-    id: 1,
-    name: "Mateo Rodriguez",
-    email: "mateo.r@academy.edu",
-    avatar: "MR",
-    average: 4.8,
-    attendance: 95,
-    performance: "EXEMPLARY",
-  },
-  {
-    id: 2,
-    name: "Isabella Chen",
-    email: "i.chen@academy.edu",
-    avatar: "IC",
-    average: 4.2,
-    attendance: 82,
-    performance: "STEADY",
-  },
-  {
-    id: 3,
-    name: "Lucas Varela",
-    email: "l.varela@academy.edu",
-    avatar: "LV",
-    average: 3.5,
-    attendance: 68,
-    performance: "AT RISK",
-  },
-  {
-    id: 4,
-    name: "Sofia Martinez",
-    email: "sofia.m@academy.edu",
-    avatar: "SM",
-    average: 4.9,
-    attendance: 100,
-    performance: "EXEMPLARY",
-  },
-];
-
-const styles = {
-    EXEMPLARY: { background: "#E1F5EE", color: "#0F6E56" },
-    STEADY:    { background: "#E6F1FB", color: "#185FA5" },
-    "AT RISK": { background: "#FCEBEB", color: "#A32D2D" },
-}
+import { UserLoginContext } from "../../context/userLogin.jsx";
+import toast from "react-hot-toast";
 
 const columns = [
   {
-    header: "Student Name",
+    header: "Nombre del estudiante",
     accessorKey: "name",
     cell: ({ row }) => (
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -62,38 +24,41 @@ const columns = [
           alignItems: "center", justifyContent: "center",
           fontSize: 13, fontWeight: 600, color: "#0F6E56"
         }}>
-          {row.original.avatar}
+          {row.original.usunom.split(' ')[0][0] + row.original.usunom.split(' ')[1][0]}
         </div>
         <div>
-          <p style={{ margin: 0, fontWeight: 500 }}>{row.original.name}</p>
-          <p style={{ margin: 0, fontSize: 12, color: "#888" }}>{row.original.email}</p>
+          <p style={{ margin: 0, fontWeight: 'bold', fontSize: 14, fontFamily: 'fontSubtitles' }}>{row.original.usunom}</p>
+          <p style={{ margin: 0, fontSize: 12, color: "#888" }}>{row.original.usuemail}</p>
         </div>
       </div>
     ),
   },
   {
-    header: "Current Average",
+    header: "Promedio actual",
     accessorKey: "average",
     cell: ({ getValue }) => (
-      <span>{getValue()} <span style={{ color: "#aaa", fontSize: 12 }}>/ 5.0</span></span>
+      <span>
+        <span style={{ color: "#006859", fontSize: 22, fontFamily: 'fontSubtitles' }}>{getValue()}</span>
+        <span style={{ color: "#aaa", fontSize: 14 }}> / 5.0</span>
+      </span>
     ),
   },
   {
-    header: "Attendance",
+    header: "Asistencia",
     accessorKey: "attendance",
     cell: ({ getValue }) => <ProgressBar value={getValue()} />,
   },
   {
-    header: "Performance",
+    header: "Rendimiento",
     accessorKey: "performance",
     cell: ({ getValue }) => <Badge value={getValue()} />,
   },
   {
-    header: "Actions",
+    header: "Acciones",
     id: "actions",
     cell: () => (
-      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-        <button style={{ color: "#1D9E75", background: "none", border: "none", cursor: "pointer", fontWeight: 500 }}>
+      <div style={{ display: "flex", gap: '22px', alignItems: "center" }}>
+        <button style={{ color: "#1D9E75", background: "none", border: "none", cursor: "pointer", fontWeight: 'bold', fontFamily: 'fontSubtitles' }}>
           Ver Perfil
         </button>
         <button style={{ border: "1px solid #ddd", borderRadius: 6, padding: "4px 8px", background: "none", cursor: "pointer" }}>
@@ -108,44 +73,52 @@ function ProgressBar({ value }) {
     const color = value >= 80 ? '#1D9E75' : value >= 70 ? '#EF9F27' : '#E24B4A'
     return (
         <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
-            <div style={{background: '#eee', borderRadius: 4, height: 6, width: 80}}>
+            <div style={{background: '#eee', borderRadius: 4, height: 8, width: 80}}>
                 <div style={{background: color, height: '100%', borderRadius: 4, width: `${value}%`}}></div>
             </div>
-            <span style={{fontSize: 13}}>{value}%</span>
+            <span style={{fontSize: 14, fontFamily: 'fontSubtitles'}}>{value}%</span>
         </div>
     )
 }
 
 function Badge({ value }) {
-    const style = styles[value] || {}
+    
+    const performanceStyles = {
+        EXEMPLARY: { background: "#E1F5EE", color: "#0F6E56" },
+        STEADY:    { background: "#E6F1FB", color: "#185FA5" },
+        "AT RISK": { background: "#FCEBEB", color: "#A32D2D" },
+    }
+    const style = performanceStyles[value] || {}
+
     return (
-        <span style={{...style, padding: '3px 10px', borderRadius: 20, fontSize: 11, fontWeight: 500}}>
-            {value}
+        <span style={{...style, padding: '5px 14px', borderRadius: 10, fontSize: 11, fontWeight: 'bold', fontFamily: 'fontSubtitles'}}>
+            {value === 'AT RISK' ? 'En Riesgo' : value === 'STEADY' ? 'Estable' : 'Ejemplar'}
         </span>
     )
 }
 
-function StudentTable() {
+function StudentTable({ students }) {
 
   const table = useReactTable({
     data: students,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    initialState: { pagination: { pageSize: 2 } },
+    // initialState: { pagination: { pageSize: 2 } },
   });
 
   return (
-    <div style={{ fontFamily: "sans-serif", padding: 24, backgroundColor: "#fff" }}>
+    <div style={{ fontFamily: "sans-serif", marginTop: '20px', margin: '20px auto' }}>
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead style={{backgroundColor: '#eff1f0'}}>
           {table.getHeaderGroups().map(hg => (
             <tr key={hg.id}>
               {hg.headers.map(header => (
                 <th key={header.id} style={{
-                  textAlign: "left", padding: "10px 16px",
-                  fontSize: 11, color: "#888", fontWeight: 600,
-                  letterSpacing: 0.5, borderBottom: "1px solid #eee"
+                  textAlign: "left", padding: "20px",
+                  fontSize: 14, color: "#888", fontWeight: 'bold',
+                  letterSpacing: 0.5, borderBottom: "1px solid #eee",
+                  fontFamily: 'fontSubtitles'
                 }}>
                   {flexRender(header.column.columnDef.header, header.getContext())}
                 </th>
@@ -153,7 +126,7 @@ function StudentTable() {
             </tr>
           ))}
         </thead>
-        <tbody>
+        <tbody style={{backgroundColor: '#ffffff'}}>
           {table.getRowModel().rows.map(row => (
             <tr key={row.id} style={{ borderBottom: "1px solid #f5f5f5" }}>
               {row.getVisibleCells().map(cell => (
@@ -166,7 +139,7 @@ function StudentTable() {
         </tbody>
       </table>
 
-      {/* Paginación */}
+      {/* Paginación
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16 }}>
         <span style={{ fontSize: 13, color: "#888" }}>
           Showing {students.length} of 28 Students in Mathematics 101
@@ -190,19 +163,68 @@ function StudentTable() {
           <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>›</button>
         </div>
       </div>
+      */}
     </div>
   );
 }
 
 export function StudentsList() {
+    const [students, setStudents] = useState([])
+    const [viewListStudents, setViewListStudents] = useState('list')
+    const { userLogin } = useContext(UserLoginContext)
+    // console.log(userLogin)
     const { infoClass } = useClassDetailsDocent()
+    // console.log(infoClass)
+    const { requestDB } = useRequestDB()
+
+    useEffect(() => {
+
+        const getListStudents = async () => {
+            const responseDB = await requestDB(`docent/students-list/${userLogin.userInfo.usuid}/1/1/1`)
+            if (!responseDB.ok) return toast.error(responseDB.message)
+            setStudents(responseDB.data[0].result)
+        }
+        getListStudents()
+    }, [])
+
     if (infoClass.infoClass === null) return null
 
-    console.log(infoClass)
     return (
         <section className="container-students-list-docent">
             <HeaderClass infoClass={infoClass.infoClass[0]} />
-            <StudentTable />
+            <div className="actions-to-list-students">
+                <div>
+                    <input 
+                        type="text" 
+                        placeholder="Filtrar por nombre de estudiante"
+                    />
+                </div>
+                <div className="options-to-view-list-students">
+                    <button 
+                        className={viewListStudents === 'list' ? 'active' : ''}
+                        onClick={() => setViewListStudents('list')}
+                    >
+                        Lista
+                    </button>
+                    <button 
+                        className={viewListStudents === 'grid' ? 'active' : ''}
+                        onClick={() => setViewListStudents('grid')}
+                    >
+                        Cuadrícula
+                    </button>
+                </div>
+            </div>
+            {students.length === 0 && (
+                <h2 style={{ textAlign: 'center', marginTop: '20px', fontFamily: 'fontSubtitles' }}>Aún no hay estudiantes inscritos en esta clase</h2>
+            )}
+            {students.length > 0 && viewListStudents === 'list' && (
+                <StudentTable students={students}/>
+            )}
+            <section className="container-students-grid-docent">
+                {students.length > 0 && viewListStudents === 'grid' && (
+                    students.map(student => ( <StudentCard key={student.usuid} student={student}/> ))
+                )}
+            </section>
         </section>
     )
 }
