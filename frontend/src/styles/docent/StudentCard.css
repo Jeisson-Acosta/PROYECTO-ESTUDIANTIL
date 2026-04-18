@@ -1,0 +1,79 @@
+.student-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 22px;
+    padding: 16px;
+    & .avatar-student {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #E1F5EE;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: #0F6E56;
+        & .status-student {
+            font-size: 10px;
+            position: absolute;
+            top: 0px;
+            right: -50px;
+            width: max-content;
+            border-radius: 10px;
+            padding: 5px 14px;
+            font-weight: bold;
+            font-family: 'fontSubtitles';
+            &.at-risk {
+                background-color: #FCEBEB;
+                color: #A32D2D;
+            }
+            &.steady {
+                background-color: #E6F1FB;
+                color: #185FA5;
+            }
+            &.exemplary {
+                background-color: #E1F5EE;
+                color: #0F6E56;
+            }
+        }
+    }
+    & .info-student {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 16px;
+        border-bottom: 2px solid #fafbfa;
+        padding-bottom: 22px;
+        gap: 2px;
+        & h3 {
+            font-family: 'fontSubtitles';
+            font-size: 16px;
+        }
+        & span {
+            font-size: 12px;
+        }
+    }
+    & .info-performance-student {
+        margin-top: 32px;
+        display: flex;
+        gap: 18px;
+        & div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+        & .title {
+            font-family: 'fontSubtitles';
+            font-size: 14px;
+            color: #abadad;
+            font-weight: bold;
+        }
+    }
+}

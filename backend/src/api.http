@@ -64,3 +64,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1b
     "usucel": "4898484894",
     "usufch_nacimiento": "2004-12-20"
 }
+
+### Obtener la lista de estudiantes por asignatura
+GET http://localhost:3000/docent/students-list/1/1/1/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6ImplaXNzb25AZ21haWwuY29tIiwicm9sY29kIjoiRE9DIiwiaWF0IjoxNzc2NDM3MzQ0LCJleHAiOjE3NzY0NDA5NDR9.79t3ugbCPR4NqAFG-atGtAUe5pE1v-ClSxnINqH9FXk

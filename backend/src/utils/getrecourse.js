@@ -13,8 +13,7 @@ export function getRecourse(nombre_recurso) {
             if (recourseFile) {
                 const filePath = path.join(uploaddir, recourseFile);
                 const fileBuffer = fs.readFileSync(filePath);
-                const ext = path.extname(recourseFile).substring(1); // remueve el punto
-                recourseBase64 = `data:image/${ext};base64,${fileBuffer.toString('base64')}`;
+
             }
         }
         return recourseBase64;

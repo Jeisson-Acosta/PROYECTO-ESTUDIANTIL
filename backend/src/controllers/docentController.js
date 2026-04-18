@@ -1,4 +1,4 @@
-import { validateClasses, validateClassDetails, validateCreateResource } from "../schemas/docent.js";
+import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList } from "../schemas/docent.js";
 import { DocentModel } from "../models/docent.js";
 
 export class DocentController {
@@ -49,6 +49,21 @@ export class DocentController {
 
         } catch (err) {
             return res.status(500).json({ ok: false, message: 'Error creando el recurso' })
+        }
+    }
+
+    static async getStudentsList(req, res) {
+        try {
+            const resultValidate = validateStudentsList(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await DocentModel.getStudentsList({ data: resultValidate.data })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            return res.status(200).json(result)
+
+        } catch (err) {
+            return res.status(500).json({ ok: false, message: 'Error getting students list docent' })
         }
     }
 }

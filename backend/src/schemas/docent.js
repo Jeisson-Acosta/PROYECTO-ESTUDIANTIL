@@ -39,6 +39,25 @@ const createResourceSchema = z.object({
     lateDeliveries: z.string().transform(val => val === 'true').optional()
 })
 
+const studentsListSchema = z.object({
+    usuid: z.string({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val)),
+    asgid: z.string({
+        required_error: 'The asgid is required',
+        invalid_type_error: 'The asgid must be a string'
+    }).transform(val => Number(val))
+})
+
 export function validateClasses(input) {
     return classesSchema.safeParse(input)
 }
@@ -49,4 +68,8 @@ export function validateClassDetails(input) {
 
 export function validateCreateResource(input) {
     return createResourceSchema.partial().safeParse(input)
+}
+
+export function validateStudentsList(input) {
+    return studentsListSchema.safeParse(input)
 }

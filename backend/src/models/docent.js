@@ -59,4 +59,15 @@ export class DocentModel {
             throw new Error('Error creating resource docent: ' + err.message)
         }
     }
+
+    static async getStudentsList({data}) {
+        try {
+            const result = await manageDB('sp_docent_get_list_students', [1, 1, 1, 1])
+            if (!result.ok) throw new Error(result.message)
+
+            return result
+        } catch (err) {
+            throw new Error('Error getting students list docent: ' + err.message)
+        }
+    }
 }

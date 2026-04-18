@@ -32,3 +32,4 @@ docentRouter.get('/classes/:usuid', DocentController.getClasses)
 docentRouter.get('/classes/details/:asgcod', DocentController.getClassDetails)
 docentRouter.post('/create-resource', upload.array('files', 10), DocentController.createResource)
 
+docentRouter.get('/students-list/:usuid/:cedid/:cecid/:asgid', DocentController.getStudentsList)
