@@ -25,8 +25,8 @@ export function UserLoginProvider({ children }) {
           setIsAuthenticated(true);
           setUserLogin({
             userInfo: JSON.parse(responseDB.data[0].info_user),
-            educativeCenterInfo: responseDB.data[0].info_centro,
-            currentCycleInfo: responseDB.data[0].info_ciclo,
+            educativeCenterInfo: JSON.parse(responseDB.data[0].centro_educativo),
+            currentCycleInfo: JSON.parse(responseDB.data[0].ciclo_actual),
             ...responseDB.data[0]
           })
           navigate(rolePath, { replace: true });

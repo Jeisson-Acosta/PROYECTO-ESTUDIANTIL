@@ -70,4 +70,17 @@ export class DocentModel {
             throw new Error('Error getting students list docent: ' + err.message)
         }
     }
+
+    static async getTaskDetails({ data }) {
+        const { usuid, cedid, cecid, asgcod, astid } = data
+        try {
+
+            const result = await manageDB('sp_docent_get_info_task', [usuid, cedid, cecid, asgcod, astid])
+            if (!result.ok) throw new Error(result.message)
+
+            return result
+        } catch (err) {
+            throw new Error('Error getting task details docent: ' + err.message)
+        }
+    }
 }

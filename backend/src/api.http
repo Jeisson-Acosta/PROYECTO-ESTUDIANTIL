@@ -68,3 +68,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1b
 ### Obtener la lista de estudiantes por asignatura
 GET http://localhost:3000/docent/students-list/1/1/1/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6ImplaXNzb25AZ21haWwuY29tIiwicm9sY29kIjoiRE9DIiwiaWF0IjoxNzc2NDM3MzQ0LCJleHAiOjE3NzY0NDA5NDR9.79t3ugbCPR4NqAFG-atGtAUe5pE1v-ClSxnINqH9FXk
+
+### Obtener los detalles de una tarea
+GET http://localhost:3000/docent/task-details/2/1/1/CIEN/41
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6ImplaXNzb25AZ21haWwuY29tIiwicm9sY29kIjoiRE9DIiwiaWF0IjoxNzc2NTc3NjI4LCJleHAiOjE3NzY1ODEyMjh9.JVA4Cnl2wQvJWP-RpsWEtQtzaTDDAfrJgVYT4WRDODQ

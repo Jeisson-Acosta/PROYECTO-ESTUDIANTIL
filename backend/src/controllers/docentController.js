@@ -1,4 +1,4 @@
-import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList } from "../schemas/docent.js";
+import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList, validateTaskDetails } from "../schemas/docent.js";
 import { DocentModel } from "../models/docent.js";
 
 export class DocentController {
@@ -64,6 +64,20 @@ export class DocentController {
 
         } catch (err) {
             return res.status(500).json({ ok: false, message: 'Error getting students list docent' })
+        }
+    }
+
+    static async getTaskDetails(req, res) {
+        try {
+            const resultValidate = validateTaskDetails(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await DocentModel.getTaskDetails({ data: resultValidate.data })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            return res.status(200).json(result)
+        } catch (err) {
+            return res.status(500).json({ ok: false, message: 'Error getting task details docent' })
         }
     }
 }

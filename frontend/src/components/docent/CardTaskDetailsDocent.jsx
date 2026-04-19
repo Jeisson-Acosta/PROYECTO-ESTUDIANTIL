@@ -1,7 +1,16 @@
 import '../../styles/docent/CardTaskDetailsDocent.css'
 import { ClipboardCheckIcon, EyeBlueIcon, DownloadIcon, BellIcon, BookIcon, SpeakerPhone } from "../common/GeneralIcons.jsx"
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export function CardTaskDetailsDocent({ task }) {
+
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const handleClickViewDetailsTask = ({ astid }) => {
+        navigate(`${location.pathname}/view-details-task/${astid}`)
+    }
+
     return (
         <li className={`card-task-details-docent ${task.asttip === 'TA' ? 'task' : task.asttip === 'MA' ? 'material' : 'announcement'}`}>
             <div className="content-left-card-task">
@@ -37,7 +46,7 @@ export function CardTaskDetailsDocent({ task }) {
                     <BellIcon />
                 </button>
                 {(task.asttip === 'TA' || task.asttip === 'EN') && (
-                    <button className='button-action-task show'>
+                    <button className='button-action-task show' onClick={() => handleClickViewDetailsTask({ astid: task.astid })}>
                         Ver
                         <EyeBlueIcon />
                     </button>

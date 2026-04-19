@@ -10,6 +10,7 @@ import { CreateAnnouncement } from './pages/docent/CreateAnnouncement.jsx'
 import { Classes } from './pages/student/Classes.jsx'
 import { ClassDetails } from './pages/student/ClassDetails.jsx'
 import { StudentsList } from './pages/docent/StudentsList.jsx'
+import { ViewDetailsTask } from './pages/docent/ViewDetailsTask.jsx'
 // ================================================
 
 // ==================== COMPONENTS ====================
@@ -23,6 +24,7 @@ import { StudentDashboard } from './pages/student/StudentDashboard.jsx'
 import { ContenidoClase } from './pages/student/ContenidoClase.jsx'
 import { ConfigurationAccount } from './components/common/ConfigurationAccount.jsx'
 
+
 function Unauthorized() {
   return (
     <h1>No esta permitido acceder a esta ruta.</h1>
@@ -31,7 +33,9 @@ function Unauthorized() {
 
 function TeacherDashboard() {
   return (
-    <h1>Dashboard del profesor</h1>
+    <>
+      <h1>Dashboard del profesor</h1>
+    </>
   )
 }
 
@@ -76,6 +80,7 @@ function App() {
                   <Route path='cursos/:asgcod/create-material' element={<CreateMaterial />} />
                   <Route path='cursos/:asgcod/create-announcement' element={<CreateAnnouncement />} />
                   <Route path='cursos/:asgcod/students' element={<StudentsList />} />
+                  <Route path='cursos/:asgcod/view-details-task/:astid' element={<ViewDetailsTask />} />
                   <Route path='contenido' element={<ContenidoClase />} />
                 </Routes>
               </RoleBasedRoute>
