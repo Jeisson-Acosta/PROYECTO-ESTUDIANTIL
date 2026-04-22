@@ -10,9 +10,11 @@ export function UserLoginProvider({ children }) {
   const [userLogin, setUserLogin] = useState({ userInfo: null, educativeCenterInfo: null, currentCycleInfo: null });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // true mientras se verifica la sesión en el backend
-  const { requestDB } = useRequestDB();
+  const { requestDB } = useRequestDB()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  console.log(userLogin)
 
   useEffect(() => {
     const checkSession = async () => {

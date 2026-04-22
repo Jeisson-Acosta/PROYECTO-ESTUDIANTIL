@@ -49,7 +49,7 @@ export class AuthController {
         SECRET_JWT_KEY, // SECRET KEY
         { expiresIn: "1h" },
       );
-
+      
       return res
         .cookie("access_token", token, {
           httpOnly: true, // La cookie solo se puede acceder en el servidor.

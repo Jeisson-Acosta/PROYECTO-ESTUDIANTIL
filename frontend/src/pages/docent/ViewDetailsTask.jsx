@@ -7,9 +7,31 @@ import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
 
 import { UserLoginContext } from "../../context/userLogin.jsx"
 
-import { CalendarIcon, PencilIcon } from "../../components/common/GeneralIcons.jsx"
+import { CalendarIcon, PencilIcon, CircleCheckSingleIcon, ExclamationCircleIcon } from "../../components/common/GeneralIcons.jsx"
 import { BuildTable } from '../../components/common/BuildTable.jsx'
 import { CircleChart } from '../../components/common/charts/CircleChart.jsx'
+
+function CardInfoTask({ title, quantity, bgColorIcon, bgColorBorder, icon }) {
+    return (
+        <div className="card-info-task" style={{borderColor: '#' + bgColorBorder}}>
+            <div className="icon-card-info" style={{backgroundColor: '#' + bgColorIcon}}>
+                {icon}
+            </div>
+            <div className="info-card-task">
+                <h4>{title}</h4>
+                <span>
+                    <span className='quantity-number'>
+                        {quantity}
+                        {' '}
+                    </span>
+                    <span className='quantity-text'>
+                        {quantity === 1 ? 'alumno' : 'alumnos'}
+                    </span>
+                </span>
+            </div>
+        </div>
+    )
+}
 
 export function ViewDetailsTask() {
 
@@ -175,6 +197,22 @@ export function ViewDetailsTask() {
                                 colorBlank={'fad9d8'}
                             />
                         </div>
+                    </section>
+                    <section className="cards-info-task">
+                        <CardInfoTask 
+                            title='ENTREGADOS'
+                            quantity={taskDetails.quantity_deliverieds}
+                            bgColorIcon='e5f0ee'
+                            bgColorBorder='076c5d'
+                            icon={<CircleCheckSingleIcon />}
+                        />
+                        <CardInfoTask 
+                            title='NO ENTREGADOS'
+                            quantity={taskDetails.without_deliverings}
+                            bgColorIcon='fbf3f4'
+                            bgColorBorder='b31b25'
+                            icon={<ExclamationCircleIcon />}
+                        />
                     </section>
                 </div>
 

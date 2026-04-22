@@ -116,3 +116,53 @@
         }
     }
 }
+
+.cards-info-task {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+    align-self: center;
+    & .card-info-task {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background-color: #ffffff;
+        padding: 16px;
+        border-radius: 18px;
+        border-left-width: 4px;
+        border-left-style: solid;
+        & .icon-card-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6px;
+            border-radius: 14px;
+            & svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+        & .info-card-task {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            & h4 {
+                font-family: fontSubtitles;
+                color: #979999;
+            }
+            & .quantity-number {
+                font-family: fontSubtitles;
+                color: #313434;
+                font-size: 20px;
+                font-weight: bold;
+            }
+            & .quantity-text {
+                font-family: fontSubtitles;
+                color: #9b9d9d;
+                font-size: 14px;
+            }
+        }
+    }
+}
