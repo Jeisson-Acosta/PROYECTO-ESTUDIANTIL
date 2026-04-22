@@ -7,6 +7,7 @@ export const UserLoginContext = createContext();
 
 export function UserLoginProvider({ children }) {
   // const [userLogin, setUserLogin] = useState(null);
+
   const [userLogin, setUserLogin] = useState({ userInfo: null, educativeCenterInfo: null, currentCycleInfo: null });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // true mientras se verifica la sesión en el backend
@@ -24,6 +25,7 @@ export function UserLoginProvider({ children }) {
           setIsAuthenticated(false);
         } else {
           const rolePath = ROLES[JSON.parse(responseDB.data[0].info_user).rolcod].path;
+          console.log(rolePath)
           setIsAuthenticated(true);
           setUserLogin({
             userInfo: JSON.parse(responseDB.data[0].info_user),

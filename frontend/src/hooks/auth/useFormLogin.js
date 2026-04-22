@@ -51,9 +51,11 @@ export function useFormLogin() {
         // setUserLogin(userData);
         setUserLogin({
             userInfo: JSON.parse(userData.info_user), 
-            educativeCenterInfo: JSON.parse(userData.centro_educativo),
+            // educativeCenterInfo: JSON.parse(userData.centro_educativo),
+            educativeCenterInfo: userData.centro_educativo,
             // currentCycleInfo: JSON.parse(userData.ciclo_actual),
-            currentCycleInfo: JSON.parse(userData.ciclo_actual),
+            currentCycleInfo: userData.ciclo_actual,
+            // currentCycleInfo: JSON.parse(userData.ciclo_actual),
             ...userData
         })
         setIsAuthenticated(true);

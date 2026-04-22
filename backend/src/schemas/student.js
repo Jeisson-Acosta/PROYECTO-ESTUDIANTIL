@@ -15,3 +15,11 @@ const classSchema = z.object({
 export function validateClass(data) {
     return classSchema.safeParse(data)
 }
+
+const taskSchema = z.object({
+    astid: z.string({ required_error: 'The task id is required' })
+})
+
+export function validateTask(data) {
+    return taskSchema.safeParse(data)
+}

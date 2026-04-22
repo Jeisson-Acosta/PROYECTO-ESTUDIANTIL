@@ -3,7 +3,7 @@ import { validateRegister, validateLogin } from "../schemas/auth.js";
 import jwt from "jsonwebtoken";
 import { SECRET_JWT_KEY } from "../config/config.js";
 import { getProfilePhoto } from "../utils/getProfilePhoto.js";
-
+import { getRecourse } from "../utils/getrecourse.js";
 export class AuthController {
   static async registerUser(req, res) {
     const resultValidate = validateRegister(req.body);
@@ -30,16 +30,20 @@ export class AuthController {
 
     // Acá este error lo debemos mandar a un recurso para que guarde el log.
     if (!resultValidate.success) {
-      return res
-        .status(400)
-        .json({ error: JSON.parse(resultValidate.error.message) });
+      return res.status(400).json({ error: JSON.parse(resultValidate.error.message) });
     }
 
     try {
-      const result = await AuthModel.loginUser({ input: resultValidate.data });
+      const result = await AuthModel.loginUser({ input: resultValidate.data })
       if (!result.ok) return res.json(result);
 
       const infoUser = JSON.parse(result.data[0].info_user)
+
+      if (infoUser.rolcod === "EST") {
+        const taskrecourses = result.data[0]?.trabajo_recursos
+        infoUser.recourses = getRecourse(taskrecourses.nombre_recurso, result.data[0].centro_educativo[0].cednom)
+      }
+
       const { usuid, usunom, usuemail, rolcod } = infoUser
       infoUser.usufoto_perfil = getProfilePhoto({ usudocu: infoUser.usudocu })
       result.data[0].info_user = JSON.stringify(infoUser)
@@ -64,8 +68,8 @@ export class AuthController {
     }
   }
 
-  static async logoutUser(req, res){
-    res.clearCookie("access_token").json({ok: true, message: "Logout successful"})
+  static async logoutUser(req, res) {
+    res.clearCookie("access_token").json({ ok: true, message: "Logout successful" })
   }
 
   static async checkSession(req, res) {

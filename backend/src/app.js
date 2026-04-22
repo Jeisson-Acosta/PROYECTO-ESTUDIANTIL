@@ -47,14 +47,14 @@ app.use(cors({
   credentials: true,
 }))
 
-app.use(express.json()); // Middleware para peticiones POST para poner el contenido en el body
-app.use(cookieParser()); // Es un middleware de express, que nos facilita acceder a las cookies.
+app.use(express.json()) // Middleware para peticiones POST para poner el contenido en el body
+app.use(cookieParser()) // Es un middleware de express, que nos facilita acceder a las cookies.
 
-app.use("/auth", authRouter);
-app.use("/student", tokenMiddleware, studentRouter);
+app.use("/auth", authRouter)
+app.use("/student", tokenMiddleware, studentRouter)
 app.use("/docent", tokenMiddleware, docentRouter)
 app.use("/config-account", tokenMiddleware, configAccountRouter)
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is running on: http://localhost:${PORT}`);
-});
+  console.log(`Server is running on: http://localhost:${PORT}`)
+})
