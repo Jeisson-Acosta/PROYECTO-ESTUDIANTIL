@@ -7,7 +7,8 @@ import { MateriasCard } from '../../components/student/MateriasCard.jsx';
 import { IconStar, IconAsistance, IconSubject } from '../../components/common/IconsLayout.jsx';
 import { NotasCard } from '../../components/student/NotasCard.jsx';
 import { CircleChart } from '../../components/common/charts/CircleChart.jsx';
-import DesempeñoMaterias from '../../components/student/graphicperformance.jsx';
+import DesempeñoMaterias from '../../components/student/GraphicPerformance.jsx'
+import { Calendar } from '../../components/common/charts/calendario.jsx';
 export function StudentDashboard() {
     const { userLogin } = useContext(UserLoginContext) || {};
     
@@ -200,6 +201,9 @@ const obtenerProximasClases = () => {
             <div className='graphics-dashboard'>
             <div className='average-graphic'>
              <DesempeñoMaterias/>
+            </div>
+            <div className='calendar-graphic'>
+                <Calendar/>
             </div>
             </div>
             <div className='stats-dashboard'>

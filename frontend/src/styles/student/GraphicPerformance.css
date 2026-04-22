@@ -1,10 +1,9 @@
 .desempeño-materias {
+    width: 100%;
     background-color: #fff;
     border-radius: 20px;
     padding: 24px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    width: 900px;
-    max-width: 1000px;
     font-family: fontMain;
 }
 

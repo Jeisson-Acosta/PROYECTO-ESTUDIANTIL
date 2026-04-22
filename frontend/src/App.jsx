@@ -10,6 +10,7 @@ import { CreateAnnouncement } from './pages/docent/CreateAnnouncement.jsx'
 import { Classes } from './pages/student/Classes.jsx'
 import { ClassDetails } from './pages/student/ClassDetails.jsx'
 import { StudentsList } from './pages/docent/StudentsList.jsx'
+import { Calendar } from '../../frontend/src/components/common/charts/calendario.jsx'
 // ================================================
 
 // ==================== COMPONENTS ====================
@@ -59,6 +60,7 @@ function App() {
                   <Route path='cursos' element={<Classes />} />
                   <Route path='cursos/:asgcod' element={<ClassDetails />} />
                   <Route path='contenido' element={<ContenidoClase />} />
+                  <Route path='calendario' element={<Calendar />} />
                 </Routes>
               </RoleBasedRoute>
             }

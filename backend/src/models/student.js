@@ -35,5 +35,16 @@ export class StudentModel {
             throw new Error('Error geting info task')
         }
     }
+    static async deliveryTask({ usuid, cedid, cecid, astid }) {
+        try {
+            const resultDelivery = await manageDB('sp_student_delivery_task', [usuid, cedid, cecid, astid])
+            console.log(resultDelivery)
+            if (!resultDelivery.ok) throw new Error(resultDelivery.message)
+
+            return resultDelivery
+        } catch (err) {
+            throw new Error('Error delivering task')
+        }
+    }
 
 }

@@ -3,7 +3,7 @@ import { validateRegister, validateLogin } from "../schemas/auth.js";
 import jwt from "jsonwebtoken";
 import { SECRET_JWT_KEY } from "../config/config.js";
 import { getProfilePhoto } from "../utils/getProfilePhoto.js";
-
+import { getRecourse } from "../utils/getrecourse.js";
 export class AuthController {
   static async registerUser(req, res) {
     const resultValidate = validateRegister(req.body);
@@ -40,8 +40,10 @@ export class AuthController {
       if (!result.ok) return res.json(result);
 
       const infoUser = JSON.parse(result.data[0].info_user)
+      const taskrecourses = JSON.parse(result.data[0].trabajo_recursos)
       const { usuid, usunom, usuemail, rolcod } = infoUser
       infoUser.usufoto_perfil = getProfilePhoto({ usudocu: infoUser.usudocu })
+      infoUser.recourses = getRecourse(taskrecourses.nombre_recurso, result.data[0].centro_educativo[0].cednom)
       result.data[0].info_user = JSON.stringify(infoUser)
 
       const token = jwt.sign(
@@ -64,8 +66,8 @@ export class AuthController {
     }
   }
 
-  static async logoutUser(req, res){
-    res.clearCookie("access_token").json({ok: true, message: "Logout successful"})
+  static async logoutUser(req, res) {
+    res.clearCookie("access_token").json({ ok: true, message: "Logout successful" })
   }
 
   static async checkSession(req, res) {

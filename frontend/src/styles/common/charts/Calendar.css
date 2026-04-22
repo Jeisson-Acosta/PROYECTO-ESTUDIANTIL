@@ -1,0 +1,286 @@
+.calendar-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.fc-header-toolbar {
+    background-color: #ffffff;
+    padding: 2px 5px !important;
+    /* Reduce el padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    /* Reduce el gap */
+    margin-bottom: 0 !important;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fc-toolbar-title {
+    font-size: 25px !important;
+    font-family: fontSubtitles;
+    color: #1a365d;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0 !important;
+    line-height: 1 !important;
+    padding: 10px !important;
+    /* Reduce altura de línea */
+}
+
+/* Quitar el texto "Hoy" del botón */
+.fc-button-today {
+    display: none !important;
+}
+
+.fc-header-toolbar .fc-button {
+    background-color: #eeeeee;
+    border-color: #929191;
+    padding: 4px 12px !important;
+    /* Botones más pequeños */
+    margin: 0 !important;
+    font-size: 12px !important;
+}
+
+.fc-header-toolbar .fc-button:hover {
+    background-color: #a0a0a0;
+    border-color: #a0a0a0;
+}
+
+.fc-view-harness {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Eliminar TODOS los bordes */
+.fc-scrollgrid {
+    border: none !important;
+    border-collapse: collapse !important;
+}
+
+.fc-scrollgrid-section-header {
+    border: none !important;
+}
+
+.fc-scrollgrid-section-body {
+    border: none !important;
+}
+
+.fc-scrollgrid td,
+.fc-scrollgrid th {
+    border: none !important;
+}
+
+.fc-daygrid-body {
+    background-color: #ffffff;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border: none !important;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Eliminar borde superior de la tabla del cuerpo */
+.fc-scrollgrid-section-body .fc-scrollgrid-sync-table {
+    border-top: none !important;
+}
+
+.fc-scrollgrid-section-body table {
+    border-top: none !important;
+}
+
+.fc-scrollgrid-section-body tr:first-child td {
+    border-top: none !important;
+}
+
+/* Eliminar cualquier borde de las filas de la cabecera */
+.fc-scrollgrid-section-header .fc-scrollgrid-sync-table {
+    border-bottom: none !important;
+}
+
+.fc-scrollgrid-section-header table {
+    border-bottom: none !important;
+}
+
+.fc-col-header-cell {
+    border: none !important;
+    background: transparent !important;
+    padding-bottom: 4px !important;
+}
+
+.fc-col-header-cell-cushion {
+    font-size: 0.8rem;
+    font-family: fontSubtitles;
+    font-weight: 500;
+    color: #666;
+    text-decoration: none !important;
+}
+
+.fc-daygrid-day {
+    border: none !important;
+    background: transparent !important;
+}
+
+.fc-daygrid-day-frame {
+    padding: 4px 2px !important;
+    background: transparent !important;
+    margin-top: 0 !important;
+    border: none !important;
+    height: 35px !important;
+    min-height: 35px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fc-daygrid-day-top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    position: relative;
+}
+
+.fc-daygrid-day-number {
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: #1a1a1a;
+    text-decoration: none !important;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 2;
+    background: transparent;
+}
+
+/* Quitar el fondo del día actual */
+.fc-day-today {
+    background: transparent !important;
+}
+
+.fc-day-today .fc-daygrid-day-number {
+    background: transparent !important;
+    color: #1a1a1a !important;
+    font-weight: normal !important;
+    border: none !important;
+}
+
+/* Estilo para los días con eventos - círculo de color alrededor del número */
+.fc-daygrid-day[data-has-event="true"] .fc-daygrid-day-number::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--event-color, #22c55e);
+}
+
+/* Forzar que todas las tablas no tengan bordes */
+.fc table {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    border: none !important;
+}
+
+.fc .fc-scrollgrid-section-body table {
+    margin-top: 0 !important;
+    border: none !important;
+    border-top: none !important;
+}
+
+.fc-daygrid-body table {
+    margin-top: 0 !important;
+    border: none !important;
+}
+
+.fc-daygrid-body-unbalanced .fc-daygrid-day {
+    border: none !important;
+}
+
+.fc-scrollgrid-sync-table {
+    border: none !important;
+}
+
+.fc-scrollgrid-section table {
+    border: none !important;
+}
+
+.fc-scrollgrid-section-header .fc-scrollgrid-sync-table {
+    border: none !important;
+}
+
+/* Eliminar el borde que aparece entre el header y el body */
+.fc-scrollgrid>.fc-scrollgrid-section:first-child {
+    border-bottom: none !important;
+}
+
+.fc-scrollgrid>.fc-scrollgrid-section:last-child {
+    border-top: none !important;
+}
+
+/* Forzar que no haya border-top en ninguna celda de la primera fila del body */
+.fc-scrollgrid-section-body tbody tr:first-child td {
+    border-top: none !important;
+}
+
+.fc-scrollgrid-section-body tbody tr:first-child th {
+    border-top: none !important;
+}
+
+.fc-daygrid-day-top {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Ocultar completamente los eventos tradicionales */
+.fc-daygrid-day-events,
+.fc-daygrid-event-harness,
+.fc-event,
+.fc-event-main,
+.fc-event-title {
+    display: none !important;
+}
+
+/* Día actual - círculo azul */
+.fc-day-today .fc-daygrid-day-number {
+    background: #7fa3c7 !important;
+    color: white !important;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Día actual con evento - mantener el círculo del evento y el fondo azul */
+.fc-day-today[data-has-event="true"] .fc-daygrid-day-number {
+    background: #7fa3c7 !important;
+    color: white !important;
+    position: relative;
+}
+
+.fc-day-today[data-has-event="true"] .fc-daygrid-day-number::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 0 0 0 2px var(--event-color, #22c55e);
+    z-index: -1;
+}
