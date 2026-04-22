@@ -11,7 +11,7 @@ export function useFormLogin() {
         usuemail: "",
         usupwd: "",
     });
-    const { userLogin, setUserLogin, setIsAuthenticated } = useContext(UserLoginContext);
+    const { setUserLogin, setIsAuthenticated } = useContext(UserLoginContext);
     const { requestDB } = useRequestDB();
 
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ export function useFormLogin() {
         // setUserLogin(userData);
         setUserLogin({
             userInfo: JSON.parse(userData.info_user), 
-            educativeCenterInfo: userData.centro_educativo[0],
+            educativeCenterInfo: userData.centro_educativo,
             // currentCycleInfo: JSON.parse(userData.ciclo_actual),
             currentCycleInfo: userData.ciclo_actual,
             ...userData

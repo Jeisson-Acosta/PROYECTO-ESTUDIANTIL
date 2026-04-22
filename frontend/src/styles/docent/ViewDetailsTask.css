@@ -1,0 +1,118 @@
+.container-task-details-docent {
+    width: 100%;
+    padding: 20px;
+}
+
+.info-due-task {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    & .date-due {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-family: 'fontSubtitles';
+        font-size: 14px;
+        color: #8d9291;
+        & svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
+.title-task {
+    margin-top: 10px;
+    & h1 {
+        font-family: fontTitlesBold;
+    }
+    & .btn-edit-task {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        font-family: fontSubtitles;
+        background-color: #ffffff;
+        padding: 10px 14px;
+        border-radius: 16px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: all .25s ease;
+        & svg {
+            width: 18px;
+            height: 18px;
+        }
+        &:hover {
+            background-color: #c2c2c2;
+        }
+    }
+}
+
+.general-container-content-task {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.card-container {
+    background-color: #ffffff;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.description-task {
+    & header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        & h3 {
+            font-family: fontSubtitles;
+            color: #3e4141;
+        }
+        & span {
+            font-family: fontSubtitles;
+            color: #a8aaaa;
+            font-size: 14px;
+        }
+    }
+    & .description-task-details-docent {
+        margin-top: 10px;
+        text-align: justify;
+        color: #5c5c5c;
+    }
+}
+
+.students-submissions {
+    margin-top: 26px;
+    & header h3 {
+        font-family: fontSubtitles;
+        color: #3e4141;
+    }
+}
+
+.content-right-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    & .average-task {
+        & header {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            & h3 {
+                font-family: fontSubtitles;
+                color: #717474;
+            }
+            & span {
+                font-family: fontSubtitles;
+                color: #a8aaaa;
+                font-size: 14px;
+            }
+        }
+        & .average-task-details-docent {
+            margin-top: 12px;
+        }
+    }
+}

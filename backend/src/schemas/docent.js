@@ -52,10 +52,10 @@ const studentsListSchema = z.object({
         required_error: 'The cecid is required',
         invalid_type_error: 'The cecid must be a string'
     }).transform(val => Number(val)),
-    asgid: z.string({
-        required_error: 'The asgid is required',
-        invalid_type_error: 'The asgid must be a string'
-    }).transform(val => Number(val))
+    asgcod: z.string({
+        required_error: 'The asgcod is required',
+        invalid_type_error: 'The asgcod must be a string'
+    })
 })
 
 const taskDetailsSchema = z.object({

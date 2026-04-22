@@ -54,6 +54,7 @@ export class DocentController {
 
     static async getStudentsList(req, res) {
         try {
+            console.log(req.params)
             const resultValidate = validateStudentsList(req.params)
             if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
 
