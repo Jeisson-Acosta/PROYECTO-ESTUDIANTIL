@@ -1,0 +1,42 @@
+.card-info-dashboard-teacher {
+    color: #ffffff;
+    padding: 16px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    & .title-icon {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & .icon {
+            background-color: #ffffff3f;
+            padding: 4px;
+            border-radius: 10px;
+            & svg {
+                background-color: transparent;
+                width: 32px;
+                height: 32px;
+            }
+        }
+    }
+    & .principal-value-card h3 {
+        font-family: fontSubtitles;
+        font-size: 26px;
+    }
+
+    & .second-value-card {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        & span {
+            font-family: fontSubtitles;
+            font-size: 14px;
+            color: #e3e7ec;
+        }
+        & svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+}

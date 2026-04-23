@@ -22,6 +22,7 @@ import { Layout } from './components/common/Layout.jsx'
 import { RoleBasedRoute } from './routes/RoleBasedRoute.jsx'
 import { RoleBasedRedirect } from './components/RoleBasedRedirect.jsx'
 import { StudentDashboard } from './pages/student/StudentDashboard.jsx'
+import { TeacherDashboard } from './pages/docent/TeacherDashboard.jsx'
 import { ContenidoClase } from './pages/student/ContenidoClase.jsx'
 import { ConfigurationAccount } from './components/common/ConfigurationAccount.jsx'
 
@@ -32,13 +33,7 @@ function Unauthorized() {
   )
 }
 
-function TeacherDashboard() {
-  return (
-    <>
-      <h1>Dashboard del profesor</h1>
-    </>
-  )
-}
+
 
 function App() {
 
