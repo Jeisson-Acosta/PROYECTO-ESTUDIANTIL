@@ -1,11 +1,12 @@
 import '../../styles/docent/ClassesDocent.css'
 import { useContext, useEffect, useState } from "react"
 import { UserLoginContext } from "../../context/userLogin"
-
+import { AssignNewClassModalContext } from '../../context/docent/assignNewClassModal.jsx'
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
 import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
 
 import { PlusIcon } from "../../components/common/GeneralIcons.jsx"
+import { AssignNewClass } from '../../components/docent/AssignNewClass.jsx'
 
 import toast from "react-hot-toast"
 import { CardClassDocent } from '../../components/docent/CardClassDocent.jsx'
@@ -13,6 +14,7 @@ import { CardClassDocent } from '../../components/docent/CardClassDocent.jsx'
 export function ClassesDocent() {
     const [classesDocent, setClassesDocent] = useState(null)
     const { userLogin } = useContext(UserLoginContext)
+    const {showModalAssignNewClass,setShowModalAssignNewClass} = useContext(AssignNewClassModalContext)
     const { requestDB } = useRequestDB()
     const { currentClass } = useCurrentClass()
 
@@ -47,11 +49,12 @@ export function ClassesDocent() {
 
                 {classesDocent?.map(classDocent => (<CardClassDocent key={classDocent.asgid} classDocent={classDocent} />))}
 
-                <button className="assign-new-class">
+                <button className="assign-new-class" onClick={()=>setShowModalAssignNewClass(true)}>
                     <PlusIcon />
                     Asignar nueva clase
                 </button>
             </ul>
+            {showModalAssignNewClass && <AssignNewClass />}
         </section>
     )
 }

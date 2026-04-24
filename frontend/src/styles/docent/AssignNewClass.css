@@ -1,0 +1,90 @@
+.header-modal-assign-new-class{
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+.header-modal-assign-new-class .container-left .icon{
+    fill:#e95c17;
+    padding: 6px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fdeee7;
+
+
+}
+.header-modal-assign-new-class .container-left .icon svg{
+    width: 40px;
+    height: 40px;
+}
+
+.container-left{
+    display: flex;
+    gap: 18px;
+}
+
+.container-principal-assign-new-class{
+    background-color: #ffffff;
+    width: 50%;
+    border-radius: 12px;
+    padding: 22px;
+    z-index: 999;
+    margin: 0 auto;
+
+}
+
+.header-modal-assign-new-class button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.header-modal-assign-new-class button:hover{
+    background-color:aliceblue; 
+}
+
+.materia-identidad{
+    display:flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.materia-identidad .title-section-modal{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.container-info-modal{
+    margin-top: 36px;
+}
+.title-section-modal h4 {
+    color: #a5aebc;
+    font-weight: bold;
+
+}
+.materia-identidad .field{
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+}
+.materia-identidad .field select{
+    width: 200px;
+
+}
+.materia-identidad .field .distintive-color-item {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+.container-fields{
+    display: flex;
+    gap: 20px;
+}
+.container-distintive-colors{
+    display: flex;
+    gap: 12px;
+    border-radius: 10px;
+    background-color: #f8fafc;
+    border: 2px solid #f3f6f9;
+    padding: 6px;
+}
