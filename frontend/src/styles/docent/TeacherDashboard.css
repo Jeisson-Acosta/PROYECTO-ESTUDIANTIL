@@ -8,3 +8,110 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
+
+.principal-container-main-dashboard-docent {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    & .container-general-performance-courses {
+        grid-column: span 2;
+    }
+    & .container-section-dashboard {
+        background-color: #ffffff;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        padding: 18px;
+        border-radius: 16px;
+        & .header-section-dashboard {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & h3 {
+                font-family: fontTitlesBold;
+                color: #1e293b;
+            }
+            & .header-left {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                & .live-badge {
+                    background-color: #ffe4e6;
+                    color: #e11d48;
+                    padding: 4px 12px;
+                    border-radius: 14px;
+                    font-size: 12px;
+                    font-family: fontSubtitles;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    & .graph-container {
+        width: 100%;
+        margin-top: 12px;
+        & .graphs-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        & .bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 44px;
+            height: 100%;
+            & .graph-bar-background {
+                background-color: #d1fae5;
+                width: 100%;
+                height: 100%;
+                border-radius: 14px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                & .graph-bar-fill {
+                    background-color: #10b981;
+                    width: 100%;
+                    height: 70%;
+                    border-radius: 14px 14px 0 0;
+                }
+            }
+            & .bar-label {
+                font-family: fontSubtitles;
+                color: #64748b;
+                font-size: 14px;
+            }
+        }
+
+        & .footer-graph-descriptions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f1f5f9;
+            & .item-decription {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                & .circle {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                }
+                & span {
+                    font-size: 14px;
+                    color: #64748b;
+                    font-family: fontSubtitles;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+    & .more-cards-right {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
