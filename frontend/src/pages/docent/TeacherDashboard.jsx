@@ -4,7 +4,7 @@ import { UserLoginContext } from '../../context/userLogin.jsx'
 
 import { UserNotFilledIcon, UserIcon, ChalkboardIcon, ClockIcon, BellIcon, ListCheckIcon } from '../../components/common/GeneralIcons.jsx'
 import { CardInfoDashboardTeacher } from '../../components/docent/CardInfoDashboardTeacher.jsx'
-
+import { CardNextClass } from '../../components/docent/CardNextClass.jsx'
 
 function BarGraph({ value, label }) {
     return (
@@ -87,13 +87,15 @@ export function TeacherDashboard() {
                     </header>
                     <div className="graph-container">
                         <section className="graphs-container">
-                            {JSON.parse(userLogin.general_performance_x_course).map(item => (
+                            {userLogin.general_performance_x_course ? JSON.parse(userLogin.general_performance_x_course).map(item => (
                                 <BarGraph 
                                     key={item.edcid}
                                     value={item.promedio}
                                     label={item.edcnom}
                                 />
-                            ))}
+                            )) : (
+                                <h2 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>Aún no tienes cursos asignados</h2>
+                            )}
                         </section>
                         <footer className='footer-graph-descriptions'>
                             <div className='item-decription'>
@@ -119,15 +121,49 @@ export function TeacherDashboard() {
                         </div>
                         <span className="date-today">{shortDate}</span>
                     </header>
+                    <div className="cards-next-classes">
+                        {userLogin.today_classes ? JSON.parse(userLogin.today_classes).map(item => (
+                            <CardNextClass 
+                                key={item.ashid}
+                                itemClass={item}
+                            />
+                        )) : (
+                            <h2 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>No tienes clases para hoy</h2>
+                        )}
+                    </div>
                 </section>
 
                 <section className="more-cards-right">
-                    <div className="container-section-dashboard">
+                    <div className="container-tasks-to-qualify container-section-dashboard">
                         <header className='header-tasks-to-qualify header-section-dashboard'>
                             <div className="header-left">
                                 <h3 style={{fontSize: '14px'}}>Sin calificar</h3>
                             </div>
-                        </header>         
+                        </header>       
+                        <div className="cards-tasks-by-qualify">
+                            {userLogin.tasks_by_qualify_object ? JSON.parse(userLogin.tasks_by_qualify_object).map(task => (
+                                <div className="card-by-qualify">
+                                    <header>
+                                        <h4 className='title-task-by-qualify'>
+                                            {task.astnomtrabajo}
+                                        </h4>
+                                        <button>
+                                            Ver
+                                        </button>
+                                    </header>
+                                    <div className="info-task-by-qualify">
+                                        <span>
+                                            Fecha ent: {task.atefec_entrega}
+                                        </span>
+                                        <span>
+                                            Curso: {task.edcnom}
+                                        </span>
+                                    </div>
+                                </div>
+                            )) : (
+                                <h2 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>¡Excelente! No tienes tareas pendientes por calificar.</h2>
+                            )}
+                        </div>  
                     </div>
                     <div className="container-section-dashboard">
                         <header className='header-requests header-section-dashboard'>

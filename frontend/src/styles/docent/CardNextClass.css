@@ -1,0 +1,33 @@
+.cards-next-classes {
+    margin-top: 16px;
+    & .card-next-class-docent {
+        background-color: #f3f8f9;
+        border-left: 4px solid #0ea5e9;
+        margin-top: 16px;
+        padding: 10px;
+        border-radius: 12px;
+        & header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & .name-course {
+                font-family: fontTitlesBold;
+                color: #1e293b;
+            }
+            & .hour-course {
+                font-family: fontSubtitles;
+                color: #117591;
+                font-size: 12px;
+                font-weight: bold;
+                background-color: #dbeaee;
+                padding: 6px 10px;
+                border-radius: 10px;
+            }
+        }
+        & .info-course {
+            font-family: fontSubtitles;
+            color: #8290a2;
+            font-size: 14px;
+        }
+    }
+}
