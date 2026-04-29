@@ -1,0 +1,44 @@
+.calendar-classes-cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    border-radius: 20px;
+    width: 350px;
+    height: 110px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 5px;
+
+}
+
+.class-state {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.class-state h4 {
+    text-align: center;
+    color: #000;
+    padding-left: 20px;
+    padding-top: 20px;
+    font-size: 14px;
+    font-family: fontsubtitles;
+}
+
+.class-name span {
+    text-align: center;
+    color: #000;
+    padding-left: 20px;
+    font-size: 25px;
+    font-family: fonttitlesbold;
+}
+
+.class-room p {
+    color: #000;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-family: fontsubtitles;
+}

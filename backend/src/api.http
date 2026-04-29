@@ -22,9 +22,9 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "usuemail": "pepito@gmail.com",
+    "usuemail": "123@gmail.com",
     // "usuemail": "jeisson@gmail.com",
-    "usupwd": "Json161121@"
+    "usupwd": "Snk2005?"
 }
 
 ### Verificar sesión

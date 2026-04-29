@@ -1,0 +1,199 @@
+/* FullCalendar.css - Estilo completo para calendario semanal */
+
+/* Contenedor principal */
+.calendario-container {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #495057;
+    font-family: fonttitlesbold;
+}
+
+.calendar-header-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.calender-button {
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.calender-button svg {
+    color: #5b5a5a;
+    width: 40px;
+    height: 40px;
+}
+
+.calender-button:hover {
+    transform: scale(1.3);
+}
+
+/* Estilos principales del calendario */
+.fc {
+    background: white;
+    border-radius: 20px;
+    overflow-x: auto;
+}
+
+/* ========== BORDES GENERALES ========== */
+.fc-scrollgrid,
+.fc-scrollgrid td,
+.fc-scrollgrid th {
+    border: 1px solid #dee2e6 !important;
+    border-collapse: collapse !important;
+}
+
+/* ========== ENCABEZADO DE DÍAS ========== */
+.fc-col-header-cell {
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6 !important;
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.fc-col-header-cell-cushion {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 16px 0 !important;
+    gap: 8px !important;
+}
+
+.fc-col-header-cell-cushion a {
+    display: none !important;
+}
+
+/* ========== COLUMNA DE HORAS ========== */
+.fc-timegrid-axis {
+    background-color: #f8f9fa;
+    border-right: 2px solid #dee2e6 !important;
+}
+
+.fc-timegrid-slot-label {
+    background-color: #f8f9fa !important;
+    border-right: 2px solid #dee2e6 !important;
+    border-bottom: 1px solid #dee2e6 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: #495057 !important;
+}
+
+.fc-timegrid-slot-label-cushion {
+    padding: 14px 8px !important;
+    font-size: 0.85rem !important;
+}
+
+/* ========== CUERPO DEL CALENDARIO (LÍNEAS CRÍTICAS) ========== */
+/* Líneas horizontales entre horas */
+.fc-timegrid-slot {
+    height: 60px !important;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+.fc-timegrid-slot-lane {
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+/* Líneas verticales entre días */
+.fc-timegrid-col-events {
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.fc-timegrid-col-frame {
+    border-right: 1px solid #dee2e6 !important;
+}
+
+/* Forzar bordes en todas las tablas internas */
+.fc-timegrid-body table,
+.fc-timegrid-body tbody,
+.fc-timegrid-body tr,
+.fc-timegrid-body td,
+.fc-timegrid-slots table,
+.fc-timegrid-slots tbody,
+.fc-timegrid-slots tr,
+.fc-timegrid-slots td {
+    border-collapse: collapse !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+/* Líneas en el contenedor de slots */
+.fc-timegrid-slots {
+    border-top: 1px solid #dee2e6 !important;
+}
+
+/* Asegurar que las celdas de eventos tengan bordes */
+.fc-timegrid-col-events .fc-timegrid-event {
+    margin: 4px 6px !important;
+}
+
+/* ========== EVENTOS ========== */
+.fc-timegrid-event {
+    border-radius: 20px !important;
+    border-left: 4px solid #4f46e5 !important;
+    background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%) !important;
+    margin: 4px 6px !important;
+    padding: 6px 8px !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.fc-timegrid-event:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #e0e7ff 0%, #d1d9ff 100%) !important;
+}
+
+.fc-event-main {
+    padding: 2px !important;
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f3f5;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .fc-timegrid-slot {
+        height: 40px !important;
+    }
+
+    .fc-timegrid-slot-label-cushion {
+        padding: 8px 4px !important;
+        font-size: 0.7rem !important;
+    }
+}

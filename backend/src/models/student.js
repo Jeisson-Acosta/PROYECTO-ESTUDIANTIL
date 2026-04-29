@@ -46,5 +46,16 @@ export class StudentModel {
             throw new Error('Error delivering task')
         }
     }
+    static async getCalendar({ usuid, cedid, cecid }) {
+        try {
+            const resultSchedule = await manageDB('sp_student_get_calendar', [usuid, cedid, cecid])
+            console.log(resultSchedule)
+            if (!resultSchedule.ok) throw new Error(resultSchedule.message)
+
+            return resultSchedule
+        } catch (err) {
+            throw new Error('Error geting schedule')
+        }
+    }
 
 }
