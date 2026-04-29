@@ -1,0 +1,23 @@
+.card-performance {
+    padding: 12px;
+    border-radius: 16px;
+    flex: 1;
+    & .icon-performance {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        padding: 12px;
+        border-radius: 50%;
+    }
+    & .info-performance {
+        margin-top: 12px;
+        & .small-title-performance {
+            color: #a1a1a1;
+        }
+        & .value-card-performance {
+            font-family: fonttitlesBold;
+        }
+    }
+}

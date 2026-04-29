@@ -2,9 +2,11 @@ import { useContext, useEffect } from 'react'
 import '../../styles/docent/TeacherDashboard.css'
 import { UserLoginContext } from '../../context/userLogin.jsx'
 
-import { UserNotFilledIcon, UserIcon, ChalkboardIcon, ClockIcon, BellIcon, ListCheckIcon } from '../../components/common/GeneralIcons.jsx'
+import { PenWritingIcon, ChartAreaLineIcon, MedalFallIcon, AlertTriangleIcon, UserOffIcon, ExclamationCircleIcon, UsersIcon, BookVocabularyIcon, CheckboxIcon } from '../../components/common/GeneralIcons.jsx'
 import { CardInfoDashboardTeacher } from '../../components/docent/CardInfoDashboardTeacher.jsx'
 import { CardNextClass } from '../../components/docent/CardNextClass.jsx'
+import { CardTaskByQualify } from '../../components/docent/CardTaskByQualify.jsx'
+import { CardPerformanceCourse } from '../../components/docent/CardPerformanceCourse.jsx'
 
 function BarGraph({ value, label }) {
     return (
@@ -38,8 +40,8 @@ export function TeacherDashboard() {
 
     useEffect(() => {
         setUserLogin({ 
-            ...userLogin, 
-            course_director_info: JSON.parse(userLogin.course_director_info)
+            ...userLogin,
+            course_director_info: typeof userLogin.course_director_info === 'string' ? JSON.parse(userLogin.course_director_info) : userLogin.course_director_info
         })
     }, [])
 
@@ -51,28 +53,34 @@ export function TeacherDashboard() {
 
             <header className='principal-cards-header'>
                 <CardInfoDashboardTeacher
-                    bgColor={'#283548'}
+                    bgColor={'#e3f2fd'}
                     title={'Director de curso'}
-                    principalIcon={<UserIcon />}
+                    principalIcon={<UsersIcon />}
                     principalValue={userLogin.course_director_info.edcnom}
-                    secondIcon={<UserNotFilledIcon />}
+                    secondIcon={<UsersIcon />}
                     secondValue={'32 estudiantes'}
+                    colorTitle={'#54a5eb'}
+                    colorPrincipalValue={'#1666c0'}
                  />
                 <CardInfoDashboardTeacher
-                    bgColor={'#0992a5'}
+                    bgColor={'#e8f5e9'}
                     title={'Cursos asignados'}
-                    principalIcon={<ChalkboardIcon />}
+                    principalIcon={<BookVocabularyIcon />}
                     principalValue={userLogin.quantity_courses_assignamed}
-                    secondIcon={<ClockIcon />}
+                    secondIcon={<BookVocabularyIcon />}
                     secondValue={'18 horas semanales'}
+                    colorTitle={'#7bbd7e'}
+                    colorPrincipalValue={'#2f7e33'}
                  />
                 <CardInfoDashboardTeacher
-                    bgColor={'#f97f18'}
+                    bgColor={'#fff3e0'}
                     title={'Tareas por calificar'}
-                    principalIcon={<ListCheckIcon />}
+                    principalIcon={<CheckboxIcon />}
                     principalValue={userLogin.tasks_by_qualify}
-                    secondIcon={<BellIcon />}
+                    secondIcon={<CheckboxIcon />}
                     secondValue={'No olvides calificar los trabajos pendientes'}
+                    colorTitle={'#fb9d25'}
+                    colorPrincipalValue={'#ef6c00'}
                  />
             </header>
 
@@ -94,7 +102,7 @@ export function TeacherDashboard() {
                                     label={item.edcnom}
                                 />
                             )) : (
-                                <h2 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>Aún no tienes cursos asignados</h2>
+                                <h4 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>Aún no tienes cursos asignados</h4>
                             )}
                         </section>
                         <footer className='footer-graph-descriptions'>
@@ -128,7 +136,7 @@ export function TeacherDashboard() {
                                 itemClass={item}
                             />
                         )) : (
-                            <h2 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>No tienes clases para hoy</h2>
+                            <h4 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>No tienes clases para hoy</h4>
                         )}
                     </div>
                 </section>
@@ -142,26 +150,12 @@ export function TeacherDashboard() {
                         </header>       
                         <div className="cards-tasks-by-qualify">
                             {userLogin.tasks_by_qualify_object ? JSON.parse(userLogin.tasks_by_qualify_object).map(task => (
-                                <div className="card-by-qualify">
-                                    <header>
-                                        <h4 className='title-task-by-qualify'>
-                                            {task.astnomtrabajo}
-                                        </h4>
-                                        <button>
-                                            Ver
-                                        </button>
-                                    </header>
-                                    <div className="info-task-by-qualify">
-                                        <span>
-                                            Fecha ent: {task.atefec_entrega}
-                                        </span>
-                                        <span>
-                                            Curso: {task.edcnom}
-                                        </span>
-                                    </div>
-                                </div>
+                                <CardTaskByQualify 
+                                    key={task.astid}
+                                    task={task}
+                                />
                             )) : (
-                                <h2 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>¡Excelente! No tienes tareas pendientes por calificar.</h2>
+                                <h4 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>¡Excelente! No tienes tareas pendientes por calificar.</h4>
                             )}
                         </div>  
                     </div>
@@ -170,10 +164,62 @@ export function TeacherDashboard() {
                             <div className="header-left">
                                 <h3 style={{fontSize: '14px'}}>Solicitudes</h3>
                             </div>
-                        </header>         
+                        </header>
+                        <div>
+                            <h4 style={{fontFamily: 'fontTitlesBold', color: '#64748b', textAlign: 'center'}}>¡Próximamente!</h4>
+                        </div>    
                     </div>
                 </section>
+            </section>
 
+            <section className="container-actions-performance-course">
+                <div className="last-actions-docent container-section-dashboard">
+                    <header className='header-last-actions header-section-dashboard'>
+                        <div className="header-left">
+                            <PenWritingIcon />
+                            <h3>Últimas acciones</h3>
+                        </div>
+                    </header>
+                </div>
+
+                <div className="performance-course container-section-dashboard">
+                    <header className='header-performance-course header-section-dashboard'>
+                        <div className="header-left">
+                            <ChartAreaLineIcon />
+                            <h3>Rendimiento de mi curso</h3>
+                        </div>
+                    </header>
+                    <div className="cards-performance-course">
+                        <CardPerformanceCourse 
+                            icon={<MedalFallIcon />}
+                            smalTitle={'Mejor Estudiante'}
+                            value={JSON.parse(userLogin.performance_course.best_student).usunom}
+                            bgColorIcon={'#b3f7e7ff'}
+                            bgColorCard={'#f0fdfa'}
+                        />
+                        <CardPerformanceCourse 
+                            icon={<ExclamationCircleIcon />}
+                            smalTitle={'Bajo rendimiento'}
+                            value={JSON.parse(userLogin.performance_course.bad_student).usunom}
+                            bgColorIcon={'#fcd5daff'}
+                            bgColorCard={'#fbf3f4'}
+                        />
+                        <CardPerformanceCourse 
+                            icon={<AlertTriangleIcon />}
+                            smalTitle={'En Riesgo'}
+                            value={userLogin.performance_course.students_in_risk}
+                            bgColorIcon={'#fdf3cdff'}
+                            bgColorCard={'#fffbeb'}
+                        />
+                        <CardPerformanceCourse 
+                            icon={<UserOffIcon />}
+                            smalTitle={'Inasistencias'}
+                            value={userLogin.performance_course.absences_course}
+                            bgColorIcon={'#e0d9ffff'}
+                            bgColorCard={'#f5f3ff'}
+                        />
+                    </div>
+                </div>
             </section>
 
         </section>

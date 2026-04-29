@@ -9,7 +9,7 @@
         justify-content: space-between;
         align-items: center;
         & .icon {
-            background-color: #ffffff3f;
+            background-color: #f4fafe;
             padding: 4px;
             border-radius: 10px;
             & svg {
@@ -32,7 +32,7 @@
         & span {
             font-family: fontSubtitles;
             font-size: 14px;
-            color: #e3e7ec;
+            color: #000000;
         }
         & svg {
             width: 16px;
