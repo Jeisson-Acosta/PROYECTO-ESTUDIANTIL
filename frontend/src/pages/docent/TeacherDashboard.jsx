@@ -47,8 +47,14 @@ const driverObj = driver({
         { element: '.container-tasks-to-qualify', popover: { title: 'Tareas por calificar', description: 'Aquí puedes ver las tareas que tienes pendientes por calificar a tus estudiantes' } },
         { element: '.last-actions-docent', popover: { title: 'Últimas acciones', description: 'Aquí puedes ver las últimas acciones que has realizado en la plataforma' } },
         { element: '.performance-course', popover: { title: 'Rendimiento del curso', description: 'Aquí puedes ver el rendimiento del curso del cual eres director' } }
-    ]
+    ],
+    onDestroyed: () => {
+        alert('termino')
+        // Acá mando para actualizar el estado del usuario a 'AN'
+    }
 })
+
+console.log(driverObj.isLastStep())
 
 
 export function TeacherDashboard() {
@@ -60,7 +66,7 @@ export function TeacherDashboard() {
             course_director_info: typeof userLogin.course_director_info === 'string' ? JSON.parse(userLogin.course_director_info) : userLogin.course_director_info
         })
 
-        driverObj.drive()
+        if (userLogin.userInfo.usuestado === 'RE') { driverObj.drive() }
     }, [])
 
     const dateNow = new Date()

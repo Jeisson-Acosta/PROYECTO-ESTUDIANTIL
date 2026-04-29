@@ -25,7 +25,7 @@ import { StudentDashboard } from './pages/student/StudentDashboard.jsx'
 import { TeacherDashboard } from './pages/docent/TeacherDashboard.jsx'
 import { ContenidoClase } from './pages/student/ContenidoClase.jsx'
 import { ConfigurationAccount } from './components/common/ConfigurationAccount.jsx'
-
+import { Attendance } from './pages/docent/Attendance.jsx'
 
 function Unauthorized() {
   return (
@@ -77,6 +77,7 @@ function App() {
                   <Route path='cursos/:asgcod/create-task' element={<CreateTask />} />
                   <Route path='cursos/:asgcod/create-material' element={<CreateMaterial />} />
                   <Route path='cursos/:asgcod/create-announcement' element={<CreateAnnouncement />} />
+                  <Route path='cursos/:asgcod/attendance' element={<Attendance />} />
                   <Route path='cursos/:asgcod/students' element={<StudentsList />} />
                   <Route path='cursos/:asgcod/view-details-task/:astid' element={<ViewDetailsTask />} />
                   <Route path='contenido' element={<ContenidoClase />} />

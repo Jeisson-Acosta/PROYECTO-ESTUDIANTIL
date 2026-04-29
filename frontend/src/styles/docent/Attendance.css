@@ -1,0 +1,52 @@
+.principal-container-attendance-docent {
+    padding: 30px;
+}
+
+.container-buttons-status-attendance {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    background-color: #f1f5f9;
+    width: max-content;
+    border-radius: 6px;
+    & button {
+        cursor: pointer;
+        padding: 8px 12px;
+        font-family: fontSubtitles;
+        color: #a5b2c4;
+        border-radius: 6px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        &.selected {
+            font-weight: bold;
+        }
+        &.selected.present {
+            color: #059367;
+            background-color: #ffffff;
+        }
+        &.selected.absent {
+            color: #ffffff;
+            background-color: #f43f5e;
+        }
+        &.selected.late {
+            color: #ffffff;
+            background-color: #f59e0b;
+        }
+        &.selected.excused {
+            color: #ffffff;
+            background-color: #3b82f6;
+        }
+    }
+}
+
+.mark-all-presents {
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-family: fontTitlesBold;
+    color: #40ae8c;
+    font-size: 14px;
+}

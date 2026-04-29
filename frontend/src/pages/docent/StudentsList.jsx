@@ -5,7 +5,6 @@ import { BuildTable } from "../../components/common/BuildTable.jsx"
 
 import { useClassDetailsDocent } from "../../hooks/docent/useClassDetailsDocent.js"
 
-
 import { useEffect, useContext, useState } from "react";
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js";
 
@@ -84,16 +83,16 @@ function ProgressBar({ value }) {
 function Badge({ value }) {
     
     const performanceStyles = {
-        EXEMPLARY: { background: "#E1F5EE", color: "#0F6E56" },
-        STEADY:    { background: "#E6F1FB", color: "#185FA5" },
-        "AT RISK": { background: "#FCEBEB", color: "#A32D2D" },
+      EXEMPLARY: { background: "#E1F5EE", color: "#0F6E56" },
+      STEADY:    { background: "#E6F1FB", color: "#185FA5" },
+      "AT RISK": { background: "#FCEBEB", color: "#A32D2D" }
     }
     const style = performanceStyles[value] || {}
 
     return (
-        <span style={{...style, padding: '5px 14px', borderRadius: 10, fontSize: 11, fontWeight: 'bold', fontFamily: 'fontSubtitles'}}>
-            {value === 'AT RISK' ? 'En Riesgo' : value === 'STEADY' ? 'Estable' : 'Ejemplar'}
-        </span>
+      <span style={{...style, padding: '5px 14px', borderRadius: 10, fontSize: 11, fontWeight: 'bold', fontFamily: 'fontSubtitles'}}>
+        {value === 'AT RISK' ? 'En Riesgo' : value === 'STEADY' ? 'Estable' : 'Ejemplar'}
+      </span>
     )
 }
 

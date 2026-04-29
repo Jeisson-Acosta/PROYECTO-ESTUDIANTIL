@@ -57,7 +57,7 @@ export function ClassDetailsDocent() {
                         </div>
                         <div className="content-right-class-details-docent">
                             <section className="buttons-asist-students">
-                                <button className='button-asist'>
+                                <button className='button-asist' onClick={() => navigate(`${currentPath}/attendance`)}>
                                     <UserCheckIcon />
                                     Asistencia
                                 </button>
