@@ -2,7 +2,10 @@ import { useContext, useEffect } from 'react'
 import '../../styles/docent/TeacherDashboard.css'
 import { UserLoginContext } from '../../context/userLogin.jsx'
 
-import { PenWritingIcon, ChartAreaLineIcon, MedalFallIcon, AlertTriangleIcon, UserOffIcon, ExclamationCircleIcon, UsersIcon, BookVocabularyIcon, CheckboxIcon } from '../../components/common/GeneralIcons.jsx'
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+
+import { PenWritingIcon, ChartAreaLineIcon, MedalFallIcon, AlertTriangleIcon, UserOffIcon, ExclamationCircleIcon, UsersIcon, BookVocabularyIcon, CheckboxIcon, SchoolHatIcon, PencilCancelIcon } from '../../components/common/GeneralIcons.jsx'
 import { CardInfoDashboardTeacher } from '../../components/docent/CardInfoDashboardTeacher.jsx'
 import { CardNextClass } from '../../components/docent/CardNextClass.jsx'
 import { CardTaskByQualify } from '../../components/docent/CardTaskByQualify.jsx'
@@ -35,6 +38,19 @@ function BarGraph({ value, label }) {
     )
 }
 
+const driverObj = driver({
+    showProgress: true,
+    steps: [
+        { element: '.principal-cards-header', popover: { title: 'Información general', description: 'Aquí puedes ver la información general de tu curso' } },
+        { element: '.container-general-performance-courses', popover: { title: 'Rendimiento general', description: 'Aquí puedes ver el rendimiento general de tus cursos asignados' } },
+        { element: '.next-classes', popover: { title: 'Próximas clases', description: 'Aquí puedes ver tus próximas clases del día de hoy' } },
+        { element: '.container-tasks-to-qualify', popover: { title: 'Tareas por calificar', description: 'Aquí puedes ver las tareas que tienes pendientes por calificar a tus estudiantes' } },
+        { element: '.last-actions-docent', popover: { title: 'Últimas acciones', description: 'Aquí puedes ver las últimas acciones que has realizado en la plataforma' } },
+        { element: '.performance-course', popover: { title: 'Rendimiento del curso', description: 'Aquí puedes ver el rendimiento del curso del cual eres director' } }
+    ]
+})
+
+
 export function TeacherDashboard() {
     const { userLogin, setUserLogin } = useContext(UserLoginContext)
 
@@ -43,6 +59,8 @@ export function TeacherDashboard() {
             ...userLogin,
             course_director_info: typeof userLogin.course_director_info === 'string' ? JSON.parse(userLogin.course_director_info) : userLogin.course_director_info
         })
+
+        driverObj.drive()
     }, [])
 
     const dateNow = new Date()
@@ -126,6 +144,7 @@ export function TeacherDashboard() {
                     <header className='header-next-classes header-section-dashboard'>
                         <div className="header-left">
                             <h3>Clases de hoy</h3>
+                            <SchoolHatIcon />
                         </div>
                         <span className="date-today">{shortDate}</span>
                     </header>
@@ -145,7 +164,7 @@ export function TeacherDashboard() {
                     <div className="container-tasks-to-qualify container-section-dashboard">
                         <header className='header-tasks-to-qualify header-section-dashboard'>
                             <div className="header-left">
-                                <h3 style={{fontSize: '14px'}}>Sin calificar</h3>
+                                <h3 style={{fontSize: '14px'}}>Sin calificar 📝</h3>
                             </div>
                         </header>       
                         <div className="cards-tasks-by-qualify">
