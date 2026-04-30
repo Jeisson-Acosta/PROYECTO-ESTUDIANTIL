@@ -50,3 +50,10 @@
     color: #40ae8c;
     font-size: 14px;
 }
+
+.cards-attendance-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 20px;
+    gap: 14px;
+}

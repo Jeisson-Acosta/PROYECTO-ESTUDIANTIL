@@ -1,7 +1,7 @@
 import '../../styles/student/ClassDetails.css'
 import { useEffect, useState } from "react"
 
-import { CircleCheckIcon, BellRingingIcon, BookIcon, SpeakerPhone } from '../../components/common/GeneralIcons.jsx'
+import { CircleCheckIcon, BellRingingIcon, BookIcon, SpeakerPhone, MessagesIcon } from '../../components/common/GeneralIcons.jsx'
 
 import { CardTaskClass } from '../../components/student/CardTaskClass.jsx'
 import { HeaderClass } from '../../components/common/classes/HeaderClass.jsx'
@@ -54,14 +54,30 @@ export function ClassDetails() {
                     </button>
                 ))}
             </section>
-            <section className="body-class-details">
-                <ul className="tasks-class-list">
-                    {infoClass.tasks.length === 0 && <h1>Aún no hay trabajos</h1>}
-                    {infoClass.tasks.map(task => (<CardTaskClass key={task.astid} task={task} />))}
-                </ul>
-                <section className="comments-docent-class">
+            <section style={{display: 'flex', gap: '20px'}}>
+                <section className="body-class-details">
+                    <ul className="tasks-class-list">
+                        {infoClass.tasks.length === 0 && <h1>Aún no hay trabajos</h1>}
+                        {infoClass.tasks.map(task => (<CardTaskClass key={task.astid} task={task} />))}
+                    </ul>
+                    <section className="comments-docent-class">
 
+                    </section>
                 </section>
+
+                <section className="messages-docent-container">
+                    <header className='header-messages-docent'>
+                        <div className="title-messages">
+                            <MessagesIcon />
+                            <h3>Últimos comentarios</h3>
+                        </div>
+                        <span style={{color: '#6b7280', marginTop: '16px'}}>
+                            (del profesor)
+                        </span>
+                    </header>
+                    
+                </section>
+
             </section>
         </section>
     )

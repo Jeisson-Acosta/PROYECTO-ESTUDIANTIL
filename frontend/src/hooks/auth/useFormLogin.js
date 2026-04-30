@@ -47,14 +47,13 @@ export function useFormLogin() {
         }
 
         const userData = responseDB.data[0];
-        console.log(userData)
         // setUserLogin(userData);
         setUserLogin({
             userInfo: JSON.parse(userData.info_user), 
             // educativeCenterInfo: JSON.parse(userData.centro_educativo),
-            educativeCenterInfo: userData.centro_educativo,
+            educativeCenterInfo: typeof userData.centro_educativo === 'string' ? JSON.parse(userData.centro_educativo) : userData.centro_educativo,
             // currentCycleInfo: JSON.parse(userData.ciclo_actual),
-            currentCycleInfo: userData.ciclo_actual,
+            currentCycleInfo: typeof userData.ciclo_actual === 'string' ? JSON.parse(userData.ciclo_actual) : userData.ciclo_actual,
             // currentCycleInfo: JSON.parse(userData.ciclo_actual),
             ...userData
         })

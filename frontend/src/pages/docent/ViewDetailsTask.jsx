@@ -40,6 +40,8 @@ export function ViewDetailsTask() {
     const { requestDB } = useRequestDB()
     const { userLogin } = useContext(UserLoginContext)
 
+    console.log(userLogin)
+
     useEffect(() => {
         const getTaskDetails = async () => {
             const responseDB = await requestDB(`docent/task-details/${userLogin.userInfo.usuid}/${userLogin.educativeCenterInfo[0].cedid}/${userLogin.currentCycleInfo.cecid}/${asgcod}/${astid}`, 'GET')

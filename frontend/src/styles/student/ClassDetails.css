@@ -1,6 +1,7 @@
 
 .container-class {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
@@ -54,4 +55,19 @@
 .tasks-class-list {
     width: 100%;
     list-style: none;
+}
+
+.body-class-details {
+    flex: 2;
+}
+.messages-docent-container {
+    flex: 1;
+    & .header-messages-docent .title-messages {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        & h3 {
+            font-family: fontSubtitles;
+        }
+    }
 }

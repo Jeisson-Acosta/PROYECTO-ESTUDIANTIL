@@ -55,5 +55,18 @@ export class StudentController {
             throw new Error('Error delivering task')
         }
     }
+    static async getCalendar(req, res) {
+        try {
+            const resultValidate = validateCalendar(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const resultSchedule = await StudentModel.getCalendar(resultValidate.data)
+            if (!resultSchedule.ok) return res.status(400).json({ message: resultSchedule.message })
+
+            return res.status(200).json(resultSchedule)
+        } catch (err) {
+            throw new Error('Error geting schedule')
+        }
+    }
 
 }

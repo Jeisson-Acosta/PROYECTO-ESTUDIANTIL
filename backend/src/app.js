@@ -20,7 +20,7 @@ dotenv.config({ path: '../.env' });
 const app = express();
 
 // Operador nullish Coalleshing -> Si process.env.PORT es diferente de null y undefined, tomara su valor, si no dejara el valor que esta despues de los ??.
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 3000
 
 // Permite peticiones desde este puerto
 /* app.use(

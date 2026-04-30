@@ -15,7 +15,6 @@ export class StudentModel {
     static async getClass({ asgcod }) {
         try {
             const resultClass = await manageDB('sp_student_get_info_class', [1, 1, 1, asgcod])
-            console.log(resultClass)
             if (!resultClass.ok) throw new Error(resultClass.message)
 
             return resultClass
@@ -44,6 +43,17 @@ export class StudentModel {
             return resultDelivery
         } catch (err) {
             throw new Error('Error delivering task')
+        }
+    }
+    static async getCalendar({ usuid, cedid, cecid }) {
+        try {
+            const resultSchedule = await manageDB('sp_student_get_calendar', [usuid, cedid, cecid])
+            console.log(resultSchedule)
+            if (!resultSchedule.ok) throw new Error(resultSchedule.message)
+
+            return resultSchedule
+        } catch (err) {
+            throw new Error('Error geting schedule')
         }
     }
 

@@ -15,8 +15,6 @@ export function UserLoginProvider({ children }) {
 
   const navigate = useNavigate()
 
-  console.log(userLogin)
-
   useEffect(() => {
     const checkSession = async () => {
       try {
@@ -29,8 +27,8 @@ export function UserLoginProvider({ children }) {
           setIsAuthenticated(true);
           setUserLogin({
             userInfo: JSON.parse(responseDB.data[0].info_user),
-            educativeCenterInfo: JSON.parse(responseDB.data[0].centro_educativo),
-            currentCycleInfo: JSON.parse(responseDB.data[0].ciclo_actual),
+            educativeCenterInfo: typeof responseDB.data[0].centro_educativo === 'string' ?  JSON.parse(responseDB.data[0].centro_educativo) : responseDB.data[0].centro_educativo,
+            currentCycleInfo: typeof responseDB.data[0].ciclo_actual === 'string' ? JSON.parse(responseDB.data[0].ciclo_actual) : responseDB.data[0].ciclo_actual,
             ...responseDB.data[0]
           })
           navigate(rolePath, { replace: true });
