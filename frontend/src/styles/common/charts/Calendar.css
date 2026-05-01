@@ -1,6 +1,6 @@
 .calendar-wrapper {
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 100%;
+    height: 100%;
 }
 
 .fc-header-toolbar {
@@ -283,4 +283,14 @@
     background: transparent;
     box-shadow: 0 0 0 2px var(--event-color, #22c55e);
     z-index: -1;
+}
+
+@media (max-width: 768px) {
+    .calendar-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
 }

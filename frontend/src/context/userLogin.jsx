@@ -15,7 +15,6 @@ export function UserLoginProvider({ children }) {
 
   const navigate = useNavigate()
 
-  console.log(userLogin)
 
   useEffect(() => {
     const checkSession = async () => {
@@ -25,7 +24,6 @@ export function UserLoginProvider({ children }) {
           setIsAuthenticated(false);
         } else {
           const rolePath = ROLES[JSON.parse(responseDB.data[0].info_user).rolcod].path;
-          console.log(rolePath)
           setIsAuthenticated(true);
           setUserLogin({
             userInfo: JSON.parse(responseDB.data[0].info_user),
