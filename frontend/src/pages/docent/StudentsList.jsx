@@ -4,6 +4,7 @@ import { StudentCard } from "../../components/docent/StudentCard.jsx"
 import { BuildTable } from "../../components/common/BuildTable.jsx"
 
 import { useClassDetailsDocent } from "../../hooks/docent/useClassDetailsDocent.js"
+import { useCurrentClass } from "../../hooks/docent/useCurrentClass.js"
 
 import { useEffect, useContext, useState } from "react";
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js";
@@ -101,17 +102,16 @@ export function StudentsList() {
     const [students, setStudents] = useState([])
     const [viewListStudents, setViewListStudents] = useState('list')
     const { userLogin } = useContext(UserLoginContext)
-    // console.log(userLogin)
     const { infoClass } = useClassDetailsDocent()
-    // console.log(infoClass)
+    const { currentClass } = useCurrentClass()
     const { requestDB } = useRequestDB()
 
     useEffect(() => {
 
         const getListStudents = async () => {
-            const responseDB = await requestDB(`docent/students-list/${userLogin.userInfo.usuid}/1/1/1`)
-            if (!responseDB.ok) return toast.error(responseDB.message)
-            setStudents(responseDB.data[0].result)
+          const responseDB = await requestDB(`docent/students-list/${userLogin.userInfo.usuid}/1/1/${currentClass.asgcod}/LSC`)
+          if (!responseDB.ok) return toast.error(responseDB.message)
+          setStudents(responseDB.data[0].result)
         }
         getListStudents()
     }, [])

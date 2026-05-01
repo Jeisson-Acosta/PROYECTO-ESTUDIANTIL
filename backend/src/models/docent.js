@@ -60,9 +60,10 @@ export class DocentModel {
         }
     }
 
-    static async getStudentsList({data}) {
+    static async getStudentsList({ data }) {
+        const { usuid, cedid, cecid, asgcod, optionSP } = data
         try {
-            const result = await manageDB('sp_docent_get_list_students', [1, 1, 1, 1])
+            const result = await manageDB('sp_docent_get_list_students', [usuid, cedid, cecid, asgcod, optionSP])
             if (!result.ok) throw new Error(result.message)
 
             return result
@@ -81,6 +82,31 @@ export class DocentModel {
             return result
         } catch (err) {
             throw new Error('Error getting task details docent: ' + err.message)
+        }
+    }
+
+    static async saveAttendance({ data }) {
+        const { usuid, cedid, cecid, asgcod, date, data: dataJSON } = data
+        try {
+
+            const result = await manageDB('sp_docent_save_attendance', [usuid, cedid, cecid, asgcod, date, dataJSON])
+            if (!result.ok) throw new Error(result.message)
+
+            return result
+        } catch (err) {
+            throw new Error('Error saving attendance docent: ' + err.message)
+        }
+    }
+
+    static async getAttendanceStudents({ data }) {
+        const { usuid, cedid, cecid, asgcod, date } = data
+        try {
+            const result = await manageDB('sp_docent_get_attendance', [cedid, cecid, usuid, asgcod, date])
+            if (!result.ok) throw new Error(result.message)
+
+            return result
+        } catch (err) {
+            throw new Error('Error getting attendance students docent: ' + err.message)
         }
     }
 }

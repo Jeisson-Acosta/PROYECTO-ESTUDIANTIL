@@ -1,33 +1,14 @@
+import { useState } from 'react'
 import '../../styles/docent/Attendance.css'
-import { useMemo, useState } from 'react'
 
 import { BuildTable } from "../../components/common/BuildTable.jsx"
-import { MessageIcon, SaveIcon } from '../../components/common/GeneralIcons.jsx'
+import { FileAnalyticsIcon, MessageIcon, SaveIcon, CalendarIcon, DocxIcon } from '../../components/common/GeneralIcons.jsx'
 import { ButtonCommon } from '../../components/common/ButtonCommon.jsx'
 import { CardAttendance } from '../../components/docent/CardAttendance.jsx'
+import { DateSelector } from '../../components/common/DateSelector.jsx'
 
-const STUDENTS_TEST = [
-    {
-        usuid: 1,
-        usunom: 'Jeisson Acosta'
-    },
-    {
-        usuid: 2,
-        usunom: 'Angie Martinez'
-    },
-    {
-        usuid: 3,
-        usunom: 'Diego garcia'
-    },
-    {
-        usuid: 4,
-        usunom: 'Carlos Perez'
-    },
-    {
-        usuid: 5,
-        usunom: 'Pepito Perez'
-    }
-]
+import { useAttendance } from '../../hooks/docent/useAttendance.js'
+
 
 function generarColorPastel(seed = '') {
     const paleta = [
@@ -51,42 +32,23 @@ function generarColorPastel(seed = '') {
     return paleta[index]
 }
 
-
 export function Attendance() {
+    const [showModalReport, setShowModalReport] = useState(false)
 
-    const [attendance, setAttendance] = useState([])
-    
-    const handleClickButtonStatus = (event, status, usuid) => {
+    const {
+        attendance,
+        listStudents,
+        selectedDate,
+        setSelectedDate,
+        handleClickButtonStatus,
+        markAllPresent,
+        handleClickSaveAttendance
+    } = useAttendance()
 
-        setAttendance((prev) => {
-            const existsStudent = prev.find(student => student.usuid === usuid)
-
-            if (existsStudent) {
-                return prev.map(att =>
-                    att.usuid === usuid ? { ...att, status: status } : att
-                )
-            } else {
-                return [...prev, { usuid: usuid, status: status }]
-            }
-        })
-        
-        /* const buttons = event.target.parentNode.querySelectorAll('button')
-
-        // Remueve a todos los botones el estado seleccionado en caso que ya halla selecionado uno
-        buttons.forEach(button => button.classList.remove('selected'))
-        event.target.classList.add('selected', 
-            status === 'P' 
-            ? 'present' 
-            : status === 'A' 
-                ? 'absent' 
-                : status === 'T' 
-                    ? 'late' : 'excused'
-        )
-        */ 
-        
-    }
-
-    console.log(attendance)
+    const getPresentStudents = attendance.filter(att => att.status === 'P').length
+    const getAbsentStudents = attendance.filter(att => att.status === 'A').length
+    const getLateStudents = attendance.filter(att => att.status === 'T').length
+    const getExcusedStudents = attendance.filter(att => att.status === 'E').length
 
     const columnsTableAttendance = [
         {
@@ -169,45 +131,130 @@ export function Attendance() {
 
     return (
         <section className="principal-container-attendance-docent">
+            <div style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '12px'}}>
+                <DateSelector 
+                    initialDate={selectedDate} 
+                    onChangeDate={(date) => setSelectedDate(date)} 
+                />
+            </div>
             <div className="cards-attendance-info">
                 <CardAttendance 
                     title={'PRESENTES'}
-                    value={24}
+                    value={getPresentStudents}
                     colorNumber={'#059669'}
                     bgColorCircle={'#ecfdf5'}
                 />
                 <CardAttendance 
                     title={'AUSENTES'}
-                    value={3}
+                    value={getAbsentStudents}
                     colorNumber={'#e11d48'}
                     bgColorCircle={'#fff1f2'}
                 />
                 <CardAttendance 
                     title={'TARDANZAS'}
-                    value={2}
+                    value={getLateStudents}
                     colorNumber={'#f59e0b'}
                     bgColorCircle={'#fffbeb'}
                 />
                 <CardAttendance 
                     title={'EXCUSADOS'}
-                    value={1}
+                    value={getExcusedStudents}
                     colorNumber={'#3b82f6'}
                     bgColorCircle={'#eff6ff'}
                 />
             </div>
+
+            {/* Modal de Generar Reporte */}
+            {showModalReport && (
+                <>
+                    {/* Fondo oscuro opaco */}
+                    <div 
+                        style={{position: 'fixed', top: '0', left: '0', width: '100vw', height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 998}}
+                        onClick={() => setShowModalReport(false)}
+                    ></div>
+                    
+                    {/* Contenedor del Modal */}
+                    <div className="modal-generate-report" style={{
+                        position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                        backgroundColor: 'white', borderRadius: '12px', padding: '24px', zIndex: 999,
+                        boxShadow: '0 10px 25px rgba(0,0,0,0.1)', width: '350px',
+                        display: 'flex', flexDirection: 'column', gap: '24px'
+                    }}>
+                        <h3 style={{ margin: 0, fontFamily: 'fontTitlesBold', color: '#1e293b', fontSize: '18px' }}>
+                            Generar Reporte
+                        </h3>
+                        
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            <label style={{ fontSize: '13px', fontFamily: 'fontSubtitles', color: '#64748b', fontWeight: 'bold' }}>PERIODO</label>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 14px', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#334155', fontFamily: 'fontSubtitles', fontWeight: 600, backgroundColor: '#f8fafc' }}>
+                                <CalendarIcon /> Últimos 7 días
+                            </div>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            <label style={{ fontSize: '13px', fontFamily: 'fontSubtitles', color: '#64748b', fontWeight: 'bold' }}>FORMATO</label>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 14px', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#334155', fontFamily: 'fontSubtitles', fontWeight: 600, backgroundColor: '#f8fafc' }}>
+                                <DocxIcon /> PDF
+                            </div>
+                        </div>
+
+                        <button style={{
+                            marginTop: '6px', padding: '12px', backgroundColor: '#8b5cf6', color: 'white',
+                            border: 'none', borderRadius: '8px', fontFamily: 'fontTitlesBold', fontSize: '15px',
+                            cursor: 'pointer', transition: 'background-color 0.2s', textAlign: 'center'
+                        }}
+                        onMouseOver={(e) => e.target.style.backgroundColor = '#7c3aed'}
+                        onMouseOut={(e) => e.target.style.backgroundColor = '#8b5cf6'}
+                        >
+                            Generar PDF
+                        </button>
+                    </div>
+                </>
+            )}
+
+            <section className='container-generate-report'>
+                <button className='btn-generate-report' onClick={() => setShowModalReport(true)}>
+                    <FileAnalyticsIcon />
+                </button>
+                <div className="tooltip-button">
+                    <span>Generar reporte de asistencia</span>
+                </div>
+            </section>
+            {/* <div className="container-generate-report">
+                <div className='container-left-generate-report'>
+                    <div className="icon">
+                        <FileAnalyticsIcon />
+                    </div>
+                    <div className='title-description'>
+                        <h4 className='title'>GENERAR REPORTE</h4>
+                        <p className='description'>
+                            Exporta los datos de asistencia para análisis o registro.
+                        </p>
+                    </div>
+                </div>
+                <div className='container-right-generate-report'></div>
+            </div> */}
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                <button className='mark-all-presents'>
+                <button className='mark-all-presents' onClick={markAllPresent}>
                     Marcar todos presentes
                 </button>
                 <ButtonCommon
                     icon={<SaveIcon />}
                     text={'Guardar Asistencia'}
+                    onClick={handleClickSaveAttendance}
                  />
             </div>
-            <BuildTable 
-                columns={columnsTableAttendance}
-                data={STUDENTS_TEST}
-            />
+            
+            {listStudents === null ? (
+                <div style={{ textAlign: 'center', marginTop: '40px', color: '#64748b' }}>
+                    <p>Cargando asistencia...</p>
+                </div>
+            ) : (
+                <BuildTable 
+                    columns={columnsTableAttendance}
+                    data={listStudents}
+                />
+            )}
         </section>
     )
 }

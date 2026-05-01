@@ -30,7 +30,10 @@ const upload = multer({ storage })
 
 docentRouter.get('/classes/:usuid', DocentController.getClasses)
 docentRouter.get('/classes/details/:asgcod', DocentController.getClassDetails)
-docentRouter.post('/create-resource', upload.array('files', 10), DocentController.createResource)
 
-docentRouter.get('/students-list/:usuid/:cedid/:cecid/:asgcod', DocentController.getStudentsList)
+docentRouter.post('/create-resource', upload.array('files', 10), DocentController.createResource)
+docentRouter.post('/save-attendance', DocentController.saveAttendance)
+
+docentRouter.get('/students-list/:usuid/:cedid/:cecid/:asgcod/:optionSP', DocentController.getStudentsList)
 docentRouter.get('/task-details/:usuid/:cedid/:cecid/:asgcod/:astid', DocentController.getTaskDetails)
+docentRouter.get('/attendance-students/:usuid/:cedid/:cecid/:asgcod/:date', DocentController.getAttendanceStudents)

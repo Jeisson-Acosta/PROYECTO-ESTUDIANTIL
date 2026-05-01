@@ -55,6 +55,10 @@ const studentsListSchema = z.object({
     asgcod: z.string({
         required_error: 'The asgcod is required',
         invalid_type_error: 'The asgcod must be a string'
+    }),
+    optionSP: z.string({
+        required_error: 'The option SP is required',
+        invalid_type_error: 'The option SP must be a string'
     })
 })
 
@@ -81,6 +85,56 @@ const taskDetailsSchema = z.object({
     }).transform(val => Number(val))
 })
 
+const attendanceSchema = z.object({
+    usuid: z.string({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val)),
+    asgcod: z.string({
+        required_error: 'The asgcod is required',
+        invalid_type_error: 'The asgcod must be a string'
+    }),
+    date: z.string({
+        required_error: 'The date is required',
+        invalid_type_error: 'The date must be a string'
+    }),
+    data: z.string({
+        required_error: 'The data is required',
+        invalid_type_error: 'The data must be a string'
+    })
+})
+
+const attendanceStudentsSchema = z.object({
+    usuid: z.string({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val)),
+    asgcod: z.string({
+        required_error: 'The asgcod is required',
+        invalid_type_error: 'The asgcod must be a string'
+    }),
+    date: z.string({
+        required_error: 'The date is required',
+        invalid_type_error: 'The date must be a string'
+    })
+})
+
 export function validateClasses(input) {
     return classesSchema.safeParse(input)
 }
@@ -99,4 +153,12 @@ export function validateStudentsList(input) {
 
 export function validateTaskDetails(input) {
     return taskDetailsSchema.safeParse(input)
+}
+
+export function validateAttendance(input) {
+    return attendanceSchema.safeParse(input)
+}
+
+export function validateAttendanceStudents(input) {
+    return attendanceStudentsSchema.safeParse(input)
 }

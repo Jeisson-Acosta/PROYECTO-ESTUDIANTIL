@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react'
+
 import '../../styles/docent/TeacherDashboard.css'
 import { UserLoginContext } from '../../context/userLogin.jsx'
 
@@ -10,6 +11,7 @@ import { CardInfoDashboardTeacher } from '../../components/docent/CardInfoDashbo
 import { CardNextClass } from '../../components/docent/CardNextClass.jsx'
 import { CardTaskByQualify } from '../../components/docent/CardTaskByQualify.jsx'
 import { CardPerformanceCourse } from '../../components/docent/CardPerformanceCourse.jsx'
+import { useLocation } from 'react-router-dom';
 
 function BarGraph({ value, label }) {
     return (
@@ -54,11 +56,9 @@ const driverObj = driver({
     }
 })
 
-console.log(driverObj.isLastStep())
-
-
 export function TeacherDashboard() {
     const { userLogin, setUserLogin } = useContext(UserLoginContext)
+    const location = useLocation()
 
     useEffect(() => {
         setUserLogin({ 
@@ -67,7 +67,7 @@ export function TeacherDashboard() {
         })
 
         if (userLogin.userInfo.usuestado === 'RE') { driverObj.drive() }
-    }, [])
+    }, [location.key])
 
     const dateNow = new Date()
     const shortDate = dateNow.toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })

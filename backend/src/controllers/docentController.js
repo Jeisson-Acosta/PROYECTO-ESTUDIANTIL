@@ -1,4 +1,4 @@
-import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList, validateTaskDetails } from "../schemas/docent.js";
+import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList, validateTaskDetails, validateAttendance, validateAttendanceStudents } from "../schemas/docent.js";
 import { DocentModel } from "../models/docent.js";
 
 export class DocentController {
@@ -54,7 +54,6 @@ export class DocentController {
 
     static async getStudentsList(req, res) {
         try {
-            console.log(req.params)
             const resultValidate = validateStudentsList(req.params)
             if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
 
@@ -79,6 +78,34 @@ export class DocentController {
             return res.status(200).json(result)
         } catch (err) {
             return res.status(500).json({ ok: false, message: 'Error getting task details docent' })
+        }
+    }
+
+    static async saveAttendance(req, res) {
+        try {
+            const resultValidate = validateAttendance(req.body)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await DocentModel.saveAttendance({ data: resultValidate.data })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            return res.status(200).json(result)
+        } catch(err) {
+            return res.status(500).json({ ok: false, message: 'Error saving attendance docent' })
+        }
+    }
+
+    static async getAttendanceStudents(req, res) {
+        try {
+            const resultValidate = validateAttendanceStudents(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await DocentModel.getAttendanceStudents({ data: resultValidate.data })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            return res.status(200).json(result)
+        } catch(err) {
+            return res.status(500).json({ ok: false, message: 'Error getting attendance students docent' })
         }
     }
 }
