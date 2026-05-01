@@ -8,7 +8,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "./CalendarIcons"
 export function FullCalendario() {
     const calendarRef = useRef(null)
     const [currentDate, setCurrentDate] = useState(new Date().toISOString().split('T')[0])
-    const renderDayHeader = (date) => {
+const renderDayHeader = (date) => {
     const days = ['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB']
     const dayName = days[date.date.getDay()]
     const dayNumber = date.date.getDate()
@@ -18,18 +18,11 @@ export function FullCalendario() {
                     date.date.getFullYear() === today.getFullYear()
     
     return (
-        <div style={{ 
-            textAlign: 'center', 
-            padding: '12px 0',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '6px'
-            
-        }}>
-            <div style={{ fontWeight: 'bold', fontSize: '0.85rem' }}>
+        <div className="day-header">
+            <div className="day-name">
                 {dayName}
             </div>
-            <div style={{ fontSize: isToday ? '1.3rem' : '1rem', fontWeight: isToday ? 'bold' : 'normal', backgroundColor: isToday ? '#a3d9ffff' : 'transparent',color: isToday ? 'white' : 'black', borderRadius: '50%', width: '35px', height: '35px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto',padding: "20px" }}>
+            <div className={`day-number ${isToday ? 'today-circle' : ''}`}>
                 {dayNumber}
             </div>
         </div>
@@ -47,7 +40,7 @@ export function FullCalendario() {
     }
 
     return (
-        <div style={{ padding: 20, maxWidth: 1200, margin: '0 auto',boxShadow: "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px", borderRadius: "20px" ,backgroundColor: "#ffffffff"}}>
+        <div className="calendario-container">
             <div className="calendar-header">
                 <h2>{getWeekRange(currentDate)}</h2>
             <div className="calendar-header-buttons">

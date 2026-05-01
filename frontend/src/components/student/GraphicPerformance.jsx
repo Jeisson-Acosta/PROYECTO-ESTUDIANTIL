@@ -6,20 +6,16 @@ import { UserLoginContext } from '../../context/userLogin';
 const DesempeñoMaterias = () => {
   const { userLogin } = useContext(UserLoginContext) || {};
   
-  // Manejar diferentes formatos de datos
   let materiasData = [];
   
   if (userLogin?.promedio_ciclo) {
-    // Si es un string, parsearlo
     if (typeof userLogin.promedio_ciclo === 'string') {
       try {
         materiasData = JSON.parse(userLogin.promedio_ciclo);
       } catch (e) {
-        console.error('Error parsing promedio_ciclo:', e);
         materiasData = [];
       }
     } 
-    // Si ya es un array, usarlo directamente
     else if (Array.isArray(userLogin.promedio_ciclo)) {
       materiasData = userLogin.promedio_ciclo;
     }
@@ -27,11 +23,8 @@ const DesempeñoMaterias = () => {
       materiasData = [userLogin.promedio_ciclo];
     }
   }
+
   
-  console.log('materiasData después del parseo:', materiasData);
-  console.log('¿Es array?', Array.isArray(materiasData));
-  
-  // Función para obtener icono según el iconName
   const getIconForSubject = (iconName) => {
     const iconMap = {
       'person-coding': '💻',
@@ -53,22 +46,19 @@ const DesempeñoMaterias = () => {
     icon: getIconForSubject(materia.color_materia?.iconName)
   })) : [];
 
-  console.log('Materias formateadas:', materiasFormateadas);
 
   return (
     <div className='desempeño-materias'>
-      {/* Header de la tarjeta */}
       <div className='desempeño-materias-header'>
         <h3>Desempeño por Materia</h3>
         <a href="#">Ver todas</a>
       </div>
 
-      {/* Lista de Materias */}
+      
       {materiasFormateadas.length > 0 ? (
         materiasFormateadas.map((materia) => (
           <div key={materia.id} style={{ marginBottom: '20px' }}>
             <div className='lista-materias' style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-              {/* Icono con fondo suave */}
               <div className='lista-icon' style={{
                 backgroundColor: `${materia.color}20`,
                 color: materia.color,
@@ -76,7 +66,7 @@ const DesempeñoMaterias = () => {
                 {materia.icon}
               </div>
 
-              {/* Nombre y Nota */}
+
               <div className='lista-nombre-nota' style={{ flex: 1 }}>
                 <div className='lista-nombre-nota-container' style={{
                   display: 'flex',
@@ -98,7 +88,7 @@ const DesempeñoMaterias = () => {
               </div>
             </div>
 
-            {/* Barra de Progreso */}
+
             <div className='prore' style={{ 
               width: '100%', 
               height: '8px', 

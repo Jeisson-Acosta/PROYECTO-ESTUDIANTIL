@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '../../styles/docent/Attendance.css'
 
 import { BuildTable } from "../../components/common/BuildTable.jsx"
-import { FileAnalyticsIcon, MessageIcon, SaveIcon, CalendarIcon, DocxIcon } from '../../components/common/GeneralIcons.jsx'
+import { FileAnalyticsIcon, MessageIcon, SaveIcon, CalendarIcon, DocxIcon, PdfIcon } from '../../components/common/GeneralIcons.jsx'
 import { ButtonCommon } from '../../components/common/ButtonCommon.jsx'
 import { CardAttendance } from '../../components/docent/CardAttendance.jsx'
 import { DateSelector } from '../../components/common/DateSelector.jsx'
@@ -34,6 +34,7 @@ function generarColorPastel(seed = '') {
 
 export function Attendance() {
     const [showModalReport, setShowModalReport] = useState(false)
+    const [periodTypeReport, setPeriodTypeReport] = useState('today')
 
     const {
         attendance,
@@ -174,27 +175,27 @@ export function Attendance() {
                     ></div>
                     
                     {/* Contenedor del Modal */}
-                    <div className="modal-generate-report" style={{
-                        position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-                        backgroundColor: 'white', borderRadius: '12px', padding: '24px', zIndex: 999,
-                        boxShadow: '0 10px 25px rgba(0,0,0,0.1)', width: '350px',
-                        display: 'flex', flexDirection: 'column', gap: '24px'
-                    }}>
+                    <div className="modal-generate-report">
                         <h3 style={{ margin: 0, fontFamily: 'fontTitlesBold', color: '#1e293b', fontSize: '18px' }}>
                             Generar Reporte
                         </h3>
                         
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <div className='container-options-period-report' style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             <label style={{ fontSize: '13px', fontFamily: 'fontSubtitles', color: '#64748b', fontWeight: 'bold' }}>PERIODO</label>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 14px', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#334155', fontFamily: 'fontSubtitles', fontWeight: 600, backgroundColor: '#f8fafc' }}>
-                                <CalendarIcon /> Últimos 7 días
-                            </div>
+                            <button>
+                                <CalendarIcon />
+                                Hoy
+                            </button>
+                            <button>
+                                <CalendarIcon />
+                                Últimos 7 días
+                            </button>
                         </div>
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             <label style={{ fontSize: '13px', fontFamily: 'fontSubtitles', color: '#64748b', fontWeight: 'bold' }}>FORMATO</label>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 14px', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#334155', fontFamily: 'fontSubtitles', fontWeight: 600, backgroundColor: '#f8fafc' }}>
-                                <DocxIcon /> PDF
+                                <PdfIcon /> PDF
                             </div>
                         </div>
 

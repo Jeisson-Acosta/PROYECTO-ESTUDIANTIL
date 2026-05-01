@@ -1,44 +1,76 @@
 .calendar-classes-cards {
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     border-radius: 20px;
-    width: 350px;
+    width: 400px;
     height: 110px;
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    gap: 5px;
-
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
-.class-state {
+.calendar-classes-text {
+    flex: 1;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .class-state h4 {
-    text-align: center;
+    text-align: start;
     color: #000;
-    padding-left: 20px;
-    padding-top: 20px;
+    padding-left: 0;
+    /* Cambiado de 20px a 0 */
+    padding-top: 0;
+    /* Cambiado de 20px a 0 */
+    margin: 0 0 5px 0;
+    /* Añadido margin para separación */
     font-size: 14px;
     font-family: fontsubtitles;
+}
+
+.class-name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
 }
 
 .class-name span {
     text-align: center;
     color: #000;
-    padding-left: 20px;
+    padding-left: 0;
     font-size: 25px;
     font-family: fonttitlesbold;
 }
 
 .class-room p {
     color: #000;
-    padding-left: 20px;
-    padding-bottom: 5px;
+    padding-left: 0;
+    margin: 0;
+    padding-bottom: 0;
     font-size: 14px;
     font-family: fontsubtitles;
+}
+
+.class-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #d71212;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.class-icon svg,
+.class-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    color: #ffffff;
 }
