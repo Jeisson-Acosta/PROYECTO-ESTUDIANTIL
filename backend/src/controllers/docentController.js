@@ -1,4 +1,4 @@
-import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList, validateTaskDetails, validateAttendance, validateAttendanceStudents } from "../schemas/docent.js";
+import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList, validateTaskDetails, validateAttendance, validateAttendanceStudents, validateInfoAttendanceToReport } from "../schemas/docent.js";
 import { DocentModel } from "../models/docent.js";
 
 export class DocentController {
@@ -103,9 +103,23 @@ export class DocentController {
             const result = await DocentModel.getAttendanceStudents({ data: resultValidate.data })
             if (!result.ok) return res.status(400).json({ message: result.message })
 
-            return res.status(200).json(result)
+            return res.json(result)
         } catch(err) {
             return res.status(500).json({ ok: false, message: 'Error getting attendance students docent' })
+        }
+    }
+
+    static async getInfoAttendanceToReport(req, res) {
+        try {
+            const resultValidate = validateInfoAttendanceToReport(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await DocentModel.getInfoAttendanceToReport({ data: resultValidate.data })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            return res.json(result)
+        } catch(err) {
+            return res.status(500).json({ ok: false, message: 'Error getting info attendance to report docent' })
         }
     }
 }

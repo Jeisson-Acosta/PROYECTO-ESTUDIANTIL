@@ -153,5 +153,42 @@
         font-weight: 600;
         background-color: #f8fafc;
         cursor: pointer;
+        &.selected {
+            color: #000000;
+            background-color: #d6e8ff;
+        }
+    }
+    & .buttons-format-type-report {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        & button {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 14px;
+            font-family: fontSubtitles;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #fef2f2;
+            font-weight: bold;
+        }
+    }
+    & .button-generate-report {
+        padding: 12px;
+        background-color: #8b5cf6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-family: fontTitlesBold;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        text-align: center;
+        &:hover {
+            background-color: #7c3aed;
+        }
     }
 }

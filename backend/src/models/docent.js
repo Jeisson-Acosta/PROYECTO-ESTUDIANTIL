@@ -109,4 +109,16 @@ export class DocentModel {
             throw new Error('Error getting attendance students docent: ' + err.message)
         }
     }
+
+    static async getInfoAttendanceToReport({ data }) {
+        const { usuid, cedid, cecid, asgcod, optionSP } = data
+        try {
+            const result = await manageDB('sp_docent_info_to_generate_report_attendance', [usuid, cedid, cecid, asgcod, optionSP])
+            if (!result.ok) throw new Error(result.message)
+
+            return result
+        } catch (err) {
+            throw new Error('Error getting info attendance to report docent: ' + err.message)
+        }
+    }
 }

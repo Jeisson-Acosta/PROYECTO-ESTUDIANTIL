@@ -29,6 +29,7 @@ CREATE TABLE `tbl_asignatura` (
   `asgnom` varchar(100) DEFAULT NULL COMMENT 'Nombre de la asignatura.',
   `asgcod` char(4) DEFAULT NULL COMMENT 'Código de la asignatura de 4 caracteres.',
   `asgcod_clase` char(6) DEFAULT NULL COMMENT 'Código de la clase, para que los estudiantes puedan ingresar a la clase.',
+  `asgyear` year DEFAULT NULL COMMENT 'Año de la que es la asignatura.',
   `usuid` int DEFAULT NULL COMMENT '[tbl_usuario]: Id del usuario para saber que profesor dirige la clase.',
   `cedid` int DEFAULT NULL COMMENT '[tbl_centro_educativo]: Id del centro educativo para saber la asignatura a que centro educativo pertenece.',
   `cesid` int DEFAULT NULL COMMENT '[tbl_centro_educativo_salon]: Id del salon del centro educativo, para saber en que salón se dicta la materia.',
@@ -51,7 +52,7 @@ CREATE TABLE `tbl_asignatura` (
 
 LOCK TABLES `tbl_asignatura` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura` DISABLE KEYS */;
-INSERT INTO `tbl_asignatura` VALUES (1,'Ciencias','CIEN','XRTY09',2,1,1,1),(2,'Matematicas','MATE','CRTY78',2,1,2,1),(3,'Física','FISI','MJUY89',2,1,2,1),(4,'Educacion Fisica','EDUC','MLOK78',2,1,1,1),(5,'Tecnologia','TECN','TREY78',2,1,1,1);
+INSERT INTO `tbl_asignatura` VALUES (1,'Ciencias','CIEN','XRTY09',2026,2,1,1,1),(2,'Matematicas','MATE','CRTY78',2026,2,1,2,1),(3,'Física','FISI','MJUY89',2026,2,1,2,2),(4,'Educacion Fisica','EDUC','MLOK78',2026,2,1,1,5),(5,'Tecnologia','TECN','TREY78',2026,2,1,1,5);
 /*!40000 ALTER TABLE `tbl_asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +79,7 @@ CREATE TABLE `tbl_asignatura_asistencia` (
   CONSTRAINT `fk_asignatura_asistencia_asgid` FOREIGN KEY (`asgid`) REFERENCES `tbl_asignatura` (`asgid`),
   CONSTRAINT `fk_asignatura_asistencia_cecid` FOREIGN KEY (`cecid`) REFERENCES `tbl_centro_educativo_ciclo` (`cecid`),
   CONSTRAINT `fk_asignatura_asistencia_usuid` FOREIGN KEY (`usuid`) REFERENCES `tbl_usuario` (`usuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +88,7 @@ CREATE TABLE `tbl_asignatura_asistencia` (
 
 LOCK TABLES `tbl_asignatura_asistencia` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura_asistencia` DISABLE KEYS */;
-INSERT INTO `tbl_asignatura_asistencia` VALUES (1,'P',NULL,'2026-02-22',2026,1,1,1),(2,'A','No vino','2026-02-22',2026,1,2,1);
+INSERT INTO `tbl_asignatura_asistencia` VALUES (1,'P',NULL,'2026-02-22',2026,1,1,1),(2,'A','No vino','2026-02-22',2026,1,2,1),(22,'P',NULL,'2026-05-01',2026,1,1,1),(23,'A',NULL,'2026-05-01',2026,4,1,1),(24,'P',NULL,'2026-04-30',2026,1,1,1),(25,'P',NULL,'2026-04-30',2026,4,1,1);
 /*!40000 ALTER TABLE `tbl_asignatura_asistencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,7 +234,7 @@ CREATE TABLE `tbl_asignatura_horario` (
 
 LOCK TABLES `tbl_asignatura_horario` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura_horario` DISABLE KEYS */;
-INSERT INTO `tbl_asignatura_horario` VALUES (1,2,'18:00:00',1),(2,2,'11:00:00',2),(3,3,'10:00:00',3);
+INSERT INTO `tbl_asignatura_horario` VALUES (1,5,'18:00:00',1),(2,2,'11:00:00',2),(3,3,'10:00:00',3);
 /*!40000 ALTER TABLE `tbl_asignatura_horario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,7 +335,7 @@ CREATE TABLE `tbl_asignatura_trabajo_entrega` (
 
 LOCK TABLES `tbl_asignatura_trabajo_entrega` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo_entrega` DISABLE KEYS */;
-INSERT INTO `tbl_asignatura_trabajo_entrega` VALUES (1,NULL,NULL,'P',1,1),(2,'2026-03-13 00:00:00',NULL,'P',1,2),(3,'2026-03-06 00:00:00',NULL,'C',1,3),(4,'2026-03-06 00:00:00',NULL,'P',1,4),(5,'2026-03-06 00:00:00',NULL,'P',1,5),(6,'2026-03-06 00:00:00',NULL,'C',1,6),(7,'2026-03-06 00:00:00',NULL,'C',1,7),(8,'2026-03-06 00:00:00',NULL,'C',1,8),(9,'2026-03-06 00:00:00',NULL,'C',1,9),(10,NULL,NULL,'P',1,14),(11,NULL,NULL,'P',1,15),(12,NULL,NULL,'P',1,16),(13,NULL,NULL,'P',1,17),(14,NULL,NULL,'P',1,18),(15,NULL,NULL,'P',1,19),(16,NULL,NULL,'P',1,20),(17,NULL,NULL,'P',1,21),(18,NULL,NULL,'P',1,22),(19,NULL,NULL,'P',1,23),(20,NULL,NULL,'P',1,24),(21,NULL,NULL,'E',4,1),(22,NULL,NULL,'E',4,2),(23,NULL,NULL,'E',4,3),(24,NULL,NULL,'E',4,4),(25,NULL,NULL,'E',4,5),(26,NULL,NULL,'E',4,6),(27,NULL,NULL,'E',4,7),(28,'2026-04-07 00:00:00','mi tarea profesor','E',4,8),(29,'2026-04-07 00:00:00','mi tarea profesor','C',4,9),(31,NULL,'mi tarea','E',4,14),(33,NULL,'mi tarea','E',4,15),(34,'2026-04-14 23:56:18',NULL,'E',4,29),(35,NULL,NULL,'P',1,40),(36,NULL,NULL,'P',4,40),(37,NULL,NULL,'P',1,41),(38,NULL,NULL,'P',4,41),(39,'2026-04-19 00:52:51',NULL,'E',4,16),(40,NULL,NULL,'P',4,22),(41,NULL,NULL,'P',4,36);
+INSERT INTO `tbl_asignatura_trabajo_entrega` VALUES (1,NULL,NULL,'P',1,1),(2,'2026-03-13 00:00:00',NULL,'P',1,2),(3,'2026-03-06 00:00:00',NULL,'C',1,3),(4,'2026-03-06 00:00:00',NULL,'P',1,4),(5,'2026-03-06 00:00:00',NULL,'P',1,5),(6,'2026-03-06 00:00:00',NULL,'C',1,6),(7,'2026-03-06 00:00:00',NULL,'C',1,7),(8,'2026-03-06 00:00:00',NULL,'C',1,8),(9,'2026-03-06 00:00:00',NULL,'C',1,9),(10,NULL,NULL,'P',1,14),(11,NULL,NULL,'P',1,15),(12,NULL,NULL,'P',1,16),(13,NULL,NULL,'P',1,17),(14,NULL,NULL,'P',1,18),(15,NULL,NULL,'P',1,19),(16,NULL,NULL,'P',1,20),(17,NULL,NULL,'P',1,21),(18,NULL,NULL,'P',1,22),(19,NULL,NULL,'P',1,23),(20,NULL,NULL,'P',1,24),(21,'2026-04-27 07:25:01',NULL,'E',4,1),(22,'2026-04-27 07:25:01',NULL,'E',4,2),(23,'2026-04-26 07:25:01',NULL,'E',4,3),(24,'2026-04-28 07:28:01',NULL,'E',4,4),(25,'2026-04-22 07:25:01',NULL,'E',4,5),(26,'2026-04-20 07:25:01',NULL,'E',4,6),(27,'2026-04-27 07:25:01',NULL,'E',4,7),(28,'2026-04-07 00:00:00','mi tarea profesor','E',4,8),(29,'2026-04-07 00:00:00','mi tarea profesor','C',4,9),(31,'2026-04-27 07:25:01','mi tarea','E',4,14),(33,'2026-04-27 07:25:01','mi tarea','E',4,15),(34,'2026-04-14 23:56:18',NULL,'E',4,29),(35,NULL,NULL,'P',1,40),(36,NULL,NULL,'P',4,40),(37,NULL,NULL,'P',1,41),(38,NULL,NULL,'P',4,41),(39,'2026-04-19 00:52:51',NULL,'E',4,16),(40,NULL,NULL,'P',4,22),(41,NULL,NULL,'P',4,36);
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo_entrega` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -450,7 +451,7 @@ CREATE TABLE `tbl_centro_educativo_curso` (
   KEY `fk_centro_educativo_curso_usuid_idx` (`usuid`),
   CONSTRAINT `fk_centro_educativo_curso_cedid` FOREIGN KEY (`cedid`) REFERENCES `tbl_centro_educativo` (`cedid`),
   CONSTRAINT `fk_centro_educativo_curso_usuid` FOREIGN KEY (`usuid`) REFERENCES `tbl_usuario` (`usuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -459,7 +460,7 @@ CREATE TABLE `tbl_centro_educativo_curso` (
 
 LOCK TABLES `tbl_centro_educativo_curso` WRITE;
 /*!40000 ALTER TABLE `tbl_centro_educativo_curso` DISABLE KEYS */;
-INSERT INTO `tbl_centro_educativo_curso` VALUES (1,'SEX','Sexto',1,2),(2,'SEP','Septimo',1,1);
+INSERT INTO `tbl_centro_educativo_curso` VALUES (1,'SEX','Sexto',1,2),(2,'SEP','Septimo',1,1),(5,'OCT','Octavo',1,6);
 /*!40000 ALTER TABLE `tbl_centro_educativo_curso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -672,6 +673,7 @@ CREATE TABLE `tbl_usuario` (
   `usudocu` varchar(12) DEFAULT NULL COMMENT 'Número de documento del usuario.',
   `usucel` varchar(12) DEFAULT NULL COMMENT 'Número de celular delusuario.',
   `usufch_nacimiento` date DEFAULT NULL COMMENT 'Fecha de nacimiento del usuario.',
+  `usuestado` enum('RE','AN','PC') DEFAULT NULL COMMENT 'Representa el estado del usuario: (RE)gistrado, (AN)tiguo, (PC) Pendiente de cambio de Contraseña',
   `cedid` int DEFAULT NULL COMMENT '[tbl_centro_educativo]: Id del centro educativo al cual pertenece el usuario.',
   `ceeid` int DEFAULT NULL COMMENT '[tbl_centro_educativo_estudiante]: Id del centro educativo al cual pertenece el usuario en caso de que este registrado el estudiante en un centro educativo.',
   `tidid` int DEFAULT NULL COMMENT '[tbl_tipo_documento]: Id del tipo de documento.',
@@ -693,7 +695,7 @@ CREATE TABLE `tbl_usuario` (
 
 LOCK TABLES `tbl_usuario` WRITE;
 /*!40000 ALTER TABLE `tbl_usuario` DISABLE KEYS */;
-INSERT INTO `tbl_usuario` VALUES (1,'Pepito Perez','pepito@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2026-02-25',1,NULL,1,1),(2,'Jeisson Acosta','jeisson@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2004-12-20',1,NULL,1,2),(4,'Diego Garcia','123@gmail.com','$2b$10$Vp2nVbDDWfuQ.O03Umna0ebiEC0fZsaZk98Oleym5M86JGv0Qq1Pu','1104545708','3102418099','2005-10-30',1,NULL,2,1),(5,'Adriana niño','AdrianaN@gmail.com','$2b$10$oBo0LVbIukj9/7D3n.7ze.tmGf/CDS9HFE2gskmCBPFOCznK.k1Iq','1104545708','3102418099','2005-10-30',1,NULL,1,2),(6,'angela martinez','angieceballos2017@gmail.com','$2b$10$2Ck2h0w3WIrInuDvVAxHQ.UQotY3eXj6vPmUG491Q4/Q8..iqf1aa','1137089214','3112270245','2008-05-12',1,NULL,1,2),(7,'Pepito Perez','pepito2@gmail.com','$2b$10$vG6rhxDjUvfxos/pN7IgcOMcn0AbZroFHIWBVpFTpRXsX5fhgsi5O','1137089214','4898484894','2004-12-20',1,NULL,2,1),(8,'Pepito Perez','pepito3@gmail.com','$2b$10$OQFNmNMUlTrqDcrXlNmsT.QXKSQgMQsLHAR4vkIekMM.OYgVGIh3G','1137089214','4898484894','2004-12-20',1,NULL,2,1),(9,'Pepito Perez','pepito3@gmail.com','$2b$10$fpqabN.ULt0XxAJxaLP7su1OQON6HQpJhzpDqyQ/eE4CNTAk5DBKO','1137089214','4898484894','2004-12-20',1,NULL,2,1);
+INSERT INTO `tbl_usuario` VALUES (1,'Pepito Perez','pepito@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2026-02-25','AN',1,NULL,1,1),(2,'Jeisson Acosta','jeisson@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2004-12-20','RE',1,NULL,1,2),(4,'Diego Garcia','123@gmail.com','$2b$10$Vp2nVbDDWfuQ.O03Umna0ebiEC0fZsaZk98Oleym5M86JGv0Qq1Pu','1104545708','3102418099','2005-10-30','AN',1,NULL,2,1),(5,'Adriana niño','AdrianaN@gmail.com','$2b$10$oBo0LVbIukj9/7D3n.7ze.tmGf/CDS9HFE2gskmCBPFOCznK.k1Iq','1104545708','3102418099','2005-10-30','AN',1,NULL,1,2),(6,'angela martinez','angieceballos2017@gmail.com','$2b$10$2Ck2h0w3WIrInuDvVAxHQ.UQotY3eXj6vPmUG491Q4/Q8..iqf1aa','1137089214','3112270245','2008-05-12','AN',1,NULL,1,2),(7,'Pepito Perez','pepito2@gmail.com','$2b$10$vG6rhxDjUvfxos/pN7IgcOMcn0AbZroFHIWBVpFTpRXsX5fhgsi5O','1137089214','4898484894','2004-12-20','AN',1,NULL,2,1),(8,'Pepito Perez','pepito3@gmail.com','$2b$10$OQFNmNMUlTrqDcrXlNmsT.QXKSQgMQsLHAR4vkIekMM.OYgVGIh3G','1137089214','4898484894','2004-12-20','AN',1,NULL,2,1),(9,'Pepito Perez','pepito3@gmail.com','$2b$10$fpqabN.ULt0XxAJxaLP7su1OQON6HQpJhzpDqyQ/eE4CNTAk5DBKO','1137089214','4898484894','2004-12-20','AN',1,NULL,2,1);
 /*!40000 ALTER TABLE `tbl_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1074,6 +1076,52 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_docent_get_attendance` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_docent_get_attendance`(
+IN i_cedid INT,
+IN i_cecid INT,
+IN i_usuid INT,
+IN i_asgcod CHAR(4),
+IN i_asifecha DATE
+)
+BEGIN
+
+SET @_asgid = (SELECT asgid FROM tbl_asignatura WHERE cedid = i_cedid AND usuid = i_usuid AND asgcod = i_asgcod);
+
+SELECT
+	COUNT(*) AS all_quantity_students,
+	JSON_ARRAYAGG(
+		JSON_OBJECT(
+			'usuid', usu.usuid,
+			'usunom', usu.usunom,
+			'usuemail', usu.usuemail,
+            'status', asi.asiestado
+		)
+	) AS students
+FROM tbl_asignatura_asistencia asi
+JOIN tbl_asignatura asg ON asi.asgid = asg.asgid
+JOIN tbl_usuario usu ON asi.usuid = usu.usuid
+WHERE asg.usuid = i_usuid
+AND asg.cedid = i_cedid
+AND asg.asgid = @_asgid
+AND asi.cecid = i_cecid
+AND asi.asifecha = i_asifecha;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_docent_get_general_information` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1098,6 +1146,7 @@ BEGIN
                 'usunom', usu.usunom,
                 'usudocu', usu.usudocu,
                 'usuemail', usu.usuemail,
+                'usuestado', usu.usuestado,
                 'rolcod', rol.rolcod,
                 'rolnom', rol.rolnom
             )
@@ -1146,6 +1195,8 @@ BEGIN
         AND usuid = i_usuid
     );
     
+    -- SELECT @_course_director_info; -- DEBUG
+    
     SET @_quantity_courses_assignamed = (
 		SELECT
 			COUNT(*)
@@ -1162,7 +1213,7 @@ BEGIN
         WHERE ast.usuid = i_usuid
         AND ast.asttip = 'TA'
         AND ast.cecid = i_cecid
-        AND ate.ateestado = 'P'
+        AND ate.ateestado = 'E'
     );
     
     SET @_general_performance_x_course = (
@@ -1186,10 +1237,137 @@ BEGIN
 			JOIN tbl_centro_educativo_curso edc ON asg.edcid = edc.edcid
 			WHERE ast.cecid = i_cecid
             AND asg.cedid = i_cedid
+            AND asg.usuid = i_usuid
             AND ate.ateestado = 'C'
 			GROUP BY edc.edcid
+            ORDER BY edc.edcid
 		) AS average_x_course
     );
+    
+    -- Esta variable obtiene el numero actual de la semana, ya que en el horario identificamos el dia por el numero.
+    SET @_current_day_number = WEEKDAY(NOW()) + 1;
+    -- SELECT @_current_day_number; -- DEBUG
+    
+    SET @_today_classes = (
+		SELECT
+			JSON_ARRAYAGG(
+				JSON_OBJECT(
+					'ashid', ash.ashid,
+                    'ashhora', DATE_FORMAT(ash.ashhora, '%l:%i %p'),
+                    'asgnom', asg.asgnom,
+                    'edcnom', edc.edcnom,
+                    'cesnum', ces.cesnum
+                )
+            )
+		FROM tbl_asignatura_horario ash
+		JOIN tbl_asignatura asg ON ash.asgid = asg.asgid
+        JOIN tbl_centro_educativo_curso edc ON asg.edcid = edc.edcid
+        JOIN tbl_centro_educativo_salon ces ON asg.cesid = ces.cesid
+        WHERE ash.ashdia = @_current_day_number
+        AND asg.usuid = i_usuid
+        AND asg.cedid = i_cedid
+        AND asg.asgyear = YEAR(NOW())	
+        AND ash.ashhora >= NOW()
+    );
+    -- SELECT @_today_classes; -- DEBUG
+    
+    SET @_tasks_by_qualify_object = (
+		SELECT
+			JSON_ARRAYAGG(
+				JSON_OBJECT(
+					'ateid', ate.ateid,
+                    'astnomtrabajo', ast.astnomtrabajo,
+                    'atefec_entrega', CASE
+						WHEN DATEDIFF(NOW(), ate.atefec_entrega) = 0 THEN 'Hoy'
+                        WHEN DATEDIFF(NOW(), ate.atefec_entrega) = 1 THEN 'Ayer'
+                        WHEN DATEDIFF(NOW(), ate.atefec_entrega) > 1 THEN CONCAT('Hace ', DATEDIFF(NOW(), ate.atefec_entrega), ' días')
+                    END,
+                    'edcnom', edc.edcnom
+                )
+            )
+		FROM tbl_asignatura_trabajo_entrega ate
+        JOIN tbl_asignatura_trabajo ast ON ate.astid = ast.astid
+        JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
+        JOIN tbl_centro_educativo_curso edc ON asg.edcid = edc.edcid
+        WHERE ast.usuid = i_usuid
+        AND ast.asttip = 'TA'
+        AND ast.cecid = i_cecid
+        AND ate.ateestado = 'E'
+    );
+        
+    -- Esta tabla temporal tarera todos los promedios por estudiante para poder obtener el mejor y es mas bajo en promedio.
+    DROP TABLE IF EXISTS tbltmp_performance_course;
+    CREATE TEMPORARY TABLE tbltmp_performance_course AS (
+		SELECT
+			ate.usuid,
+            usu.usunom,
+			ROUND(AVG(atc.atccalificacion), 1) AS average_student
+		FROM tbl_asignatura_trabajo_calificacion atc
+		JOIN tbl_asignatura_trabajo_entrega ate ON atc.ateid = ate.ateid
+        JOIN tbl_usuario usu ON ate.usuid = usu.usuid
+		JOIN tbl_asignatura_trabajo ast ON ate.astid = ast.astid
+		JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
+		JOIN tbl_centro_educativo_curso edc ON asg.edcid = edc.edcid
+		WHERE asg.usuid = i_usuid
+		AND edc.edcid = JSON_EXTRACT(@_course_director_info, '$.edcid')
+		AND ast.cecid = i_cecid
+		GROUP BY ate.usuid
+		ORDER BY average_student DESC
+    );
+    
+    -- SELECT * FROM tbltmp_performance_course; -- DEBUG
+    
+    SET @_best_student = (
+		SELECT
+			JSON_OBJECT(
+				'usuid', usuid,
+                'usunom', usunom,
+                'average', average_student
+            )
+		FROM tbltmp_performance_course
+		ORDER BY average_student DESC
+        LIMIT 1
+    );
+    
+    -- SELECT @_best_student; -- DEBUG
+    
+    SET @_bad_student = (
+		SELECT
+			JSON_OBJECT(
+				'usuid', usuid,
+                'usunom', usunom,
+                'average', average_student
+            )
+		FROM tbltmp_performance_course
+        ORDER BY average_student ASC
+        LIMIT 1
+    );
+    
+   --  SELECT @_bad_student; -- DEBUG
+    
+    SET @_students_in_risk = (
+		SELECT
+			COUNT(*)
+		FROM tbltmp_performance_course
+        WHERE average_student < 3.0
+    );
+    
+    -- SELECT @_students_in_risk; -- DEBUG
+    
+    -- Almacena las inasistencias/ausencias del curso
+    SET @_absences_course = (
+		SELECT
+			COUNT(*)
+		FROM tbl_asignatura_asistencia asi
+        JOIN tbl_asignatura asg ON asi.asgid = asg.asgid
+        WHERE asg.cedid = i_cedid
+        AND asg.usuid = i_usuid
+        AND asg.edcid = JSON_EXTRACT(@_course_director_info, '$.edcid')
+        AND asi.cecid = i_cecid
+        AND asi.asiestado = 'A'
+    );
+    
+    -- SELECT @_absences_course; -- DEBUG
     
 	SELECT
 		@_user_info AS info_user,
@@ -1198,7 +1376,20 @@ BEGIN
         @_course_director_info AS course_director_info,
         @_quantity_courses_assignamed AS quantity_courses_assignamed,
         @_tasks_by_qualify AS tasks_by_qualify,
-        @_general_performance_x_course AS general_performance_x_course;
+        @_general_performance_x_course AS general_performance_x_course,
+        @_today_classes AS today_classes,
+        @_tasks_by_qualify_object AS tasks_by_qualify_object,
+        (
+			SELECT
+				JSON_OBJECT(
+					'best_student', IFNULL(@_best_student, NULL),
+                    'bad_student', IFNULL(@_bad_student, NULL),
+                    'students_in_risk', @_students_in_risk,
+                    'absences_course', @_absences_course
+                )
+        ) AS performance_course;
+	
+    DROP TABLE IF EXISTS tbltmp_performance_course;
         
 
 END ;;
@@ -1466,67 +1657,301 @@ CREATE DEFINER=`root`@`%` PROCEDURE `sp_docent_get_list_students`(
 IN i_usuid INT,
 IN i_cedid INT,
 IN i_cecid INT,
-IN i_asgid INT
+IN i_asgcod CHAR(4),
+IN i_opcion CHAR(3)
 )
 BEGIN
 
-DROP TABLE IF EXISTS tbltmp_average_x_student;
+-- /////////// i_opcion //////////
+	-- (LSC) -> List Students Class (Lista de estudiante de la clase)
+    -- (LSA) -> List Students Attendance (Lista de estudiante para la asistencia)
+-- ///////////////////////////////
 
-CREATE TEMPORARY TABLE tbltmp_average_x_student AS (
+SET @_asgid = (SELECT asgid FROM tbl_asignatura WHERE cedid = i_cedid AND usuid = i_usuid AND asgcod = i_asgcod);
+
+IF i_opcion = 'LSC' THEN
+
+	DROP TABLE IF EXISTS tbltmp_average_x_student;
+	CREATE TEMPORARY TABLE tbltmp_average_x_student AS (
+		SELECT
+			ate.usuid,
+			-- Promedio solo de entregas calificadas
+			ROUND(
+				IFNULL(
+					AVG(CASE WHEN ate.ateestado <> 'P' THEN atc.atccalificacion END),
+					1.0
+				),
+			1) AS average_x_student
+		FROM tbl_asignatura_trabajo_entrega ate
+		INNER JOIN tbl_asignatura_trabajo ast ON ate.astid = ast.astid
+		INNER JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
+		LEFT JOIN tbl_asignatura_trabajo_calificacion atc ON ate.ateid = atc.ateid
+		WHERE asg.asgid = @_asgid
+		GROUP BY ate.usuid
+	);
+
+	-- SELECT * FROM tbltmp_average_x_student; -- DEBUG
+
+	DROP TABLE IF EXISTS tbltmp_attendance_x_student;
+	CREATE TEMPORARY TABLE tbltmp_attendance_x_student AS (
+		SELECT
+			asi.usuid,
+			ROUND(
+				(COUNT(CASE WHEN asi.asiestado IN ('P', 'T', 'E') THEN 1 END) / COUNT(*)) * 100
+			) AS attendance_x_student
+		FROM tbl_asignatura_asistencia asi
+		INNER JOIN tbl_asignatura asg ON asi.asgid = asg.asgid
+		WHERE asi.asgid = @_asgid
+		AND asg.cedid = i_cedid
+		AND asi.cecid = i_cecid
+		GROUP BY asi.usuid
+	);
+
+	-- SELECT * FROM tbltmp_attendance_x_student; -- DEBUG
+
+	SELECT
+		JSON_ARRAYAGG(
+			JSON_OBJECT(
+				'usuid', usu.usuid,
+				'usunom', usu.usunom,
+				'usuemail', usu.usuemail,
+				'average', axs.average_x_student,
+				'attendance', IFNULL(ats.attendance_x_student, 100),
+				'performance', IF(axs.average_x_student > 4.5, 'EXEMPLARY', IF(axs.average_x_student >= 3.5, 'STEADY', 'AT RISK'))
+			)
+		) AS result
+	FROM tbltmp_average_x_student axs
+	INNER JOIN tbl_usuario usu ON axs.usuid = usu.usuid
+	LEFT JOIN tbltmp_attendance_x_student ats ON axs.usuid = ats.usuid;
+
+END IF;
+
+IF i_opcion = 'LSA' THEN
+	
     SELECT
-        ate.usuid,
-        -- Promedio solo de entregas calificadas
-        ROUND(
-            IFNULL(
-                AVG(CASE WHEN ate.ateestado <> 'P' THEN atc.atccalificacion END),
-                1.0
-            ),
-        1) AS average_x_student
-    FROM tbl_asignatura_trabajo_entrega ate
-    INNER JOIN tbl_asignatura_trabajo ast ON ate.astid = ast.astid
-    INNER JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
-    LEFT JOIN tbl_asignatura_trabajo_calificacion atc ON ate.ateid = atc.ateid
-    WHERE asg.asgid = i_asgid
-    GROUP BY ate.usuid
+		COUNT(*) AS all_quantity_students,
+        JSON_ARRAYAGG(
+			JSON_OBJECT(
+				'usuid', usu.usuid,
+                'usunom', usu.usunom,
+                'usuemail', usu.usuemail
+            )
+        ) AS result
+	FROM tbl_asignatura_estudiante ase
+    JOIN tbl_asignatura asg ON ase.asgid = asg.asgid
+    JOIN tbl_usuario usu ON ase.usuid = usu.usuid
+    WHERE asg.usuid = i_usuid
+    AND asg.cedid = i_cedid
+    AND asg.asgid = @_asgid;
+    
+END IF;
+
+DROP TABLE IF EXISTS tbltmp_average_x_student;
+DROP TABLE IF EXISTS tbltmp_attendance_x_student;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_docent_info_to_generate_report_attendance` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_docent_info_to_generate_report_attendance`(
+IN i_usuid INT,
+IN i_cedid INT,
+IN i_cecid INT,
+IN i_asgcod CHAR(4),
+IN i_opcion CHAR(3)
+)
+BEGIN
+
+SET time_zone = '-05:00';
+
+SET @_info_current_cycle = (
+	SELECT 
+		JSON_OBJECT(
+			'cecod', cecod,
+            'cecnom', cecnom,
+            'cecfecfini', cecfecini,
+            'cecfecfin', cecfecfin
+        )
+	FROM tbl_centro_educativo_ciclo
+    WHERE cecid = i_cecid
 );
 
--- SELECT * FROM tbltmp_average_x_student; -- DEBUG
+SET @_cednom = (SELECT cednom FROM tbl_centro_educativo WHERE cedid = i_cedid);
+SET @_asgid = (SELECT asgid FROM tbl_asignatura WHERE cedid = i_cedid AND usuid = i_usuid AND asgcod = i_asgcod);
+SET @_asgnom = (SELECT asgnom FROM tbl_asignatura WHERE asgid = @_asgid);
+SET @_usunom_docent = (SELECT usunom FROM tbl_usuario WHERE usuid = i_usuid);
+
+SET @_average_attendance = CONCAT('
+	SELECT
+		ROUND(
+			(SUM(CASE WHEN asi.asiestado = "P" THEN 1 WHEN asi.asiestado = "T" THEN 0.5 ELSE 0 END) / COUNT(*)) * 100, 2
+		) INTO @_average_attendance_result
+	FROM tbl_asignatura_asistencia asi
+    JOIN tbl_asignatura asg ON asi.asgid = asg.asgid
+    JOIN tbl_centro_educativo_curso edc ON asg.edcid = edc.edcid
+    WHERE asi.cecid = ',i_cecid,'
+    AND asg.cedid = ',i_cedid,'
+    AND asg.asgid = ',@_asgid,'
+    AND IF(',QUOTE(i_opcion),' = "TOD", asi.asifecha = DATE(NOW()), asi.asifecha BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND DATE(NOW()))
+');
+
+-- SELECT @_average_attendance; -- DEBUG
+
+PREPARE cmdx FROM @_average_attendance;
+EXECUTE cmdx;
+
+-- SELECT @_average_attendance_result; -- DEBUG
+
+-- Esta tabla temporal obtiene el total de presentes, ausente, tardios y excusados
+DROP TABLE IF EXISTS tbltmp_info_attendance;
+SET @_cmd = CONCAT('
+	CREATE TEMPORARY TABLE tbltmp_info_attendance AS (
+		SELECT
+			IFNULL(SUM(CASE WHEN asi.asiestado = "P" THEN 1 END), 0) AS total_presents,
+			IFNULL(SUM(CASE WHEN asi.asiestado = "A" THEN 1 END), 0) AS total_absents,
+			IFNULL(SUM(CASE WHEN asi.asiestado = "T" THEN 1 END), 0) AS total_lates,
+			IFNULL(SUM(CASE WHEN asi.asiestado = "E" THEN 1 END),0 ) AS total_excuseds
+		FROM tbl_asignatura_asistencia asi
+		JOIN tbl_asignatura asg ON asi.asgid = asg.asgid
+		JOIN tbl_centro_educativo_curso edc ON asg.edcid = edc.edcid
+		WHERE asi.cecid = ',i_cecid,'
+		AND asg.cedid = ',i_cedid,'
+		AND asg.asgid = ',@_asgid,'
+        AND IF(',QUOTE(i_opcion),' = "TOD", asi.asifecha = DATE(NOW()), asi.asifecha BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND DATE(NOW()))
+	)
+');
+
+PREPARE cmdx FROM @_cmd;
+EXECUTE cmdx;
+
+-- SELECT * FROM tbltmp_info_attendance; -- DEBUG
+
+SET @_total_presents = (SELECT total_presents FROM tbltmp_info_attendance);
+SET @_total_absents = (SELECT total_absents FROM tbltmp_info_attendance);
+SET @_total_lates = (SELECT total_lates FROM tbltmp_info_attendance);
+SET @_total_excuseds = (SELECT total_excuseds FROM tbltmp_info_attendance);
 
 DROP TABLE IF EXISTS tbltmp_attendance_x_student;
 CREATE TEMPORARY TABLE tbltmp_attendance_x_student AS (
 	SELECT
 		asi.usuid,
-        ROUND(
+		ROUND(
 			(COUNT(CASE WHEN asi.asiestado IN ('P', 'T', 'E') THEN 1 END) / COUNT(*)) * 100
-        ) AS attendance_x_student
+		) AS attendance_x_student,
+        SUM(CASE WHEN asi.asiestado IN('P', 'T', 'E') THEN 1 END) AS assistences_x_student,
+        SUM(CASE WHEN asi.asiestado = 'A' THEN 1 END) AS absences_x_student
 	FROM tbl_asignatura_asistencia asi
-    INNER JOIN tbl_asignatura asg ON asi.asgid = asg.asgid
-    WHERE asi.asgid = i_asgid
-    AND asg.cedid = i_cedid
-    AND asi.cecid = i_cecid
-    GROUP BY asi.usuid
+	INNER JOIN tbl_asignatura asg ON asi.asgid = asg.asgid
+	WHERE asi.asgid = @_asgid
+	AND asg.cedid = i_cedid
+	AND asi.cecid = i_cecid
+	GROUP BY asi.usuid
 );
 
 -- SELECT * FROM tbltmp_attendance_x_student; -- DEBUG
 
 SELECT
+	@_info_current_cycle AS info_current_cycle,
+    @_cednom AS cednom,
+    @_asgnom AS asgnom,
+    @_usunom_docent AS usunom_docent,
+    @_average_attendance_result AS average_attendance,
+    @_total_excuseds AS total_excuseds,
+    @_total_lates AS total_lates,
+    @_total_absents AS total_absents,
+    @_total_presents AS total_presents,
 	JSON_ARRAYAGG(
 		JSON_OBJECT(
 			'usuid', usu.usuid,
-            'usunom', usu.usunom,
-            'usuemail', usu.usuemail,
-			'average', axs.average_x_student,
-            'attendance', IFNULL(ats.attendance_x_student, 100),
-            'performance', IF(axs.average_x_student > 4.5, 'EXEMPLARY', IF(axs.average_x_student >= 3.5, 'STEADY', 'AT RISK'))
-        )
-    ) AS result
-FROM tbltmp_average_x_student axs
-INNER JOIN tbl_usuario usu ON axs.usuid = usu.usuid
-LEFT JOIN tbltmp_attendance_x_student ats ON axs.usuid = ats.usuid;
+			'usunom', usu.usunom,
+			'usuemail', usu.usuemail,
+            'assistences', IFNULL(ats.assistences_x_student, 0),
+            'absences', IFNULL(ats.absences_x_student, 0),
+			'attendance', IFNULL(ats.attendance_x_student, 100)
+			-- 'performance', IF(axs.average_x_student > 4.5, 'EXEMPLARY', IF(axs.average_x_student >= 3.5, 'STEADY', 'AT RISK'))
+		)
+	) AS info_table_report
+FROM tbltmp_attendance_x_student ats
+INNER JOIN tbl_usuario usu ON ats.usuid = usu.usuid;
 
-
-DROP TABLE IF EXISTS tbltmp_average_x_student;
+DROP TABLE IF EXISTS tbltmp_info_attendance;
 DROP TABLE IF EXISTS tbltmp_attendance_x_student;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_docent_save_attendance` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_docent_save_attendance`(
+IN i_usuid INT,
+IN i_cedid INT,
+IN i_cecid INT,
+IN i_asgcod CHAR(4),
+IN i_asifecha DATE,
+IN i_data JSON
+)
+BEGIN
+
+DECLARE _jsonLength INT DEFAULT 0;
+DECLARE _jsonIndex INT DEFAULT 0;
+
+SET _jsonLength = JSON_LENGTH(i_data);
+SET @_asgid = (SELECT asgid FROM tbl_asignatura WHERE cedid = i_cedid AND usuid = i_usuid AND asgcod = i_asgcod);
+
+START TRANSACTION;
+
+REPEAT
+
+	SET @_current_usuid = JSON_UNQUOTE(JSON_EXTRACT(i_data, CONCAT('$[',_jsonIndex,'].usuid')));
+    SET @_current_status = JSON_UNQUOTE(JSON_EXTRACT(i_data, CONCAT('$[',_jsonIndex,'].status')));
+    
+    INSERT INTO tbl_asignatura_asistencia(
+		asiestado,
+        asifecha,
+        asiyear,
+        usuid,
+        asgid,
+        cecid
+    ) VALUES (
+		@_current_status,
+        i_asifecha,
+        YEAR(i_asifecha),
+        @_current_usuid,
+        @_asgid,
+        i_cecid
+    );
+
+	SET _jsonIndex = (_jsonIndex + 1);
+	UNTIL _jsonIndex >= _jsonLength
+
+END REPEAT;
+
+COMMIT;
+
+SELECT 1 AS ok;
 
 END ;;
 DELIMITER ;
@@ -1832,6 +2257,184 @@ AND asg.cedid = @_curso_id;
 DROP TABLE IF EXISTS tbltmp_quantity_students_x_class;
 DROP TABLE IF EXISTS tbltmp_sum_classes_notes;
 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_student_get_calendar_info` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_student_get_calendar_info`(
+    i_usuid INT,
+    i_cedid INT,
+    i_cecid INT
+)
+BEGIN
+    DECLARE color_clase_actual JSON;
+    DECLARE nombre_clase VARCHAR(100);
+    DECLARE salon_clase VARCHAR(20);
+    DECLARE hora_inicio_actual TIME;
+    DECLARE color_proxima_clase JSON;
+    DECLARE nombre_proxima_clase VARCHAR(100);
+    DECLARE salon_proxima_clase VARCHAR(20);
+    DECLARE hora_inicio_proxima TIME;
+    DECLARE i_info_centro_educativo JSON;
+    DECLARE i_ciclo_actual JSON;
+    DECLARE dia_actual INT;
+    DECLARE duracion_clase INT DEFAULT 60;
+    
+    SET dia_actual = DAYOFWEEK(CURDATE());
+    
+    SELECT
+        JSON_ARRAYAGG(
+            JSON_OBJECT(
+                'cedid', ced.cedid,
+                'cedcod', ced.cedcod,
+                'cednom', ced.cednom,
+                'cedtip', ced.cedtip
+            )
+        ) INTO i_info_centro_educativo
+    FROM tbl_centro_educativo ced
+    INNER JOIN tbl_usuario usu ON ced.cedid = usu.cedid
+    WHERE ced.cedid = i_cedid
+        AND usu.usuid = i_usuid;
+    
+    SET i_ciclo_actual = (
+        SELECT
+            JSON_OBJECT(
+                'cecid', cecid,
+                'cecod', cecod,
+                'cecnom', cecnom,
+                'cecfecini', cecfecini,
+                'cecfecfin', cecfecfin
+            )
+        FROM tbl_centro_educativo_ciclo
+        WHERE cecid = i_cecid
+    );
+    
+    SELECT
+        asg.asgnom,
+        ascu.ascvis_config,
+        ces.cesnom,
+        ash.ashhora
+    INTO 
+        nombre_clase,
+        color_clase_actual,
+        salon_clase,
+        hora_inicio_actual
+    FROM tbl_asignatura asg
+    INNER JOIN tbl_asignatura_estudiante ase ON ase.asgid = asg.asgid
+    INNER JOIN tbl_asignatura_horario ash ON ash.asgid = asg.asgid
+    LEFT JOIN tbl_asignatura_curso ascu ON ascu.asgid = asg.asgid
+    LEFT JOIN tbl_centro_educativo_salon ces ON asg.cesid = ces.cesid
+    WHERE asg.cedid = i_cedid
+        AND ase.usuid = i_usuid
+        AND ash.ashdia = dia_actual
+        AND CURTIME() BETWEEN ash.ashhora AND ADDTIME(ash.ashhora, SEC_TO_TIME(duracion_clase * 60))
+    LIMIT 1;
+   
+    IF nombre_clase IS NOT NULL THEN
+        SELECT
+            asg.asgnom,
+            ascu.ascvis_config,
+            ces.cesnom,
+            ash.ashhora
+        INTO
+            nombre_proxima_clase,
+            color_proxima_clase,
+            salon_proxima_clase,
+            hora_inicio_proxima
+        FROM tbl_asignatura asg
+        INNER JOIN tbl_asignatura_estudiante ase ON ase.asgid = asg.asgid
+        INNER JOIN tbl_asignatura_horario ash ON ash.asgid = asg.asgid
+        LEFT JOIN tbl_asignatura_curso ascu ON ascu.asgid = asg.asgid
+        LEFT JOIN tbl_centro_educativo_salon ces ON asg.cesid = ces.cesid
+        WHERE asg.cedid = i_cedid
+            AND ase.usuid = i_usuid
+            AND ash.ashdia = dia_actual
+            AND ash.ashhora > ADDTIME(CURTIME(), SEC_TO_TIME(duracion_clase * 60))
+        ORDER BY ash.ashhora ASC
+        LIMIT 1;
+    END IF;
+    
+    IF nombre_clase IS NULL AND nombre_proxima_clase IS NULL THEN
+        SELECT
+            asg.asgnom,
+            ascu.ascvis_config,
+            ces.cesnom,
+            ash.ashhora
+        INTO
+            nombre_proxima_clase,
+            color_proxima_clase,
+            salon_proxima_clase,
+            hora_inicio_proxima
+        FROM tbl_asignatura asg
+        INNER JOIN tbl_asignatura_estudiante ase ON ase.asgid = asg.asgid
+        INNER JOIN tbl_asignatura_horario ash ON ash.asgid = asg.asgid
+        LEFT JOIN tbl_asignatura_curso ascu ON ascu.asgid = asg.asgid
+        LEFT JOIN tbl_centro_educativo_salon ces ON asg.cesid = ces.cesid
+        WHERE asg.cedid = i_cedid
+            AND ase.usuid = i_usuid
+            AND (
+                (ash.ashdia = dia_actual AND ash.ashhora > CURTIME())
+                OR ash.ashdia > dia_actual
+            )
+        ORDER BY 
+            CASE WHEN ash.ashdia = dia_actual THEN 0 ELSE 1 END,
+            ash.ashdia ASC, 
+            ash.ashhora ASC
+        LIMIT 1;
+    END IF;
+    
+    IF nombre_clase IS NOT NULL AND nombre_proxima_clase IS NULL THEN
+        SELECT
+            asg.asgnom,
+            ascu.ascvis_config,
+            ces.cesnom,
+            ash.ashhora
+        INTO
+            nombre_proxima_clase,
+            color_proxima_clase,
+            salon_proxima_clase,
+            hora_inicio_proxima
+        FROM tbl_asignatura asg
+        INNER JOIN tbl_asignatura_estudiante ase ON ase.asgid = asg.asgid
+        INNER JOIN tbl_asignatura_horario ash ON ash.asgid = asg.asgid
+        LEFT JOIN tbl_asignatura_curso ascu ON ascu.asgid = asg.asgid
+        LEFT JOIN tbl_centro_educativo_salon ces ON asg.cesid = ces.cesid
+        WHERE asg.cedid = i_cedid
+            AND ase.usuid = i_usuid
+            AND ash.ashdia > dia_actual
+        ORDER BY ash.ashdia ASC, ash.ashhora ASC
+        LIMIT 1;
+    END IF;
+    
+    SELECT JSON_OBJECT(
+        'info_centro_educativo', i_info_centro_educativo,
+        'ciclo_actual', i_ciclo_actual,
+        'clase_actual', JSON_OBJECT(
+            'nombre', COALESCE(nombre_clase, 'No hay clase en curso'),
+            'color', COALESCE(color_clase_actual, JSON_OBJECT()),
+            'salon', COALESCE(salon_clase, ''),
+            'hora_inicio', COALESCE(hora_inicio_actual, '')
+        ),
+        'proxima_clase', JSON_OBJECT(
+            'nombre', COALESCE(nombre_proxima_clase, 'No hay más clases'),
+            'color', COALESCE(color_proxima_clase, JSON_OBJECT()),
+            'salon', COALESCE(salon_proxima_clase, ''),
+            'hora_inicio', COALESCE(hora_inicio_proxima, '')
+        )
+    ) AS resultado;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2225,7 +2828,7 @@ SET @_info_asignatura = (
     WHERE ase.asgid = @_asgid
     AND ase.usuid = i_usuid
     AND asg.cedid = i_cedid
-    AND tbl_asignatura_curso.cecid = i_cecid
+    -- AND tbl_asignatura_curso.cecid = i_cecid
 );
 
 -- SELECT @_info_asignatura; -- DEBUG
@@ -2263,12 +2866,12 @@ SET @_tasks_asignatura = (
             )
         )
 	FROM tbl_asignatura_trabajo ast
-    JOIN tbl_asignatura_curso ON ast.ascid = tbl_asignatura_curso.ascid
+    -- JOIN tbl_asignatura_curso ON ast.ascid = tbl_asignatura_curso.ascid
     JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
     JOIN tbl_asignatura_trabajo_entrega ate ON ast.astid = ate.astid
     LEFT JOIN tbl_asignatura_trabajo_calificacion atc ON ate.ateid = atc.ateid
     WHERE ast.cecid = i_cecid
-    AND tbl_asignatura_curso.asgid = @_asgid
+    AND asg.asgid = @_asgid
     AND asg.cedid = i_cedid
     AND ate.usuid = i_usuid
 	
@@ -2762,4 +3365,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-24 13:07:52
+-- Dump completed on 2026-05-01 20:01:50

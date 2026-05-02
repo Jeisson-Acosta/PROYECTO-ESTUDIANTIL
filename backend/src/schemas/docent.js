@@ -135,6 +135,29 @@ const attendanceStudentsSchema = z.object({
     })
 })
 
+const infoAttendanceToReportSchema = z.object({
+    usuid: z.string({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val)),
+    asgcod: z.string({
+        required_error: 'The asgcod is required',
+        invalid_type_error: 'The asgcod must be a string'
+    }),
+    optionSP: z.string({
+        required_error: 'The optionSP is required',
+        invalid_type_error: 'The optionSP must be a string'
+    })
+})
+
 export function validateClasses(input) {
     return classesSchema.safeParse(input)
 }
@@ -161,4 +184,8 @@ export function validateAttendance(input) {
 
 export function validateAttendanceStudents(input) {
     return attendanceStudentsSchema.safeParse(input)
+}
+
+export function validateInfoAttendanceToReport(input) {
+    return infoAttendanceToReportSchema.safeParse(input)
 }

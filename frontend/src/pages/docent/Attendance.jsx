@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import '../../styles/docent/Attendance.css'
 
 import { BuildTable } from "../../components/common/BuildTable.jsx"
@@ -8,7 +8,72 @@ import { CardAttendance } from '../../components/docent/CardAttendance.jsx'
 import { DateSelector } from '../../components/common/DateSelector.jsx'
 
 import { useAttendance } from '../../hooks/docent/useAttendance.js'
+import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
+import { useCurrentClass } from '../../hooks/docent/useCurrentClass.js'
 
+import { UserLoginContext } from '../../context/userLogin.jsx'
+
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer'
+import toast from 'react-hot-toast'
+
+const styles = StyleSheet.create({
+    page: {
+        padding: 40,
+        fontFamily: 'Helvetica'
+    },
+    titulo: {
+        fontSize: 24,
+        marginBottom: 16,
+        color: '#1a1a1a'
+    },
+    seccion: {
+        marginBottom: 12
+    },
+    label: {
+        fontSize: 10,
+        color: '#666',
+        marginBottom: 4
+    },
+    texto: {
+        fontSize: 12,
+        color: '#1a1a1a'
+    }
+})
+
+// Componente que genera el PDF
+const PDFReportAttendance = ({ data }) => {
+
+    return (
+        <Document>
+            <Page size="A4" style={styles.page}>
+                <View style={{justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
+                    <View>
+                        <Text>{data.cednom}</Text>
+                        <Text>Reporte de Asistencia</Text>
+                        <Text>Periodo Académico {JSON.parse(data.info_current_cycle).cecnom}</Text>
+                    </View>
+                    <View>
+                        <Text>CURSO</Text>
+                        <Text>{data.asgnom}</Text>
+                        <Text>DOCENTE</Text>
+                        <Text>{data.usunom}</Text>
+                    </View>
+                </View>
+                <Text style={styles.titulo}>Reporte de Estudiante</Text>
+
+                <View style={styles.seccion}>
+                    <Text style={styles.label}>Nombre</Text>
+                    <Text style={styles.texto}>Juan Diego Pérez</Text>
+                </View>
+
+                <View style={styles.seccion}>
+                    <Text style={styles.label}>Promedio</Text>
+                    <Text style={styles.texto}>4.5</Text>
+                </View>
+            </Page>
+        </Document>
+    )
+}
 
 function generarColorPastel(seed = '') {
     const paleta = [
@@ -32,9 +97,17 @@ function generarColorPastel(seed = '') {
     return paleta[index]
 }
 
+
 export function Attendance() {
     const [showModalReport, setShowModalReport] = useState(false)
-    const [periodTypeReport, setPeriodTypeReport] = useState('today')
+    const [periodTypeReport, setPeriodTypeReport] = useState('TOD') // => (TOD) Sacar reporte del día, (LST) Sacar reporte de los últimos 7 días.
+    const [formatTypeReport, setFormatTypeReport] = useState('pdf') // => (pdf) Formato PDF
+    const [dataReport, setDataReport] = useState(null)
+
+    const { userLogin } = useContext(UserLoginContext)
+    const { currentClass } = useCurrentClass()
+    
+    const { requestDB } = useRequestDB()
 
     const {
         attendance,
@@ -129,6 +202,11 @@ export function Attendance() {
             )
         }
     ]
+    const handleClickGenerateReport = async () => {
+        const responseDB = await requestDB(`docent/info-attendance-to-report/${userLogin.userInfo.usuid}/${userLogin.educativeCenterInfo[0].cedid}/${userLogin.currentCycleInfo.cecid}/${currentClass.asgcod}/${periodTypeReport}`)
+        if (!responseDB.ok) return toast.error(responseDB.message)
+        setDataReport(responseDB.data[0])
+    } 
 
     return (
         <section className="principal-container-attendance-docent">
@@ -182,33 +260,41 @@ export function Attendance() {
                         
                         <div className='container-options-period-report' style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             <label style={{ fontSize: '13px', fontFamily: 'fontSubtitles', color: '#64748b', fontWeight: 'bold' }}>PERIODO</label>
-                            <button>
+                            <button
+                                className={periodTypeReport === 'TOD' ? 'selected' : ''}
+                                onClick={() => setPeriodTypeReport('TOD')}
+                            >
                                 <CalendarIcon />
                                 Hoy
                             </button>
-                            <button>
+                            <button
+                                className={periodTypeReport === 'LST' ? 'selected' : ''}
+                                onClick={() => setPeriodTypeReport('LST')}
+                            >
                                 <CalendarIcon />
                                 Últimos 7 días
                             </button>
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                            <label style={{ fontSize: '13px', fontFamily: 'fontSubtitles', color: '#64748b', fontWeight: 'bold' }}>FORMATO</label>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 14px', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#334155', fontFamily: 'fontSubtitles', fontWeight: 600, backgroundColor: '#f8fafc' }}>
-                                <PdfIcon /> PDF
-                            </div>
-                        </div>
 
-                        <button style={{
-                            marginTop: '6px', padding: '12px', backgroundColor: '#8b5cf6', color: 'white',
-                            border: 'none', borderRadius: '8px', fontFamily: 'fontTitlesBold', fontSize: '15px',
-                            cursor: 'pointer', transition: 'background-color 0.2s', textAlign: 'center'
-                        }}
-                        onMouseOver={(e) => e.target.style.backgroundColor = '#7c3aed'}
-                        onMouseOut={(e) => e.target.style.backgroundColor = '#8b5cf6'}
-                        >
-                            Generar PDF
-                        </button>
+                        <div className='buttons-format-type-report' style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            <label style={{ fontSize: '13px', fontFamily: 'fontSubtitles', color: '#64748b', fontWeight: 'bold' }}>FORMATO</label>
+                            <button
+                                className={formatTypeReport === 'pdf' ? 'selected' : ''}
+                                onClick={() => setFormatTypeReport('pdf')}
+                            >
+                                <PdfIcon /> PDF
+                            </button>
+                        </div>
+                        <PDFDownloadLink 
+                            document={<PDFReportAttendance data={dataReport} />} 
+                            fileName="reporte-asistencia.pdf"
+                            style={{width: '100%'}}
+                        >                          
+                            <button className='button-generate-report' onClick={handleClickGenerateReport}>
+                                Generar Reporte
+                            </button>
+                        </PDFDownloadLink>
                     </div>
                 </>
             )}

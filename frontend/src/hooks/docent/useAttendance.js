@@ -5,7 +5,13 @@ import { useRequestDB } from "../utils/useRequestDB"
 import toast from "react-hot-toast"
 
 export function useAttendance() {
-    const [selectedDate, setSelectedDate] = useState('')
+    const [selectedDate, setSelectedDate] = useState(() => {
+        const d = new Date()
+        const year = d.getFullYear()
+        const month = String(d.getMonth() + 1).padStart(2, '0')
+        const day = String(d.getDate()).padStart(2, '0')
+        return `${year}-${month}-${day}`
+    })
     const [attendance, setAttendance] = useState([])
     const [listStudents, setListStudents] = useState(null)   
     const { userLogin } = useContext(UserLoginContext)
@@ -18,7 +24,7 @@ export function useAttendance() {
     useEffect(() => {
         const fetchAttendanceData = async () => {
             setListStudents(null)
-            const dateToFetch = selectedDate === '' ? new Date().toISOString().split('T')[0] : selectedDate
+            const dateToFetch = selectedDate
 
             const responseDB = await requestDB(`docent/attendance-students/${userLogin.userInfo.usuid}/${userLogin.educativeCenterInfo[0].cedid}/${userLogin.currentCycleInfo.cecid}/${currentClass.asgcod}/${dateToFetch}`)            
             if (!responseDB.ok) return toast.error(responseDB.message)
@@ -73,7 +79,7 @@ export function useAttendance() {
             cedid: String(userLogin.educativeCenterInfo[0].cedid),
             cecid: String(userLogin.currentCycleInfo.cecid),
             asgcod: currentClass.asgcod,
-            date: selectedDate === '' ? new Date().toISOString().split('T')[0] : selectedDate,
+            date: selectedDate,
             data: JSON.stringify(attendance)
         }
 
