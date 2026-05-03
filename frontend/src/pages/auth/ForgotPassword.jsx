@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import confetti from 'canvas-confetti'
 
 export function ForgotPassword() {
     const [email, setEmail] = useState('')
@@ -21,6 +22,11 @@ export function ForgotPassword() {
 
         setEmail('')
         toast.success(responseDB.message)
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+        })
     }
 
     return (

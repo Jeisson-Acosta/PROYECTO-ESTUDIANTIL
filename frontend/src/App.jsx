@@ -28,6 +28,7 @@ import { ContenidoClase } from './pages/student/ContenidoClase.jsx'
 import { ConfigurationAccount } from './components/common/ConfigurationAccount.jsx'
 import { Attendance } from './pages/docent/Attendance.jsx'
 import { ForgotPassword } from './pages/auth/ForgotPassword.jsx'
+import { ResetPassword } from './pages/auth/ResetPassword.jsx'
 
 function Unauthorized() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/unauthorized' element={<Unauthorized />} />        
         <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
 
         <Route element={<Layout />}>
           <Route path='/configuracion' element={<ConfigurationAccount />} />

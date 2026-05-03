@@ -79,7 +79,7 @@ CREATE TABLE `tbl_asignatura_asistencia` (
   CONSTRAINT `fk_asignatura_asistencia_asgid` FOREIGN KEY (`asgid`) REFERENCES `tbl_asignatura` (`asgid`),
   CONSTRAINT `fk_asignatura_asistencia_cecid` FOREIGN KEY (`cecid`) REFERENCES `tbl_centro_educativo_ciclo` (`cecid`),
   CONSTRAINT `fk_asignatura_asistencia_usuid` FOREIGN KEY (`usuid`) REFERENCES `tbl_usuario` (`usuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +88,7 @@ CREATE TABLE `tbl_asignatura_asistencia` (
 
 LOCK TABLES `tbl_asignatura_asistencia` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura_asistencia` DISABLE KEYS */;
-INSERT INTO `tbl_asignatura_asistencia` VALUES (1,'P',NULL,'2026-02-22',2026,1,1,1),(2,'A','No vino','2026-02-22',2026,1,2,1),(22,'P',NULL,'2026-05-01',2026,1,1,1),(23,'A',NULL,'2026-05-01',2026,4,1,1),(24,'P',NULL,'2026-04-30',2026,1,1,1),(25,'P',NULL,'2026-04-30',2026,4,1,1);
+INSERT INTO `tbl_asignatura_asistencia` VALUES (26,'P',NULL,'2026-05-02',2026,1,1,1),(27,'P',NULL,'2026-05-02',2026,4,1,1),(28,'T',NULL,'2026-05-01',2026,1,1,1),(29,'T',NULL,'2026-05-01',2026,4,1,1),(30,'E',NULL,'2026-04-30',2026,1,1,1),(31,'E',NULL,'2026-04-30',2026,4,1,1);
 /*!40000 ALTER TABLE `tbl_asignatura_asistencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -674,6 +674,8 @@ CREATE TABLE `tbl_usuario` (
   `usucel` varchar(12) DEFAULT NULL COMMENT 'Número de celular delusuario.',
   `usufch_nacimiento` date DEFAULT NULL COMMENT 'Fecha de nacimiento del usuario.',
   `usuestado` enum('RE','AN','PC') DEFAULT NULL COMMENT 'Representa el estado del usuario: (RE)gistrado, (AN)tiguo, (PC) Pendiente de cambio de Contraseña',
+  `usupwdtoken` text COMMENT 'Token para recuperar la contraseña en caso que se halla olvidado.',
+  `usupwdtoken_exp` datetime DEFAULT NULL COMMENT 'Fecha hora en la que el token expira para reestablecer la contraseña',
   `cedid` int DEFAULT NULL COMMENT '[tbl_centro_educativo]: Id del centro educativo al cual pertenece el usuario.',
   `ceeid` int DEFAULT NULL COMMENT '[tbl_centro_educativo_estudiante]: Id del centro educativo al cual pertenece el usuario en caso de que este registrado el estudiante en un centro educativo.',
   `tidid` int DEFAULT NULL COMMENT '[tbl_tipo_documento]: Id del tipo de documento.',
@@ -695,7 +697,7 @@ CREATE TABLE `tbl_usuario` (
 
 LOCK TABLES `tbl_usuario` WRITE;
 /*!40000 ALTER TABLE `tbl_usuario` DISABLE KEYS */;
-INSERT INTO `tbl_usuario` VALUES (1,'Pepito Perez','pepito@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2026-02-25','AN',1,NULL,1,1),(2,'Jeisson Acosta','jeisson@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2004-12-20','RE',1,NULL,1,2),(4,'Diego Garcia','123@gmail.com','$2b$10$Vp2nVbDDWfuQ.O03Umna0ebiEC0fZsaZk98Oleym5M86JGv0Qq1Pu','1104545708','3102418099','2005-10-30','AN',1,NULL,2,1),(5,'Adriana niño','AdrianaN@gmail.com','$2b$10$oBo0LVbIukj9/7D3n.7ze.tmGf/CDS9HFE2gskmCBPFOCznK.k1Iq','1104545708','3102418099','2005-10-30','AN',1,NULL,1,2),(6,'angela martinez','angieceballos2017@gmail.com','$2b$10$2Ck2h0w3WIrInuDvVAxHQ.UQotY3eXj6vPmUG491Q4/Q8..iqf1aa','1137089214','3112270245','2008-05-12','AN',1,NULL,1,2),(7,'Pepito Perez','pepito2@gmail.com','$2b$10$vG6rhxDjUvfxos/pN7IgcOMcn0AbZroFHIWBVpFTpRXsX5fhgsi5O','1137089214','4898484894','2004-12-20','AN',1,NULL,2,1),(8,'Pepito Perez','pepito3@gmail.com','$2b$10$OQFNmNMUlTrqDcrXlNmsT.QXKSQgMQsLHAR4vkIekMM.OYgVGIh3G','1137089214','4898484894','2004-12-20','AN',1,NULL,2,1),(9,'Pepito Perez','pepito3@gmail.com','$2b$10$fpqabN.ULt0XxAJxaLP7su1OQON6HQpJhzpDqyQ/eE4CNTAk5DBKO','1137089214','4898484894','2004-12-20','AN',1,NULL,2,1);
+INSERT INTO `tbl_usuario` VALUES (1,'Pepito Perez','pepito@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2026-02-25','AN',NULL,NULL,1,NULL,1,1),(2,'Jeisson Acosta','jeisson@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2004-12-20','RE',NULL,NULL,1,NULL,1,2),(4,'Diego Garcia','123@gmail.com','$2b$10$Vp2nVbDDWfuQ.O03Umna0ebiEC0fZsaZk98Oleym5M86JGv0Qq1Pu','1104545708','3102418099','2005-10-30','AN',NULL,NULL,1,NULL,2,1),(5,'Adriana niño','AdrianaN@gmail.com','$2b$10$oBo0LVbIukj9/7D3n.7ze.tmGf/CDS9HFE2gskmCBPFOCznK.k1Iq','1104545708','3102418099','2005-10-30','AN',NULL,NULL,1,NULL,1,2),(6,'angela martinez','angieceballos2017@gmail.com','$2b$10$2Ck2h0w3WIrInuDvVAxHQ.UQotY3eXj6vPmUG491Q4/Q8..iqf1aa','1137089214','3112270245','2008-05-12','AN',NULL,NULL,1,NULL,1,2),(7,'Pepito Perez','pepito2@gmail.com','$2b$10$vG6rhxDjUvfxos/pN7IgcOMcn0AbZroFHIWBVpFTpRXsX5fhgsi5O','1137089214','4898484894','2004-12-20','AN',NULL,NULL,1,NULL,2,1),(8,'Pepito Perez','pepito3@gmail.com','$2b$10$OQFNmNMUlTrqDcrXlNmsT.QXKSQgMQsLHAR4vkIekMM.OYgVGIh3G','1137089214','4898484894','2004-12-20','AN',NULL,NULL,1,NULL,2,1),(9,'Pepito Perez','pepito3@gmail.com','$2b$10$fpqabN.ULt0XxAJxaLP7su1OQON6HQpJhzpDqyQ/eE4CNTAk5DBKO','1137089214','4898484894','2004-12-20','AN',NULL,NULL,1,NULL,2,1);
 /*!40000 ALTER TABLE `tbl_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -854,6 +856,45 @@ BEGIN
 
         SELECT TRUE AS ok, 'Usuario registrado exitosamente' AS message, i_userId AS data;
     END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_auth_save_token_forgot_password` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_auth_save_token_forgot_password`(
+IN i_usuemail VARCHAR(45),
+IN i_usupwdtoken TEXT
+)
+BEGIN
+
+SET time_zone = '-05:00';
+
+START TRANSACTION;
+
+UPDATE tbl_usuario
+SET usupwdtoken = i_usupwdtoken,
+usupwdtoken_exp = DATE_ADD(NOW(), INTERVAL 1 HOUR),
+usuestado = 'PC'
+WHERE usuemail = i_usuemail;
+
+COMMIT;
+
+SELECT 
+	usupwdtoken
+FROM tbl_usuario
+WHERE usuemail = i_usuemail;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3365,4 +3406,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-01 20:01:50
+-- Dump completed on 2026-05-03  1:11:30

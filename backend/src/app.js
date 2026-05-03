@@ -22,15 +22,6 @@ const app = express();
 // Operador nullish Coalleshing -> Si process.env.PORT es diferente de null y undefined, tomara su valor, si no dejara el valor que esta despues de los ??.
 const PORT = process.env.PORT ?? 3000
 
-// Permite peticiones desde este puerto
-/* app.use(
-  cors({
-    origin: "http://localhost:5173",
-    
-    credentials: true,
-  }),
-); */
-
 app.use(cors({
   origin: (origin, callback) => {
     const ACCEPTED_ORIGINS = [

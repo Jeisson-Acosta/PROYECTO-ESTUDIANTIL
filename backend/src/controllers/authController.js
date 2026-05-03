@@ -5,6 +5,10 @@ import { SECRET_JWT_KEY } from "../config/config.js";
 import { getProfilePhoto } from "../utils/getProfilePhoto.js";
 import { getRecourse } from "../utils/getrecourse.js";
 import { sendEmail } from "../services/sendEmail.js";
+
+import fs from 'node:fs/promises'
+import path from 'node:path'
+
 export class AuthController {
   static async registerUser(req, res) {
     const resultValidate = validateRegister(req.body);
@@ -77,11 +81,17 @@ export class AuthController {
       const result = await AuthModel.forgotPasswordUser({ usuemail: resultValidate.data.usuemail })
       if (!result.ok) return res.json(result)
 
+      // Se lee el HTML de la plantilla
+      const resetPasswordUserHtml = await fs.readFile(path.join(process.cwd(), 'templates', 'auth', 'reset-password-user.html'), 'utf-8')
+      const resetUrl = `${process.env.APP_URL}/reset-password?token=${result.data[0].usupwdtoken}`
+
+      const finalHTML = resetPasswordUserHtml.replaceAll('{{resetUrl}}', resetUrl)
+
       const resultSendEmail = await sendEmail({
         toEmail: resultValidate.data.usuemail,
         subject: 'Recuperación de contraseña',
-        html: `<h1>Prueba</h1>`,
-        text: 'Prueba de envio de correo para recuperar contraseña'
+        html: finalHTML,
+        text: 'Recuperación de contraseña'
 
       })
       if (!resultSendEmail.ok) return res.status(400).json(resultSendEmail)
@@ -89,6 +99,7 @@ export class AuthController {
       return resultSendEmail
 
     } catch(e) {
+      console.log(e)
       return res.status(500).json({ error: e.message })
     }
   }
