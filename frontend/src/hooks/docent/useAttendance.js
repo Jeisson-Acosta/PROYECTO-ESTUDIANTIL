@@ -3,6 +3,7 @@ import { UserLoginContext } from "../../context/userLogin"
 import { useCurrentClass } from "./useCurrentClass"
 import { useRequestDB } from "../utils/useRequestDB"
 import toast from "react-hot-toast"
+import confetti from "canvas-confetti"
 
 export function useAttendance() {
     const [selectedDate, setSelectedDate] = useState(() => {
@@ -87,6 +88,11 @@ export function useAttendance() {
         if (!responseDB.ok) return toast.error(responseDB.message)
 
         toast.success('Asistencia guardada exitosamente.')
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+        })
     }
 
     return {

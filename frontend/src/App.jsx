@@ -26,6 +26,7 @@ import { TeacherDashboard } from './pages/docent/TeacherDashboard.jsx'
 import { ContenidoClase } from './pages/student/ContenidoClase.jsx'
 import { ConfigurationAccount } from './components/common/ConfigurationAccount.jsx'
 import { Attendance } from './pages/docent/Attendance.jsx'
+import { ForgotPassword } from './pages/auth/ForgotPassword.jsx'
 
 function Unauthorized() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/unauthorized' element={<Unauthorized />} />        
+        <Route path='/forgot-password' element={<ForgotPassword />} />
 
         <Route element={<Layout />}>
           <Route path='/configuracion' element={<ConfigurationAccount />} />

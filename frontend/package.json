@@ -21,6 +21,7 @@
     "@mui/x-charts": "^8.27.4",
     "@react-pdf/renderer": "4.5.1",
     "@tanstack/react-table": "^8.21.3",
+    "canvas-confetti": "1.9.4",
     "driver.js": "1.4.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",

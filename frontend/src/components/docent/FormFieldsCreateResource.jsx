@@ -16,7 +16,7 @@ import "../../styles/docent/FormFieldsCreateResource.css"
 import { SendIcon, LinkIcon } from "../common/GeneralIcons.jsx"
 import { UploadFile } from "../common/UploadFile.jsx"
 // ====================================================
-
+import confetti from "canvas-confetti"
 
 export function FormFieldsCreateResource({ typeResource }) {
     const [infoResource, setInfoResource] = useState({
@@ -102,6 +102,11 @@ export function FormFieldsCreateResource({ typeResource }) {
         } else if (typeResource === 'EN') {
             toast.success('¡Anuncio creado exitosamente!')
         }
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+        })
 
         setInfoResource({
             typeResource,

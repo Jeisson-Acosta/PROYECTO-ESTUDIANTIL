@@ -4,15 +4,15 @@ import express from "express";
 // =================== ROUTES ===================
 import { authRouter } from "./routes/auth.js";
 import { studentRouter } from "./routes/student.js";
-import { docentRouter } from "./routes/docent.js";
-import { configAccountRouter } from "./routes/configAccount.js";
+import { docentRouter } from "./routes/docent.js"
+import { configAccountRouter } from "./routes/configAccount.js"
 // ==============================================
 
 // =================== MIDDLEWARES ===================
 import cors from "cors";
-import cookieParser from "cookie-parser";
-import { tokenMiddleware } from "./middlewares/tokenMiddleware.js";
-import dotenv from "dotenv";
+import cookieParser from "cookie-parser"
+import { tokenMiddleware } from "./middlewares/tokenMiddleware.js"
+import dotenv from "dotenv"
 // ===================================================
 
 dotenv.config({ path: '../.env' });

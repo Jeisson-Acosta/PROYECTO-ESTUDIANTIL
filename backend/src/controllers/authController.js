@@ -1,9 +1,10 @@
 import { AuthModel } from "../models/auth.js";
-import { validateRegister, validateLogin } from "../schemas/auth.js";
+import { validateRegister, validateLogin, validateForgotPassword } from "../schemas/auth.js";
 import jwt from "jsonwebtoken";
 import { SECRET_JWT_KEY } from "../config/config.js";
 import { getProfilePhoto } from "../utils/getProfilePhoto.js";
 import { getRecourse } from "../utils/getrecourse.js";
+import { sendEmail } from "../services/sendEmail.js";
 export class AuthController {
   static async registerUser(req, res) {
     const resultValidate = validateRegister(req.body);
@@ -65,6 +66,30 @@ export class AuthController {
 
     } catch (e) {
       return res.status(500).json({ error: e.message });
+    }
+  }
+
+  static async forgotPasswordUser(req, res) {
+    const resultValidate = validateForgotPassword(req.body)
+    if (!resultValidate.success) return res.status(400).json({ error: JSON.parse(resultValidate.error.message) })
+
+    try {
+      const result = await AuthModel.forgotPasswordUser({ usuemail: resultValidate.data.usuemail })
+      if (!result.ok) return res.json(result)
+
+      const resultSendEmail = await sendEmail({
+        toEmail: resultValidate.data.usuemail,
+        subject: 'Recuperación de contraseña',
+        html: `<h1>Prueba</h1>`,
+        text: 'Prueba de envio de correo para recuperar contraseña'
+
+      })
+      if (!resultSendEmail.ok) return res.status(400).json(resultSendEmail)
+      
+      return resultSendEmail
+
+    } catch(e) {
+      return res.status(500).json({ error: e.message })
     }
   }
 

@@ -7,10 +7,10 @@ import { useFormLogin } from '../../hooks/auth/useFormLogin.js'
 
 export function Login() {
 
-    const { userInfoLogin,  handleChangeUserInfoLogin, handleClickRedirectCreateAccount, handleSubmitFormLogin } = useFormLogin()
+    const { userInfoLogin,  handleChangeUserInfoLogin, handleClickRedirectCreateAccount, handleClickRedirectForgotPassword, handleSubmitFormLogin } = useFormLogin()
 
     return (
-        <div className='container-all-login'>        
+        <div className='container-all-login'>
             <section className="container-pricipal-login">
                 <div className="container-info-login">
                     <div className="image-login">
@@ -72,6 +72,7 @@ export function Login() {
                                 <button 
                                     type="button" 
                                     className='forgot-password'
+                                    onClick={handleClickRedirectForgotPassword}
                                 >
                                     ¿Olvidaste tu contraseña?
                                 </button>

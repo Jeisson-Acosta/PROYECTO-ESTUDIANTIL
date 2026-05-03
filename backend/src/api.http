@@ -22,13 +22,22 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "usuemail": "jeisson@gmail.com",
+    "usuemail": "juanacostamillos69@gmail.com",
     // "usuemail": "jeisson@gmail.com",
     "usupwd": "Json161121@"
 }
 
 ### Verificar sesión
 GET http://localhost:3000/auth/checkSession
+
+### Olvidar contraseña
+POST http://localhost:3000/auth/forgot-password
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MiwidXN1bm9tIjoiSmVpc3NvbiBBY29zdGEiLCJ1c3VlbWFpbCI6Imp1YW5hY29zdGFtaWxsb3M2OUBnbWFpbC5jb20iLCJyb2xjb2QiOiJET0MiLCJpYXQiOjE3Nzc3NzM4MDEsImV4cCI6MTc3Nzc3NzQwMX0.f5sycpkxwwFstht-qvAwoZX-giDmIpaLunGlSwwDH5k
+Content-Type: application/json
+
+{
+    "usuemail": "juanacostamillos69@gmail.com"
+}
 
 
 ### Obtener todas las clases del estudiante

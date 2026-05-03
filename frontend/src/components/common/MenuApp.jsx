@@ -59,19 +59,19 @@ export function MenuApp() {
             <nav className="modules-menu">
                 <ul>
                     <NavLink to={`/${COMPLEMENTED_URL}/dashboard`}>
-                        <li>
+                        <li className="dashboard-menu-option">
                             <IconDashboard />
                             <span className="text-module">Dashboard</span>
                         </li>
                     </NavLink>
                     <NavLink to={`/${COMPLEMENTED_URL}/cursos`}>
-                        <li>
+                        <li className="cursos-menu-option">
                             <IconNotebook />
                             <span className="text-module">Cursos</span>
                         </li>
                     </NavLink>
                     <NavLink to={`/${COMPLEMENTED_URL}/tareas`}>
-                        <li style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                        <li className="tareas-menu-option" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                             <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
                                 <IconClipboard />
                                 <span className="text-module">Tareas</span>
@@ -85,13 +85,13 @@ export function MenuApp() {
                         </li>
                     </NavLink>
                     <NavLink to={`/${COMPLEMENTED_URL}/notas`}>
-                        <li>
+                        <li className="notas-menu-option">
                             <IconBars />
                             <span className="text-module">Notas</span>
                         </li>
                     </NavLink>
                     <NavLink to={`/${COMPLEMENTED_URL}/calendario`}>
-                        <li>
+                        <li className="calendario-menu-option">
                             <IconSchedule />
                             <span className="text-module">Calendario</span>
                         </li>

@@ -29,6 +29,9 @@ export function useFormLogin() {
     // Función para llevar al usuario a el formulario de registrarse.
     const handleClickRedirectCreateAccount = () => navigate("/register");
 
+    // Función para llevar al usuario a el formulario de olvidó su contraseña.
+    const handleClickRedirectForgotPassword = () => navigate("/forgot-password");
+
     const handleSubmitFormLogin = async (event) => {
         event.preventDefault(); // Quitar el comportamiento por defecto de un formulario
 
@@ -66,6 +69,7 @@ export function useFormLogin() {
         userInfoLogin,
         handleChangeUserInfoLogin,
         handleClickRedirectCreateAccount,
+        handleClickRedirectForgotPassword,
         handleSubmitFormLogin,
     };
 }

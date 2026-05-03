@@ -3,8 +3,7 @@ import { useContext, useEffect } from 'react'
 import '../../styles/docent/TeacherDashboard.css'
 import { UserLoginContext } from '../../context/userLogin.jsx'
 
-import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
+import { makeTour } from '../../utils/makeTour.js'
 
 import { PenWritingIcon, ChartAreaLineIcon, MedalFallIcon, AlertTriangleIcon, UserOffIcon, ExclamationCircleIcon, UsersIcon, BookVocabularyIcon, CheckboxIcon, SchoolHatIcon, PencilCancelIcon } from '../../components/common/GeneralIcons.jsx'
 import { CardInfoDashboardTeacher } from '../../components/docent/CardInfoDashboardTeacher.jsx'
@@ -40,7 +39,7 @@ function BarGraph({ value, label }) {
     )
 }
 
-const driverObj = driver({
+/* const driverObj = driver({
     showProgress: true,
     steps: [
         { element: '.principal-cards-header', popover: { title: 'Información general', description: 'Aquí puedes ver la información general de tu curso' } },
@@ -54,7 +53,7 @@ const driverObj = driver({
         alert('termino')
         // Acá mando para actualizar el estado del usuario a 'AN'
     }
-})
+}) */
 
 export function TeacherDashboard() {
     const { userLogin, setUserLogin } = useContext(UserLoginContext)
@@ -66,7 +65,22 @@ export function TeacherDashboard() {
             course_director_info: typeof userLogin.course_director_info === 'string' ? JSON.parse(userLogin.course_director_info) : userLogin.course_director_info
         })
 
-        if (userLogin.userInfo.usuestado === 'RE') { driverObj.drive() }
+        const stepsDiverDocent = [
+            { element: '.principal-container-menu', popover: { title: 'Menú principal', description: 'Aquí puedes ver el menú principal de la plataforma con todas las opciones disponibles para ti' } },
+            { element: '.dashboard-menu-option', popover: { title: 'Dashboard', description: 'Aquí podrás ver la información general de tus cursos asignados y información de utilidad para ti' } },
+            { element: '.cursos-menu-option', popover: { title: 'Cursos', description: 'Aquí podrás gestionar todo lo relacionado con los cursos que te han asignado' } },
+            { element: '.tareas-menu-option', popover: { title: 'Tareas', description: 'Aquí podrás gestionar el estado y calificaciones de las tareas' } },
+            { element: '.notas-menu-option', popover: { title: 'Notas', description: 'Aquí podrás gestionar las notas de tus estudiantes' } },
+            { element: '.calendario-menu-option', popover: { title: 'Calendario', description: 'Aquí podrás ver el calendario académico del periodo actual' } },
+            { element: '.principal-cards-header', popover: { title: 'Información general', description: 'Aquí puedes ver la información general de tu curso' } },
+            { element: '.container-general-performance-courses', popover: { title: 'Rendimiento general', description: 'Aquí puedes ver el rendimiento general de tus cursos asignados' } },
+            { element: '.next-classes', popover: { title: 'Próximas clases', description: 'Aquí puedes ver tus próximas clases del día de hoy' } },
+            { element: '.container-tasks-to-qualify', popover: { title: 'Tareas por calificar', description: 'Aquí puedes ver las tareas que tienes pendientes por calificar a tus estudiantes' } },
+            { element: '.last-actions-docent', popover: { title: 'Últimas acciones', description: 'Aquí puedes ver las últimas acciones que has realizado en la plataforma' } },
+            { element: '.performance-course', popover: { title: 'Rendimiento del curso', description: 'Aquí puedes ver el rendimiento del curso del cual eres director' } }
+        ]   
+
+        if (userLogin.userInfo.usuestado === 'RE') { makeTour(stepsDiverDocent) }
     }, [location.key])
 
     const dateNow = new Date()

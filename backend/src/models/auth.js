@@ -1,6 +1,7 @@
 //importar libreria bcrypt para hashear la contraseña
 import bcrypt from 'bcrypt'
 import { manageDB } from '../utils/manageDB.js'
+import crypto from 'node:crypto'
 
 export class AuthModel {
     static async registerUser({ input }) {
@@ -84,7 +85,47 @@ export class AuthModel {
             throw new Error('Error logging in user')
         }
     }
-    // backend/src/models/auth.js
+    
+    static async forgotPasswordUser({ usuemail }) {
+        try {
+
+            // 1. Verificar si un usuario existe con el correo que llega por parametro
+            const resultUser = await manageDB(null, [usuemail], 'SELECT COUNT(*) AS count FROM tbl_usuario WHERE usuemail = ?', 'SL')
+            if (!resultUser.ok) { throw new Error(resultUser.message) }
+            
+            if (resultUser.data[0].count === 0) {
+                resultUser.ok = false
+                resultUser.data = null
+                resultUser.message = "Usuario no encontrado"
+                return resultUser
+            }
+
+            // 2. Verificar que el usuario no halla generado ya un token.
+            const resultTokenDB = await manageDB(null, [usuemail], 'SELECT usupwdtoken, usupwdtoken_exp FROM tbl_usuario WHERE usuemail = ?', 'SL')
+            if (!resultTokenDB.ok) { throw new Error(resultTokenDB.message) }
+
+            if (resultTokenDB.data[0].usupwdtoken !== null && (resultTokenDB.data[0].usupwdtoken_exp !== null && Date.now() < resultTokenDB.data[0].usupwdtoken_exp)) {
+                resultTokenDB.ok = false
+                resultTokenDB.data = null
+                resultTokenDB.message = 'Ya se ha enviado un correo anteriormente, por favor revisa tu bandeja de entrada'
+                return resultTokenDB
+            }
+
+            // 3. Generar el token
+            const rawToken = crypto.randomBytes(32).toString('hex')
+            const hashedToken = crypto.createHash('sha256').update(rawToken).digest('hex')
+
+            // 4. Guardamos el token en la DB con expiración de una hora.
+                // Tener en cuenta que el tiempo lo calcula en el SP.
+            const responseSaveTokenDB = await manageDB('sp_auth_save_token_forgot_password', [usuemail, hashedToken])
+            if (!responseSaveTokenDB.ok) { throw new Error(responseSaveTokenDB.message) }
+            
+            return responseSaveTokenDB
+
+        } catch(err) {
+            throw new Error('Ocurred some error while generating forgot password')
+        }
+    }
 
     static async getUserInfoByEmail({ usuemail }) {
         try {
