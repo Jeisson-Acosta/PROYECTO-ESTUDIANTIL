@@ -1,0 +1,68 @@
+.schedule-student {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.schedule-footer {
+    display: flex;
+    justify-content: row;
+    gap: 12px;
+    width: 100%;
+
+}
+
+.schedule-next-class {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    padding: 12px;
+    width: 500px;
+}
+
+.schedule-next-deliveries-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 12px;
+    width: 770px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-next-deliveries-header {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.schedule-next-deliveries-header svg {
+    width: 24px;
+    height: 24px;
+    color: #017844;
+}
+
+.schedule-next-deliveries-header h1 {
+    font-family: fonttitlesbold;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0;
+    letter-spacing: -0.2px;
+    text-transform: uppercase;
+}
+
+.deliveries-list {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    width: 60%;
+}

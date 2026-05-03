@@ -12,6 +12,7 @@ import { ClassDetails } from './pages/student/ClassDetails.jsx'
 import { StudentsList } from './pages/docent/StudentsList.jsx'
 import { ViewDetailsTask } from './pages/docent/ViewDetailsTask.jsx'
 import { StudentCalendar } from "./pages/student/StudentCalendar.jsx";
+import { StudentShedule } from "./pages/student/StudentShedule.jsx";
 // ================================================
 
 // ==================== COMPONENTS ====================
@@ -60,6 +61,7 @@ function App() {
                   <Route path='cursos/:asgcod' element={<ClassDetails />} />
                   <Route path='contenido' element={<ContenidoClase />} />
                   <Route path='calendario' element={<StudentCalendar />} />
+                  <Route path="calendario/horario-completo" element={<StudentShedule />} />
                 </Routes>
               </RoleBasedRoute>
             }

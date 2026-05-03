@@ -1,5 +1,5 @@
 .calendario-container {
-    padding: 20px;
+    padding: 5px;
     width: 100%;
     margin: 0 auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -19,6 +19,7 @@
 
 .day-name {
     font-size: 20px;
+    font-family: fontsubtitles;
 }
 
 .day-number {
@@ -27,7 +28,7 @@
 
 /* Círculo solo para el número del día actual */
 .day-number.today-circle {
-    background-color: #84cafc;
+    background-color: #3b82f6;
     color: white;
     width: 36px;
     height: 36px;
@@ -66,6 +67,7 @@
 
 .calendar-header h2 {
     font-family: fontsubtitles;
+    font-size: 25px;
     width: 100%;
     text-align: start;
     padding: 16px;
@@ -96,8 +98,8 @@
 }
 
 .calendar-header-buttons svg {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     fill: #787777;
 }
 

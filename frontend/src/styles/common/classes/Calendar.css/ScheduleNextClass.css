@@ -1,0 +1,79 @@
+.schedule-next-class {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.schedule-next-class-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.schedule-next-class-header svg {
+    width: 24px;
+    height: 24px;
+    color: #017844;
+}
+
+.schedule-next-class-header h1 {
+    font-family: fonttitlesbold;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0;
+    letter-spacing: -0.2px;
+    text-transform: uppercase;
+}
+
+.schedule-next-class-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.schedule-next-class-body h1 {
+    font-family: fontsubtitles;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+
+.schedule-next-class-body p {
+    font-family: fontmain;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6b7280;
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+
+.schedule-next-class-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.schedule-next-class-footer button {
+    font-family: fonttitlesbold;
+    font-size: 14px;
+    font-weight: 500;
+    color: #006536;
+    border: none;
+    background: #dbf9e5;
+    border-radius: 30px;
+    padding: 8px 60px;
+    margin: 0;
+    cursor: pointer;
+    letter-spacing: -0.2px;
+}
+
+.schedule-next-class-footer button:hover {
+    text-decoration: underline;
+}
