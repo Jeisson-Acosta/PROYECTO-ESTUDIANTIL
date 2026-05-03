@@ -1,6 +1,9 @@
 .desempeño-materias {
     width: 100%;
     background-color: #fff;
+    min-height: 250px;
+    max-height: 250px;
+    overflow: auto;
     border-radius: 20px;
     padding: 24px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -17,7 +20,8 @@
 .desempeño-materias-header h3 {
     margin: 0;
     font-size: 18px;
-    color: '#1A365D'
+    color: '#1A365D';
+    font-family: fonttitlesbold;
 }
 
 .desempeño-materias-header a {

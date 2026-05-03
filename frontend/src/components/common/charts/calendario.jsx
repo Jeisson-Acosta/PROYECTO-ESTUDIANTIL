@@ -19,14 +19,11 @@ export function Calendar() {
       }))
     : []
 
-  // Marcar los días que tienen eventos y aplicar colores
   useEffect(() => {
     if (calendarEvents.length > 0 && calendarRef.current) {
-      // Esperar a que el calendario se renderice
       setTimeout(() => {
         calendarEvents.forEach(event => {
           const date = event.start
-          // Buscar la celda del día
           const cells = document.querySelectorAll(`.fc-daygrid-day`)
           cells.forEach(cell => {
             const cellDate = cell.getAttribute('data-date')
@@ -47,11 +44,10 @@ export function Calendar() {
         plugins={[dayGridPlugin]}
         events={calendarEvents}
         initialView="dayGridMonth"
-        initialDate="2026-04-01"
         headerToolbar={{
-          left: 'title',
-          center: '',
-          right: 'prev,next'
+          left: 'title',  
+          center: '',     
+          right: 'prev,next'            
         }}
         titleFormat={{ year: 'numeric', month: 'long' }}
         height="auto"
@@ -62,12 +58,8 @@ export function Calendar() {
         buttonText={{
           prev: '‹',
           next: '›',
-          month: 'Mes',
-          week: 'Semana',
-          day: 'Día'
         }}
         datesSet={() => {
-          // Reaplicar los círculos cuando cambie el mes
           setTimeout(() => {
             calendarEvents.forEach(event => {
               const date = event.start
