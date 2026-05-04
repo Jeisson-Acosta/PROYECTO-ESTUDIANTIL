@@ -1,5 +1,5 @@
 import { StudentModel } from "../models/student.js"
-import { validateClasses, validateClass } from "../schemas/student.js"
+import { validateClasses, validateClass, validateNotes } from "../schemas/student.js"
 
 export class StudentController {
     static async getClasses(req, res) {
@@ -66,6 +66,20 @@ export class StudentController {
             return res.status(200).json(resultSchedule)
         } catch (err) {
             throw new Error('Error geting schedule')
+        }
+    }
+
+    static async getNotes(req, res) {
+        try {
+            const resultValidate = validateNotes(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await StudentModel.getNotes({ data: resultValidate.data })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            return res.json(result)
+        } catch (err) {
+            throw new Error('Error geting notes')
         }
     }
 

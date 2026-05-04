@@ -8,6 +8,9 @@ studentRouter.get('/class/:asgcod', StudentController.getClass)
 studentRouter.get('/task/:astid', StudentController.getTask)
 studentRouter.post('/delivery-task', StudentController.deliveryTask)
 studentRouter.get('/calendar/:usuid/:cedid/:cecid', StudentController.getCalendar)
+studentRouter.get('/notes/:cedid/:cecid/:usuid/:optionSP', StudentController.getNotes)
+
+
 studentRouter.get('/resource/:nombre_recurso', (req, res) => {
     const { nombre_recurso } = req.params;
 

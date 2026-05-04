@@ -9,6 +9,7 @@ import { CreateMaterial } from './pages/docent/CreateMaterial.jsx'
 import { CreateAnnouncement } from './pages/docent/CreateAnnouncement.jsx'
 import { Classes } from './pages/student/Classes.jsx'
 import { ClassDetails } from './pages/student/ClassDetails.jsx'
+import { NotesStudent } from './pages/student/NotesStudent.jsx'
 import { StudentsList } from './pages/docent/StudentsList.jsx'
 import { ViewDetailsTask } from './pages/docent/ViewDetailsTask.jsx'
 import { StudentCalendar } from "./pages/student/StudentCalendar.jsx";
@@ -29,14 +30,7 @@ import { ConfigurationAccount } from './components/common/ConfigurationAccount.j
 import { Attendance } from './pages/docent/Attendance.jsx'
 import { ForgotPassword } from './pages/auth/ForgotPassword.jsx'
 import { ResetPassword } from './pages/auth/ResetPassword.jsx'
-
-function Unauthorized() {
-  return (
-    <h1>No esta permitido acceder a esta ruta.</h1>
-  )
-}
-
-
+import { Unauthorized } from './components/common/Unauthorized.jsx'
 
 function App() {
 
@@ -60,9 +54,9 @@ function App() {
               <RoleBasedRoute allowedRoles={['EST']}>
                 <Routes>
                   <Route path='dashboard' element={<StudentDashboard />} />
-                  
                   <Route path='cursos' element={<Classes />} />
                   <Route path='cursos/:asgcod' element={<ClassDetails />} />
+                  <Route path='notas' element={<NotesStudent />} />
                   <Route path='contenido' element={<ContenidoClase />} />
                   <Route path='calendario' element={<StudentCalendar />} />
                   <Route path="calendario/horario-completo" element={<StudentShedule />} />

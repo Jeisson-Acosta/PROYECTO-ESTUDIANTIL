@@ -1,5 +1,5 @@
 import { AuthModel } from "../models/auth.js";
-import { validateRegister, validateLogin, validateForgotPassword } from "../schemas/auth.js";
+import { validateRegister, validateLogin, validateForgotPassword, validateResetPassword } from "../schemas/auth.js";
 import jwt from "jsonwebtoken";
 import { SECRET_JWT_KEY } from "../config/config.js";
 import { getProfilePhoto } from "../utils/getProfilePhoto.js";
@@ -96,10 +96,24 @@ export class AuthController {
       })
       if (!resultSendEmail.ok) return res.status(400).json(resultSendEmail)
       
-      return resultSendEmail
+      return res.json(resultSendEmail)
 
     } catch(e) {
-      console.log(e)
+      return res.status(500).json({ error: e.message })
+    }
+  }
+
+  static async resetPasswordUser(req, res) {
+    const resultValidate = validateResetPassword(req.body)
+    if (!resultValidate.success) return res.status(400).json({ error: JSON.parse(resultValidate.error.message) })
+
+    try {
+      const result = await AuthModel.resetPasswordUser({ input: resultValidate.data })
+      if (!result.ok) return res.json(result)
+        
+      return res.json(result)
+
+    } catch(e) {
       return res.status(500).json({ error: e.message })
     }
   }

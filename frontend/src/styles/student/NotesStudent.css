@@ -1,0 +1,105 @@
+.principal-container-notes-student {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    & .header-notes-student {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        & .buttons-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            & .buttons-options-to-select {
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                background-color: #f3f4f6;
+                padding: 4px;
+                border: 2px solid #f0f1f4;
+                border-radius: 14px;
+                & button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 8px 30px;
+                    border: none;
+                    outline: none;
+                    width: max-content;
+                    font-family: fontSubtitles;
+                    cursor: pointer;
+                    border-radius: 10px;
+                    background-color: transparent;
+                    color: #767c8a;
+                    & svg {
+                        fill: #737986;
+                    }
+
+                    &.selected {
+                        color: #ffffff;
+                        background-color: #107c8d;
+                        & svg {
+                            fill: #ffffff;
+                        }
+                    }
+                }
+            }
+            & .container-btn-download-notes button {
+                font-weight: bold;
+                padding: 8px 24px;
+                & svg {
+                    stroke: #94541d;
+                    stroke-width: 2px;
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+        & .cards-info-notes-student {
+            display: flex;
+            gap: 16px;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            overflow-x: auto;
+            & .icon-card-clock svg {
+                fill: #3d83f6;
+            }
+        }
+    }
+}
+
+
+.card-info-notes-student {
+    background-color: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(2, 6, 23, 0.08);
+    min-width: 240px;
+    & .title-card h5 {
+        font-family: fontSubtitles;
+        color: #6d7482;
+        letter-spacing: .6px;
+    }
+    & .container-value-and-icon-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & .value-card {
+            font-family: fontTitlesBold;
+            color: #1f2937;
+        }
+        & .icon-card {
+            padding: 8px;
+            border-radius: 12px;
+            & svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+    }
+}

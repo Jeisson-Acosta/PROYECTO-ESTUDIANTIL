@@ -127,6 +127,45 @@ export class AuthModel {
         }
     }
 
+    static async resetPasswordUser({ input }) {
+        const { usupwdtoken, usupwd } = input
+        try {
+
+            // 1. Validamos que exista un usuario con ese token.
+            const resultTokenDB = await manageDB(null, [usupwdtoken], 'SELECT usupwdtoken_exp, usuemail FROM tbl_usuario WHERE usupwdtoken = ?', 'SL')
+            if (!resultTokenDB.ok && resultTokenDB.message.includes('Error')) { throw new Error(resultTokenDB.message) }
+
+            // if (resultTokenDB.data.length === 0) {
+            if (resultTokenDB.data === null) {
+                resultTokenDB.ok = false
+                resultTokenDB.data = null
+                resultTokenDB.message = "Token invalido"
+                return resultTokenDB
+            }
+
+            // 2. Verificamos que el token este vigente
+            if (Date.now() > resultTokenDB.data[0].usupwdtoken_exp) {
+                resultTokenDB.ok = false
+                resultTokenDB.data = null
+                resultTokenDB.message = "El link ha expirado, por favor genera uno nuevo"
+                return resultTokenDB
+            }
+
+            // 3. Hasheamos la nueva contraseña
+            const hashedNewPassword = await bcrypt.hash(usupwd, 10)
+
+            // 4. Actualizamos la contraseña y eliminamos el token
+            const responseUpdatePasswordDB = await manageDB('sp_auth_reset_password', [resultTokenDB.data[0].usuemail, hashedNewPassword])
+            if (!responseUpdatePasswordDB.ok) { throw new Error(responseUpdatePasswordDB.message) }
+
+            responseUpdatePasswordDB.message = 'Contraseña actualizada correctamente'
+            return responseUpdatePasswordDB
+
+        } catch(err) {
+            throw new Error('Ocurred some error while resetting password')
+        }
+    }
+
     static async getUserInfoByEmail({ usuemail }) {
         try {
             const result = await manageDB('sp_auth_login_user', [usuemail]);

@@ -22,7 +22,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "usuemail": "juanacostamillos69@gmail.com",
+    "usuemail": "pepito@gmail.com",
     // "usuemail": "jeisson@gmail.com",
     "usupwd": "Json161121@"
 }
@@ -39,6 +39,15 @@ Content-Type: application/json
     "usuemail": "juanacostamillos69@gmail.com"
 }
 
+### Resetear contraseña
+POST http://localhost:3000/auth/reset-password
+Content-Type: application/json
+
+{
+    "usupwdtoken": "165d5071710d2d94087232d1ce484005c41313935da0c9af4e112c6b0c0cc476",
+    "usupwd": "Abcd1234@"
+}
+
 
 ### Obtener todas las clases del estudiante
 GET http://localhost:3000/student/classes/1
@@ -46,7 +55,11 @@ Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MSwidXN1bm
 
 ### Obtener información de una clase a la que el estudiante seleccione
 GET http://localhost:3000/student/class/CIEN
-Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MSwidXN1bm9tIjoiUGVwaXRvIFBlcmV6IiwidXN1ZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwicm9sY29kIjoiRVNUIiwiaWF0IjoxNzczMTgxMTM0LCJleHAiOjE3NzMxODQ3MzR9.xlLtpTUOGlqR8wa0cuM_H8Oa3pOA3hSi43uhrPtz3U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MSwidXN1bm9tIjoiUGVwaXRvIFBlcmV6IiwidXN1ZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwicm9sY29kIjoiRVNUIiwiaWF0IjoxNzc3ODY5Mzg4LCJleHAiOjE3Nzc4NzI5ODh9.D9sYK4GSVyH0QmhTjBJ2ht8iTDT93YFlKmY-uo-FxgA
+
+### Obtener las notas del estudiante pa la opcion 'Notas'
+GET http://localhost:3000/student/notes/1/1/1/STK
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VpZCI6MSwidXN1bm9tIjoiUGVwaXRvIFBlcmV6IiwidXN1ZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwicm9sY29kIjoiRVNUIiwiaWF0IjoxNzczMTgxMTM0LCJleHAiOjE3NzMxODQ3MzR9.xlLtpTUOGlqR8wa0cuM_H8Oa3pOA3hSi43uhrPtz3U
 
 ### Obtener todas las clases de un docente
 GET http://localhost:3000/docent/classes/2

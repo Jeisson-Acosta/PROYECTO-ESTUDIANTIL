@@ -16,6 +16,11 @@ const forgotPasswordSchema = z.object({
     usuemail: z.email({ required_error: 'The email is required' })
 })
 
+const resetPasswordSchema = z.object({
+    usupwdtoken: z.string({ required_error: 'The token is required' }),
+    usupwd: z.string({ required_error: 'The password is required' })
+})
+
 const loginSchema = z.object({
     usuemail: z.email({ required_error: 'The email is required' }),
     usupwd: z.string({ required_error: 'The password is required' })
@@ -33,4 +38,8 @@ export function validateLogin(data) {
 
 export function validateForgotPassword(data) {
     return forgotPasswordSchema.safeParse(data)
+}
+
+export function validateResetPassword(data) {
+    return resetPasswordSchema.safeParse(data)
 }

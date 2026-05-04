@@ -7,7 +7,7 @@ export class StudentModel {
             if (!result.ok) throw new Error(result.message)
             return result
         } catch (err) {
-            throw new Error('Error geting classes')
+            throw new Error('Error geting classes: ' + err.message)
         }
 
     }
@@ -19,41 +19,50 @@ export class StudentModel {
 
             return resultClass
         } catch (err) {
-            throw new Error('Error geting info class')
+            throw new Error('Error geting info class: ' + err.message)
         }
     }
 
     static async getTask({ astid }) {
         try {
             const resultTask = await manageDB('sp_student_get_info_task', [1, 1, 1, astid])
-            console.log(resultTask)
             if (!resultTask.ok) throw new Error(resultTask.message)
 
             return resultTask
         } catch (err) {
-            throw new Error('Error geting info task')
+            throw new Error('Error geting info task: ' + err.message)
         }
     }
     static async deliveryTask({ usuid, cedid, cecid, astid }) {
         try {
             const resultDelivery = await manageDB('sp_student_delivery_task', [usuid, cedid, cecid, astid])
-            console.log(resultDelivery)
             if (!resultDelivery.ok) throw new Error(resultDelivery.message)
 
             return resultDelivery
         } catch (err) {
-            throw new Error('Error delivering task')
+            throw new Error('Error delivering task: ' + err.message)
         }
     }
+
     static async getCalendar({ usuid, cedid, cecid }) {
         try {
             const resultSchedule = await manageDB('sp_student_get_calendar', [usuid, cedid, cecid])
-            console.log(resultSchedule)
             if (!resultSchedule.ok) throw new Error(resultSchedule.message)
 
             return resultSchedule
         } catch (err) {
-            throw new Error('Error geting schedule')
+            throw new Error('Error geting schedule: ' + err.message)
+        }
+    }
+
+    static async getNotes({ data }) {
+        const { cedid, cecid, usuid, optionSP } = data
+        try {
+            const result = await manageDB('sp_student_get_notes', [cedid, cecid, usuid, optionSP])
+            if (!result.ok) throw new Error(result.message)
+            return result
+        } catch (err) {
+            throw new Error('Error geting notes at the student: ' + err.message)
         }
     }
 

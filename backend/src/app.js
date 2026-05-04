@@ -18,6 +18,7 @@ import dotenv from "dotenv"
 dotenv.config({ path: '../.env' });
 
 const app = express();
+app.disable('x-powered-by')
 
 // Operador nullish Coalleshing -> Si process.env.PORT es diferente de null y undefined, tomara su valor, si no dejara el valor que esta despues de los ??.
 const PORT = process.env.PORT ?? 3000
