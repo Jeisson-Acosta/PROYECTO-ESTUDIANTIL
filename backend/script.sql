@@ -265,7 +265,7 @@ CREATE TABLE `tbl_asignatura_trabajo` (
   CONSTRAINT `fk_asignatura_trabajo_asgid` FOREIGN KEY (`asgid`) REFERENCES `tbl_asignatura` (`asgid`),
   CONSTRAINT `fk_asignatura_trabajo_cecid` FOREIGN KEY (`cecid`) REFERENCES `tbl_centro_educativo_ciclo` (`cecid`),
   CONSTRAINT `fk_asignatura_trabajo_usuid` FOREIGN KEY (`usuid`) REFERENCES `tbl_usuario` (`usuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,7 +274,7 @@ CREATE TABLE `tbl_asignatura_trabajo` (
 
 LOCK TABLES `tbl_asignatura_trabajo` WRITE;
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo` DISABLE KEYS */;
-INSERT INTO `tbl_asignatura_trabajo` VALUES (1,'Resolver multiplicaciones','Resolver las multiplicaciones que se jaron en clase.','2026-02-20 00:00:00','2026-03-08 13:40:00',NULL,NULL,'TA',1,1,2,1),(2,'Test trabajo','Test de trabajo','2026-02-20 00:00:00','2026-03-10 23:59:00',NULL,NULL,'TA',1,1,2,1),(3,'Trabajo 1 Matematicas','Trabajo 1 de prueba','2026-02-20 00:00:00','2026-03-10 22:48:00',NULL,NULL,'TA',1,1,2,2),(4,'Trabajo 1 Física','Trabajo 1 de prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(5,'Trabajo 1 Educación Física','Trabajo 1 Educación Física prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,4),(6,'Trabajo 1 Tecnologia','Trabajo 1 Tecnologia prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,5),(7,'Trabajo 2 Física','Trabajo 2 Física Prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(8,'Trabajo 3 física','Trabajo 3 física','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(9,'Trabajo 2 matematicas','Trabajo 2 matematicas Prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(11,'Prueba Material Ciencias','Prueba Material Ciencias','2026-03-15 17:20:00',NULL,NULL,NULL,'MA',1,1,2,1),(12,'Prueba enunciado Ciencias','Prueba enunciado Ciencias','2026-03-15 17:20:00',NULL,NULL,NULL,'EN',1,1,2,1),(13,'Titulo de prueba desed el front','Una descripción','2026-03-26 14:28:00','2026-03-26 14:27:00',NULL,100,'TA',1,1,2,1),(14,'Traea 1 de prueba','Hacer la tarea propuesta','2026-03-28 19:55:00','2026-03-28 23:55:00',NULL,100,'TA',1,1,2,1),(15,'Traea 1 de prueba','Hacer la tarea propuesta','2026-03-28 19:55:00','2026-03-28 23:55:00',NULL,100,'TA',1,1,2,1),(16,'Dibujos plantas','Hacer los dicbujos de cada planata hablado en clase','2026-03-28 15:37:22','2026-03-31 21:43:00',NULL,99,'TA',1,1,2,1),(17,'Ejemplode manetrial creado desde el front','Prueba de material desde el front','2026-03-28 15:43:52',NULL,NULL,NULL,'MA',0,1,2,1),(18,'NO HAY CLASE','NO HAY CLASE','2026-03-28 15:44:35',NULL,NULL,NULL,'EN',0,1,2,1),(19,'Ultima prueba nav','ajdnajnd','2026-03-28 15:48:45','2026-03-12 15:50:00',NULL,100,'TA',1,1,2,1),(20,'ajndan','njandajndj','2026-03-28 15:51:02','2026-03-28 15:50:00',NULL,100,'TA',1,1,2,1),(21,'Prueba finalllllllllll','lmakmakam','2026-03-28 15:55:53','2026-03-31 20:00:00',NULL,100,'TA',1,1,2,1),(22,'klm,kmkm','kmkmkmkm','2026-03-28 15:57:49','2026-03-01 16:58:00',NULL,100,'TA',0,1,2,1),(23,'jandajkdnkajdn','klandkajldn','2026-03-28 16:02:27','2026-03-31 21:08:00',NULL,100,'TA',1,1,2,1),(24,'13761836781hjdfab fhjb','ajndbjadbhjabfhbf','2026-03-30 20:36:44','2026-03-31 22:37:00',NULL,100,'TA',1,1,2,1),(28,'evaluacion final','',NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL),(29,'evaluacion final','realizar la evaluaicon final','2026-04-14 23:54:26','2026-04-17 23:59:00',NULL,100,'TA',0,1,2,5),(36,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(37,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(38,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(39,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(40,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(41,'Prueba de guardado','Prueba de guardado final','2026-04-15 11:37:48','2026-04-30 11:42:00',NULL,3,'TA',1,1,2,1),(42,'parcial','parcial','2026-04-21 10:00:00','2026-04-26 23:59:00',NULL,5,'TA',0,1,2,2);
+INSERT INTO `tbl_asignatura_trabajo` VALUES (1,'Resolver multiplicaciones','Resolver las multiplicaciones que se jaron en clase.','2026-02-20 00:00:00','2026-03-08 13:40:00',NULL,NULL,'TA',1,1,2,1),(2,'Test trabajo','Test de trabajo','2026-02-20 00:00:00','2026-03-10 23:59:00',NULL,NULL,'TA',1,1,2,1),(3,'Trabajo 1 Matematicas','Trabajo 1 de prueba','2026-02-20 00:00:00','2026-03-10 22:48:00',NULL,NULL,'TA',1,1,2,2),(4,'Trabajo 1 Física','Trabajo 1 de prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(5,'Trabajo 1 Educación Física','Trabajo 1 Educación Física prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,4),(6,'Trabajo 1 Tecnologia','Trabajo 1 Tecnologia prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,5),(7,'Trabajo 2 Física','Trabajo 2 Física Prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(8,'Trabajo 3 física','Trabajo 3 física','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(9,'Trabajo 2 matematicas','Trabajo 2 matematicas Prueba','2026-02-20 00:00:00','2026-03-14 12:40:00',NULL,NULL,'TA',1,1,2,3),(11,'Prueba Material Ciencias','Prueba Material Ciencias','2026-03-15 17:20:00',NULL,NULL,NULL,'MA',1,1,2,1),(12,'Prueba enunciado Ciencias','Prueba enunciado Ciencias','2026-03-15 17:20:00',NULL,NULL,NULL,'EN',1,1,2,1),(13,'Titulo de prueba desed el front','Una descripción','2026-03-26 14:28:00','2026-03-26 14:27:00',NULL,100,'TA',1,1,2,1),(14,'Traea 1 de prueba','Hacer la tarea propuesta','2026-03-28 19:55:00','2026-03-28 23:55:00',NULL,100,'TA',1,1,2,1),(15,'Traea 1 de prueba','Hacer la tarea propuesta','2026-03-28 19:55:00','2026-03-28 23:55:00',NULL,100,'TA',1,1,2,1),(16,'Dibujos plantas','Hacer los dicbujos de cada planata hablado en clase','2026-03-28 15:37:22','2026-03-31 21:43:00',NULL,99,'TA',1,1,2,1),(17,'Ejemplode manetrial creado desde el front','Prueba de material desde el front','2026-03-28 15:43:52',NULL,NULL,NULL,'MA',0,1,2,1),(18,'NO HAY CLASE','NO HAY CLASE','2026-03-28 15:44:35',NULL,NULL,NULL,'EN',0,1,2,1),(19,'Ultima prueba nav','ajdnajnd','2026-03-28 15:48:45','2026-03-12 15:50:00',NULL,100,'TA',1,1,2,1),(20,'ajndan','njandajndj','2026-03-28 15:51:02','2026-03-28 15:50:00',NULL,100,'TA',1,1,2,1),(21,'Prueba finalllllllllll','lmakmakam','2026-03-28 15:55:53','2026-03-31 20:00:00',NULL,100,'TA',1,1,2,1),(22,'klm,kmkm','kmkmkmkm','2026-03-28 15:57:49','2026-03-01 16:58:00',NULL,100,'TA',0,1,2,1),(23,'jandajkdnkajdn','klandkajldn','2026-03-28 16:02:27','2026-03-31 21:08:00',NULL,100,'TA',1,1,2,1),(24,'13761836781hjdfab fhjb','ajndbjadbhjabfhbf','2026-03-30 20:36:44','2026-03-31 22:37:00',NULL,100,'TA',1,1,2,1),(28,'evaluacion final','',NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL),(29,'evaluacion final','realizar la evaluaicon final','2026-04-14 23:54:26','2026-04-17 23:59:00',NULL,100,'TA',0,1,2,5),(36,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(37,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(38,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(39,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(40,'Test end','jajdnajdnjad','2026-04-15 11:31:26','2026-04-18 11:31:26',NULL,5,'TA',1,1,2,1),(41,'Prueba de guardado','Prueba de guardado final','2026-04-15 11:37:48','2026-04-30 11:42:00',NULL,3,'TA',1,1,2,1),(42,'parcial','parcial','2026-04-21 10:00:00','2026-04-26 23:59:00',NULL,5,'TA',0,1,2,2),(43,'Test','test','2026-05-04 10:14:00','2026-05-11 23:59:00',NULL,5,'TA',0,1,2,5);
 /*!40000 ALTER TABLE `tbl_asignatura_trabajo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -697,7 +697,7 @@ CREATE TABLE `tbl_usuario` (
 
 LOCK TABLES `tbl_usuario` WRITE;
 /*!40000 ALTER TABLE `tbl_usuario` DISABLE KEYS */;
-INSERT INTO `tbl_usuario` VALUES (1,'Pepito Perez','pepito@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2026-02-25','AN',NULL,NULL,1,NULL,1,1),(2,'Jeisson Acosta','jeisson@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2004-12-20','RE',NULL,NULL,1,NULL,1,2),(4,'Diego Garcia','123@gmail.com','$2b$10$Vp2nVbDDWfuQ.O03Umna0ebiEC0fZsaZk98Oleym5M86JGv0Qq1Pu','1104545708','3102418099','2005-10-30','AN',NULL,NULL,1,NULL,2,1),(5,'Adriana niño','AdrianaN@gmail.com','$2b$10$oBo0LVbIukj9/7D3n.7ze.tmGf/CDS9HFE2gskmCBPFOCznK.k1Iq','1104545708','3102418099','2005-10-30','AN',NULL,NULL,1,NULL,1,2),(6,'angela martinez','angieceballos2017@gmail.com','$2b$10$2Ck2h0w3WIrInuDvVAxHQ.UQotY3eXj6vPmUG491Q4/Q8..iqf1aa','1137089214','3112270245','2008-05-12','AN',NULL,NULL,1,NULL,1,2),(7,'Pepito Perez','pepito2@gmail.com','$2b$10$vG6rhxDjUvfxos/pN7IgcOMcn0AbZroFHIWBVpFTpRXsX5fhgsi5O','1137089214','4898484894','2004-12-20','AN',NULL,NULL,1,NULL,2,1),(8,'Pepito Perez','pepito3@gmail.com','$2b$10$OQFNmNMUlTrqDcrXlNmsT.QXKSQgMQsLHAR4vkIekMM.OYgVGIh3G','1137089214','4898484894','2004-12-20','AN',NULL,NULL,1,NULL,2,1),(9,'Pepito Perez','pepito3@gmail.com','$2b$10$fpqabN.ULt0XxAJxaLP7su1OQON6HQpJhzpDqyQ/eE4CNTAk5DBKO','1137089214','4898484894','2004-12-20','AN',NULL,NULL,1,NULL,2,1);
+INSERT INTO `tbl_usuario` VALUES (1,'Pepito Perez','pepito@gmail.com','$2b$10$Fl8ZbDqgLgmx6A15KQJ5A.wj8oW4LdwCPXH1cZwiXp0TXoOo7J8i6','1014477770','3107400954','2026-02-25','AN',NULL,NULL,1,NULL,1,1),(2,'Jeisson Acosta','juanacostamillos69@gmail.com','$2b$10$DGBTdRY73Wh/s0.MQXbPQ.CymCsKvZ5NGnq0uif5Q7SxlZIixz0YK','1014477770','3107400954','2004-12-20','AN',NULL,NULL,1,NULL,1,2),(4,'Diego Garcia','123@gmail.com','$2b$10$Vp2nVbDDWfuQ.O03Umna0ebiEC0fZsaZk98Oleym5M86JGv0Qq1Pu','1104545708','3102418099','2005-10-30','AN',NULL,NULL,1,NULL,2,1),(5,'Adriana niño','AdrianaN@gmail.com','$2b$10$oBo0LVbIukj9/7D3n.7ze.tmGf/CDS9HFE2gskmCBPFOCznK.k1Iq','1104545708','3102418099','2005-10-30','AN',NULL,NULL,1,NULL,1,2),(6,'angela martinez','angieceballos2017@gmail.com','$2b$10$2Ck2h0w3WIrInuDvVAxHQ.UQotY3eXj6vPmUG491Q4/Q8..iqf1aa','1137089214','3112270245','2008-05-12','AN',NULL,NULL,1,NULL,1,2),(7,'Pepito Perez','pepito2@gmail.com','$2b$10$vG6rhxDjUvfxos/pN7IgcOMcn0AbZroFHIWBVpFTpRXsX5fhgsi5O','1137089214','4898484894','2004-12-20','AN',NULL,NULL,1,NULL,2,1),(8,'Pepito Perez','pepito3@gmail.com','$2b$10$OQFNmNMUlTrqDcrXlNmsT.QXKSQgMQsLHAR4vkIekMM.OYgVGIh3G','1137089214','4898484894','2004-12-20','AN',NULL,NULL,1,NULL,2,1),(9,'Pepito Perez','pepito3@gmail.com','$2b$10$fpqabN.ULt0XxAJxaLP7su1OQON6HQpJhzpDqyQ/eE4CNTAk5DBKO','1137089214','4898484894','2004-12-20','AN',NULL,NULL,1,NULL,2,1);
 /*!40000 ALTER TABLE `tbl_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -856,6 +856,43 @@ BEGIN
 
         SELECT TRUE AS ok, 'Usuario registrado exitosamente' AS message, i_userId AS data;
     END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_auth_reset_password` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_auth_reset_password`(
+IN i_usuemail VARCHAR(45),
+IN i_usupwd TEXT
+)
+BEGIN
+
+SET time_zone = '-05:00';
+
+START TRANSACTION;
+
+UPDATE tbl_usuario
+SET usupwd = i_usupwd,
+usuestado = 'AN',
+usupwdtoken = null,
+usupwdtoken_exp = null
+WHERE usuemail = i_usuemail;
+
+COMMIT;
+
+SELECT 1 AS ok;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2328,10 +2365,28 @@ BEGIN
     DECLARE nombre_proxima_clase VARCHAR(100);
     DECLARE salon_proxima_clase VARCHAR(20);
     DECLARE hora_inicio_proxima TIME;
+    DECLARE i_proximos_eventos JSON;
     DECLARE i_info_centro_educativo JSON;
     DECLARE i_ciclo_actual JSON;
     DECLARE dia_actual INT;
     DECLARE duracion_clase INT DEFAULT 60;
+    
+    DROP TEMPORARY TABLE IF EXISTS tmp_calendar_info;
+    CREATE TEMPORARY TABLE IF NOT EXISTS tmp_calendar_info (
+        info_centro_educativo JSON,
+        ciclo_actual JSON,
+        clase_actual_nombre VARCHAR(100),
+        clase_actual_color JSON,
+        clase_actual_salon VARCHAR(20),
+        clase_actual_hora_inicio VARCHAR(20),
+        proxima_clase_nombre VARCHAR(100),
+        proxima_clase_color JSON,
+        proxima_clase_salon VARCHAR(20),
+        proxima_clase_hora_inicio VARCHAR(20),
+        proximos_eventos JSON
+    );
+    
+    TRUNCATE TABLE tmp_calendar_info;
     
     SET dia_actual = DAYOFWEEK(CURDATE());
     
@@ -2364,8 +2419,8 @@ BEGIN
     
     SELECT
         asg.asgnom,
-        ascu.ascvis_config,
-        ces.cesnom,
+        COALESCE(ascu.ascvis_config, JSON_OBJECT('color', '#808080')), -- Gris por defecto
+        COALESCE(ces.cesnom, 'sin salon'),
         ash.ashhora
     INTO 
         nombre_clase,
@@ -2386,8 +2441,8 @@ BEGIN
     IF nombre_clase IS NOT NULL THEN
         SELECT
             asg.asgnom,
-            ascu.ascvis_config,
-            ces.cesnom,
+            COALESCE(ascu.ascvis_config, JSON_OBJECT('color', '#808080')), -- Gris por defecto
+            COALESCE(ces.cesnom, 'sin salon'),
             ash.ashhora
         INTO
             nombre_proxima_clase,
@@ -2410,8 +2465,8 @@ BEGIN
     IF nombre_clase IS NULL AND nombre_proxima_clase IS NULL THEN
         SELECT
             asg.asgnom,
-            ascu.ascvis_config,
-            ces.cesnom,
+            COALESCE(ascu.ascvis_config, JSON_OBJECT('color', '#808080')), -- Gris por defecto
+            COALESCE(ces.cesnom, 'sin salon'),
             ash.ashhora
         INTO
             nombre_proxima_clase,
@@ -2439,8 +2494,8 @@ BEGIN
     IF nombre_clase IS NOT NULL AND nombre_proxima_clase IS NULL THEN
         SELECT
             asg.asgnom,
-            ascu.ascvis_config,
-            ces.cesnom,
+            COALESCE(ascu.ascvis_config, JSON_OBJECT('color', '#808080')), -- Gris por defecto
+            COALESCE(ces.cesnom, 'sin salon'),
             ash.ashhora
         INTO
             nombre_proxima_clase,
@@ -2459,22 +2514,54 @@ BEGIN
         LIMIT 1;
     END IF;
     
-    SELECT JSON_OBJECT(
-        'info_centro_educativo', i_info_centro_educativo,
-        'ciclo_actual', i_ciclo_actual,
-        'clase_actual', JSON_OBJECT(
-            'nombre', COALESCE(nombre_clase, 'No hay clase en curso'),
-            'color', COALESCE(color_clase_actual, JSON_OBJECT()),
-            'salon', COALESCE(salon_clase, ''),
-            'hora_inicio', COALESCE(hora_inicio_actual, '')
-        ),
-        'proxima_clase', JSON_OBJECT(
-            'nombre', COALESCE(nombre_proxima_clase, 'No hay más clases'),
-            'color', COALESCE(color_proxima_clase, JSON_OBJECT()),
-            'salon', COALESCE(salon_proxima_clase, ''),
-            'hora_inicio', COALESCE(hora_inicio_proxima, '')
+    -- Consulta para i_proximos_eventos con color por defecto gris
+    SELECT JSON_ARRAYAGG(
+        JSON_OBJECT(
+            'id_trabajo', ast.astid,
+            'nombre_trabajo', ast.astnomtrabajo,
+            'nombre-materia', asg.asgnom,
+            'color_materia', COALESCE(ascu.ascvis_config, JSON_OBJECT('color', '#808080')),
+            'fecha_fin', ast.astfecfin
         )
-    ) AS resultado;
+    ) INTO i_proximos_eventos
+    FROM tbl_asignatura_trabajo ast
+    INNER JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
+    INNER JOIN tbl_asignatura_curso ascu ON ascu.asgid = asg.asgid
+    INNER JOIN tbl_asignatura_estudiante ase ON ase.asgid = asg.asgid
+    WHERE ast.cecid = i_cecid
+        AND ase.usuid = i_usuid
+        AND ast.astfecfin > CURRENT_TIMESTAMP();
+    
+    -- Insertar datos en la tabla temporal con valores por defecto
+    INSERT INTO tmp_calendar_info (
+        info_centro_educativo,
+        ciclo_actual,
+        clase_actual_nombre,
+        clase_actual_color,
+        clase_actual_salon,
+        clase_actual_hora_inicio,
+        proxima_clase_nombre,
+        proxima_clase_color,
+        proxima_clase_salon,
+        proxima_clase_hora_inicio,
+        proximos_eventos
+    ) VALUES (
+        i_info_centro_educativo,
+        i_ciclo_actual,
+        COALESCE(nombre_clase, 'No hay clase en curso'),
+        COALESCE(color_clase_actual, JSON_OBJECT('color', '#808080')),
+        COALESCE(salon_clase, 'sin salon'),
+        COALESCE(TIME_FORMAT(hora_inicio_actual, '%H:%i'), 'sin hora'),
+        COALESCE(nombre_proxima_clase, 'No hay más clases'),
+        COALESCE(color_proxima_clase, JSON_OBJECT('color', '#808080')),
+        COALESCE(salon_proxima_clase, 'sin salon'),
+        COALESCE(TIME_FORMAT(hora_inicio_proxima, '%H:%i'), 'sin hora'),
+        i_proximos_eventos
+    );
+    
+    -- Seleccionar los datos de la tabla temporal
+    SELECT * FROM tmp_calendar_info;
+
     
 END ;;
 DELIMITER ;
@@ -3036,6 +3123,359 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_student_get_notes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_student_get_notes`(
+IN i_cedid INT,
+IN i_cecid INT,
+IN i_usuid INT,
+IN i_opcion CHAR(3)
+)
+BEGIN
+
+-- ///////// i_opcion ////////
+	-- (STK) See TasKs (Ver tareas)
+    -- (SDN) See Definitive Notes (Ver notas definitivas)
+-- ///////////////////////////
+
+SET lc_time_names = 'es_ES'; -- Para que los meses con MONTHNAME salgan en español.
+SET time_zone = '-05:00';
+
+-- Esta tabla temporal tarera el total de tareas entregadas, sin entregar y sin calificar.
+DROP TABLE IF EXISTS tbltmp_info_tasks;
+CREATE TEMPORARY TABLE tbltmp_info_tasks AS (
+	SELECT
+		IFNULL(SUM(CASE WHEN ate.ateestado IN('C', 'E') THEN 1 END), 0) AS total_tasks_deliveries,
+        IFNULL(SUM(CASE WHEN ate.ateestado = 'P' THEN 1 END), 0) AS total_tasks_without_deliveried,
+        IFNULL(SUM(CASE WHEN ate.ateestado = 'E' THEN 1 END), 0) AS total_tasks_without_qualified
+	FROM tbl_asignatura_trabajo_entrega ate
+    JOIN tbl_asignatura_trabajo ast ON ate.astid = ast.astid
+    JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
+    WHERE ast.cecid = i_cecid
+    AND asg.cedid = i_cedid
+    AND ate.usuid = i_usuid
+);
+
+-- SELECT * FROM tbltmp_info_tasks; -- DEBUG
+
+SET @_quantity_low_notes = (
+	SELECT
+		COUNT(*)
+	FROM tbl_asignatura_trabajo_entrega ate
+    JOIN tbl_asignatura_trabajo_calificacion atc ON ate.ateid = atc.ateid
+    JOIN tbl_asignatura_trabajo ast ON ate.astid = ast.astid
+    JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
+    WHERE asg.cedid = i_cedid
+    AND ast.cecid = i_cecid
+    AND ate.usuid = i_usuid
+    AND atc.atccalificacion < 3.0
+);
+
+-- SELECT @_quantity_low_notes; -- DEBUG
+
+IF i_opcion = 'STK' THEN
+
+	SELECT
+		(
+			SELECT
+				JSON_OBJECT(
+					'total_tasks_deliveries', total_tasks_deliveries,
+                    'total_tasks_without_deliveried', total_tasks_without_deliveried,
+                    'total_tasks_without_qualified', total_tasks_without_qualified,
+                    'quantity_low_notes', @_quantity_low_notes
+                )
+			FROM tbltmp_info_tasks
+        ) AS info_cards,
+		JSON_ARRAYAGG(
+			JSON_OBJECT(
+				'astid', ast.astid,
+                'cecnom', cec.cecnom,
+                'asgnom', asg.asgnom,
+                'astnomtrabajo', ast.astnomtrabajo,
+                'astfecfin', CONCAT(DAY(ast.astfecfin),' ', MONTHNAME(ast.astfecfin), ' ', YEAR(ast.astfecfin)),
+                'atefec_entrega', CONCAT(DAY(ate.atefec_entrega), ' ', MONTHNAME(ate.atefec_entrega), ' ', YEAR(ate.atefec_entrega)),
+                'atccalificacion', atc.atccalificacion
+			)
+		) AS list_tasks
+	FROM tbl_asignatura_trabajo ast
+    LEFT JOIN tbl_asignatura_trabajo_entrega ate ON ast.astid = ate.astid
+    LEFT JOIN tbl_asignatura_trabajo_calificacion atc ON ate.ateid = atc.ateid
+    JOIN tbl_centro_educativo_ciclo cec ON ast.cecid = cec.cecid
+    JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
+    WHERE asg.cedid = i_cedid
+    AND ast.cecid = i_cecid
+    AND ate.usuid = i_usuid;
+        
+END IF;
+
+DROP TABLE IF EXISTS tbltmp_info_tasks;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_student_get_schedule_info` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_student_get_schedule_info`(
+    IN i_usuid INT,
+    IN i_cedid INT,
+    IN i_cecid INT
+)
+BEGIN
+    DECLARE dia_actual INT;
+    DECLARE duracion_clase INT DEFAULT 60;
+    DECLARE i_nombre_proxima_clase VARCHAR(100);
+    DECLARE i_salon_proxima_clase VARCHAR(20);
+    DECLARE i_hora_inicio_proxima TIME;
+    DECLARE i_tiempo_restante INT;
+    DECLARE i_color_clase VARCHAR(20);
+    DECLARE i_eventos_horario JSON;
+    DECLARE i_entregas_pendientes JSON;
+    DECLARE i_info_centro_educativo JSON;
+    DECLARE i_ciclo_actual JSON;
+    
+
+    DROP TEMPORARY TABLE IF EXISTS tmp_dashboard_info;
+    CREATE TEMPORARY TABLE tmp_dashboard_info (
+        info_centro_educativo JSON,
+        ciclo_actual JSON,
+        proxima_clase_nombre VARCHAR(100),
+        proxima_clase_tiempo VARCHAR(50),
+        proxima_clase_salon VARCHAR(20),
+        proxima_clase_color VARCHAR(20),
+        entregas_pendientes JSON,
+        eventos_horario JSON
+    );
+    
+    SET dia_actual = DAYOFWEEK(CURDATE());
+    
+    SELECT
+        JSON_ARRAYAGG(
+            JSON_OBJECT(
+                'cedid', ced.cedid,
+                'cedcod', ced.cedcod,
+                'cednom', ced.cednom,
+                'cedtip', ced.cedtip
+            )
+        ) INTO i_info_centro_educativo
+    FROM tbl_centro_educativo ced
+    INNER JOIN tbl_usuario usu ON ced.cedid = usu.cedid
+    WHERE ced.cedid = i_cedid
+        AND usu.usuid = i_usuid;
+    
+    SET i_ciclo_actual = (
+        SELECT
+            JSON_OBJECT(
+                'cecid', cecid,
+                'cecod', cecod,
+                'cecnom', cecnom,
+                'cecfecini', cecfecini,
+                'cecfecfin', cecfecfin
+            )
+        FROM tbl_centro_educativo_ciclo
+        WHERE cecid = i_cecid
+    );
+    
+
+    SELECT
+        asg.asgnom,
+        COALESCE(ces.cesnom, 'sin salon'),
+        ash.ashhora,
+        COALESCE(
+            JSON_UNQUOTE(JSON_EXTRACT(ascu.ascvis_config, '$.color')), 
+            '#808080'
+        ) AS color_clase
+    INTO
+        i_nombre_proxima_clase,
+        i_salon_proxima_clase,
+        i_hora_inicio_proxima,
+        i_color_clase
+    FROM tbl_asignatura asg
+    INNER JOIN tbl_asignatura_estudiante ase ON ase.asgid = asg.asgid
+    INNER JOIN tbl_asignatura_horario ash ON ash.asgid = asg.asgid
+    LEFT JOIN tbl_asignatura_curso ascu ON ascu.asgid = asg.asgid
+    LEFT JOIN tbl_centro_educativo_salon ces ON asg.cesid = ces.cesid
+    WHERE asg.cedid = i_cedid
+        AND ase.usuid = i_usuid
+        AND (
+            (ash.ashdia = dia_actual AND ash.ashhora > CURTIME())
+            OR ash.ashdia > dia_actual
+        )
+    ORDER BY 
+        CASE WHEN ash.ashdia = dia_actual THEN 0 ELSE 1 END,
+        ash.ashdia ASC, 
+        ash.ashhora ASC
+    LIMIT 1;
+    
+    IF i_nombre_proxima_clase IS NOT NULL THEN
+        IF EXISTS (SELECT 1 FROM tbl_asignatura_horario ash 
+                   WHERE ash.ashdia = dia_actual 
+                   AND ash.ashhora = i_hora_inicio_proxima) THEN
+            SET i_tiempo_restante = TIMESTAMPDIFF(MINUTE, CURTIME(), i_hora_inicio_proxima);
+            IF i_tiempo_restante < 0 THEN
+                SET i_tiempo_restante = 0;
+            END IF;
+        ELSE
+            SET i_tiempo_restante = NULL;
+        END IF;
+    END IF;
+    
+SELECT JSON_ARRAYAGG(
+    JSON_OBJECT(
+        'id_trabajo', entregas.astid,
+        'nombre_trabajo', entregas.astnomtrabajo,
+        'nombre_materia', entregas.asgnom,
+        'fecha_limite', DATE_FORMAT(entregas.astfecfin, '%d/%m/%Y %H:%i'),
+        'fecha_limite_raw', entregas.astfecfin,
+        'estado', CASE 
+            WHEN entregas.ateestado IS NULL AND entregas.astfecfin < CURRENT_TIMESTAMP() THEN 'ATRASADO'
+            WHEN entregas.ateestado = 'P' AND entregas.astfecfin < CURRENT_TIMESTAMP() THEN 'ATRASADO'
+            WHEN entregas.ateestado IS NULL THEN 'PENDIENTE'
+            WHEN entregas.ateestado = 'P' THEN 'PENDIENTE'
+            WHEN entregas.ateestado = 'E' THEN 'ENTREGADO'
+            WHEN entregas.ateestado = 'C' THEN 'CALIFICADO'
+            ELSE 'DESCONOCIDO'
+        END,
+        'color_materia', COALESCE(
+            JSON_UNQUOTE(JSON_EXTRACT(entregas.ascvis_config, '$.color')),
+            '#808080'
+        )
+    )
+) INTO i_entregas_pendientes
+FROM (
+    SELECT 
+        ast.astid, 
+        ast.astnomtrabajo, 
+        ast.astfecfin, 
+        asg.asgnom, 
+        ascu.ascvis_config, 
+        ate.ateestado
+    FROM tbl_asignatura_trabajo ast
+    INNER JOIN tbl_asignatura asg ON ast.asgid = asg.asgid
+    INNER JOIN tbl_asignatura_curso ascu ON ascu.asgid = asg.asgid
+    INNER JOIN tbl_asignatura_estudiante ase ON ase.asgid = asg.asgid
+    LEFT JOIN tbl_asignatura_trabajo_entrega ate 
+        ON ate.astid = ast.astid 
+        AND ate.usuid = i_usuid
+    WHERE ast.cecid = i_cecid
+        AND ase.usuid = i_usuid
+        AND ast.astfecfin > DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
+        AND (ate.ateestado IS NULL OR ate.ateestado = 'P')
+    ORDER BY ast.astfecfin ASC
+    LIMIT 2
+) AS entregas;
+    
+    IF i_entregas_pendientes IS NULL THEN
+        SET i_entregas_pendientes = JSON_ARRAY(
+            JSON_OBJECT(
+                'mensaje', 'No hay entregas pendientes',
+                'estado', 'TODO_OK'
+            )
+        );
+    END IF;
+
+    DROP TEMPORARY TABLE IF EXISTS tmp_eventos_materia;
+    CREATE TEMPORARY TABLE tmp_eventos_materia AS
+    SELECT 
+        asg.asgid,
+        asg.asgnom AS nombre_asignatura,
+        COALESCE(JSON_UNQUOTE(JSON_EXTRACT(ascu.ascvis_config, '$.color')), '#808080') AS color,
+        JSON_ARRAYAGG(
+            JSON_OBJECT(
+                'dia', ash.ashdia,
+                'dia_nombre', CASE 
+                    WHEN ash.ashdia = 1 THEN 'Domingo'
+                    WHEN ash.ashdia = 2 THEN 'Lunes'
+                    WHEN ash.ashdia = 3 THEN 'Martes'
+                    WHEN ash.ashdia = 4 THEN 'Miércoles'
+                    WHEN ash.ashdia = 5 THEN 'Jueves'
+                    WHEN ash.ashdia = 6 THEN 'Viernes'
+                    WHEN ash.ashdia = 7 THEN 'Sábado'
+                END,
+                'hora_inicio', TIME_FORMAT(ash.ashhora, '%H:%i'),
+                'hora_fin', TIME_FORMAT(ADDTIME(ash.ashhora, SEC_TO_TIME(duracion_clase * 60)), '%H:%i'),
+                'salon', COALESCE(ces.cesnom, 'sin salon'),
+                'duracion_minutos', duracion_clase
+            )
+        ) AS eventos
+    FROM tbl_asignatura asg
+    INNER JOIN tbl_asignatura_estudiante ase ON ase.asgid = asg.asgid
+    INNER JOIN tbl_asignatura_horario ash ON ash.asgid = asg.asgid
+    LEFT JOIN tbl_asignatura_curso ascu ON ascu.asgid = asg.asgid
+    LEFT JOIN tbl_centro_educativo_salon ces ON asg.cesid = ces.cesid
+    WHERE asg.cedid = i_cedid
+        AND ase.usuid = i_usuid
+    GROUP BY asg.asgid, asg.asgnom, ascu.ascvis_config;
+    
+    SELECT JSON_ARRAYAGG(
+        JSON_OBJECT(
+            'id_asignatura', asgid,
+            'nombre', nombre_asignatura,
+            'color', color,
+            'eventos', eventos
+        )
+    ) INTO i_eventos_horario
+    FROM tmp_eventos_materia;
+    
+    DROP TEMPORARY TABLE IF EXISTS tmp_eventos_materia;
+    
+
+    
+    INSERT INTO tmp_dashboard_info (
+        info_centro_educativo,
+        ciclo_actual,
+        proxima_clase_nombre,
+        proxima_clase_tiempo,
+        proxima_clase_salon,
+        proxima_clase_color,
+        entregas_pendientes,
+        eventos_horario
+    ) VALUES (
+        i_info_centro_educativo,
+        i_ciclo_actual,
+        COALESCE(i_nombre_proxima_clase, 'No hay más clases programadas'),
+        CASE 
+            WHEN i_nombre_proxima_clase IS NULL THEN ''
+            WHEN i_tiempo_restante IS NULL THEN 'Próximos días'
+            WHEN i_tiempo_restante <= 0 THEN 'En curso o por empezar'
+            ELSE CONCAT(i_tiempo_restante, ' minutos')
+        END,
+        COALESCE(i_salon_proxima_clase, ''),
+        COALESCE(i_color_clase, '#808080'),
+        i_entregas_pendientes,
+        i_eventos_horario
+    );
+    
+
+    
+    SELECT * FROM tmp_dashboard_info;
+    
+    
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_student_get_task_info` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3406,4 +3846,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-03  1:11:30
+-- Dump completed on 2026-05-04 12:27:14

@@ -4,27 +4,11 @@ import { ButtonCommon } from '../../components/common/ButtonCommon.jsx'
 import { useEffect, useState, useContext } from 'react'
 import { DownloadIcon, FileAnalyticsIcon, ListCheckIcon, CircleCheckIcon, ClockIcon, HourglassIcon, ArrowsDownIcon } from '../../components/common/GeneralIcons'
 import { BuildTable } from '../../components/common/BuildTable.jsx'
+import { CardInfoNotesStudent } from '../../components/student/CardInfoNotesStudent.jsx'
 
 import { UserLoginContext } from '../../context/userLogin.jsx'
 import toast from 'react-hot-toast'
 
-function CardInfoNotesStudent({ title, value, bgColorIcon, icon, classNameIcon = '' }) {
-    return (
-        <div className="card-info-notes-student">
-            <div className='title-card'>
-                <h5>{title}</h5>
-            </div>
-            <div className='container-value-and-icon-card'>
-                <h1 className='value-card'>
-                    {value}
-                </h1>
-                <div className={`icon-card ${classNameIcon}`} style={{ backgroundColor: bgColorIcon }}>
-                    {icon}
-                </div>
-            </div>
-        </div>
-    )
-}
 
 export function NotesStudent() {
     const { userLogin } = useContext(UserLoginContext)
@@ -43,7 +27,55 @@ export function NotesStudent() {
         getInfoTasks()
     }, [selectedOption])
 
-    const columnsTableNotesStudent = []
+    const columnsTableNotesStudent = [
+        {
+            header: 'PERIODO',
+            accessorKey: 'cecnom',
+            cell: ({ getValue }) => { return getValue() }
+        },
+        {
+            header: 'CLASE',
+            accessorKey: 'asgnom',
+            cell: ({ getValue }) => { return getValue() }
+        },
+        {
+            header: 'TITULO DEL TRABAJO',
+            accessorKey: 'astnomtrabajo',
+            cell: ({ getValue }) => { return <strong>{getValue()}</strong> }
+        },
+        {
+            header: 'FECHA LIMITE',
+            accessorKey: 'astfecfin',
+            cell: ({ getValue }) => { return getValue() }
+        },
+        {
+            header: 'FECHA ENTREGA',
+            accessorKey: 'atefec_entrega',
+            cell: ({ getValue }) => { return getValue() === null ? '---' : getValue() }
+        },
+        {
+            header: 'NOTA',
+            accessorKey: 'atccalificacion',
+            cell: ({ getValue }) => { 
+                const noteValue = getValue() === null ? 'Sin calificar': getValue()
+                return (
+                    <span style={{
+                        fontWeight: 'bold', padding: '4px 16px', borderRadius: '10px',
+                        fontFamily: 'fontSubtitles',
+                        fontSize: '14px',
+                        margin: '0 auto',
+                        display: 'block',
+                        textAlign: 'center',
+                        width: 'fit-content',
+                        color: noteValue >= 4.0 ? '#057958' : noteValue >= 3.0 ? '#b5550b' : noteValue < 3.0 ? '#bf1740' : '#6d28d9',
+                        backgroundColor: noteValue >= 4.0 ? '#d1fae5' : noteValue >= 3.0 ? '#fef3c7' : noteValue < 3.0 ? '#ffe4e6' : '#ede9fe'
+                    }}>
+                        {noteValue}
+                    </span>
+                )
+             }
+        }
+    ]
 
     if (infoTasks === null) return <h1>Loading...</h1>
     
@@ -103,6 +135,12 @@ export function NotesStudent() {
                     />
                 </div>
             </header>
+            <section className='table-container-notes-student' style={{maxHeight: '420px', overflow: 'auto'}}>
+                <BuildTable 
+                    data={infoTasks[0].list_tasks}
+                    columns={columnsTableNotesStudent}
+                />
+            </section>
         </section>
     )
 }

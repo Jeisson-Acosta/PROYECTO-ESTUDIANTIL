@@ -1,0 +1,29 @@
+.card-info-notes-student {
+    background-color: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(2, 6, 23, 0.08);
+    min-width: 240px;
+    & .title-card h5 {
+        font-family: fontSubtitles;
+        color: #6d7482;
+        letter-spacing: .6px;
+    }
+    & .container-value-and-icon-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & .value-card {
+            font-family: fontTitlesBold;
+            color: #1f2937;
+        }
+        & .icon-card {
+            padding: 8px;
+            border-radius: 12px;
+            & svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+    }
+}

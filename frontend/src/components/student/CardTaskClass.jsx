@@ -1,4 +1,4 @@
-import { CalendarIcon, ClockIcon, EyeIcon, DownloadIcon } from "../common/GeneralIcons.jsx"
+import { DownloadIcon, ClipboardCheckIcon, BookIcon, SpeakerPhone, EyeBlueIcon } from "../common/GeneralIcons.jsx"
 import '../../styles/student/CardTaskClass.css'
 
 const formatDate = (timestamp) => {
@@ -21,61 +21,54 @@ export function CardTaskClass({ task }) {
                 </div>
             )}
             <div className="info-task">
-                <h3 className='title-task'>{task.asntnomtrabajo}</h3>
-                <p className='description-task'>{task.astdesctrabajo}</p>
-                <div className="container-dates-task">
-                    {task.asttip === 'TA' && (
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <div className="dates-task">
-                                <span>
-                                <CalendarIcon /> Pub: {formatDate(task.astfecini)}
-                                </span>
-                                <span className='delivery-date'>
-                                <ClockIcon /> Entrega: {formatDate(task.astfecfin)}
-                                </span>
-                            </div>
-                            {task.ateestado === 'C' && (
-                                <div className="qualifying-task" style={{ textAlign: 'center' }}>
-                                    <h3 style={{ fontFamily: 'fontSubtitles', fontSize: '18px', color: '#9fa6b2' }}>Puntaje</h3>
-                                    <span style={{ fontFamily: 'fontSubtitles', fontSize: '24px', fontWeight: 'bold' }}>
-                                        {task.atccalificacion}
-                                    </span> 
-                                    <span style={{ fontFamily: 'fontSubttitles', fontSize: '18px', color: '#9fa6b2' }}> / 5</span> {/* CHANGE THIS FOR REAL INFO */}
-                                </div>
-                            )}
-                        </div>
-                    )}
-                    {task.asttip !== 'TA' && (
-                        <div className="dates-task">
-                            <span>
-                                Pub: {task.astfecini}
+                <div className={`container-icon ${task.asttip === 'TA' ? 'task' : task.asttip === 'MA' ? 'material' : 'announcement'}`}>
+                    {task.asttip === 'TA' &&  <ClipboardCheckIcon />}
+                    {task.asttip === 'MA' &&  <BookIcon />}
+                    {task.asttip === 'EN' &&  <SpeakerPhone />}
+                </div>
+                <div className="all-info-task" style={{width: '100%'}}>
+                    <div style={{display: 'flex', gap: '12px', alignItems: 'center'}}>
+                        <span style={{fontWeight: 'bold', fontSize: '12px', fontFamily: 'fontTitlesBold', color: task.asttip === 'TA' ? '#36ab86' : task.asttip === 'MA' ? '#4378ed' : '#7d8a9e'}}>
+                            {task.asttip === 'TA' && 'TAREA'}
+                            {task.asttip === 'MA' && 'MATERIAL'}
+                            {task.asttip === 'EN' && 'ENUNCIADO'}
+                        </span>
+                        {task.asttip === 'TA' && (
+                            <span style={{fontWeight: 'bold', fontSize: '13px', color: '#a1a5ae'}}>
+                                Entregado: {task.atefec_entrega ? formatDate(task.atefec_entrega) : '-'}
                             </span>
+                        )}
+                    </div>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                        <div>
+                            <h3 className='title-task'>{task.asntnomtrabajo}</h3>
+                            <span style={{fontWeight: 'bold', fontSize: '13px', color: '#a1a5ae'}}>
+                                Publicado: {formatDate(task.astfecini)}
+                            </span>  
                         </div>
-                    )}
+                        <button className={`btn-task-class ${(task.asttip === 'TA' || task.asttip === 'EN') ? 'show' : 'download'}`}>
+                            {task.asttip === 'TA' && (
+                                <>
+                                    Ver
+                                    <EyeBlueIcon />
+                                </>
+                            )}
+                            {task.asttip === 'MA' && (
+                                <>
+                                    Descargar
+                                    <DownloadIcon />
+                                </>
+                            )}
+                            {task.asttip === 'EN' && (
+                                <>
+                                    Ver
+                                    <EyeBlueIcon />
+                                </>
+                            )}
+                        </button>
+                    </div>
                 </div>
             </div>
-            <footer className='footer-task'>
-                <button>
-                    {task.asttip === 'TA' && (
-                        <>
-                            Ver detalles
-                            <EyeIcon />
-                        </>
-                    )}
-                    {task.asttip === 'MA' && (
-                        <>
-                            Descargar
-                            <DownloadIcon />
-                        </>
-                    )}
-                    {task.asttip === 'EN' && (
-                        <>
-                            Ver
-                            <EyeIcon />
-                        </>
-                    )}
-                </button>
-            </footer>
         </li>
                
     )

@@ -28,7 +28,7 @@ export function CardTaskDetailsDocent({ task }) {
                             {task.asttip === 'TA' ? 'TAREA' : task.asttip === 'MA' ? 'MATERIAL' : 'ENUNCIADO'}
                         </h4>
                         {task.asttip === 'TA' && (
-                            <span style={{fontSize: '13px', color: '#7a808d'}}>Entrega: {task.astfecfin}</span>
+                            <span style={{fontSize: '13px', color: '#7a808d'}}>Vence el: {task.astfecfin}</span>
                         )}
                     </div>
                     <h2 className='title-task'>{task.astnomtrabajo}</h2>

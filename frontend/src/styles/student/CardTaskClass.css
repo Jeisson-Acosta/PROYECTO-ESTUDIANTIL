@@ -6,15 +6,16 @@
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 20px;
+    position: relative;
 }
 .task-class.task {
-    border-left: 4px solid #f49400;
+    border-left: 6px solid #34d399;
 }
 .task-class.material {
-    border-left: 4px solid #0084aa;
+    border-left: 6px solid #60a5fa;
 }
 .task-class.statement {
-    border-left: 4px solid #546883;
+    border-left: 6px solid #94a3b8;
 }
 
 .status-task {
@@ -24,7 +25,10 @@
     font-family: fontSubtitles;
     font-weight: bold;
     margin-bottom: 6px;
-    align-self: flex-end;
+    position: absolute;
+    top: 8px;
+    right: 14px;
+    padding: 6px 12px;
 }
 
 .status-task.task-pending {
@@ -40,59 +44,64 @@
 
 .task-class .info-task {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-    & .title-task {
-        font-family: fontTitlesBold;
-    }
-    & .description-task {
-        max-width: 50%;
-        font-family: fontSubtitles;
-    }
-    & .dates-task {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 10px;
-        font-size: 14px;
-        color: #9b9fa8;
-    }
-}
-.dates-task span {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    & svg {
-        width: 16px;
-        height: 16px;
-    }
-}
-
-.delivery-date svg {
-    fill: #6b7280;
-}
-
-.task-class .footer-task {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 12px;
-    & button {
-        cursor: pointer;
+    gap: 16px;
+    & .container-icon {
+        padding: 12px;
+        border-radius: 10px;
+        width: max-content;
+        height: max-content;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 6px 10px;
-        gap: 6px;
-        border: none;
-        outline: none;
-        border-radius: 10px;
-        color: #ffffff;
-        background-color: #059669;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
+        & svg {
+            width: 28px;
+            height: 28px;
+        }
+        &.task {
+            background-color: #d1fae5;
+        }
+        &.material {
+            background-color: #dbeafe;
+        }
+        &.announcement {
+            background-color: #f1f5f9;
+        }
+    }
+    & .title-task {
+        font-family: fontTitlesBold;
     }
 }
-.task-class .footer-task button:hover {
-    background-color: #047856;
+
+.btn-task-class {
+    margin-top: 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: none;
+    outline: none;
+    font-family: fontSubtitles;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    & svg {
+        width: 20px;
+        height: 20px;
+    }
+    &.show {
+        color: #24adeb;
+        background-color: #e6f6fd;
+        &:hover {
+            background-color: #d1eaf7;
+        }
+    }
+    &.download {
+        color: #ffffff;
+        background-color: #059669;
+        &:hover {
+            background-color: #047857;
+        }
+    }
 }
