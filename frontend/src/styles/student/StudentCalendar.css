@@ -37,8 +37,8 @@
 
 @media (max-width: 768px) {
     .calendar-components {
-        padding: 15px;
-        gap: 15px;
+        padding: 1px;
+        gap: 1px;
 
     }
 

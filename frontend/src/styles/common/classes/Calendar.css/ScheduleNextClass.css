@@ -77,3 +77,10 @@
 .schedule-next-class-footer button:hover {
     text-decoration: underline;
 }
+
+@media screen and (max-width: 768px) {
+    .schedule-next-class {
+        width: 100%;
+        max-width: 100%;
+    }
+}
