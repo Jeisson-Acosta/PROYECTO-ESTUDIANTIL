@@ -6,7 +6,7 @@ export function makeTour(steps) {
         showProgress: true,
         steps: steps,
         onDestroyed: () => {
-            alert('termino')
+            alert('hola')
             // Acá mando para actualizar el estado del usuario a 'AN'
         }
     })

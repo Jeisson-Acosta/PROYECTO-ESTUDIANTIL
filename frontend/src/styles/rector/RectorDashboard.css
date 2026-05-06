@@ -1,0 +1,67 @@
+.container-dashboard-rector {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+}
+.container-dashboard-rector .header-dashboard-rector {
+    background: linear-gradient(to right, #ffffff 94%, #dbeafe);
+    padding: 26px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    & .date-now {
+        font-family: fontSubtitles;
+        color: #1a84ed;
+        font-size: 14px;
+    }
+    & h1 {
+        font-family: fontTitlesBold;
+        font-size: 30px;
+        margin: 6px 0px;
+    }
+    & .description-header {
+        font-family: fontSubtitles;
+        color: #4985aa;
+        max-width: 480px;
+    }
+}
+
+.cards-actions-to-create {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    & .container-cards {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+}
+
+.cards-stadistics {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.assitence-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 220px;
+    & .assitence-card-title {
+        font-family: fontSubtitles;
+        font-size: 13px;
+        color: #8faec8;
+        margin: 0;
+        align-self: flex-start;
+    }
+}

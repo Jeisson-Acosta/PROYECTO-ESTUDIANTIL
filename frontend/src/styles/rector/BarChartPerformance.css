@@ -1,0 +1,119 @@
+.bar-chart-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex: 1;
+}
+
+.bar-chart-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.bar-chart-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bar-chart-title {
+    font-family: fontSubtitles;
+    font-size: 13px;
+    color: #8faec8;
+    margin: 0;
+}
+
+.bar-chart-value {
+    font-family: fontTitlesBold;
+    font-size: 26px;
+    color: #131c24;
+    margin: 0;
+    line-height: 1;
+}
+
+.bar-chart-value span {
+    font-family: fontSubtitles;
+    font-size: 16px;
+    color: #8faec8;
+}
+
+/* ── Tabs ── */
+.bar-chart-tabs {
+    display: flex;
+    gap: 4px;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    padding: 3px;
+    flex-shrink: 0;
+}
+
+.bar-chart-tab {
+    font-family: fontSubtitles;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: #94afc5;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bar-chart-tab.active {
+    background-color: #ffffff;
+    color: #1a84ed;
+    font-weight: bold;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.bar-chart-graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 130px;
+}
+
+.bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    width: 52px;
+    flex-shrink: 0;
+    height: 100%;
+}
+
+.bar-col .bar-track-vertical {
+    width: 100%;
+    height: 100%;
+    background-color: #dbeafe;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bar-col .bar-track-vertical .bar-fill-vertical {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, #1a84ed, #137fec);
+    border-radius: 4px;
+    transition: height 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.bar-col .bar-col-label {
+    font-family: fontSubtitles;
+    font-size: 11px;
+    color: #8faec8;
+    white-space: nowrap;
+    flex-shrink: 0;
+}

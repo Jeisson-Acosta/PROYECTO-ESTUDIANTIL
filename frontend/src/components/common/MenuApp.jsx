@@ -32,7 +32,7 @@ function CardPlanUser(){
     )
 }
 export function MenuApp() {
-    const { userLogin, setUserLogin } = useContext(UserLoginContext)
+    const { userLogin, setUserLogin, setIsAuthenticated } = useContext(UserLoginContext)
     const {requestDB}= useRequestDB()
     const navigate = useNavigate()
     if (!userLogin.userInfo) return null
@@ -42,6 +42,7 @@ export function MenuApp() {
         const response = await requestDB("auth/logout", "POST", {})
         if (!response.ok) return toast.error(response.message)
         setUserLogin({ userInfo: null, educativeCenterInfo: null, currentCycleInfo: null })
+        setIsAuthenticated(false)
         navigate("/login")
         toast.success("¡Sesión cerrada exitosamente!")
     }

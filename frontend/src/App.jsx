@@ -14,6 +14,7 @@ import { StudentsList } from './pages/docent/StudentsList.jsx'
 import { ViewDetailsTask } from './pages/docent/ViewDetailsTask.jsx'
 import { StudentCalendar } from "./pages/student/StudentCalendar.jsx";
 import { StudentShedule } from "./pages/student/StudentShedule.jsx";
+import { RectorDashboard } from './pages/rector/RectorDashboard.jsx'
 // ================================================
 
 // ==================== COMPONENTS ====================
@@ -56,8 +57,8 @@ function App() {
                   <Route path='dashboard' element={<StudentDashboard />} />
                   <Route path='cursos' element={<Classes />} />
                   <Route path='cursos/:asgcod' element={<ClassDetails />} />
+                  <Route path='cursos/:asgcod/view-details-task/:astid' element={<ContenidoClase />} />
                   <Route path='notas' element={<NotesStudent />} />
-                  <Route path='contenido' element={<ContenidoClase />} />
                   <Route path='calendario' element={<StudentCalendar />} />
                   <Route path="calendario/horario-completo" element={<StudentShedule />} />
                 </Routes>
@@ -85,7 +86,19 @@ function App() {
               </RoleBasedRoute>
             }
           />
+          {/* RUTAS DE RECTOR */}
+          <Route
+            path='/rector/*'
+            element={
+              <RoleBasedRoute allowedRoles={['REC']}>
+                <Routes>
+                  <Route path='dashboard' element={<RectorDashboard />} />
+                </Routes>
+              </RoleBasedRoute>
+            }
+          />
         </Route>
+
 
         {/* REDIRECCIÓN SEGÚN EL ROL */}
         <Route path='/' element={<RoleBasedRedirect />} />

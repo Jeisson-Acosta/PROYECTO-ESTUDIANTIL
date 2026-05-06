@@ -10,7 +10,8 @@ import { CardInfoDashboardTeacher } from '../../components/docent/CardInfoDashbo
 import { CardNextClass } from '../../components/docent/CardNextClass.jsx'
 import { CardTaskByQualify } from '../../components/docent/CardTaskByQualify.jsx'
 import { CardPerformanceCourse } from '../../components/docent/CardPerformanceCourse.jsx'
-import { useLocation } from 'react-router-dom';
+
+import { useLocation } from 'react-router-dom'
 
 function BarGraph({ value, label }) {
     return (

@@ -1,18 +1,17 @@
 import { DownloadIcon, ClipboardCheckIcon, BookIcon, SpeakerPhone, EyeBlueIcon } from "../common/GeneralIcons.jsx"
 import '../../styles/student/CardTaskClass.css'
 
-const formatDate = (timestamp) => {
-    return new Date(timestamp).toLocaleString('es-ES', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-    })
-}
+import { useNavigate, useLocation } from "react-router-dom"
 
 export function CardTaskClass({ task }) {
+
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const handleClickViewDetailsTask = ({ astid }) => {
+        navigate(`${location.pathname}/view-details-task/${astid}`)
+    }
+
     return (
         <li className={`task-class ${task.asttip === 'TA' ? 'task' : task.asttip === 'MA' ? 'material' : 'statement'}`}>
             {task.asttip === 'TA' && (
@@ -35,7 +34,7 @@ export function CardTaskClass({ task }) {
                         </span>
                         {task.asttip === 'TA' && (
                             <span style={{fontWeight: 'bold', fontSize: '13px', color: '#a1a5ae'}}>
-                                Entregado: {task.atefec_entrega ? formatDate(task.atefec_entrega) : '-'}
+                                Entregado: {task.atefec_entrega ? task.atefec_entrega : '-'}
                             </span>
                         )}
                     </div>
@@ -43,10 +42,13 @@ export function CardTaskClass({ task }) {
                         <div>
                             <h3 className='title-task'>{task.asntnomtrabajo}</h3>
                             <span style={{fontWeight: 'bold', fontSize: '13px', color: '#a1a5ae'}}>
-                                Publicado: {formatDate(task.astfecini)}
+                                Publicado: {task.astfecini}
                             </span>  
                         </div>
-                        <button className={`btn-task-class ${(task.asttip === 'TA' || task.asttip === 'EN') ? 'show' : 'download'}`}>
+                        <button 
+                            className={`btn-task-class ${(task.asttip === 'TA' || task.asttip === 'EN') ? 'show' : 'download'}`}
+                            onClick={() => handleClickViewDetailsTask({ astid: task.astid })}
+                        >
                             {task.asttip === 'TA' && (
                                 <>
                                     Ver

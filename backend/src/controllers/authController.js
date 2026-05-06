@@ -44,10 +44,10 @@ export class AuthController {
 
       const infoUser = JSON.parse(result.data[0].info_user)
 
-      if (infoUser.rolcod === "EST") {
+      /* if (infoUser.rolcod === "EST") {
         const taskrecourses = result.data[0]?.trabajo_recursos
         infoUser.recourses = getRecourse(taskrecourses.nombre_recurso, result.data[0].centro_educativo[0].cednom)
-      }
+      } */
 
       const { usuid, usunom, usuemail, rolcod } = infoUser
       infoUser.usufoto_perfil = getProfilePhoto({ usudocu: infoUser.usudocu })

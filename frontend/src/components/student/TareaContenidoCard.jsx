@@ -11,7 +11,7 @@ export function ContenidoCard({ tipo_trabajo }) {
   const { userLogin } = useContext(UserLoginContext) || {};
   const [entregaAnulada, setEntregaAnulada] = useState(false);
   
-  const colorClaseData = React.useMemo(() => {
+  const colorClaseData = () => {
     if (!userLogin?.color_clase) return null;
     try {
       if (typeof userLogin.color_clase === 'string') {
@@ -20,10 +20,9 @@ export function ContenidoCard({ tipo_trabajo }) {
       }
       return userLogin.color_clase;
     } catch (error) {
-      console.error('Error parsing color_clase:', error);
       return null;
     }
-  }, [userLogin?.color_clase]);
+  };
 
   const colorDeClase = colorClaseData?.color_clase || '#7a7a7aff';
   
@@ -56,6 +55,8 @@ export function ContenidoCard({ tipo_trabajo }) {
     if (effectiveIsPending) return 'Entregar tarea';
     return '';
   };
+
+  console.log(userLogin)
 
   return (
     <div className="contenido-card">

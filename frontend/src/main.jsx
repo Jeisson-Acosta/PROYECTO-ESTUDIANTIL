@@ -5,13 +5,16 @@ import App from './App'
 import { ResponseDBProvider } from './context/reponseDB.jsx'
 import { UserLoginProvider } from './context/userLogin.jsx'
 import { CurrentClassProvider } from './context/docent/currentClass.jsx'
+import { ShowWelcomeModalAppProvider } from './context/common/showWelcomeModalApp.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <ResponseDBProvider>
       <UserLoginProvider>
         <CurrentClassProvider>
-          <App />
+          <ShowWelcomeModalAppProvider>
+            <App />
+          </ShowWelcomeModalAppProvider>
         </CurrentClassProvider>
       </UserLoginProvider>
     </ResponseDBProvider>
