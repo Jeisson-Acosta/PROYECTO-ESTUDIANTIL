@@ -11,6 +11,7 @@ studentRouter.get('/calendar/:usuid/:cedid/:cecid', StudentController.getCalenda
 studentRouter.get('/notes/:cedid/:cecid/:usuid/:optionSP', StudentController.getNotes)
 
 
+studentRouter.get('/schedule/:usuid/:cedid/:cecid', StudentController.getSchedule)
 studentRouter.get('/resource/:nombre_recurso', (req, res) => {
     const { nombre_recurso } = req.params;
 

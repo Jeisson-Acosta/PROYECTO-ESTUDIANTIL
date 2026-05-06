@@ -46,9 +46,22 @@ export class StudentModel {
 
     static async getCalendar({ usuid, cedid, cecid }) {
         try {
-            const resultSchedule = await manageDB('sp_student_get_calendar', [usuid, cedid, cecid])
+            const resultSchedule = await manageDB('sp_student_get_calendar_info', [usuid, cedid, cecid])
             if (!resultSchedule.ok) throw new Error(resultSchedule.message)
 
+            console.log('Calendar info:', resultSchedule)
+            return resultSchedule
+
+        } catch (err) {
+            console.log('Error geting calendar:', err)
+            throw new Error('Error geting calendar')
+        }
+    }
+    static async getSchedule({ usuid, cedid, cecid }) {
+        try {
+            const resultSchedule = await manageDB('sp_student_get_schedule_info', [usuid, cedid, cecid])
+            if (!resultSchedule.ok) throw new Error(resultSchedule.message)
+            console.log('Schedule info:', resultSchedule)
             return resultSchedule
         } catch (err) {
             throw new Error('Error geting schedule: ' + err.message)
@@ -63,6 +76,8 @@ export class StudentModel {
             return result
         } catch (err) {
             throw new Error('Error geting notes at the student: ' + err.message)
+            console.log('Error geting schedule:', err)
+            throw new Error('Error geting schedule')
         }
     }
 

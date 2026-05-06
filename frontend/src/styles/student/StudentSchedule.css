@@ -2,46 +2,53 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Contenedor del calendario con scroll horizontal */
+.schedule-student .schedule-calendar {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* El calendario interno necesita un ancho mínimo */
+.schedule-student .schedule-calendar>div {
+    min-width: 1000px;
 }
 
 .schedule-footer {
     display: flex;
-    justify-content: row;
-    gap: 12px;
+    gap: 20px;
     width: 100%;
-
+    flex-wrap: wrap;
 }
 
-.schedule-next-class {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 12px;
-    background-color: #f9fafb;
-    border-radius: 12px;
-    padding: 12px;
-    width: 500px;
+/* Contenedor de próxima clase */
+.schedule-next-class-container {
+    flex: 1;
+    min-width: 280px;
 }
 
+/* Contenedor de entregas pendientes */
 .schedule-next-deliveries-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 12px;
+    flex: 2;
+    min-width: 400px;
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 12px;
-    width: 770px;
+    padding: 16px;
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
 .schedule-next-deliveries-header {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     gap: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #017844;
+    padding-bottom: 12px;
 }
 
 .schedule-next-deliveries-header svg {
@@ -52,9 +59,9 @@
 
 .schedule-next-deliveries-header h1 {
     font-family: fonttitlesbold;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    color: #6b7280;
+    color: #374151;
     margin: 0;
     letter-spacing: -0.2px;
     text-transform: uppercase;
@@ -63,6 +70,62 @@
 .deliveries-list {
     display: flex;
     flex-direction: row;
-    gap: 12px;
-    width: 60%;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Cada entrega individual */
+.deliveries-list>* {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+    .schedule-student {
+        gap: 16px;
+    }
+
+    .schedule-footer {
+        gap: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .schedule-student {
+        padding: 8px;
+        gap: 12px;
+    }
+
+    .schedule-footer {
+        flex-direction: column;
+    }
+
+    .schedule-next-class-container {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .schedule-next-deliveries-container {
+        min-width: 100%;
+        width: 100%;
+        padding: 12px;
+    }
+
+    .deliveries-list {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .deliveries-list>* {
+        min-width: 100%;
+    }
+
+    .schedule-next-deliveries-header h1 {
+        font-size: 14px;
+    }
+
+    .schedule-student .schedule-calendar>div {
+        min-width: 800px;
+    }
 }

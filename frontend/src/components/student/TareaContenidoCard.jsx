@@ -9,33 +9,23 @@ import { GetRecourses } from '../common/classes/GetRecourses.jsx';
 export function ContenidoCard({ tipo_trabajo }) {
   
   const { userLogin } = useContext(UserLoginContext) || {};
+  const colorDeClase = userLogin?.color_clase 
+  ? (userLogin.color_clase.startsWith('#') ? userLogin.color_clase : `#${userLogin.color_clase}`)
+  : '#1f1f1f';
+  console.log(colorDeClase)
+  console.log('userLogin: ', userLogin.color_clase);
   const [entregaAnulada, setEntregaAnulada] = useState(false);
   
-  const colorClaseData = () => {
-    if (!userLogin?.color_clase) return null;
-    try {
-      if (typeof userLogin.color_clase === 'string') {
-        const parsed = JSON.parse(userLogin.color_clase);
-        return parsed;
-      }
-      return userLogin.color_clase;
-    } catch (error) {
-      return null;
-    }
-  };
 
-  const colorDeClase = colorClaseData?.color_clase || '#7a7a7aff';
-  
-  // Determinar el estado de la tarea
   const tareaEstadoActual = userLogin?.tarea_estado?.toLowerCase() || '';
   
-  // Lógica para el botón considerando si se anuló la entrega
+
   const isNotDelivered = tareaEstadoActual === 'no entregado';
   const isPending = tareaEstadoActual === 'entrega pendiente';
   const isDelivered = tareaEstadoActual === 'trabajo entregado';
   const isGraded = tareaEstadoActual === 'trabajo calificado';
   
-  // Si se anuló la entrega, se comporta como pendiente
+
   const effectiveIsPending = isPending || entregaAnulada;
   const effectiveIsDeliveredOrGraded = (isDelivered || isGraded) && !entregaAnulada;
 
@@ -172,7 +162,7 @@ export function ContenidoCard({ tipo_trabajo }) {
                     {effectiveIsPending && (
                       <button 
                         className='entrega-tarea' 
-                        style={{backgroundColor: `#${colorDeClase}`, color: 'white', cursor: 'pointer'}}
+                        style={{backgroundColor: colorDeClase, color: 'white', cursor: 'pointer'}}
                         onClick={handleDeliverButtonClick}
                       >
                         {getButtonText()}

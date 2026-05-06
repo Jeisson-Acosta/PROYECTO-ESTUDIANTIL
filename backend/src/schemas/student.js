@@ -47,3 +47,22 @@ const taskSchema = z.object({
 export function validateTask(data) {
     return taskSchema.safeParse(data)
 }
+
+const calendarSchema = z.object({
+    usuid: z.string({ required_error: 'The user id is required' }),
+    cedid: z.string({ required_error: 'The id of the educational center is required' }),
+    cecid: z.string({ required_error: 'The id of the cycle is required' }),
+})
+
+export function validateCalendar(data) {
+    return calendarSchema.safeParse(data)
+}
+const scheduleSchema = z.object({
+    usuid: z.string({ required_error: 'The user id is required' }),
+    cedid: z.string({ required_error: 'The id of the educational center is required' }),
+    cecid: z.string({ required_error: 'The id of the cycle is required' }),
+})
+
+export function validateSchedule(data) {
+    return scheduleSchema.safeParse(data)
+}
