@@ -35,6 +35,7 @@ const createResourceSchema = z.object({
     dateFinal: z.string().nullable().transform(val => val === '' ? null : val),
     hour: z.string().nullable(),
     points: z.string().transform(val => val === '' || val === null ? null : Number(val)).nullable(),
+    webLinks: z.string(),
     publishImmediately: z.string().transform(val => val === 'true').optional(),
     lateDeliveries: z.string().transform(val => val === 'true').optional()
 })

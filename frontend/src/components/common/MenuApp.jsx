@@ -97,12 +97,12 @@ export function MenuApp() {
                             <span className="text-module">Calendario</span>
                         </li>
                     </NavLink>
-                    <NavLink to={`/${COMPLEMENTED_URL}/contenido`}>
+                    {/*<NavLink to={`/${COMPLEMENTED_URL}/contenido`}>
                         <li>
                             <IconSchedule />
                             <span className="text-module">Contenido</span>
                         </li>
-                    </NavLink>
+                    </NavLink>*/}
                 </ul>
             </nav>
         <CardPlanUser/>

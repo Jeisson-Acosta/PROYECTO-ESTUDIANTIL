@@ -32,6 +32,7 @@ import { Attendance } from './pages/docent/Attendance.jsx'
 import { ForgotPassword } from './pages/auth/ForgotPassword.jsx'
 import { ResetPassword } from './pages/auth/ResetPassword.jsx'
 import { Unauthorized } from './components/common/Unauthorized.jsx'
+import { FormCreateStudent } from './components/rector/FormCreateStudent.jsx'
 
 function App() {
 
@@ -81,7 +82,7 @@ function App() {
                   <Route path='cursos/:asgcod/attendance' element={<Attendance />} />
                   <Route path='cursos/:asgcod/students' element={<StudentsList />} />
                   <Route path='cursos/:asgcod/view-details-task/:astid' element={<ViewDetailsTask />} />
-                  <Route path='contenido' element={<ContenidoClase />} />
+                  {/*<Route path='contenido' element={<ContenidoClase />} />*/}
                 </Routes>
               </RoleBasedRoute>
             }
@@ -93,6 +94,7 @@ function App() {
               <RoleBasedRoute allowedRoles={['REC']}>
                 <Routes>
                   <Route path='dashboard' element={<RectorDashboard />} />
+                  <Route path='create-student' element={<FormCreateStudent />} />
                 </Routes>
               </RoleBasedRoute>
             }

@@ -1,5 +1,6 @@
 import '../../styles/rector/RectorDashboard.css'
 import { useContext } from "react"
+import { useNavigate } from 'react-router-dom'
 import { UserLoginContext } from "../../context/userLogin.jsx"
 import { BookIcon, SchoolHatIcon, UserIcon } from "../../components/common/GeneralIcons.jsx"
 import { CardActionToCreate } from '../../components/rector/CardActionToCreate.jsx'
@@ -7,6 +8,7 @@ import { CircleChart } from '../../components/common/charts/CircleChart.jsx'
 import { BarChartPerformance } from '../../components/rector/BarChartPerformance.jsx'
 
 export function RectorDashboard() {
+    const navigate = useNavigate()
     const { userLogin } = useContext(UserLoginContext)
 
     console.log(userLogin)
@@ -49,7 +51,7 @@ export function RectorDashboard() {
                         description={'Ingresar nuevos alumnos y asignar grados correspondientes.'}
                         colorTextButton={'#1c9967'}
                         textButton={'MATRICULAR'}
-                        onClick={() => {}}
+                        onClick={() => {navigate('/rector/create-student')}}
                     />
                     <CardActionToCreate 
                         bgColorIcon={'#faf5ff'}

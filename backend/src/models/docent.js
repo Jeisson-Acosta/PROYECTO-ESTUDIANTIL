@@ -1,6 +1,7 @@
 import path from "node:path"
 import { manageDB } from "../utils/manageDB.js"
 import { normalizeNameResource } from "../utils/normalizeNameResource.js"
+import { sendEmail } from "../services/sendEmail.js"
 
 export class DocentModel {
 
@@ -39,7 +40,7 @@ export class DocentModel {
                 1, // cedid
                 1, // cecid
                 data.usuid,
-                1, // asgid
+                'CIEN', // asgcod
                 data.title,
                 data.description,
                 data.dateInitial ?? null,
@@ -49,7 +50,8 @@ export class DocentModel {
                 data.lateDeliveries ?? false,
                 // data.hour ?? null,
                 // data.publishImmediately ?? false,
-                JSON.stringify(fileInfo)   // [{ name: "tarea1", path: "uploads/..." }, ...]
+                JSON.stringify(fileInfo),   // [{ name: "tarea1", path: "uploads/..." }, ...]
+                data.webLinks
             ])
             
             if (!result.ok) throw new Error(result.message)

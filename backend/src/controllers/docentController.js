@@ -1,5 +1,9 @@
 import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList, validateTaskDetails, validateAttendance, validateAttendanceStudents, validateInfoAttendanceToReport } from "../schemas/docent.js";
-import { DocentModel } from "../models/docent.js";
+import { DocentModel } from "../models/docent.js"
+import { sendEmail } from "../services/sendEmail.js"
+
+import fs from 'node:fs/promises'
+import path from 'node:path'
 
 export class DocentController {
     static async getClasses(req, res) {
@@ -44,6 +48,41 @@ export class DocentController {
                 files: req.files ?? []
             })
             if (!result.ok) return res.status(400).json({ message: result.message })
+        
+            // Esta parte hace toda la logica para enviar el email segun el tipo de recurso.
+            if (result.data[0].emails_students !== null) {
+
+                const { astnomtrabajo, astdesctrabajo, asttip, astfecfin, asgnom_course } = result.data[0].info_to_template
+                let finalHTML = '';
+
+                const emails = JSON.parse(result.data[0].emails_students)
+                const templateEmail = await fs.readFile(path.join(process.cwd(), 'templates', 'docent', (asttip === 'TA' ? 'new_task_email.html' : asttip === 'MA' ? 'new_material_email.html' : 'new_announcement_email.html')), 'utf-8')
+
+                if (asttip === 'TA') {
+                    finalHTML = templateEmail
+                        .replaceAll('{{asgnomCourse}}', asgnom_course)
+                        .replaceAll('{{astnomtrabajo}}', astnomtrabajo)
+                        .replaceAll('{{astdesctrabajo}}', astdesctrabajo)
+                        .replaceAll('{{astfecfin}}', astfecfin)
+                } else if (asttip === 'MA') {
+                    finalHTML = templateEmail.replaceAll('{{astnomtrabajo}}', astnomtrabajo).replaceAll('{{astdesctrabajo}}', astdesctrabajo)
+                } else if (asttip === 'EN') {
+                    finalHTML = templateEmail
+                        .replaceAll('{{asgnomCourse}}', asgnom_course)
+                        .replaceAll('{{astnomtrabajo}}', astnomtrabajo)
+                        .replaceAll('{{astdesctrabajo}}', astdesctrabajo)
+                        .replaceAll('{{astfecfin}}', astfecfin)
+                }
+                
+                const responseEmail = await sendEmail({
+                    toEmail: emails.join('|'),
+                    subject: (asttip === 'TA' ? 'Nueva tarea creada' : asttip === 'MA' ? 'Nuevo material creado' : 'Nuevo enunciado creado'),
+                    html: finalHTML,
+                    text: (asttip === 'TA' ? 'Nueva tarea creada' : asttip === 'MA' ? 'Nuevo material creado' : 'Nuevo enunciado creado')
+                })
+                if (!responseEmail.ok) throw new Error(responseEmail.message)
+
+            }
 
             return res.status(200).json(result)
 

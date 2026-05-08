@@ -13,8 +13,9 @@ import "../../styles/docent/FormFieldsCreateResource.css"
 // ================================================
 
 // ==================== COMPONENTS ====================
-import { SendIcon, LinkIcon } from "../common/GeneralIcons.jsx"
+import { SendIcon } from "../common/GeneralIcons.jsx"
 import { UploadFile } from "../common/UploadFile.jsx"
+import { WebLinksInput } from "./WebLinksInput.jsx"
 // ====================================================
 import confetti from "canvas-confetti"
 
@@ -25,6 +26,7 @@ export function FormFieldsCreateResource({ typeResource }) {
         category: null,
         description: '',
         files: [],
+        webLinks: [''],
         // dateInitial: null,
         dateFinal: '',
         // hour: null,
@@ -64,6 +66,10 @@ export function FormFieldsCreateResource({ typeResource }) {
         }))
     }
 
+    const handleWebLinksChange = (updatedLinks) => {
+        setInfoResource(prev => ({ ...prev, webLinks: updatedLinks }))
+    }
+
     const formatDatetime = (date = new Date()) => {
         const pad = (n) => String(n).padStart(2, '0')
         return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
@@ -92,6 +98,8 @@ export function FormFieldsCreateResource({ typeResource }) {
         // Archivos adjuntos
         uploadedFiles.forEach(file => { formData.append('files', file) })
 
+        formData.append('webLinks', JSON.stringify(infoResource.webLinks))
+
         const responseDB = await requestDB('docent/create-resource', 'POST', formData)
         if (!responseDB.ok) return toast.error(responseDB.message)
 
@@ -113,7 +121,8 @@ export function FormFieldsCreateResource({ typeResource }) {
             title: '',
             category: null,
             description: '',
-            // files: [],
+            files: [],
+            webLinks: [],
             // dateInitial: null,
             dateFinal: '',
             // hour: null,
@@ -233,20 +242,10 @@ export function FormFieldsCreateResource({ typeResource }) {
                         <UploadFile />
                     )}
                     {((typeResource === 'MA' && (infoResource.category === 'L' || infoResource.category === 'AM')) || typeResource === 'TA') && (
-                        <div className="container-anchors-web">
-                            <div className="container-anchor-created">
-                                <h5>ENLACE WEB</h5>
-                                <div className="container-anchor-inside">
-                                    <div className="icon-anchor">
-                                        <LinkIcon />
-                                    </div>
-                                    <div className="container-input-anchor">
-                                        <input type="text" placeholder="Enlace web" />
-                                    </div>
-                                </div>
-                                <button className="btn-create-anchor">Nuevo enlace</button>
-                            </div>
-                        </div>
+                        <WebLinksInput
+                            links={infoResource.webLinks}
+                            onChange={handleWebLinksChange}
+                        />
                     )}
                 </section>
             </div>

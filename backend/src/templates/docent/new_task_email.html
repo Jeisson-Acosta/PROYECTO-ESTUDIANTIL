@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nueva Tarea Asignada</title>
+  <style>
+    body, table, td, p, a, li, blockquote {
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    table, td {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+      border-collapse: collapse;
+    }
+    img {
+      border: 0;
+      display: block;
+      outline: none;
+      text-decoration: none;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    :root {
+      --green:    #34d399;
+      --green-dk: #0f9e78;
+      --gray-bg:  #f3f4f6;
+      --white:    #ffffff;
+      --text-dark:#1a1a2e;
+      --text-mid: #4b5563;
+      --text-light:#6b7280;
+      --border:   #e5e7eb;
+      --badge-bg: #ecfdf5;
+      --badge-txt:#065f46;
+    }
+
+    body {
+      background-color: #f3f4f6;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    .wrapper {
+      width: 100%;
+      background-color: #f3f4f6;
+    }
+
+    .header-td {
+      background-color: #34d399;
+      border-radius: 16px 16px 0 0;
+      padding: 40px 40px 32px 40px;
+    }
+    .header-title {
+      font-size: 30px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+
+    .card-td {
+      background-color: #ffffff;
+      padding: 32px 36px 36px 36px;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .badge-wrap {
+      display: inline-block;
+    }
+    .badge-icon {
+      width: 36px;
+      height: 36px;
+      background-color: #ecfdf5;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 36px;
+      font-size: 18px;
+    }
+    .badge-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #065f46;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .badge-course {
+      font-size: 11px;
+      font-weight: 700;
+      color: #065f46;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .badge-sub {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 1px;
+    }
+
+    .task-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 0 0 10px 0;
+    }
+
+    .task-desc {
+      font-size: 14px;
+      color: #4b5563;
+      line-height: 1.65;
+      margin: 0 0 20px 0;
+    }
+
+    .date-box {
+      background-color: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+    .date-label {
+      font-size: 13px;
+      color: #4b5563;
+    }
+    .date-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: #34d399;
+    }
+
+    .footer-td {
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-size: 14px;
+      font-weight: 700;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+    .footer-sub {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: #34d399;
+      margin: 0 6px;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: #d1d5db;
+      margin-top: 10px;
+    }
+
+    .divider {
+      height: 1px;
+      background-color: #e5e7eb;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+<table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+  <tr>
+    <td align="center" style="padding: 32px 16px;">
+
+      <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px; width:100%;">
+
+        <tr>
+          <td align="center" style="padding-bottom: 10px;">
+            <span style="font-size:12px; font-weight:600; color:#6b7280; letter-spacing:0.5px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+              CEFCOCAPP
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="header-td" style="background-color:#34d399; border-radius:16px 16px 0 0; padding:40px 40px 32px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+              <tr>
+                <td>
+                  <p class="header-title" style="font-size:30px; font-weight:800; color:#ffffff; line-height:1.2; letter-spacing:-0.5px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; margin:0;">
+                    ¡Nueva Tarea<br>Asignada!
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="card-td" style="background-color:#ffffff; padding:32px 36px 36px 36px; border-radius:0 0 16px 16px;">
+
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-bottom:16px;">
+              <tr>
+                <td width="44" valign="middle">
+                  <table cellpadding="0" cellspacing="0" role="presentation">
+                    <tr>
+                      <td style="width:36px; height:36px; background-color:#ecfdf5; border-radius:50%; display: flex; justify-content: center; align-items: center; vertical-align:middle;">
+                        <span style="font-size:17px; line-height:36px; display:block;">📋</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td valign="middle" style="padding-left:10px;">
+                  <p style="font-size:12px; font-weight: 'bold'; color:##34d399; letter-spacing:1.2px; text-transform:uppercase; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; margin:0 0 2px 0;">
+                    {{asgnomCourse}}
+                  </p>
+                  <p style="font-size:11px; color:#6b7280; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; margin:0;">
+                    Tarea
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <p style="font-size:20px; font-weight:700; color:#1a1a2e; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; margin:0 0 10px 0;">
+              {{astnomtrabajo}}
+            </p>
+
+            <p style="font-size:14px; color:#4b5563; line-height:1.65; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; margin:0 0 22px 0;">
+              {{astdesctrabajo}}
+            </p>
+
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+              <tr>
+                <td style="background-color:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; padding:12px 16px;">
+                  <table cellpadding="0" cellspacing="0" role="presentation">
+                    <tr>
+                      <td valign="middle" style="padding-right:8px;">
+                        <span style="font-size:15px;">📅</span>
+                      </td>
+                      <td valign="middle">
+                        <span style="font-size:13px; color:#4b5563; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+                          Fecha de entrega:&nbsp;
+                        </span>
+                        <span style="font-size:13px; font-weight:700; color:#34d399; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+                          {{astfecfin}}
+                        </span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <tr><td style="height:24px;"></td></tr>
+
+        <tr>
+          <td class="footer-td" style="padding:28px 20px; text-align:center;">
+            <p class="footer-brand" style="font-size:14px; font-weight:700; color:#374151; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; margin:0 0 4px 0;">
+              CEFCOCAPP
+            </p>
+            <p class="footer-sub" style="font-size:12px; color:#9ca3af; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; margin:0 0 12px 0;">
+              Generado por MOTI
+            </p>
+            <p class="footer-copy" style="font-size:11px; color:#d1d5db; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; margin:0;">
+              © 2026 cefcocapp
+            </p>
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
