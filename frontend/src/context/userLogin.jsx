@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useRequestDB } from "../hooks/utils/useRequestDB.js";
 import { ROLES } from "../constants.js";
 import { useNavigate } from "react-router-dom";
+import { useTitleHeaderOption } from "../hooks/common/useTitleHeaderOption.js";
 
 export const UserLoginContext = createContext();
 
@@ -12,6 +13,7 @@ export function UserLoginProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // true mientras se verifica la sesión en el backend
   const { requestDB } = useRequestDB()
+  const { setTitleHeaderOption } = useTitleHeaderOption()
 
   const navigate = useNavigate()
 
@@ -30,6 +32,8 @@ export function UserLoginProvider({ children }) {
             currentCycleInfo: typeof responseDB.data[0].ciclo_actual === 'string' ? JSON.parse(responseDB.data[0].ciclo_actual) : responseDB.data[0].ciclo_actual,
             ...responseDB.data[0]
           })
+          setTitleHeaderOption(`Dashboard ${JSON.parse(responseDB.data[0].info_user).rolcod === 'DOC' ? 'Docente' : JSON.parse(responseDB.data[0].info_user).rolcod === 'EST' ? 'Estudiante' : 'Rector'}`)
+
           navigate(rolePath, { replace: true });
         }
       } finally {

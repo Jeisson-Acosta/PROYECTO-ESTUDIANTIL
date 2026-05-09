@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useRequestDB } from "../utils/useRequestDB.js";
 import { UserLoginContext } from "../../context/userLogin.jsx";
-import { ROLES } from "../../constants.js";
+import { ROLES } from "../../constants.js"
+import { useTitleHeaderOption } from "../common/useTitleHeaderOption.js";
 
 // Hook personalizado para manejar los eventos que se necesitan en el formulario de iniciar sesión.
 export function useFormLogin() {
@@ -13,6 +14,7 @@ export function useFormLogin() {
     });
     const { setUserLogin, setIsAuthenticated } = useContext(UserLoginContext);
     const { requestDB } = useRequestDB();
+    const { setTitleHeaderOption } = useTitleHeaderOption();
 
     const navigate = useNavigate();
 
@@ -61,6 +63,7 @@ export function useFormLogin() {
             ...userData
         })
         setIsAuthenticated(true);
+        setTitleHeaderOption(`Dashboard ${JSON.parse(userData.info_user).rolcod === 'DOC' ? 'Docente' : JSON.parse(userData.info_user).rolcod === 'EST' ? 'Estudiante' : 'Rector'}`)
         navigate(ROLES[userData.rolcod]?.path || "/");
         // toast.success("¡Hola!");
     };

@@ -5,6 +5,7 @@ import express from "express";
 import { authRouter } from "./routes/auth.js";
 import { studentRouter } from "./routes/student.js";
 import { docentRouter } from "./routes/docent.js"
+import { rectorRouter } from "./routes/rector.js";
 import { configAccountRouter } from "./routes/configAccount.js"
 // ==============================================
 
@@ -45,6 +46,7 @@ app.use(cookieParser()) // Es un middleware de express, que nos facilita acceder
 app.use("/auth", authRouter)
 app.use("/student", tokenMiddleware, studentRouter)
 app.use("/docent", tokenMiddleware, docentRouter)
+app.use("/rector", tokenMiddleware, rectorRouter)
 app.use("/config-account", tokenMiddleware, configAccountRouter)
 
 app.listen(PORT, '0.0.0.0', () => {
