@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
 import { useTitleHeaderOption } from '../../hooks/common/useTitleHeaderOption.js'
 
-import '../../styles/rector/FormCreateStudent.css'
+import '../../styles/rector/FormCreateDocent.css'
 import { LockIcon, UserCheckIcon, UserIcon } from "../common/GeneralIcons.jsx"
 
 import { UserLoginContext } from '../../context/userLogin.jsx'
@@ -11,7 +11,7 @@ import { IconHatStudent } from "../common/IconsLayout"
 import toast from 'react-hot-toast'
 import confetti from 'canvas-confetti'
 
-export function FormCreateStudent() {
+export function FormCreateDocent() {
 
     const [courses, setCourses] = useState(null)
     const [formData, setFormData] = useState({
@@ -30,7 +30,7 @@ export function FormCreateStudent() {
     const { setTitleHeaderOption } = useTitleHeaderOption()
 
     useEffect(() => {
-        setTitleHeaderOption('Crear Estudiante')
+        setTitleHeaderOption('Crear Docente')
         const getCourses = async () => {
             const response = await requestDB(`rector/courses-by-educative-center/${userLogin.educativeCenterInfo[0].cedid}`, 'GET', null)
             if (!response.ok) return toast.error(response.message)
@@ -61,7 +61,7 @@ export function FormCreateStudent() {
 
         const response = await requestDB('rector/create-student', 'POST', studentData)
         if (!response.ok) return toast.error(response.message)
-        toast.success('Estudiante creado exitosamente')
+        toast.success('Docente creado exitosamente')
 
         confetti({
             particleCount: 100,
@@ -82,30 +82,17 @@ export function FormCreateStudent() {
         })
     }
 
-    const handleClickCancel = () => {
-        setFormData({
-            usunom: '',
-            usudocu: '',
-            tidcod: '',
-            usufch_nacimiento: '',
-            usuemail: '',
-            usucel: '',
-            edccod: '',
-            usupwd: '',
-            usupwd_confirm: ''
-        })
-    }
+    console.log(formData)
 
     return (
-        <section className="principal-container-create-student">
-            <header className="header-create-student">
+        <section className="principal-container-create-docent">
+            <header className="header-create-docent">
                 <p>
-                    Ingresa la informacion completa para matricular un nuevo alumno en el sistema.<br />
-                    Asegurate de llenar todos los campos obligatorios.
+                    Completa el formulario para crear un nuevo perfil de docente y asignar sus credenciales.
                 </p>
             </header>
-            <form className="form-create-student" onSubmit={handleSubmitForm}>
-                <section className="personal-info-student">
+            <form className="form-create-docent" onSubmit={handleSubmitForm}>
+                <section className="personal-info-docent">
                     <header className="header-section-form">
                         <div className="icon-container">
                             <UserIcon />
@@ -123,7 +110,7 @@ export function FormCreateStudent() {
                                 type="text" 
                                 id="usunom" 
                                 name="usunom" 
-                                placeholder="Ej: Juan Camilo Rodriguez" 
+                                placeholder="Ej: Roberto Martinez Gomez" 
                                 value={formData.usunom}
                                 onChange={handleChangeFormData}
                             />
@@ -169,7 +156,7 @@ export function FormCreateStudent() {
                                 type="email" 
                                 id="usuemail" 
                                 name="usuemail" 
-                                placeholder="juan.perez@ejemplo.com" 
+                                placeholder="nombre@dominio.com" 
                                 value={formData.usuemail}
                                 onChange={handleChangeFormData}
                             />
@@ -187,7 +174,7 @@ export function FormCreateStudent() {
                         </div>
                     </div>
                 </section>
-                <section className="academic-info-student">
+                <section className="academic-info-docent">
                     <header className="header-section-form">
                         <div className="icon-container">
                             <IconHatStudent />
@@ -200,7 +187,7 @@ export function FormCreateStudent() {
                     </header>
                     <div className="container-form-inputs">
                         <div className="input-group">
-                            <label htmlFor="edccod">Curso</label>
+                            <label htmlFor="edccod">Curso(s)</label>
                             <select 
                                 id="edccod" 
                                 name="edccod" 
@@ -253,14 +240,14 @@ export function FormCreateStudent() {
                         </div>
                     </div>
                 </section>
-                <footer className="footer-form-create-student">
+                <footer className="footer-form-create-docent">
                     <div className="buttons-actions">
-                        <button className="btn-cancel-form" onClick={handleClickCancel}>
+                        <button className="btn-cancel-form">
                             Cancelar
                         </button>
                         <button className="btn-submit-form">
                             <UserCheckIcon />
-                            Regitrar estudiante
+                            Registrar Docente
                         </button>
                     </div>
                 </footer>

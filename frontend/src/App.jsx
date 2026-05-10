@@ -33,6 +33,8 @@ import { ForgotPassword } from './pages/auth/ForgotPassword.jsx'
 import { ResetPassword } from './pages/auth/ResetPassword.jsx'
 import { Unauthorized } from './components/common/Unauthorized.jsx'
 import { FormCreateStudent } from './components/rector/FormCreateStudent.jsx'
+import { FormCreateDocent } from './components/rector/FormCreateDocent.jsx'
+import { FormCreateNewCourse } from './components/rector/FormCreateNewCourse.jsx'
 
 function App() {
 
@@ -95,6 +97,8 @@ function App() {
                 <Routes>
                   <Route path='dashboard' element={<RectorDashboard />} />
                   <Route path='create-student' element={<FormCreateStudent />} />
+                  <Route path='create-docent' element={<FormCreateDocent />} />
+                  <Route path='create-course' element={<FormCreateNewCourse />} />
                 </Routes>
               </RoleBasedRoute>
             }

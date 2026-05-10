@@ -41,7 +41,7 @@ export function RectorDashboard() {
                         description={'Añadir nuevo personal docente a la base de datos institucional.'}
                         colorTextButton={'#0f79eb'}
                         textButton={'CREAR NUEVO'}
-                        onClick={() => {}}
+                        onClick={() => {navigate('/rector/create-docent')}}
                     />
                     <CardActionToCreate 
                         bgColorIcon={'#ecfdf5'}
@@ -61,7 +61,7 @@ export function RectorDashboard() {
                         description={'Gestionar apertura de aulas y asignación de horarios.'}
                         colorTextButton={'#9212ea'}
                         textButton={'CONFIGURAR'}
-                        onClick={() => {}}
+                        onClick={() => {navigate('/rector/create-course')}}
                     />
                 </div>
             </section>
