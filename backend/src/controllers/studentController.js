@@ -1,5 +1,5 @@
 import { StudentModel } from "../models/student.js"
-import { validateClasses, validateClass, validateNotes } from "../schemas/student.js"
+import { validateClasses, validateClass, validateNotes, validateInfoResource } from "../schemas/student.js"
 import { validateCalendar, validateSchedule } from "../schemas/student.js"
 
 export class StudentController {
@@ -96,6 +96,20 @@ export class StudentController {
             return res.json(result)
         } catch (err) {
             throw new Error('Error geting notes')
+        }
+    }
+
+    static async getInfoResource(req, res) {
+        try {
+            const resultValidate = validateInfoResource(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await StudentModel.getInfoResource({ data: resultValidate.data })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            return res.json(result)
+        } catch (err) {
+            throw new Error('Error geting info resource student')
         }
     }
 

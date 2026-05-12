@@ -76,8 +76,17 @@ export class StudentModel {
             return result
         } catch (err) {
             throw new Error('Error geting notes at the student: ' + err.message)
-            console.log('Error geting schedule:', err)
-            throw new Error('Error geting schedule')
+        }
+    }
+
+    static async getInfoResource({ data }) {
+        const { usuid, cedid, cecid, astid } = data
+        try {
+            const result = await manageDB('sp_student_get_info_resource', [usuid, cedid, cecid, astid])
+            if (!result.ok) throw new Error(result.message)
+            return result
+        } catch (err) {
+            throw new Error('Error geting info resource: ' + err.message)
         }
     }
 

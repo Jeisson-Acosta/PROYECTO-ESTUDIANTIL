@@ -9,7 +9,7 @@ studentRouter.get('/task/:astid', StudentController.getTask)
 studentRouter.post('/delivery-task', StudentController.deliveryTask)
 studentRouter.get('/calendar/:usuid/:cedid/:cecid', StudentController.getCalendar)
 studentRouter.get('/notes/:cedid/:cecid/:usuid/:optionSP', StudentController.getNotes)
-
+studentRouter.get('/info-resource/:usuid/:cedid/:cecid/:astid', StudentController.getInfoResource)
 
 studentRouter.get('/schedule/:usuid/:cedid/:cecid', StudentController.getSchedule)
 studentRouter.get('/resource/:nombre_recurso', (req, res) => {

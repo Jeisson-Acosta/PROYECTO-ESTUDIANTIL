@@ -1,24 +1,20 @@
-import React from 'react';
 import { useContext, useState } from 'react';
-import "../../styles/common/TareaContenido.css";
-import { IconScore, IconSubject, IconModule, IconPDFRecourse, IconDOCXRecourse, IconLinkRecourse, IconOtherRecourse, IconUpload } from '../common/IconsContenidoClase';
+import "../../styles/common/TareaContenido.css"
+import { IconScore, IconSubject, IconLinkRecourse } from '../common/IconsContenidoClase';
 import { UserLoginContext } from '../../context/userLogin.jsx'
 import { UploadFile } from '../common/UploadFile.jsx';
-import { GetRecourses } from '../common/classes/GetRecourses.jsx';
+import { DocxIcon, DownloadIcon, ExternalLinkIcon, PdfIcon, PhotoIcon } from '../common/GeneralIcons.jsx';
+import { AttachmentsFiles } from '../common/classes/AttachmentsFiles.jsx';
 
-export function ContenidoCard({ tipo_trabajo }) {
-  
+export function ContenidoCard({ info_resource }) {
+
+  console.log(info_resource)
+
   const { userLogin } = useContext(UserLoginContext) || {};
-  const colorDeClase = userLogin?.color_clase 
-  ? (userLogin.color_clase.startsWith('#') ? userLogin.color_clase : `#${userLogin.color_clase}`)
-  : '#1f1f1f';
-  console.log(colorDeClase)
-  console.log('userLogin: ', userLogin.color_clase);
+  const colorDeClase = userLogin?.color_clase ? (userLogin.color_clase.startsWith('#') ? userLogin.color_clase : `#${userLogin.color_clase}`) : '#1f1f1f';
   const [entregaAnulada, setEntregaAnulada] = useState(false);
   
-
   const tareaEstadoActual = userLogin?.tarea_estado?.toLowerCase() || '';
-  
 
   const isNotDelivered = tareaEstadoActual === 'no entregado';
   const isPending = tareaEstadoActual === 'entrega pendiente';
@@ -27,7 +23,10 @@ export function ContenidoCard({ tipo_trabajo }) {
   
 
   const effectiveIsPending = isPending || entregaAnulada;
-  const effectiveIsDeliveredOrGraded = (isDelivered || isGraded) && !entregaAnulada;
+  const effectiveIsDeliveredOrGraded = (isDelivered || isGraded) && !entregaAnulada
+
+  const resourcesDocent = info_resource.resources?.filter(resource => resource.created_by === 'DOC')
+  const resourcesStudent = info_resource.resources?.filter(resource => resource.created_by === 'EST')
 
   const handleDeliverButtonClick = () => {
     console.log('Entregando tarea...');
@@ -46,14 +45,12 @@ export function ContenidoCard({ tipo_trabajo }) {
     return '';
   };
 
-  console.log(userLogin)
-
   return (
     <div className="contenido-card">
       <div className='card-info-container'>
-        {(userLogin?.tipo_trabajo === 'TA' || userLogin?.tipo_trabajo === 'MA') && (
+        {(info_resource.asttip === 'TA' || info_resource.asttip === 'MA') && (
           <>
-            <h1>{userLogin.nombre_asignatura}</h1>
+            <h1>{info_resource.astnomtrabajo}</h1>
             <div className='tarea-parametros'>
               <div className='tarea-parametros-entrega'>
                 <div className='tarea-parametros-entrega-icon'>
@@ -61,7 +58,7 @@ export function ContenidoCard({ tipo_trabajo }) {
                 </div>
                 <div className='tarea-parametros-entrega-text'>
                   <h3>Fecha de entrega</h3>
-                  <p>{userLogin.fecha_fin}</p>
+                  <p>{info_resource.astfecfin}</p>
                 </div>
               </div>
               
@@ -70,23 +67,32 @@ export function ContenidoCard({ tipo_trabajo }) {
                   <IconScore />
                 </div>
                 <div className='tarea-parametros-puntaje-text'>
-                  <h3>Puntaje</h3>
-                  <p>{userLogin.puntaje_maximo || 100}</p>
+                  <h3>PUNTAJE MAXIMO</h3>
+                  <p>{info_resource.astpunt_max || 0} Puntos</p>
                 </div>
               </div>
-              
-              <div className='tarea-parametros-modulo'>
-                <div className='tarea-parametros-modulo-icon'>
-                  <IconModule />
-                </div>
-                <div className='tarea-parametros-modulo-text'>
-                  <h3>Módulo</h3>
-                  <p>{userLogin.nombre_asignatura}</p>
-                </div>
-              </div>
-              {userLogin.tipo_trabajo === 'TA' && (
-                <div style={{backgroundColor: userLogin.color_estado}} className='tarea-parametros-estado'>
-                  <h3>{userLogin.tarea_estado}</h3>
+
+              {info_resource.asttip === 'TA' && (
+                <div 
+                  style={{
+                    backgroundColor: (info_resource.ateestado === 'C' ? '#e7f8f2' :
+                    info_resource.ateestado === 'E' ? '#e7f8f2' :
+                    info_resource.ateestado === 'P' ? '#fef9c3' :
+                    info_resource.ateestado === 'D' ? '#fee2e2' : '#f5babaff')
+                  }} 
+                  className='tarea-parametros-estado'
+                >
+                  <h3 style={{
+                    color: (info_resource.ateestado === 'C' ? '#2d7d4d' :
+                    info_resource.ateestado === 'E' ? '#2d7d4d' :
+                    info_resource.ateestado === 'P' ? '#7d6f00' :
+                    info_resource.ateestado === 'D' ? '#7d2d2d' : '#7d2d2d')
+                  }}>
+                    {info_resource.ateestado === 'C' && 'Calificado'}
+                    {info_resource.ateestado === 'E' && 'Entregado'}
+                    {info_resource.ateestado === 'P' && 'Pendiente'}
+                    {info_resource.ateestado === 'D' && 'Devuelto'}
+                  </h3>
                 </div>
               )}
             </div>
@@ -95,7 +101,7 @@ export function ContenidoCard({ tipo_trabajo }) {
         
         <div className='card-info-principal'>
           <div className='card-info'>
-            {userLogin?.tipo_trabajo === 'EN' && (
+            {info_resource.asttip === 'EN' && (
               <div className='iconos-info'>
                 <div className='icono-info-enunciado'>
                   <h3>Enunciado</h3>
@@ -110,36 +116,28 @@ export function ContenidoCard({ tipo_trabajo }) {
             )}
             
             <div className='card-info-titulo'>
-              <h3>{userLogin?.nombre_trabajo}</h3>
-              {userLogin?.tipo_trabajo === 'EN' && (
-                <div className='card-info-profesor'>
-                  <div className='card-info-profesor-icon'></div>
-                  <div className='card-info-profesor-nombre'>
-                    <h4>Prof. {userLogin.profesor_materia}</h4>
-                  </div>
-                </div>
-              )}
+              <h3>Detalles de la tarea</h3>
             </div>
             
             <div className='card-info-descripcion'>
-              <p>{userLogin?.descripcion_trabajo}</p>
+              <p>{info_resource.astdesctrabajo}</p>
             </div>
           </div>
           
-          {(userLogin?.tipo_trabajo === 'TA' || userLogin?.tipo_trabajo === 'MA') && (
+          {(info_resource.asttip === 'TA' || info_resource.asttip === 'MA') && (
             <div className='card-contenido-extra'>
               <div className='contenido-extra-recursos'>
                 <div className='recurso-item-titulo'>
                   <h3>Archivos Adjuntos</h3>
                 </div>
-                <GetRecourses />
+                {resourcesDocent && <AttachmentsFiles resources={resourcesDocent} />}
               </div>
               
-              {userLogin.tipo_trabajo === 'TA' && (
+              {info_resource.asttip === 'TA' && (
                 <div className='entrega-seccion-completa'>
                   <div className='entrega-info-titulo'>
                     <h3>Tu entrega</h3>
-                    <p>entrega tu trabajo antes de la fecha indicada</p>
+                    <p>Sube tus archivos antes de la fecha limite.</p>
                   </div>
                   
                   <div className='contenido-extra-entrega'>
@@ -194,7 +192,7 @@ export function ContenidoCard({ tipo_trabajo }) {
         </div>
       </div>
       
-      {tipo_trabajo === 'EN' && (
+      {info_resource.asttip === 'EN' && (
         <div className='card-enunciado-comentarios'>
           <h3>Comentarios</h3>
           <div className='comentario-info'>

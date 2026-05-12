@@ -11,62 +11,36 @@
 
 .tarea-parametros {
     display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: start;
     width: 100%;
     height: 100%;
     gap: 200px;
     padding: 20px;
     background-color: #ffffff;
-    border-radius: 10px;
+    border-radius: 14px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tarea-parametros h3 {
-    font-size: 16px;
-    font-family: fontMain;
-    color: #afafaf;
+    font-size: 12px;
+    font-family: fontSubtitles;
+    color: #7b818e;
 }
 
 .tarea-parametros p {
-    font-size: 16px;
-    font-family: fontSubtitles;
-    color: #000000;
-}
-
-.tarea-parametros-entrega {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: start;
-    width: 20%;
-    height: 100%;
-}
-
-.parametro-entrega .parametro-entrega-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    width: 100%;
-    height: 100%;
+    font-size: 14px;
+    font-family: fontTitlesBold;
+    color: #414753;
 }
 
 .tarea-parametros-puntaje {
     display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: start;
-    width: 20%;
 }
 
 .tarea-parametros-puntaje-icon {
     display: flex;
     justify-content: center;
-    align-items: start;
     width: 40px;
-    background-color: #e1c6ff;
+    background-color: #f3eefe;
     border-radius: 10px;
     padding: 10px;
     margin-right: 10px;
@@ -78,75 +52,17 @@
     color: #7400f8;
 }
 
-.parametro-puntaje .parametro-puntaje-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    width: 100%;
-    height: 100%;
-}
-
-.tarea-parametros-modulo {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: start;
-    width: 20%;
-    height: 100%;
-}
-
-
-.tarea-parametros-modulo-icon {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    width: 40px;
-    background-color: #ccfdd4;
-    border-radius: 10px;
-    padding: 10px;
-    margin-right: 10px;
-}
-
-.tarea-parametros-modulo-icon svg {
-    width: 100%;
-    height: 100%;
-    color: #46a05b;
-}
-
-.parametro-modulo .parametro-modulo-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    width: 30%;
-    height: 100%;
-
-
-}
-
 .tarea-parametros-estado {
-    min-width: 15%;
-    background-color: #faef88;
     border-radius: 20px;
     display: flex;
-    /* Cambiado de inline-block a flex */
     align-items: center;
     justify-content: center;
-    padding: 8px 16px;
-    overflow: hidden;
-    /* Opcional: si quieres que ocupe el espacio disponible */
-    /* flex: 1; */
+    padding: 2px 26px;
 }
 
 .tarea-parametros-estado h3 {
-    font-size: 15px;
+    font-size: 13px;
     font-family: fontSubtitles;
-    color: #5c4e00;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-    /* Evita que el texto se rompa */
 }
 
 .iconos-info {
@@ -207,34 +123,29 @@
 }
 
 .card-info-titulo {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 20px;
     width: 100%;
     gap: 20px;
 }
 
 .card-info-titulo h3 {
-    font-size: 40px;
     font-family: fontSubtitles;
-    color: #000000;
+    color: #232937;
 }
 
 .card-info-descripcion p {
-    font-size: 20px;
+    font-size: 16px;
     font-family: fontSubtitles;
-    color: #000000;
+    color: #79808b;
 }
 
 .card-info-principal {
     display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: start;
     width: 100%;
     height: 100%;
     gap: 20px;
 }
-
-
 
 .card-info {
     display: flex;
@@ -242,12 +153,11 @@
     justify-content: start;
     align-items: start;
     min-width: 70%;
-    max-width: 70%;
-    min-height: 600px;
+    max-height: 500px;
     gap: 20px;
-    padding: 10px;
+    padding: 14px;
     background-color: #ffffff;
-    border-radius: 30px;
+    border-radius: 26px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -273,8 +183,6 @@
     align-items: start;
     width: 100%;
     height: 100%;
-
-
 }
 
 .comentario-info-text {
@@ -318,24 +226,27 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    min-width: 30%;
     min-height: 600px;
     gap: 20px;
     padding: 10px;
+}
+
+.contenido-extra-recursos {
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 .contenido-extra-recursos,
 .contenido-extra-entrega {
     display: flex;
     flex-direction: column;
-    justify-content: start;
     align-items: start;
     width: 100%;
-    height: 100%;
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;
+    padding: 10px;
     background-color: #ffffff;
-    border-radius: 30px;
+    border-radius: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -344,82 +255,40 @@
 }
 
 .contenido-extra-recursos h3 {
-    font-size: 20px;
+    font-size: 16px;
     font-family: fontSubtitles;
-    color: #000000;
+    color: #19202e;
 }
 
 .recurso-item-titulo {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #f1f1f1;
     width: 100%;
     padding: 10px;
-}
-
-.recurso-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: start;
-    width: 150%;
-    height: 100%;
-    gap: 20px;
-}
-
-.recurso-item-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15%;
-    height: 100%;
-    background-color: rgb(254, 135, 135);
-    padding: 10px;
-    border-radius: 10px;
-    color: #ff0000;
-}
-
-.recurso-item-text h4 {
-    font-size: 16px;
-    font-family: fontSubtitles;
-    color: #000000;
-}
-
-.recurso-item-text p {
-    font-size: 12px;
-    font-family: fontSubtitles;
-    color: #000000;
 }
 
 .entrega-seccion-completa {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    width: 100%;
-    height: 100%;
-
 }
 
 .entrega-info-titulo {
-    background-color: #ecebeb;
-    min-width: 100%;
-    height: 100%;
-    border-radius: 30px 30px 0 0;
+    background-color: #fbfcfc;
+    border-radius: 16px 16px 0 0;
     padding: 20px;
 }
 
 .entrega-info-titulo h3 {
-    font-size: 20px;
+    font-size: 16px;
     font-family: fontSubtitles;
-    color: #000000;
+    color: #202635;
 }
 
 .entrega-info-titulo p {
-    font-size: 16px;
-    font-family: fontMain;
-    color: #000000;
+    font-size: 12px;
+    color: #8a909c;
+    font-weight: bold;
+    margin-top: 4px;
 }
-
-
 
 .entrega-tarea {
     display: flex;
