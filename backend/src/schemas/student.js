@@ -1,7 +1,18 @@
 import z from 'zod'
 
 const classesSchema = z.object({
-    usuid: z.string({ required_error: 'The user id is required' })
+    usuid: z.string({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val))
 })
 
 export function validateClasses(data) {
@@ -9,6 +20,18 @@ export function validateClasses(data) {
 }
 
 const classSchema = z.object({
+    usuid: z.string({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val)),
     asgcod: z.string({ required_error: 'The class code is required' })
 })
 

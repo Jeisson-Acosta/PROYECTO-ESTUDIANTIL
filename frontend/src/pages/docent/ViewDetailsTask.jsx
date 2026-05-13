@@ -10,6 +10,7 @@ import { UserLoginContext } from "../../context/userLogin.jsx"
 import { CalendarIcon, PencilIcon, CircleCheckSingleIcon, ExclamationCircleIcon } from "../../components/common/GeneralIcons.jsx"
 import { BuildTable } from '../../components/common/BuildTable.jsx'
 import { CircleChart } from '../../components/common/charts/CircleChart.jsx'
+import { AttachmentsFiles } from '../../components/common/classes/AttachmentsFiles.jsx'
 
 function CardInfoTask({ title, quantity, bgColorIcon, bgColorBorder, icon }) {
     return (
@@ -164,7 +165,7 @@ export function ViewDetailsTask() {
                             {taskDetails.details_task.astdesctrabajo}
                         </div>
                         <div className="files-submitted-details-docent">
-                            
+                            {taskDetails.details_task.files !== null && <AttachmentsFiles resources={JSON.parse(taskDetails.details_task.files)} />}
                         </div>
                     </section>
                     <section className="students-submissions card-container">

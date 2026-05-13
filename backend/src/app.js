@@ -7,6 +7,7 @@ import { studentRouter } from "./routes/student.js";
 import { docentRouter } from "./routes/docent.js"
 import { rectorRouter } from "./routes/rector.js";
 import { configAccountRouter } from "./routes/configAccount.js"
+import { commonRouter } from "./routes/common.js"
 // ==============================================
 
 // =================== MIDDLEWARES ===================
@@ -48,6 +49,7 @@ app.use("/student", tokenMiddleware, studentRouter)
 app.use("/docent", tokenMiddleware, docentRouter)
 app.use("/rector", tokenMiddleware, rectorRouter)
 app.use("/config-account", tokenMiddleware, configAccountRouter)
+app.use("/common", tokenMiddleware, commonRouter)
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on: http://localhost:${PORT}`)

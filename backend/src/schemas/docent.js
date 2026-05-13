@@ -3,11 +3,31 @@ import z from 'zod'
 const classesSchema = z.object({
     usuid: z.string({
         required_error: 'The user id is required',
-        invalid_type_error: 'The user id must be a string'
-    })
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val))
 })
 
 const classDetailsSchema = z.object({
+    usuid: z.string({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val)),
     asgcod: z.string({
         required_error: 'The assignment code is required',
         invalid_type_error: 'The assignment code must be a string'

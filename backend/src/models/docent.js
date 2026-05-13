@@ -5,9 +5,10 @@ import { sendEmail } from "../services/sendEmail.js"
 
 export class DocentModel {
 
-    static async getClasses({ usuid }) {
+    static async getClasses({ data }) {
+        const { usuid, cedid, cecid } = data
         try {
-            const result = await manageDB('sp_docent_get_all_classes', [usuid, 1, 1])
+            const result = await manageDB('sp_docent_get_all_classes', [usuid, cedid, cecid])
             if (!result.ok) throw new Error(result.message)
 
             return result
@@ -16,9 +17,10 @@ export class DocentModel {
         }
     }
 
-    static async getClassDetails({ asgcod }) {
+    static async getClassDetails({ data }) {
+        const { usuid, cedid, cecid, asgcod } = data
         try {
-            const result = await manageDB('sp_docent_get_info_class', [1, 1, 2, asgcod])
+            const result = await manageDB('sp_docent_get_info_class', [usuid, cedid, cecid, asgcod])
             if (!result.ok) throw new Error(result.message)
 
             return result

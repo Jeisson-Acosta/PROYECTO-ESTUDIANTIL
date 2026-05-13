@@ -18,7 +18,7 @@ export function ClassesDocent() {
 
     useEffect(() => {
         const getClassesDocent = async () => {
-            const response = await requestDB(`docent/classes/${userLogin.userInfo.usuid}`)
+            const response = await requestDB(`docent/classes/${userLogin.userInfo.usuid}/${userLogin.educativeCenterInfo[0].cedid}/${userLogin.currentCycleInfo.cecid}`)
             if (!response.ok) return toast.error(response.message)
             setClassesDocent(response.data[0].info_classes_docent)
         }

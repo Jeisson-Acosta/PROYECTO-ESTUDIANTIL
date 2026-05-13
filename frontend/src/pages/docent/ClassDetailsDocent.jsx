@@ -2,7 +2,7 @@ import '../../styles/docent/ClassDetailsDocent.css'
 import { useState } from 'react'
 import { HeaderClass } from "../../components/common/classes/HeaderClass"
 import { ButtonCommon } from '../../components/common/ButtonCommon'
-import { BookIcon, ClipboardCheckIcon, PlusIcon, SpeakerPhone, UserCheckIcon, UsersIcon } from '../../components/common/GeneralIcons'
+import { PlusIcon, UserCheckIcon, UsersIcon } from '../../components/common/GeneralIcons'
 import { CircleChart } from '../../components/common/charts/CircleChart'
 import { CardTaskDetailsDocent } from '../../components/docent/CardTaskDetailsDocent'
 import { MenuCreateResource } from '../../components/docent/MenuCreateResource.jsx'

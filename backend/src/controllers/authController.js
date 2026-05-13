@@ -3,7 +3,6 @@ import { validateRegister, validateLogin, validateForgotPassword, validateResetP
 import jwt from "jsonwebtoken";
 import { SECRET_JWT_KEY } from "../config/config.js";
 import { getProfilePhoto } from "../utils/getProfilePhoto.js";
-import { getRecourse } from "../utils/getrecourse.js";
 import { sendEmail } from "../services/sendEmail.js";
 
 import fs from 'node:fs/promises'

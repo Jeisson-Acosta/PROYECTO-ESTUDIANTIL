@@ -11,7 +11,7 @@ export class DocentController {
             const resultValidate = validateClasses(req.params)
             if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
 
-            const result = await DocentModel.getClasses({ usuid: parseInt(resultValidate.data.usuid) })
+            const result = await DocentModel.getClasses({ data: resultValidate.data })
             if (!result.ok) return res.status(400).json({ message: result.message })
 
             return res.status(200).json(result)
@@ -26,7 +26,7 @@ export class DocentController {
             const resultValidate = validateClassDetails(req.params)
             if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
 
-            const result = await DocentModel.getClassDetails({ asgcod: resultValidate.data.asgcod })
+            const result = await DocentModel.getClassDetails({ data: resultValidate.data })
             if (!result.ok) return res.status(400).json({ message: result.message })
 
             return res.status(200).json(result)

@@ -1,5 +1,7 @@
 import '../../styles/student/ClassDetails.css'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+
+import { UserLoginContext } from '../../context/userLogin.jsx'
 
 import { CircleCheckIcon, BellRingingIcon, BookIcon, SpeakerPhone, MessagesIcon } from '../../components/common/GeneralIcons.jsx'
 
@@ -12,12 +14,15 @@ import toast from "react-hot-toast"
 
 export function ClassDetails() {
     const [infoClass, setInfoClass] = useState({ info: null, tasks: null, tasksPending: null })
+    const [tasksFiltered, setTasksFiltered] = useState([])
+    const { userLogin } = useContext(UserLoginContext)
     const { requestDB } = useRequestDB()
     const { asgcod } = useParams()
 
     useEffect(() => {
         const getInfoClass = async () => {
-            const responseDB = await requestDB(`student/class/${asgcod}`, 'GET')
+
+            const responseDB = await requestDB(`student/class/${userLogin.userInfo.usuid}/${userLogin.educativeCenterInfo[0].cedid}/${userLogin.currentCycleInfo.cecid}/${asgcod}`, 'GET')
             if (!responseDB.ok) return toast.error(responseDB.message)
             setInfoClass({
                 info: JSON.parse(responseDB.data[0].info_asignatura),
@@ -39,7 +44,15 @@ export function ClassDetails() {
 
     const handleClickFilter = (filter) => {
         // filter: Llega el filtro que se dio clic para hacer el filtrado. (C, P, MA, EN) -> Calificados, Pendientes, Material, Enunciados
-        alert(filter)
+        if (filter === 'C') {
+            setTasksFiltered(infoClass.tasks.filter(task => task.ateestado === filter))
+        } else if(filter === 'P'){
+            setTasksFiltered(infoClass.tasks.filter(task => task.ateestado === filter))
+        } else if(filter === 'MA'){
+            setTasksFiltered(infoClass.tasks.filter(task => task.asttip === filter))
+        } else if(filter === 'EN'){
+            setTasksFiltered(infoClass.tasks.filter(task => task.asttip === filter))
+        }
     }
 
     return (
@@ -58,7 +71,8 @@ export function ClassDetails() {
                 <section className="body-class-details">
                     <ul className="tasks-class-list">
                         {infoClass.tasks.length === 0 && <h1>Aún no hay trabajos</h1>}
-                        {infoClass.tasks.map(task => (<CardTaskClass key={task.astid} task={task} />))}
+                        {tasksFiltered.length === 0 && infoClass.tasks.map(task => (<CardTaskClass key={task.astid} task={task} />))}
+                        {tasksFiltered.length > 0 && (tasksFiltered.map(task => (<CardTaskClass key={task.astid} task={task} />)))}
                     </ul>
                     <section className="comments-docent-class">
 

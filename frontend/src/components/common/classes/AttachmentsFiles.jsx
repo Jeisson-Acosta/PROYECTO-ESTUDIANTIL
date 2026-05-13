@@ -1,17 +1,36 @@
 import { DocxIcon, DownloadIcon, ExternalLinkIcon, PdfIcon, PhotoIcon } from "../GeneralIcons.jsx"
+import { useRequestDB } from "../../../hooks/utils/useRequestDB.js"
 import { IconLinkRecourse } from "../IconsContenidoClase.jsx"
 import '../../../styles/common/classes/AttachmentsFiles.css'
 
+import { UserLoginContext } from "../../../context/userLogin.jsx"
+import { useContext } from "react"
+import toast from "react-hot-toast"
+
 export function AttachmentsFiles({ resources }) {
 
-    const handleClickResource = (resource) => {
+    const { requestDB } = useRequestDB()
+    const { userLogin } = useContext(UserLoginContext)
 
-        console.log(resource)
+    const handleClickResource = async (resource) => {
 
+        // Si es un enlace web
         if (resource.atrtiprec === 'L') {
             window.open(resource.value_resource, '_blank')
         }
-        
+
+        // Si es un archivo
+        if (resource.atrtiprec === 'A') {
+            const responseFile = await requestDB(`common/download-resource/${userLogin.educativeCenterInfo[0].cednom}/${resource.created_by === 'EST' ? 'student': resource.created_by === 'DOC' ? 'docent': 'rector'}/${resource.value_resource}`)
+            if (!responseFile.ok) return toast.error(responseFile.message)
+            
+            const link = document.createElement('a')
+            link.href = responseFile.data
+            link.download = resource.value_resource
+            link.click()
+            toast.success('Archivo descargado correctamente')
+            // document.body.removeChild(link)
+        }
     }
 
     return (

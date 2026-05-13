@@ -84,6 +84,14 @@
     }
 }
 
+.files-submitted-details-docent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+    width: 100%;
+}
+
 .students-submissions {
     margin-top: 26px;
     & header h3 {

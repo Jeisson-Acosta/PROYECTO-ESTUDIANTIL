@@ -109,7 +109,7 @@ export function StudentsList() {
     useEffect(() => {
 
         const getListStudents = async () => {
-          const responseDB = await requestDB(`docent/students-list/${userLogin.userInfo.usuid}/1/1/${currentClass.asgcod}/LSC`)
+          const responseDB = await requestDB(`docent/students-list/${userLogin.userInfo.usuid}/${userLogin.educativeCenterInfo[0].cedid}/${userLogin.currentCycleInfo.cecid}/${currentClass.asgcod}/LSC`)
           if (!responseDB.ok) return toast.error(responseDB.message)
           setStudents(responseDB.data[0].result)
         }
@@ -143,14 +143,14 @@ export function StudentsList() {
                     </button>
                 </div>
             </div>
-            {students.length === 0 && (
+            {students === null && (
                 <h2 style={{ textAlign: 'center', marginTop: '20px', fontFamily: 'fontSubtitles' }}>Aún no hay estudiantes inscritos en esta clase</h2>
             )}
-            {students.length > 0 && viewListStudents === 'list' && (
+            {students !== null && viewListStudents === 'list' && (
                 <BuildTable columns={columnsStudents} data={students}/>
             )}
             <section className="container-students-grid-docent">
-                {students.length > 0 && viewListStudents === 'grid' && (
+                {students !== null && viewListStudents === 'grid' && (
                     students.map(student => ( <StudentCard key={student.usuid} student={student}/> ))
                 )}
             </section>

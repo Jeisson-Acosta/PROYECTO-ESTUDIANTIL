@@ -28,8 +28,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 // ————————————————————————————————————————————————————————————————
 
-docentRouter.get('/classes/:usuid', DocentController.getClasses)
-docentRouter.get('/classes/details/:asgcod', DocentController.getClassDetails)
+docentRouter.get('/classes/:usuid/:cedid/:cecid', DocentController.getClasses)
+docentRouter.get('/classes/details/:usuid/:cedid/:cecid/:asgcod', DocentController.getClassDetails)
 
 docentRouter.post('/create-resource', upload.array('files', 10), DocentController.createResource)
 docentRouter.post('/save-attendance', DocentController.saveAttendance)

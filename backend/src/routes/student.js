@@ -1,10 +1,9 @@
 import { Router } from "express";
 import { StudentController } from "../controllers/studentController.js";
-import { getRecourse } from "../utils/getrecourse.js";
 export const studentRouter = Router()
 
-studentRouter.get('/classes/:usuid', StudentController.getClasses)
-studentRouter.get('/class/:asgcod', StudentController.getClass)
+studentRouter.get('/classes/:usuid/:cedid/:cecid', StudentController.getClasses)
+studentRouter.get('/class/:usuid/:cedid/:cecid/:asgcod', StudentController.getClass)
 studentRouter.get('/task/:astid', StudentController.getTask)
 studentRouter.post('/delivery-task', StudentController.deliveryTask)
 studentRouter.get('/calendar/:usuid/:cedid/:cecid', StudentController.getCalendar)
@@ -12,7 +11,7 @@ studentRouter.get('/notes/:cedid/:cecid/:usuid/:optionSP', StudentController.get
 studentRouter.get('/info-resource/:usuid/:cedid/:cecid/:astid', StudentController.getInfoResource)
 
 studentRouter.get('/schedule/:usuid/:cedid/:cecid', StudentController.getSchedule)
-studentRouter.get('/resource/:nombre_recurso', (req, res) => {
+/* studentRouter.get('/resource/:nombre_recurso', (req, res) => {
     const { nombre_recurso } = req.params;
 
     if (!nombre_recurso) {
@@ -43,4 +42,4 @@ studentRouter.get('/resource/:nombre_recurso', (req, res) => {
             error: 'Error interno del servidor'
         });
     }
-});
+}); */

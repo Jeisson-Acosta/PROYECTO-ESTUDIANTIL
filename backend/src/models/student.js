@@ -1,9 +1,10 @@
 import { manageDB } from "../utils/manageDB.js";
 export class StudentModel {
 
-    static async getClasses({ usuid }) {
+    static async getClasses({ data }) {
+        const { usuid, cedid, cecid } = data
         try {
-            const result = await manageDB('sp_student_get_all_classes', [usuid, 1, 1]) // Change '1' for real info at educative center
+            const result = await manageDB('sp_student_get_all_classes', [usuid, cedid, cecid])
             if (!result.ok) throw new Error(result.message)
             return result
         } catch (err) {
@@ -12,9 +13,10 @@ export class StudentModel {
 
     }
 
-    static async getClass({ asgcod }) {
+    static async getClass({ data }) {
+        const { usuid, cedid, cecid, asgcod } = data
         try {
-            const resultClass = await manageDB('sp_student_get_info_class', [1, 1, 1, asgcod])
+            const resultClass = await manageDB('sp_student_get_info_class', [usuid, cedid, cecid, asgcod])
             if (!resultClass.ok) throw new Error(resultClass.message)
 
             return resultClass

@@ -8,11 +8,12 @@ export class StudentController {
             const resultValidate = validateClasses(req.params)
             if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
 
-            const result = await StudentModel.getClasses({ usuid: parseInt(resultValidate.data.usuid) })
+            const result = await StudentModel.getClasses({ data: resultValidate.data })
             if (!result.ok) return res.status(400).json({ message: result.message })
 
             return res.status(200).json(result)
         } catch (err) {
+            console.log(err)
             throw new Error('Error getting classes')
         }
     }
@@ -22,7 +23,7 @@ export class StudentController {
             const resultValidate = validateClass(req.params)
             if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
 
-            const resultClass = await StudentModel.getClass({ asgcod: resultValidate.data.asgcod })
+            const resultClass = await StudentModel.getClass({ data: resultValidate.data })
             if (!resultClass.ok) return res.status(400).json({ message: resultClass.message })
 
             return res.status(200).json(resultClass)
