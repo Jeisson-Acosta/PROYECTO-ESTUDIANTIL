@@ -39,7 +39,9 @@ export function FormFieldsCreateResource({ typeResource }) {
     const navigate = useNavigate()
     const { currentClass } = useCurrentClass()
     const { userLogin } = useContext(UserLoginContext)
-    const { uploadedFiles, inputFileRef } = useUploadFile()
+
+    const uploadProps = useUploadFile()
+    const { uploadedFiles, inputFileRef } = uploadProps
 
     // ESTO ES PARA CAMBIAR EL COLOR DEL BORDE DEL INPUT SEGÚN EL TIPO DE RECURSO
     useEffect(() => {
@@ -93,7 +95,7 @@ export function FormFieldsCreateResource({ typeResource }) {
         formData.append('lateDeliveries', String(infoResource.lateDeliveries))
 
         // Centro educativo ANTES de los archivos (multer lo necesita en destination callback)
-        formData.append('cednom', 'Manuelita Saenz')
+        formData.append('cednom', userLogin.userInfo.educativeCenterInfo[0].cednom)
 
         // Archivos adjuntos
         uploadedFiles.forEach(file => { formData.append('files', file) })
@@ -239,7 +241,7 @@ export function FormFieldsCreateResource({ typeResource }) {
             <div className="field">
                 <section className="container-to-upload-file">
                     {((typeResource === 'MA' && (infoResource.category === 'A' || infoResource.category === 'AM')) || typeResource === 'TA') && (
-                        <UploadFile />
+                        <UploadFile {...uploadProps}/>
                     )}
                     {((typeResource === 'MA' && (infoResource.category === 'L' || infoResource.category === 'AM')) || typeResource === 'TA') && (
                         <WebLinksInput

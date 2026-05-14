@@ -14,7 +14,6 @@ import toast from 'react-hot-toast'
     useEffect(() => {
         const getInfoResource  = async() => {
             const responseDB = await requestDB(`student/info-resource/${userLogin.userInfo.usuid}/${userLogin.educativeCenterInfo[0].cedid}/${userLogin.currentCycleInfo.cecid}/${astid}`)
-            console.log('Resource info:', responseDB)
             if (!responseDB.ok) return toast.error(responseDB.message)
             setInfoResource(responseDB.data[0].result_resource)
         }

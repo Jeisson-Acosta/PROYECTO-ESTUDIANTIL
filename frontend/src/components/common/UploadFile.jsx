@@ -1,9 +1,7 @@
 import '../../styles/common/UploadFile.css'
 import { FileUploadIcon, PdfIcon, DocxIcon, PhotoIcon, TrashIcon } from "./GeneralIcons.jsx"
-import { useUploadFile } from '../../hooks/common/useUploadFile.js'
 
-export function UploadFile() {
-    const { uploadedFiles, setUploadedFiles, counterFiles, setCounterFiles, inputFileRef, handleChangeUploadFile } = useUploadFile()
+export function UploadFile({ uploadedFiles, setUploadedFiles, counterFiles, setCounterFiles, inputFileRef, handleChangeUploadFile }) {
 
     const deleteFile = (index) => {
         const newUploadedFiles = Array.from(uploadedFiles)
@@ -15,7 +13,7 @@ export function UploadFile() {
     return (
         <section className="principal-container-to-upload-file">
 
-            <label htmlFor="attachments" style={{display: 'flex', justifyContent: 'space-between', marginBottom: '6px'}}>
+            <label htmlFor="attachments" style={{display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontFamily: 'fontTitlesBold', fontSize: '14px', alignItems: 'center'}}>
                 RECURSOS ADJUNTOS 
                 <span className="counter-uploaded-files">Archivos subidos: {counterFiles}</span>
             </label>

@@ -1,24 +1,83 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react'
+import { useTitleHeaderOption } from '../../hooks/common/useTitleHeaderOption.js'
+import { useUploadFile } from '../../hooks/common/useUploadFile.js'
+import { useNavigate } from 'react-router-dom'
+
 import "../../styles/common/TareaContenido.css"
-import { IconScore, IconSubject } from '../common/IconsContenidoClase';
+import { IconScore, IconSubject } from '../common/IconsContenidoClase'
 import { UserLoginContext } from '../../context/userLogin.jsx'
-import { UploadFile } from '../common/UploadFile.jsx';
-import {  SendIcon } from '../common/GeneralIcons.jsx';
-import { AttachmentsFiles } from '../common/classes/AttachmentsFiles.jsx';
+import { UploadFile } from '../common/UploadFile.jsx'
+import {  SendIcon } from '../common/GeneralIcons.jsx'
+import { AttachmentsFiles } from '../common/classes/AttachmentsFiles.jsx'
+
+import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
+import { useCurrentClass } from '../../hooks/docent/useCurrentClass.js'
+
+import toast from 'react-hot-toast'
+import confetti from 'canvas-confetti'
 
 export function ContenidoCard({ info_resource }) {
-  const { userLogin } = useContext(UserLoginContext) || {};
-  const [entregaAnulada, setEntregaAnulada] = useState(false);
+
+  const [entregaAnulada, setEntregaAnulada] = useState(false)
+  const { userLogin } = useContext(UserLoginContext) || {}
+  const { setTitleHeaderOption } = useTitleHeaderOption()
+  const { currentClass } = useCurrentClass()
+
+  const navigate = useNavigate()
+
+  const uploadProps = useUploadFile()
+  const { uploadedFiles, setUploadedFiles, inputFileRef } = uploadProps
+  const { requestDB } = useRequestDB()
 
   const resourcesDocent = info_resource.resources?.filter(resource => resource.created_by === 'DOC')
   const resourcesStudent = info_resource.resources?.filter(resource => resource.created_by === 'EST')
 
-  const isTask = info_resource.asttip === 'TA';
-  const isEnouncement = info_resource.asttip === 'EN';
-  const isMaterial = info_resource.asttip === 'MA';
+  const isTask = info_resource.asttip === 'TA'
+  const isEnouncement = info_resource.asttip === 'EN'
+  const isMaterial = info_resource.asttip === 'MA'
+
+  const handleClickActionTask = async (ateestado) => {
+    if (ateestado === 'P') {
+      const formData = new FormData()
+
+      formData.append('usuid', userLogin.userInfo.usuid)
+      formData.append('cedid', userLogin.educativeCenterInfo[0].cedid)
+      formData.append('cecid', userLogin.currentCycleInfo.cecid)
+      formData.append('astid', info_resource.astid)
+      formData.append('ateestado', 'E')
+      formData.append('cednom', userLogin.educativeCenterInfo[0].cednom)
+      
+      uploadedFiles.forEach(file => { formData.append('files', file) })
+
+      const responseDB = await requestDB('student/submit-task', 'POST', formData)
+      if (!responseDB.ok) return toast.error(responseDB.message)
+
+      toast.success('Tarea entregada exitosamente')
+      confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+      })
+
+      setUploadedFiles([])
+      inputFileRef.current.value = ''
+
+      navigate(-1)
+    }
+
+    if (ateestado === 'E') {
+      console.log('Anular')
+    }
+  }
+
+  console.log(info_resource)
+
+  useEffect(() => {
+    setTitleHeaderOption(info_resource.astnomtrabajo)
+  }, [])
 
   return (
-    <div className="contenido-card">
+    <div className="contenido-card" style={{padding: '20px'}}>
       <div className="contenido-principal">
         {/* Cabecera para Enunciado/Material */}
         {(isEnouncement || isMaterial) && (
@@ -31,7 +90,7 @@ export function ContenidoCard({ info_resource }) {
           </div>
         )}
 
-        <h1 className="titulo-trabajo">{info_resource.astnomtrabajo}</h1>
+        {/*<h1 className="titulo-trabajo">{info_resource.astnomtrabajo}</h1>*/}
 
         {/* Cabecera para Tarea */}
         {isTask && (
@@ -115,13 +174,17 @@ export function ContenidoCard({ info_resource }) {
               
               <div className='contenido-extra-entrega'>
                 <div className='entrega-info-subir-archivo'>
-                  <UploadFile />
+                  {resourcesStudent !== null && resourcesStudent.length > 0 
+                  ? <AttachmentsFiles resources={resourcesStudent} /> 
+                  : <UploadFile {...uploadProps} />
+                  }
                 </div>
                 <button 
                   className='btn-action-task'
                   style={{
                     backgroundColor: info_resource.ateestado === 'P' ? '#f59e0b': '#888888ff'
                   }}
+                  onClick={() => handleClickActionTask(info_resource.ateestado)}
                 >
                   {info_resource.ateestado === 'P' ? 'Entregar Tarea' : 'Anular Entrega'}
                   <SendIcon />

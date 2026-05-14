@@ -1,22 +1,23 @@
-import "../../styles/student/Classes.css";
-import { useRequestDB } from "../../hooks/utils/useRequestDB.js";
-import { useContext } from "react";
-import { UserLoginContext } from "../../context/userLogin.jsx";
+import "../../styles/student/Classes.css"
+import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
+import { useTitleHeaderOption } from "../../hooks/common/useTitleHeaderOption.js"
+import { useContext } from "react"
+import { UserLoginContext } from "../../context/userLogin.jsx"
 
-import { useAnimate } from "@mui/x-charts/hooks";
-import { useState, useEffect } from "react";
-import { ChartContainer } from "@mui/x-charts/ChartContainer";
-import { BarPlot } from "@mui/x-charts/BarChart";
-import { ChartsXAxis } from "@mui/x-charts/ChartsXAxis";
-import { ChartsYAxis } from "@mui/x-charts/ChartsYAxis";
+import { useAnimate } from "@mui/x-charts/hooks"
+import { useState, useEffect } from "react"
+import { ChartContainer } from "@mui/x-charts/ChartContainer"
+import { BarPlot } from "@mui/x-charts/BarChart"
+import { ChartsXAxis } from "@mui/x-charts/ChartsXAxis"
+import { ChartsYAxis } from "@mui/x-charts/ChartsYAxis"
 
-import { ButtonCommon } from "../../components/common/ButtonCommon.jsx";
-import { CardClass } from "../../components/student/CardClass.jsx";
-import { UpcomingDelivery } from "../../components/student/UpcomingDelivery.jsx";
-import { CircleChart } from "../../components/common/charts/CircleChart.jsx";
+import { ButtonCommon } from "../../components/common/ButtonCommon.jsx"
+import { CardClass } from "../../components/student/CardClass.jsx"
+import { UpcomingDelivery } from "../../components/student/UpcomingDelivery.jsx"
+import { CircleChart } from "../../components/common/charts/CircleChart.jsx"
 
-import { styled } from "@mui/material/styles";
-import { interpolateObject } from "@mui/x-charts-vendor/d3-interpolate";
+import { styled } from "@mui/material/styles"
+import { interpolateObject } from "@mui/x-charts-vendor/d3-interpolate"
 
 import {
   TargetArrowIcon,
@@ -123,6 +124,8 @@ function TitleChart({ title, icon }) {
 export function Classes() {
 
   const { userLogin } = useContext(UserLoginContext)
+  const { setTitleHeaderOption } = useTitleHeaderOption()
+  
   const [classesStudent, setClassesStudent] = useState()
   const [upcomingDeliveries, setUpcomingDeliveries] = useState()
   const [average, setAverage] = useState()
@@ -143,6 +146,7 @@ export function Classes() {
       setBestClasses(JSON.parse(responseDB.data[0].best_classes))
     }
     getClassesStudent()
+    setTitleHeaderOption('Cursos')
   }, [])
 
   // if (!classesStudent) return null

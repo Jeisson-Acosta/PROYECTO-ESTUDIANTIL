@@ -1,5 +1,5 @@
 import { StudentModel } from "../models/student.js"
-import { validateClasses, validateClass, validateNotes, validateInfoResource } from "../schemas/student.js"
+import { validateClasses, validateClass, validateNotes, validateInfoResource, validateSubmitTask } from "../schemas/student.js"
 import { validateCalendar, validateSchedule } from "../schemas/student.js"
 
 export class StudentController {
@@ -13,7 +13,6 @@ export class StudentController {
 
             return res.status(200).json(result)
         } catch (err) {
-            console.log(err)
             throw new Error('Error getting classes')
         }
     }
@@ -111,6 +110,20 @@ export class StudentController {
             return res.json(result)
         } catch (err) {
             throw new Error('Error geting info resource student')
+        }
+    }
+
+    static async submitTask(req, res) {
+        try {
+            const resultValidate = validateSubmitTask(req.body)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await StudentModel.submitTask({ data: resultValidate.data, files: req.files })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            return res.json(result)
+        } catch (err) {
+            throw new Error('Error submitting task')
         }
     }
 

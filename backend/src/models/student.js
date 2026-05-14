@@ -92,4 +92,23 @@ export class StudentModel {
         }
     }
 
+    static async submitTask({ data, files }) {
+        const {usuid, cedid, cecid, ateestado, astid} = data
+        try {
+
+            const filesInfo = files?.map(file => ({
+                name: file.filename
+            }))
+
+            const result = await manageDB('sp_student_submit_task', [usuid, cedid, cecid, astid, ateestado, JSON.stringify(filesInfo)])
+            if (!result.ok) throw new Error(result.message)
+
+            return result
+
+        } catch(err) {
+            console.log(err)
+            throw new Error('Error submitting task')
+        }
+    }
+
 }

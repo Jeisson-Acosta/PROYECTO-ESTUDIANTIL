@@ -2,6 +2,8 @@ import '../../styles/student/NotesStudent.css'
 import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
 import { ButtonCommon } from '../../components/common/ButtonCommon.jsx'
 import { useEffect, useState, useContext } from 'react'
+import { useTitleHeaderOption } from '../../hooks/common/useTitleHeaderOption.js'
+
 import { DownloadIcon, FileAnalyticsIcon, ListCheckIcon, CircleCheckIcon, ClockIcon, HourglassIcon, ArrowsDownIcon } from '../../components/common/GeneralIcons'
 import { BuildTable } from '../../components/common/BuildTable.jsx'
 import { CardInfoNotesStudent } from '../../components/student/CardInfoNotesStudent.jsx'
@@ -12,6 +14,7 @@ import toast from 'react-hot-toast'
 
 export function NotesStudent() {
     const { userLogin } = useContext(UserLoginContext)
+    const { setTitleHeaderOption } = useTitleHeaderOption()
     const [infoTasks, setInfoTasks] = useState(null)
     const [selectedOption, setSelectedOption] = useState('STK') // (STK) See TasKs (Ver tareas),  (SDN) See Definitive Notes (Ver notas definitivas)
     const { requestDB } = useRequestDB()
@@ -25,6 +28,7 @@ export function NotesStudent() {
             setInfoTasks(responseDB.data)
         }
         getInfoTasks()
+        setTitleHeaderOption('Notas')
     }, [selectedOption])
 
     const columnsTableNotesStudent = [

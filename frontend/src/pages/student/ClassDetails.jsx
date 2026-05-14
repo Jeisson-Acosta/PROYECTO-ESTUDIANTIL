@@ -11,11 +11,13 @@ import { HeaderClass } from '../../components/common/classes/HeaderClass.jsx'
 import { useParams } from "react-router-dom"
 import { useRequestDB } from "../../hooks/utils/useRequestDB.js"
 import toast from "react-hot-toast"
+import { useTitleHeaderOption } from '../../hooks/common/useTitleHeaderOption.js'
 
 export function ClassDetails() {
     const [infoClass, setInfoClass] = useState({ info: null, tasks: null, tasksPending: null })
     const [tasksFiltered, setTasksFiltered] = useState([])
     const { userLogin } = useContext(UserLoginContext)
+    const { setTitleHeaderOption } = useTitleHeaderOption()
     const { requestDB } = useRequestDB()
     const { asgcod } = useParams()
 
@@ -31,6 +33,7 @@ export function ClassDetails() {
             })
         }
         getInfoClass()
+        setTitleHeaderOption('Detalles de la Asignatura')
     }, [])
     
     if (infoClass.info === null || infoClass.tasks === null) return null

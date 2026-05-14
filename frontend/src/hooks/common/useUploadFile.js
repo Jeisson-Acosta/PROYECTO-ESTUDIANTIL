@@ -10,6 +10,8 @@ export function useUploadFile() {
         setCounterFiles(e.target.files.length)
     }
 
+    console.log(uploadedFiles)
+
     return {
         uploadedFiles,
         setUploadedFiles,
