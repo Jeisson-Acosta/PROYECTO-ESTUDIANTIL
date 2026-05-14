@@ -24,8 +24,8 @@ export function IconEurope(props) {
 export function IconFitness(props) {
     return <img src={fitness} alt="fitness" {...props} />
 }
-export function IconMarketing(props) {
-    return <img src={marketing} alt="marketing" {...props} />
+export function IconMarketing3(props) {
+    return <img src={marketing} alt="marketing-3" {...props} />
 }
 export function IconPersonCoding(props) {
     return <img src={personCoding} alt="person-coding" {...props} />

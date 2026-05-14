@@ -57,7 +57,7 @@ export function RectorDashboard() {
                         bgColorIcon={'#faf5ff'}
                         classNameIcon={'course'}
                         icon={<BookIcon />}
-                        title={'Abrir Nuevo Curso'}
+                        title={'Abrir Nueva Asignatura'}
                         description={'Gestionar apertura de aulas y asignación de horarios.'}
                         colorTextButton={'#9212ea'}
                         textButton={'CONFIGURAR'}

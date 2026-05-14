@@ -25,7 +25,7 @@ export function CardClassDocent({ classDocent }) {
                 </div>
             </header>
             <section className="icon-class">
-                <img src={getIconUrl(iconName)} alt="Icono de clase" />
+                <img src={getIconUrl(iconName.toLowerCase())} alt="Icono de clase" />
             </section>
             <section className="content-class">
                 <h4>{classDocent.asgnom}</h4>

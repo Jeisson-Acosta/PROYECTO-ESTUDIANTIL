@@ -38,4 +38,29 @@ export class RectorModel {
             throw new Error('Error create student: ' + err.message)
         }
     }
+
+    static async getInfoToCreateAsignature({ data }) {
+        const { cedid, cecid, usuid } = data
+        try {
+
+            const resultDB = await manageDB('sp_rector_get_info_to_create_asignatura', [cedid, cecid, usuid])
+            if (!resultDB.ok) throw new Error(resultDB.message)
+
+            return resultDB
+
+        } catch (err) {
+            throw new Error('Error get docents by educative center.')
+        }
+    }
+
+    static async createAsignatura({ data }) {
+        try {
+            const resultDB = await manageDB('sp_rector_create_asignatura', [data.usuid, data.cedid, data.cecid, JSON.stringify(data.info_asignatura)])
+            if (!resultDB.ok) throw new Error(resultDB.message)
+
+            return resultDB
+        } catch (err) {
+            throw new Error('Error create asignature')
+        }
+    }
 }
