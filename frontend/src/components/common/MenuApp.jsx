@@ -1,10 +1,10 @@
 import '../../styles/common/MenuApp.css'
-import { IconHatStudent, IconDashboard, IconNotebook, IconClipboard, IconBars, IconSchedule,IconMedal,IconConfig,IconSesion} from "./IconsLayout.jsx"
+import { IconHatStudent, IconDashboard, IconNotebook, IconClipboard, IconBars, IconSchedule,IconMedal,IconConfig,IconSesion, IconChartDonut} from "./IconsLayout.jsx"
 import { NavLink } from "react-router-dom"
 import { useContext } from 'react'
 import { UserLoginContext } from '../../context/userLogin.jsx'
 import { useNavigate } from 'react-router-dom'
-import { UserIcon } from './GeneralIcons.jsx'
+import { PencilIcon, UserIcon } from './GeneralIcons.jsx'
 import { useRequestDB } from '../../hooks/utils/useRequestDB.js'
 import toast from "react-hot-toast"
 
@@ -38,12 +38,14 @@ export function MenuApp() {
     if (!userLogin.userInfo) return null
 
     const COMPLEMENTED_URL = userLogin.userInfo.rolcod === 'EST' ? 'student' : userLogin.userInfo.rolcod === 'DOC' ? 'docent' : 'rector'
-    const handleClickLogoutUser = async ()=>{
+    const handleClickLogoutUser = async () => {
         const response = await requestDB("auth/logout", "POST", {})
         if (!response.ok) return toast.error(response.message)
+
         setUserLogin({ userInfo: null, educativeCenterInfo: null, currentCycleInfo: null })
         setIsAuthenticated(false)
         navigate("/login")
+
         toast.success("¡Sesión cerrada exitosamente!")
     }
 
@@ -87,7 +89,7 @@ export function MenuApp() {
                     </NavLink>
                     <NavLink to={`/${COMPLEMENTED_URL}/notas`}>
                         <li className="notas-menu-option">
-                            <IconBars />
+                            <PencilIcon />
                             <span className="text-module">Notas</span>
                         </li>
                     </NavLink>
@@ -95,6 +97,12 @@ export function MenuApp() {
                         <li className="calendario-menu-option">
                             <IconSchedule />
                             <span className="text-module">Calendario</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to={`/${COMPLEMENTED_URL}/reportes`}>
+                        <li className="reportes-menu-option">
+                            <IconChartDonut />
+                            <span className="text-module">Reportes</span>
                         </li>
                     </NavLink>
                     {/*<NavLink to={`/${COMPLEMENTED_URL}/contenido`}>

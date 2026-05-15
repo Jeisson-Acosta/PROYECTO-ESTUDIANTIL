@@ -65,10 +65,10 @@ export class RectorModel {
     }
 
     static async getAllAsignaturesInfo({ data }) {
-        const { usuid, cedid, cecid, asgestado_option } = data
+        const { usuid, cedid, cecid } = data
         try {
 
-            const resultDB = await manageDB('sp_rector_get_all_asignatures_info', [usuid, cedid, cecid, asgestado_option])
+            const resultDB = await manageDB('sp_rector_get_all_asignatures_info', [usuid, cedid, cecid])
             if (!resultDB.ok) throw new Error(resultDB.message)
 
             return resultDB

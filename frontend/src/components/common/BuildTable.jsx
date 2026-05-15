@@ -18,9 +18,9 @@ export function BuildTable({ columns, data }) {
               {hg.headers.map(header => (
                 <th key={header.id} style={{
                   textAlign: "left", padding: "20px",
-                  fontSize: 14, color: "#888", fontWeight: 'bold',
+                  fontSize: 12, color: "#4c75a7", fontWeight: 'bold',
                   letterSpacing: 0.5, borderBottom: "1px solid #eee",
-                  fontFamily: 'fontSubtitles'
+                  fontFamily: 'fontTitlesBold'
                 }}>
                   {flexRender(header.column.columnDef.header, header.getContext())}
                 </th>
