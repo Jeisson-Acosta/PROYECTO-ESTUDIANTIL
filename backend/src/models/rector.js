@@ -63,4 +63,18 @@ export class RectorModel {
             throw new Error('Error create asignature')
         }
     }
+
+    static async getAllAsignaturesInfo({ data }) {
+        const { usuid, cedid, cecid, asgestado_option } = data
+        try {
+
+            const resultDB = await manageDB('sp_rector_get_all_asignatures_info', [usuid, cedid, cecid, asgestado_option])
+            if (!resultDB.ok) throw new Error(resultDB.message)
+
+            return resultDB
+
+        } catch (err) {
+            throw new Error('Error get all asignatures info')
+        }
+    }
 }

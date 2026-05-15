@@ -1,5 +1,5 @@
 import { RectorModel } from "../models/rector.js"
-import { validateGetCoursesByEducativeCenter, validateCreateStudent, validateGetInfoToCreateAsignature, validateCreateAsignatura } from "../schemas/rector.js"
+import { validateGetCoursesByEducativeCenter, validateCreateStudent, validateGetInfoToCreateAsignature, validateCreateAsignatura, validateGetAllAsignaturesInfo } from "../schemas/rector.js"
 
 export class RectorController {
 
@@ -60,6 +60,21 @@ export class RectorController {
 
         } catch (err) {
             throw new Error('Error create asignatura')
+        }
+    }
+
+    static async getAllAsignaturesInfo(req, res) {
+        try {
+            const resultValidate = validateGetAllAsignaturesInfo(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await RectorModel.getAllAsignaturesInfo({ data: resultValidate.data })
+            if (!result.ok) return res.json(result)
+
+            return res.json(result)
+
+        } catch (err) {
+            throw new Error('Error get all asignatures info')
         }
     }
 

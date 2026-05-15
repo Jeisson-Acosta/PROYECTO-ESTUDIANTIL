@@ -1,0 +1,50 @@
+.principal-container-asignatures-rector {
+    padding: 20px;
+    max-height: 84dvh;
+    overflow: hidden;
+    overflow-y: auto;
+    & .header-asignatures-rector .cards-info-asignatures{
+        margin-top: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        overflow: hidden;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+}
+
+.main-container-asignaures-rector {
+    margin-top: 24px;
+    & .container-filters {
+        background-color: #ffffff;
+        padding: 16px 22px;
+        border-radius: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid #ecf1f5;
+        & .input-search-asignatures {
+            width: 40%;
+            padding: 10px;
+            border: 2px solid #e7edf3;
+            border-radius: 6px;
+            outline: none;
+            font-family: fontSubtitles;
+            background-color: #f8fafc;
+        }
+        & .select-filter-asignatures {
+            padding: 6px;
+            border: 2px solid #e7edf3;
+            border-radius: 6px;
+            outline: none;
+            font-family: fontSubtitles;
+            background-color: #f8fafc;
+        }
+    }
+    & .table-info-asignatures-rector {
+        
+    }
+}

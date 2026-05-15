@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { ShowWelcomeModalAppContext } from "../../context/common/showWelcomeModalApp.jsx"
+import { ShowWelcomeModalAppContext } from "./frontend/src/context/common/showWelcomeModalApp.jsx"
 
 export function useShowWelcomeModalApp() {
     const context = useContext(ShowWelcomeModalAppContext)

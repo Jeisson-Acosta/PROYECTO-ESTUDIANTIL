@@ -41,6 +41,13 @@ const createAsignatura = z.object({
     })
 })
 
+const getAllAsignaturesInfo = z.object({
+    usuid: z.string({ required_error: 'The user id is required' }).transform(val => Number(val)),
+    cedid: z.string({ required_error: 'The id is required' }).transform(val => Number(val)),
+    cecid: z.string({ required_error: 'The educative center code is required' }).transform(val => Number(val)),
+    asgestado_option: z.string({ required_error: 'The status option is required' })
+})
+
 const getInfoToCreateAsignature = z.object({
     cedid: z.string({ required_error: 'The id is required' }).transform(val => Number(val))
 })
@@ -59,4 +66,8 @@ export function validateGetInfoToCreateAsignature(input) {
 
 export function validateCreateAsignatura(input) {
     return createAsignatura.safeParse(input)
+}
+
+export function validateGetAllAsignaturesInfo(input) {
+    return getAllAsignaturesInfo.safeParse(input)
 }

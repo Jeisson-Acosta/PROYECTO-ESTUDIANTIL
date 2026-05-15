@@ -15,6 +15,7 @@ import { ViewDetailsTask } from './pages/docent/ViewDetailsTask.jsx'
 import { StudentCalendar } from "./pages/student/StudentCalendar.jsx";
 import { StudentShedule } from "./pages/student/StudentShedule.jsx";
 import { RectorDashboard } from './pages/rector/RectorDashboard.jsx'
+import { CoursesRector } from './pages/rector/CoursesRector.jsx'
 // ================================================
 
 // ==================== COMPONENTS ====================
@@ -99,6 +100,7 @@ function App() {
                   <Route path='create-student' element={<FormCreateStudent />} />
                   <Route path='create-docent' element={<FormCreateDocent />} />
                   <Route path='create-course' element={<FormCreateNewCourse />} />
+                  <Route path='cursos' element={<CoursesRector />} />
                 </Routes>
               </RoleBasedRoute>
             }

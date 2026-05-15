@@ -1,0 +1,39 @@
+.card-info-asignature-rector {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    max-width: 360px;
+    & .header-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & h5 {
+            font-family: fontSubtitles;
+            color: #4c739a;
+        }
+        & .icon-card {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            padding: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &.total-asignatures svg{
+                stroke: #137fec;
+            }
+            &.active-asignatures svg{
+                stroke: #10b981;
+                stroke-width: 1.5px;
+            }
+            &.inactive-asignatures svg{
+                fill: #f79e2f;
+            }
+        }
+    }
+    & .value-card {
+        font-family: fontTitlesBold;
+        color: #0d141b;
+    }
+}

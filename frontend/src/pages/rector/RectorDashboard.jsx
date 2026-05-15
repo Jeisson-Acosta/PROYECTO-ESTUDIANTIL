@@ -1,6 +1,8 @@
 import '../../styles/rector/RectorDashboard.css'
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
+import { useTitleHeaderOption } from '../../hooks/common/useTitleHeaderOption.js'
+
 import { UserLoginContext } from "../../context/userLogin.jsx"
 import { BookIcon, SchoolHatIcon, UserIcon } from "../../components/common/GeneralIcons.jsx"
 import { CardActionToCreate } from '../../components/rector/CardActionToCreate.jsx'
@@ -10,6 +12,11 @@ import { BarChartPerformance } from '../../components/rector/BarChartPerformance
 export function RectorDashboard() {
     const navigate = useNavigate()
     const { userLogin } = useContext(UserLoginContext)
+    const { setTitleHeaderOption } = useTitleHeaderOption()
+
+    useEffect(() => {
+        setTitleHeaderOption('Dashboard Rector')
+    }, [])
 
     console.log(userLogin)
 
