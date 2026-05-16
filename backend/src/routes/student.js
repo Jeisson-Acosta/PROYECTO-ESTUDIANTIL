@@ -39,3 +39,4 @@ studentRouter.get('/notes/:cedid/:cecid/:usuid/:optionSP', StudentController.get
 studentRouter.get('/info-resource/:usuid/:cedid/:cecid/:astid', StudentController.getInfoResource)
 
 studentRouter.get('/schedule/:usuid/:cedid/:cecid', StudentController.getSchedule)
+studentRouter.get('/info-reports/:usuid/:cedid/:cecid/:cecid_selected', StudentController.getInfoToReports)

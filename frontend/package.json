@@ -22,8 +22,10 @@
     "@react-pdf/renderer": "4.5.1",
     "@tanstack/react-table": "^8.21.3",
     "canvas-confetti": "1.9.4",
+    "date-fns": "4.1.0",
     "driver.js": "1.4.0",
     "react": "19.2.0",
+    "react-big-calendar": "1.19.4",
     "react-dom": "19.2.0",
     "react-hot-toast": "2.6.0",
     "react-router-dom": "7.9.6"

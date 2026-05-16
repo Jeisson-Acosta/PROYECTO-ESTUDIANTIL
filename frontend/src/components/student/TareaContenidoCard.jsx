@@ -70,8 +70,6 @@ export function ContenidoCard({ info_resource }) {
     }
   }
 
-  console.log(info_resource)
-
   useEffect(() => {
     setTitleHeaderOption(info_resource.astnomtrabajo)
   }, [])
@@ -174,7 +172,7 @@ export function ContenidoCard({ info_resource }) {
               
               <div className='contenido-extra-entrega'>
                 <div className='entrega-info-subir-archivo'>
-                  {resourcesStudent !== null && resourcesStudent.length > 0 
+                  {resourcesStudent && resourcesStudent.length > 0 
                   ? <AttachmentsFiles resources={resourcesStudent} /> 
                   : <UploadFile {...uploadProps} />
                   }

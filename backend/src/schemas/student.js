@@ -97,6 +97,25 @@ const submitTaskSchema = z.object({
     }).transform(val => Number(val))
 })
 
+const infoReportsSchema = z.object({
+    usuid: z.string({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val)),
+    cecid_selected: z.string({
+        required_error: 'The cecid_selected is required',
+        invalid_type_error: 'The cecid_selected must be a string'
+    }).transform(val => Number(val))
+})
+
 export function validateNotes(data) {
     return notesSchema.safeParse(data)
 }
@@ -138,4 +157,8 @@ export function validateInfoResource(data) {
 
 export function validateSubmitTask(data) {
     return submitTaskSchema.safeParse(data)
+}
+
+export function validateInfoReports(data) {
+    return infoReportsSchema.safeParse(data)
 }

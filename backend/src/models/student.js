@@ -106,8 +106,19 @@ export class StudentModel {
             return result
 
         } catch(err) {
-            console.log(err)
             throw new Error('Error submitting task')
+        }
+    }
+
+    static async getInfoToReports({ data }) {
+        const { usuid, cedid, cecid, cecid_selected } = data
+        try {
+            const result = await manageDB('sp_student_get_info_reports', [usuid, cedid, cecid, cecid_selected])
+            if (!result.ok) throw new Error(result.message)
+
+            return result
+        } catch (err) {
+            throw new Error('Error geting info to reports')
         }
     }
 

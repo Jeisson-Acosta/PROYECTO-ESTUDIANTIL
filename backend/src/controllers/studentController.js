@@ -1,5 +1,5 @@
 import { StudentModel } from "../models/student.js"
-import { validateClasses, validateClass, validateNotes, validateInfoResource, validateSubmitTask } from "../schemas/student.js"
+import { validateClasses, validateClass, validateNotes, validateInfoResource, validateSubmitTask, validateInfoReports } from "../schemas/student.js"
 import { validateCalendar, validateSchedule } from "../schemas/student.js"
 
 export class StudentController {
@@ -124,6 +124,20 @@ export class StudentController {
             return res.json(result)
         } catch (err) {
             throw new Error('Error submitting task')
+        }
+    }
+
+    static async getInfoToReports(req, res) {
+        try {
+            const resultValidate = validateInfoReports(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await StudentModel.getInfoToReports({ data: resultValidate.data })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            return res.json(result)
+        } catch (err) {
+            throw new Error('Error geting info to reports')
         }
     }
 

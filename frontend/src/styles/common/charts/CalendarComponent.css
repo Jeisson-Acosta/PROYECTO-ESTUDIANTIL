@@ -1,0 +1,463 @@
+
+/* ── Contenedor principal ── */
+.cal-container {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ── Encabezado ── */
+.cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.cal-header__title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111827;
+    margin: 0;
+    text-transform: capitalize;
+    font-family: fontTitlesBold;
+}
+
+.cal-header__controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ── Switcher semana / mes ── */
+.cal-view-switcher {
+    display: flex;
+    background: #f3f4f6;
+    border-radius: 10px;
+    padding: 3px;
+    gap: 2px;
+}
+
+.cal-view-btn {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    color: #6b7280;
+    transition: all 0.15s ease;
+}
+
+.cal-view-btn--active {
+    background: #ffffff;
+    color: #111827;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Navegación ── */
+.cal-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cal-nav__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.cal-nav__btn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    color: #374151;
+}
+
+.cal-nav__btn--hoy {
+    padding: 0 14px;
+    width: auto;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3b82f6;
+    border-color: #bfdbfe;
+    background: #eff6ff;
+}
+
+.cal-nav__btn--hoy:hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+}
+
+/* ── Cuerpo del calendario ── */
+.cal-body {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1.5px solid #f0f0f0;
+}
+
+/* ── Reset react-big-calendar ── */
+.cal-body .rbc-calendar {
+    font-family: inherit;
+}
+
+.cal-body .rbc-toolbar {
+    display: none;
+}
+
+.cal-body .rbc-time-view,
+.cal-body .rbc-month-view {
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.cal-body .rbc-month-view {
+    min-height: 600px;
+}
+
+/* Cabecera de días */
+.cal-body .rbc-time-header,
+.cal-body .rbc-month-header {
+    background: #fafafa;
+    border-bottom: 1.5px solid #f0f0f0;
+}
+
+.cal-body .rbc-header {
+    border-bottom: none;
+    border-left: 1px solid #f0f0f0;
+    padding: 6px 4px 8px !important; 
+    font-weight: 500;
+}
+
+.cal-body .rbc-header:first-child {
+    border-left: none;
+}
+
+/* Columna de horas */
+.cal-body .rbc-time-gutter .rbc-timeslot-group {
+    border-bottom: 1px solid #f3f4f6;
+    min-width: 60px;
+}
+
+.cal-body .rbc-time-slot {
+    border-top: none;
+}
+
+.cal-body .rbc-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #9ca3af;
+    padding: 0 10px 0 8px;
+}
+
+/* Slots de tiempo */
+.cal-body .rbc-timeslot-group {
+    border-bottom: 1px solid #f3f4f6;
+    min-height: 60px;
+}
+
+.cal-body .rbc-day-slot .rbc-time-slot {
+    border-top: none;
+}
+
+/* Columnas de días */
+.cal-body .rbc-day-bg {
+    border-left: 1px solid #f3f4f6;
+}
+
+.cal-body .rbc-day-bg:first-child {
+    border-left: none;
+}
+
+.cal-body .rbc-time-column {
+    border-left: 1px solid #f3f4f6;
+}
+
+/* Línea de hora actual */
+.cal-body .rbc-current-time-indicator {
+    background: #ef4444;
+    height: 2px;
+}
+
+.cal-body .rbc-current-time-indicator::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ef4444;
+    position: absolute;
+    left: -5px;
+    top: -4px;
+}
+
+/* Eventos — reset del wrapper de rbc */
+.cal-body .rbc-event {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    outline: none !important;
+}
+
+.cal-body .rbc-event:focus {
+    outline: none !important;
+}
+
+.cal-body .rbc-event-content {
+    height: 100%;
+}
+
+/* Columna de día actual */
+.cal-body .cal-today-col {
+    background: rgba(59, 130, 246, 0.02) !important;
+}
+
+/* ── Fix encabezado cortado ── */
+.cal-body .rbc-time-header-content {
+    overflow: visible !important;
+}
+
+.cal-body .rbc-header {
+    overflow: visible !important;
+    padding: 10px 4px 14px !important; 
+}
+
+.cal-body .rbc-row.rbc-time-header-cell {
+    overflow: visible !important;
+}
+
+.cal-body .rbc-time-header {
+    overflow: visible !important;
+}
+
+.cal-body .rbc-time-header-cell {
+    min-height: unset !important;
+}
+
+/* ── Cabecera personalizada de día ── */
+.cal-day-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px 4px 6px !important;
+    gap: 2px !important;
+}
+
+.cal-day-header--month {
+    padding: 4px 0;
+}
+
+.cal-day-header__name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-family: fontTitlesBold;
+}
+
+.cal-day-header__number {
+    font-size: 18px;
+    font-weight: bold;
+    color: #374151;
+    width: 30px;
+    height: 30px;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: fontSubtitles;
+    border-radius: 50%;
+}
+
+.cal-day-header__number--today {
+    background: #3b82f6;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* ── Evento personalizado ── */
+.cal-evento {
+    height: 100%;
+    border-radius: 10px;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    box-sizing: border-box;
+    overflow: hidden;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+}
+
+.cal-evento:hover {
+    filter: brightness(0.95);
+}
+
+.cal-evento__header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cal-evento__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+}
+
+.cal-evento__title {
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.cal-evento__time {
+    font-size: 11px;
+    opacity: 0.72;
+    margin-top: 1px;
+}
+
+.cal-evento__location {
+    font-size: 11px;
+    opacity: 0.62;
+    font-style: italic;
+}
+
+/* ── Tags ── */
+.cal-evento__tag {
+    display: inline-block;
+    font-size: 10px;
+    border-radius: 4px;
+    padding: 1px 6px;
+    margin-top: 3px;
+    width: fit-content;
+    font-weight: 500;
+}
+
+.cal-evento__tag--warning {
+    background: #dc2626;
+    color: #fff;
+}
+
+.cal-evento__tag--exam {
+    background: rgba(255, 255, 255, 0.7);
+    border: 0.5px solid currentColor;
+}
+
+.cal-evento__tag--info {
+    background: rgba(255, 255, 255, 0.5);
+    border: 0.5px solid currentColor;
+}
+
+.cal-evento__tag--default {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+/* ── Deadline ── */
+.cal-evento--deadline {
+    border-left: 3px solid currentColor !important;
+    border-radius: 0 8px 8px 0 !important;
+}
+
+.cal-evento__deadline-badge {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-left: auto;
+    font-style: italic;
+}
+
+/* ── Paleta de colores ── */
+.cal-evento--blue   { background: #dbeafe; color: #1d4ed8; }
+.cal-evento--green  { background: #dcfce7; color: #15803d; }
+.cal-evento--pink   { background: #fce7f3; color: #be185d; }
+.cal-evento--purple { background: #ede9fe; color: #6d28d9; }
+.cal-evento--amber  { background: #fef3c7; color: #b45309; }
+.cal-evento--red    { background: #fee2e2; color: #b91c1c; }
+.cal-evento--gray   { background: #f1f5f9; color: #475569; }
+.cal-evento--teal   { background: #ccfbf1; color: #0f766e; }
+
+/* ── Vista mes ── */
+.cal-body .rbc-month-view .rbc-event {
+    border-radius: 6px !important;
+}
+
+.cal-body .rbc-month-row {
+    overflow: hidden;
+}
+
+.cal-body .rbc-date-cell {
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    padding: 6px 8px;
+    text-align: right;
+}
+
+.cal-body .rbc-date-cell.rbc-now a {
+    background: #3b82f6;
+    color: white;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.cal-body .rbc-off-range-bg {
+    background: #fafafa;
+}
+
+.cal-body .rbc-off-range .rbc-date-cell a {
+    color: #d1d5db;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .cal-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cal-header__title {
+        font-size: 18px;
+    }
+
+    .cal-body .rbc-label {
+        font-size: 10px;
+        padding: 0 6px;
+    }
+
+    .cal-day-header__number {
+        font-size: 15px;
+        width: 28px;
+        height: 28px;
+    }
+}

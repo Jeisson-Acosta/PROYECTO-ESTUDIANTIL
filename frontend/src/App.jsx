@@ -10,6 +10,7 @@ import { CreateAnnouncement } from './pages/docent/CreateAnnouncement.jsx'
 import { Classes } from './pages/student/Classes.jsx'
 import { ClassDetails } from './pages/student/ClassDetails.jsx'
 import { NotesStudent } from './pages/student/NotesStudent.jsx'
+import { ReportsStudent } from './pages/student/ReportsStudent.jsx'
 import { StudentsList } from './pages/docent/StudentsList.jsx'
 import { ViewDetailsTask } from './pages/docent/ViewDetailsTask.jsx'
 import { StudentCalendar } from "./pages/student/StudentCalendar.jsx";
@@ -65,6 +66,7 @@ function App() {
                   <Route path='notas' element={<NotesStudent />} />
                   <Route path='calendario' element={<StudentCalendar />} />
                   <Route path="calendario/horario-completo" element={<StudentShedule />} />
+                  <Route path="reportes" element={<ReportsStudent />} />
                 </Routes>
               </RoleBasedRoute>
             }
