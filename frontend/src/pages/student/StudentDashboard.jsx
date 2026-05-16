@@ -1,16 +1,45 @@
 // common/Stats.jsx
-import { useContext } from 'react';
-import '../../styles/student/StudentDashboard.css';
-import { StudentCard } from '../../components/student/StudentCard.jsx';
-import { UserLoginContext } from '../../context/userLogin.jsx';
-import { MateriasCard } from '../../components/student/MateriasCard.jsx';
-import { IconStar, IconAsistance, IconSubject } from '../../components/common/IconsLayout.jsx';
-import { NotasCard } from '../../components/student/NotasCard.jsx';
-import { CircleChart } from '../../components/common/charts/CircleChart.jsx';
+import { useContext, useEffect } from 'react'
+import '../../styles/student/StudentDashboard.css'
+
+import { useTitleHeaderOption } from '../../hooks/common/useTitleHeaderOption.js'
+
+import { StudentCard } from '../../components/student/StudentCard.jsx'
+import { UserLoginContext } from '../../context/userLogin.jsx'
+import { MakeTourContext } from '../../context/common/makeTour.jsx'
+
+import { MateriasCard } from '../../components/student/MateriasCard.jsx'
+import { IconStar, IconAsistance, IconSubject } from '../../components/common/IconsLayout.jsx'
+import { NotasCard } from '../../components/student/NotasCard.jsx'
+import { CircleChart } from '../../components/common/charts/CircleChart.jsx'
 import DesempeñoMaterias from '../../components/student/GraphicPerformance.jsx'
-import { Calendar } from '../../components/common/charts/calendario.jsx';
+import { Calendar } from '../../components/common/charts/calendario.jsx'
+
 export function StudentDashboard() {
-    const { userLogin } = useContext(UserLoginContext) || {};
+    const { userLogin } = useContext(UserLoginContext) || {}
+    const { setTitleHeaderOption } = useTitleHeaderOption()
+    const { startTour } = useContext(MakeTourContext)
+
+    useEffect(() => {
+        const stepsDiverStudent = [
+            { element: '.principal-container-menu', popover: { title: 'Menú principal', description: 'Aquí puedes ver el menú principal de la plataforma con todas las opciones disponibles para ti' } },
+            { element: '.dashboard-menu-option', popover: { title: 'Dashboard', description: 'Aquí podrás ver la información general de tu rendimiento académico.' } },
+            { element: '.cursos-menu-option', popover: { title: 'Cursos', description: 'Aquí podrás ver el listado de los cursos que se te han asignado.' } },
+            { element: '.tareas-menu-option', popover: { title: 'Tareas', description: 'Aquí podrás ver el listado de las tareas que se te han asignado con sus diferentes estados.' } },
+            { element: '.notas-menu-option', popover: { title: 'Notas', description: 'Aquí podrás ver el listado de las notas que se te han asignado.' } },
+            { element: '.calendario-menu-option', popover: { title: 'Calendario', description: 'Aquí podrás ver el calendario académico del periodo actual.' } },
+            { element: '.reportes-menu-option', popover: { title: 'Reportes', description: 'En esta sección podrás ver tu rendimiento por ciclo y generar tu boletín académico.' } },
+            { element: '.stats-dashboard', popover: { title: 'Información general', description: 'Aquí puedes ver la información general de tu rendimiento académico.' } },
+            { element: '.desempeño-materias', popover: { title: 'Rendimiento general por asignatura', description: 'Aquí puedes ver el rendimiento general de cada una de las asignaturas que tienes asignadas.' } },
+            { element: '.calendar-graphic', popover: { title: 'Calendario', description: 'Aquí puedes ver un calendario rapido con fechas importantes de entregas.' } },
+            { element: '.materias-seccion', popover: { title: 'Tus proximas clases', description: 'Aqui podras ver las proximas clases que tienes programadas para el dia de hoy.' } },
+            { element: '.notas-seccion', popover: { title: 'Tus ultimas notas', description: 'Aquí puedes ver un resumen de tus últimas notas en cada una de tus materias calificadas por los docentes.' } },
+        ]
+
+        if (userLogin.userInfo.usuestado === 'RE') { startTour(stepsDiverStudent) }
+
+        setTitleHeaderOption('Dashboard Estudiante')
+    }, [])
     
     if (!userLogin.userInfo) return null;
     
@@ -20,8 +49,7 @@ export function StudentDashboard() {
     if (userLogin?.ultimas_notas && typeof userLogin.ultimas_notas === 'string') {
         try {
             notasArray = JSON.parse(userLogin.ultimas_notas);
-        } catch (e) {
-            console.error('Error parsing notas:', e);
+        } catch {
             notasArray = [];
         }
     } else if (Array.isArray(userLogin?.ultimas_notas)) {

@@ -26,6 +26,10 @@ const loginSchema = z.object({
     usupwd: z.string({ required_error: 'The password is required' })
 })
 
+const changeStateUserSchema = z.object({
+    usuid: z.string({ required_error: 'The user id is required' }).transform(Number),
+})
+
 // Esta función nos permite validar que al registrarse no lleguen datos inesperados.
 export function validateRegister(data) {
     return registerSchema.safeParse(data)
@@ -42,4 +46,8 @@ export function validateForgotPassword(data) {
 
 export function validateResetPassword(data) {
     return resetPasswordSchema.safeParse(data)
+}
+
+export function validateChangeStateUser(data) {
+    return changeStateUserSchema.safeParse(data)
 }

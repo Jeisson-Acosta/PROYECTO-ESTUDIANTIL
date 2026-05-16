@@ -1,5 +1,5 @@
 import { AuthModel } from "../models/auth.js";
-import { validateRegister, validateLogin, validateForgotPassword, validateResetPassword } from "../schemas/auth.js";
+import { validateRegister, validateLogin, validateForgotPassword, validateResetPassword, validateChangeStateUser } from "../schemas/auth.js";
 import jwt from "jsonwebtoken";
 import { SECRET_JWT_KEY } from "../config/config.js";
 import { getProfilePhoto } from "../utils/getProfilePhoto.js";
@@ -134,6 +134,20 @@ export class AuthController {
     try {
       const result = await AuthModel.getEducativeCenters()
       if (!result.ok) return res.json(result)
+      res.json(result)
+    } catch (error) {
+      return res.status(500).json({ error: error.message })
+    }
+  }
+
+  static async changeStateUser(req, res) {
+    try {
+      const resultValidate = validateChangeStateUser(req.body)
+      if (!resultValidate.success) return res.status(400).json({ error: JSON.parse(resultValidate.error.message) })
+        
+      const result = await AuthModel.changeStateUser({ usuid: resultValidate.data.usuid })
+      if (!result.ok) return res.json(result)
+
       res.json(result)
     } catch (error) {
       return res.status(500).json({ error: error.message })

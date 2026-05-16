@@ -4,21 +4,35 @@ import { useNavigate } from 'react-router-dom'
 import { useTitleHeaderOption } from '../../hooks/common/useTitleHeaderOption.js'
 
 import { UserLoginContext } from "../../context/userLogin.jsx"
+
 import { BookIcon, SchoolHatIcon, UserIcon } from "../../components/common/GeneralIcons.jsx"
 import { CardActionToCreate } from '../../components/rector/CardActionToCreate.jsx'
 import { CircleChart } from '../../components/common/charts/CircleChart.jsx'
 import { BarChartPerformance } from '../../components/rector/BarChartPerformance.jsx'
 
+import { MakeTourContext } from '../../context/common/makeTour.jsx'
+
 export function RectorDashboard() {
     const navigate = useNavigate()
     const { userLogin } = useContext(UserLoginContext)
     const { setTitleHeaderOption } = useTitleHeaderOption()
+    const { startTour } = useContext(MakeTourContext)
 
     useEffect(() => {
         setTitleHeaderOption('Dashboard Rector')
+        const stepsDiverRector = [
+            { element: '.principal-container-menu', popover: { title: 'Menú principal', description: 'Aquí puedes ver el menú principal de la plataforma con todas las opciones disponibles para ti.' } },
+            { element: '.dashboard-menu-option', popover: { title: 'Dashboard', description: 'Aquí podrás ver la información general de tu centro educativo y llevar el control.' } },
+            { element: '.cursos-menu-option', popover: { title: 'Cursos', description: 'Aquí podrás gestionar todo lo relacionado con los cursos que se ofrecen en tu centro educativo.' } },
+            { element: '.calendario-menu-option', popover: { title: 'Calendario', description: 'En esta sección podrás gestionar todo lo relacionado con el calendario académico y eventos escolares.' } },
+            { element: '.reportes-menu-option', popover: { title: 'Reportes', description: 'En esta sección podrás generar los reportes que se pueden generar del sistema.' } },
+            { element: '.container-cards', popover: { title: 'Acciones rápidas', description: 'Aquí puedes ver las diferentes acciones que puedes realizar para gestionar el centro educativo de manera ágil y cómoda.' } },
+            { element: '.cards-stadistics', popover: { title: 'Estadísticas', description: 'Aquí podrás ver las estadísticas generales de tu centro educativo, como el rendimiento académico de los estudiantes y la asistencia.' } },
+            { element: '.bar-chart-card', popover: { title: 'Rendimiento académico', description: 'Aquí podrás ver el rendimiento académico general de los estudiantes.' } },
+            { element: '.assitence-card', popover: { title: 'Asistencia', description: 'Aquí podrás ver la asistencia general de los estudiantes.' } }
+        ]
+        if (userLogin.userInfo.usuestado === 'RE') { startTour(stepsDiverRector) }
     }, [])
-
-    console.log(userLogin)
 
     return (
         <section className="container-dashboard-rector">

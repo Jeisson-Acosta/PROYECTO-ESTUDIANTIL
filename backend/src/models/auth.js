@@ -186,4 +186,14 @@ export class AuthModel {
             throw new Error('Error getting educative centers')
         }
     }
+
+    static async changeStateUser({ usuid }) {
+        try {
+            const result = await manageDB(null, [usuid], 'UPDATE tbl_usuario SET usuestado = "AN" WHERE usuid = ?', 'SL')
+            if (!result.ok) { throw new Error(result.message) }
+            return result
+        } catch (error) {
+            throw new Error('Error changing state user')
+        }
+    }
 }
