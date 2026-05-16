@@ -70,7 +70,7 @@ export function MenuApp() {
                     <NavLink to={`/${COMPLEMENTED_URL}/cursos`}>
                         <li className="cursos-menu-option">
                             <IconNotebook />
-                            <span className="text-module">Cursos</span>
+                            <span className="text-module">Asignaturas</span>
                         </li>
                     </NavLink>
                     <NavLink to={`/${COMPLEMENTED_URL}/tareas`}>

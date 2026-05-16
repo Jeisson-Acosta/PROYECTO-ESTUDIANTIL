@@ -111,7 +111,7 @@
     border: 1.5px solid #f0f0f0;
 }
 
-/* ── Reset react-big-calendar ── */
+/* ── Reset de react-big-calendar ── */
 .cal-body .rbc-calendar {
     font-family: inherit;
 }
@@ -230,7 +230,6 @@
     background: rgba(59, 130, 246, 0.02) !important;
 }
 
-/* ── Fix encabezado cortado ── */
 .cal-body .rbc-time-header-content {
     overflow: visible !important;
 }

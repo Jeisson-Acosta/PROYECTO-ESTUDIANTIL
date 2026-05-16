@@ -8,14 +8,18 @@ import { useFilterAsignatures } from '../../hooks/rector/useFilterAsignatures.js
 
 import toast from "react-hot-toast"
 
-import { BookIcon, CircleCheckSingleIcon, ExclamationCircleIcon, EyeBlueIcon, EyeIcon, PlusIcon } from "../../components/common/GeneralIcons.jsx";
+import { BookIcon, CircleCheckSingleIcon, CloseIcon, ExclamationCircleIcon, EyeBlueIcon, EyeIcon, PlusIcon } from "../../components/common/GeneralIcons.jsx";
 import { CardInfoAsignature } from "../../components/rector/CardInfoAsignaure.jsx"
 import { BuildTable } from '../../components/common/BuildTable.jsx'
+import { ModalCreateCourse } from '../../components/rector/ModalCreateCourse.jsx'
+
 import { getIconUrl } from '../../utils/getIconUrl.js'
+
 
 export function CoursesRector() {
 
     const [dataAsignatures, setDataAsignatures] = useState(null)
+    const [showModalCreateCourse, setShowModalCreateCourse] = useState(false)
     const { userLogin } = useContext(UserLoginContext)
     const { setTitleHeaderOption } = useTitleHeaderOption()
     const { requestDB } = useRequestDB()
@@ -126,16 +130,17 @@ export function CoursesRector() {
 
     if (dataAsignatures === null) return
 
-    console.log(dataAsignatures)
-
     return (
         <section className="principal-container-asignatures-rector">
+
+            {showModalCreateCourse && <ModalCreateCourse onClose={() => setShowModalCreateCourse(false)} usuid={userLogin.userInfo.usuid} cedid={userLogin.educativeCenterInfo[0].cedid} cecid={userLogin.currentCycleInfo.cecid} />}
+
             <header className="header-asignatures-rector">
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap'}}>
                     <p style={{color: '#4c79a0', fontFamily: 'fontSubtitles'}}>
                         Administra, organiza y supervisa el plan de estudio académico de toda la institución
                     </p>
-                    <button className='button-create-new-course'>
+                    <button className='button-create-new-course' onClick={() => setShowModalCreateCourse(true)}>
                         <PlusIcon />
                         Crear Nuevo Curso
                     </button>

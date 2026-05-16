@@ -51,6 +51,20 @@ const getInfoToCreateAsignature = z.object({
     cedid: z.string({ required_error: 'The id is required' }).transform(val => Number(val))
 })
 
+const getAllDocents = z.object({
+    cedid: z.string({ required_error: 'The id is required' }).transform(val => Number(val))
+})
+
+const createCourse = z.object({
+    usuid: z.string({ required_error: 'The user id is required' }).transform(val => Number(val)),
+    cedid: z.string({ required_error: 'The id is required' }).transform(val => Number(val)),
+    cecid: z.string({ required_error: 'The educative center code is required' }).transform(val => Number(val)),
+    edccod: z.string({ required_error: 'The educative course code is required' }), 
+    edcnom: z.string({ required_error: 'The educative course name is required' }),
+    usuid_docente: z.string({ required_error: 'The docente id is required' }).transform(val => Number(val))
+    
+})
+
 export function validateGetCoursesByEducativeCenter(input) {
     return getCoursesByEducativeCenterSchema.safeParse(input)
 }
@@ -69,4 +83,12 @@ export function validateCreateAsignatura(input) {
 
 export function validateGetAllAsignaturesInfo(input) {
     return getAllAsignaturesInfo.safeParse(input)
+}
+
+export function validateGetAllDocents(input) {
+    return getAllDocents.safeParse(input)
+}
+
+export function validateCreateCourse(input) {
+    return createCourse.safeParse(input)
 }

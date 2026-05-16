@@ -77,4 +77,27 @@ export class RectorModel {
             throw new Error('Error get all asignatures info')
         }
     }
+
+    static async getAllDocents({ cedid }) {
+        try {
+            
+            const resultDB = await manageDB(null, [cedid], 'SELECT JSON_ARRAYAGG(JSON_OBJECT("usuid", usuid, "usunom", usunom)) as docents FROM tbl_usuario WHERE cedid = ? AND rolid = (SELECT rolid FROM tbl_rol WHERE rolcod = "DOC")', 'SL')
+            if (!resultDB.ok) throw new Error(resultDB.message)
+
+            return resultDB
+        } catch (err) {
+            throw new Error('Error get all docents')
+        }
+    }
+    static async createCourse({ data }) {
+        const { usuid, cedid, cecid, edccod, edcnom, usuid_docente } = data
+        try {
+            const resultDB = await manageDB('sp_rector_create_course', [usuid, cedid, cecid, edccod, edcnom, usuid_docente])
+            if (!resultDB.ok) throw new Error(resultDB.message)
+
+            return resultDB
+        } catch (err) {
+            throw new Error('Error create course')
+        }
+    }
 }

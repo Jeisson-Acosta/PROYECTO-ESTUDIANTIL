@@ -1,5 +1,5 @@
 import { RectorModel } from "../models/rector.js"
-import { validateGetCoursesByEducativeCenter, validateCreateStudent, validateGetInfoToCreateAsignature, validateCreateAsignatura, validateGetAllAsignaturesInfo } from "../schemas/rector.js"
+import { validateGetCoursesByEducativeCenter, validateCreateStudent, validateGetInfoToCreateAsignature, validateCreateAsignatura, validateGetAllAsignaturesInfo, validateGetAllDocents, validateCreateCourse } from "../schemas/rector.js"
 
 export class RectorController {
 
@@ -75,6 +75,36 @@ export class RectorController {
 
         } catch (err) {
             throw new Error('Error get all asignatures info')
+        }
+    }
+
+    static async getAllDocents(req, res) {
+        try {
+            const resultValidate = validateGetAllDocents(req.params)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await RectorModel.getAllDocents({ cedid: resultValidate.data.cedid })
+            if (!result.ok) return res.json(result)
+
+            return res.json(result)
+
+        } catch (err) {
+            throw new Error('Error get all docents')
+        }
+    }
+
+    static async createCourse(req, res) {
+        try {
+            const resultValidate = validateCreateCourse(req.body)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await RectorModel.createCourse({ data: resultValidate.data })
+            if (!result.ok) return res.json(result)
+
+            return res.json(result)
+
+        } catch (err) {
+            throw new Error('Error create course')
         }
     }
 

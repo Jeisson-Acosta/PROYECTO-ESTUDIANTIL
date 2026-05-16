@@ -102,3 +102,106 @@
         background-color: #0ea5e9;
     }
 }
+
+
+
+.principal-container-modal-create-course {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    animation: fadeInOverlay 0.7s ease;
+    & .container-modal-create-course {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 16px;
+        & .header-modal-create-course {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & .button-close-modal-create-course {
+                background-color: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+        & .fields-create-course {
+            margin-top: 22px;
+            & label {
+                display: flex;
+                flex-direction: column;
+                font-family: fontSubtitles;
+                font-size: 12px;
+                gap: 6px;
+                color: #434c5e;
+                & input {
+                    padding: 10px;
+                    border-radius: 6px;
+                    border: 1px solid #f1f0f3;
+                    outline: none;
+                    font-family: fontSubtitles;
+                    background-color: #faf9fa;
+                }
+            }
+            & .container-select-docent {
+                margin-top: 12px;
+                display: flex;
+                flex-direction: column;
+                font-family: fontSubtitles;
+                font-size: 13px;
+                gap: 6px;
+                color: #434c5e;
+                & label {
+                    font-family: fontSubtitles;
+                    font-size: 13px;
+                    color: #434c5e;
+                    margin-bottom: 2px;
+                }
+                & select {
+                    padding: 10px;
+                    border-radius: 6px;
+                    border: 1px solid #f1f0f3;
+                    outline: none;
+                    font-family: fontSubtitles;
+                    background-color: #faf9fa;
+                }
+            }
+            & .buttons-actions-create-course {
+                margin-top: 16px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 10px;
+                & button {
+                    padding: 10px 18px;
+                    border-radius: 8px;
+                    border: none;
+                    outline: none;
+                    font-family: fontSubtitles;
+                    font-size: 12px;
+                    color: #ffffff;
+                    cursor: pointer;
+                    transition: all 0.4s ease;
+                    &:hover {
+                        opacity: 0.9;
+                    }
+                }
+                & .btn-cancel {
+                    background-color: #a4b1be;
+                }
+                & .btn-save {
+                    background-color: #1170d6;
+                }
+            }
+        }
+    }
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
