@@ -32,6 +32,8 @@ docentRouter.get('/classes/:usuid/:cedid/:cecid', DocentController.getClasses)
 docentRouter.get('/classes/details/:usuid/:cedid/:cecid/:asgcod', DocentController.getClassDetails)
 
 docentRouter.post('/create-resource', upload.array('files', 10), DocentController.createResource)
+docentRouter.post('/create-exam', DocentController.createExam)
+
 docentRouter.post('/save-attendance', DocentController.saveAttendance)
 
 docentRouter.get('/students-list/:usuid/:cedid/:cecid/:asgcod/:optionSP', DocentController.getStudentsList)

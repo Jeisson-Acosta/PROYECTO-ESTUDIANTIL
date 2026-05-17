@@ -179,6 +179,25 @@ const infoAttendanceToReportSchema = z.object({
     })
 })
 
+const createExamSchema = z.object({
+    usuid: z.string({
+        required_error: 'The user id is required',
+        invalid_type_error: 'The user id must be a number'
+    }).transform(val => Number(val)),
+    cedid: z.string({
+        required_error: 'The cedid is required',
+        invalid_type_error: 'The cedid must be a string'
+    }).transform(val => Number(val)),
+    cecid: z.string({
+        required_error: 'The cecid is required',
+        invalid_type_error: 'The cecid must be a string'
+    }).transform(val => Number(val)),
+    json_data: z.string({
+        required_error: 'The json_data is required',
+        invalid_type_error: 'The json_data must be a string'
+    })
+})
+
 export function validateClasses(input) {
     return classesSchema.safeParse(input)
 }
@@ -209,4 +228,8 @@ export function validateAttendanceStudents(input) {
 
 export function validateInfoAttendanceToReport(input) {
     return infoAttendanceToReportSchema.safeParse(input)
+}
+
+export function validateCreateExam(input) {
+    return createExamSchema.safeParse(input)
 }

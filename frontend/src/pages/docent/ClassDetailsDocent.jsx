@@ -17,6 +17,8 @@ export function ClassDetailsDocent() {
     const navigate = useNavigate()
     const currentPath = location.pathname
 
+    console.log(infoClass)
+
     if (infoClass.infoClass === null) return <h2>No tienes clases asignadas</h2>
 
     const handleClickButtonCreate = () => { setShowMenuCreate(!showMenuCreate) }
@@ -45,6 +47,7 @@ export function ClassDetailsDocent() {
                                         <button onClick={() => handleClickButtonFilter('TA')} className={filter === 'TA' ? 'active' : ''}>Tareas</button>
                                         <button onClick={() => handleClickButtonFilter('MA')} className={filter === 'MA' ? 'active' : ''}>Material</button>
                                         <button onClick={() => handleClickButtonFilter('EN')} className={filter === 'EN' ? 'active' : ''}>Enunciado</button>
+                                        <button onClick={() => handleClickButtonFilter('EX')} className={filter === 'EX' ? 'active' : ''}>Examen</button>
                                     </div>
                                 </div>
                             </div>

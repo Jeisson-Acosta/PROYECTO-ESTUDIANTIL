@@ -37,6 +37,7 @@ import { Unauthorized } from './components/common/Unauthorized.jsx'
 import { FormCreateStudent } from './components/rector/FormCreateStudent.jsx'
 import { FormCreateDocent } from './components/rector/FormCreateDocent.jsx'
 import { FormCreateNewCourse } from './components/rector/FormCreateNewCourse.jsx'
+import { CreateExam } from './pages/docent/CreateExam.jsx'
 
 function App() {
 
@@ -84,6 +85,7 @@ function App() {
                   <Route path='cursos/:asgcod/create-task' element={<CreateTask />} />
                   <Route path='cursos/:asgcod/create-material' element={<CreateMaterial />} />
                   <Route path='cursos/:asgcod/create-announcement' element={<CreateAnnouncement />} />
+                  <Route path='cursos/:asgcod/create-exam' element={<CreateExam />} />
                   <Route path='cursos/:asgcod/attendance' element={<Attendance />} />
                   <Route path='cursos/:asgcod/students' element={<StudentsList />} />
                   <Route path='cursos/:asgcod/view-details-task/:astid' element={<ViewDetailsTask />} />

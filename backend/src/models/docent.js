@@ -125,4 +125,17 @@ export class DocentModel {
             throw new Error('Error getting info attendance to report docent: ' + err.message)
         }
     }
+
+    static async createExam({ data }) {
+        try {
+            const { usuid, cedid, cecid, json_data } = data
+            const result = await manageDB('sp_docent_create_exam', [usuid, cedid, cecid, json_data])
+            if (!result.ok) throw new Error(result.message)
+
+            return result
+        } catch (err) {
+            console.log(err)
+            throw new Error('Error creating exam docent')
+        }
+    }
 }

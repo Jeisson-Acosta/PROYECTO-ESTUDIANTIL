@@ -1,5 +1,5 @@
 import '../../styles/docent/MenuCreateResource.css'
-import { ClipboardCheckIcon, BookIcon, SpeakerPhone } from "../common/GeneralIcons"
+import { ClipboardCheckIcon, BookIcon, SpeakerPhone, DevicesQuestionIcon } from "../common/GeneralIcons"
 import { useNavigate, useLocation } from 'react-router-dom'
 
 export function MenuCreateResource({ onClose }) {
@@ -11,7 +11,8 @@ export function MenuCreateResource({ onClose }) {
         const COMPLEMENT_URL = {
             TA: 'create-task',
             MA: 'create-material',
-            EN: 'create-announcement'
+            EN: 'create-announcement',
+            EX: 'create-exam'
         }
         navigate(`${location.pathname}/${COMPLEMENT_URL[type]}`)
     }
@@ -47,6 +48,15 @@ export function MenuCreateResource({ onClose }) {
                         <h3 className='title-menu-option-resource'>Enunciado</h3>
                         <span className='description-menu-option-resource'>
                             Publica un anuncio general.
+                        </span>
+                    </div>
+                </button>
+                <button onClick={() => handleClickNavigate('EX')}>
+                    <DevicesQuestionIcon />
+                    <div>
+                        <h3 className='title-menu-option-resource'>Examen</h3>
+                        <span className='description-menu-option-resource'>
+                            Diseña evaluaciones.
                         </span>
                     </div>
                 </button>

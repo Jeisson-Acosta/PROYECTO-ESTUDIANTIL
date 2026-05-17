@@ -1,4 +1,4 @@
-import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList, validateTaskDetails, validateAttendance, validateAttendanceStudents, validateInfoAttendanceToReport } from "../schemas/docent.js";
+import { validateClasses, validateClassDetails, validateCreateResource, validateStudentsList, validateTaskDetails, validateAttendance, validateAttendanceStudents, validateInfoAttendanceToReport, validateCreateExam } from "../schemas/docent.js";
 import { DocentModel } from "../models/docent.js"
 import { sendEmail } from "../services/sendEmail.js"
 
@@ -159,6 +159,22 @@ export class DocentController {
             return res.json(result)
         } catch(err) {
             return res.status(500).json({ ok: false, message: 'Error getting info attendance to report docent' })
+        }
+    }
+
+    static async createExam(req, res) {
+        try {
+            const resultValidate = validateCreateExam(req.body)
+            if (!resultValidate.success) return res.status(400).json({ message: JSON.parse(resultValidate.error.message) })
+
+            const result = await DocentModel.createExam({ data: resultValidate.data })
+            if (!result.ok) return res.status(400).json({ message: result.message })
+
+            // Aca debo de enviar el email a los estudiantes
+
+            return res.json(result)
+        } catch(err) {
+            return res.status(500).json({ ok: false, message: 'Error creating exam docent' })
         }
     }
 }
